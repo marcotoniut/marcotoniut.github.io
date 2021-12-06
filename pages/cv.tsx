@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { GithubIcon, LinkedInIcon, NewTabIcon } from "../components/Icons";
 import { H1, H2, H3 } from "../components/Typography";
 import { email, phone } from "../info";
@@ -8,6 +9,15 @@ import { colors, space } from "../styles/theme";
 export default function CV(_: AppProps) {
   return (
     <div css={docCss}>
+      <Head>
+        <title>Curriculum Vitae - Marco Toniut</title>
+        <meta
+          name="description"
+          content="Web version of Marco Toniut's Curriculum Vitae (Systems Engineer)"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <main>
         <H1 id="me">Marco Stefano Toniut</H1>
         <article>
@@ -177,7 +187,7 @@ export default function CV(_: AppProps) {
             <li>
               <a
                 css={linkCss}
-                href="https://www.udemy.com/course/analog-electronics-robotics-learn-by-building"
+                href="https://www.udemy.com/course/digital-electronics-robotics-learn-by-building-module-ii"
                 rel="noreferrer"
                 target="_blank"
               >
