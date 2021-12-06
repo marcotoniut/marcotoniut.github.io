@@ -10,7 +10,8 @@
 
 # next.js
 /.next/
-/out/
+# Exposigin output for GH pages deploy
+# /out/
 
 # production
 /build
