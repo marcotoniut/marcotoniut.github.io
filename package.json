@@ -7,12 +7,14 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add out/ && git commit -m \"script:deploy! Deploy application to gh-pages\" && git subtree push --prefix out origin gh-pages"
+    "deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add out/ && git commit -m \"script:deploy! Deploy application to gh-pages\" && git subtree push --prefix out origin gh-pages",
+    "print-cv": "yarn build && yarn export && html-pdf ./out/cv.html ./local/prints/cv.pdf"
   },
   "dependencies": {
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "gh-pages": "^3.2.3",
+    "html-pdf": "^3.0.1",
     "next": "12.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2"
