@@ -7,11 +7,12 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "predeploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll",
+    "predeploy": "rm -rf node_modules/.cache && yarn build && yarn export && touch out/.nojekyll",
     "deploy": "gh-pages -d out",
-    "print-cv": "yarn build && yarn export && html-pdf ./out/cv.html ./local/prints/cv.pdf"
+    "print-cv": "yarn build && yarn export && html-pdf out/cv.html local/prints/cv.pdf"
   },
   "dependencies": {
+    "@emotion/babel-plugin": "^11.3.0",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "gh-pages": "^3.2.3",
