@@ -15,10 +15,10 @@ export default function CV(_: AppProps) {
   return (
     <div css={docCss} {...sheetProps}>
       <Head>
-        <title>Curriculum Vitae - Marco Toniut</title>
+        <title>Marco Toniut | Curriculum Vitae</title>
         <meta
           name="description"
-          content="Web version of Marco Toniut's Curriculum Vitae (Systems Engineer)"
+          content="This is my professional Curriculum Vitae in interactive web format - Marco Toniut"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
