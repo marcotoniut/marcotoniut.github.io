@@ -1,6 +1,6 @@
 import { colors, fontSizes } from "../styles/theme";
 
-const iconSize = "1.5rem";
+const iconSize = "1.4rem";
 
 const xmlns = "http://www.w3.org/2000/svg";
 
@@ -29,8 +29,8 @@ export const LinkedInIcon = () => (
 export const NewTabIcon = () => (
   <svg
     xmlns={xmlns}
-    width={fontSizes.large}
-    height={fontSizes.large}
+    width={fontSizes.default}
+    height={fontSizes.default}
     viewBox="0 0 24 24"
     fill={colors.action}
   >

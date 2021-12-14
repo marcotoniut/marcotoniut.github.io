@@ -24,10 +24,8 @@ export const H2 = ({ children, ...props }: HProps): JSX.Element => (
     css={{
       fontSize: fontSizes.default,
       color: colors.main,
-      margin: 0,
-      ":not(:first-child)": {
-        marginTop: space.xxxl,
-      },
+      marginBottom: space.xs,
+      marginTop: space.xl,
     }}
     {...props}
   >
@@ -39,7 +37,6 @@ export const H3 = ({ children, ...props }: HProps): JSX.Element => (
   <h3
     css={{
       fontSize: fontSizes.large,
-      marginTop: space.xl,
       marginBottom: space.xs,
     }}
     {...props}
