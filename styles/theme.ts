@@ -4,6 +4,7 @@ export const colors = {
   // action: "#5f7fe1",
   aside: "#f4f5f7",
   text: "#595d6a",
+  transparent: "rgba(0, 0, 0, 0)",
 } as const;
 
 export const fontSizes = {

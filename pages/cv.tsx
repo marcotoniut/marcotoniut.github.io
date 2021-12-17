@@ -12,6 +12,7 @@ function useTargetProps() {
 
 export default function CV(_: AppProps) {
   const sheetProps = useTargetProps();
+
   return (
     <div css={docCss} {...sheetProps}>
       <Head>
@@ -46,7 +47,8 @@ export default function CV(_: AppProps) {
               within schedule by planning my battles.
             </p>
           </section>
-          <H2 id="work-experience">Work Experience</H2>
+
+          <H2 id="work-experience">Experience</H2>
           <hr />
           <section css={sectionCss}>
             <H3 id="prima">Principal Developer</H3>
@@ -55,10 +57,10 @@ export default function CV(_: AppProps) {
               <em>Jan 2021 - Present</em>
             </div>
             <p>
-              {`Kickstart the new tech stack for Prima's UK branch, a tech-focused
-              motor insurance company that's been a major success in Italy.
-              Language stack is mainly comprised of Typescript, Elixir, Rust and
-              Elm.`}
+              Kickstart the new tech stack for Prima’s UK branch, a tech-focused
+              motor insurance company that’s been a major success in Italy.
+              Language stack is comprised mainly of Typescript, Elixir, Rust and
+              Elm.
             </p>
             <p>
               Full-Stack development • Building of the UK tech stack • Mentoring
@@ -80,7 +82,7 @@ export default function CV(_: AppProps) {
             </div>
             <p>
               Developing and upgrading pieces of the Moixa Gridshare stack, a
-              system that smartly controls charge/discharge rates of
+              system to smartly control charge/discharge rates of eco-powered
               batteries/EVs across several countries, mainly the UK and Japan.
             </p>
             <p>
@@ -88,24 +90,26 @@ export default function CV(_: AppProps) {
               Mentoring developers on TS and React • Developing new systems
             </p>
             <ul css={highlightsCss}>
-              <li>{`Sole developer of Moixa's Hub Installer app`}</li>
               <li>
-                {`Re-implemented the Japanese weather alert system (AWS ES, Dynamo,
-              SQS)`}
+                Principal developer of Moixa’s Hub Installer app in a team of
+                two
               </li>
               <li>
-                {
-                  "Principal developer of Moixa's Mobile Customer app v2 (React Native)"
-                }
+                Re-implemented the Japanese weather alert system (AWS ES,
+                Dynamo, SQS)
               </li>
               <li>
-                {`Implemented Admin's Commissioner's module V3, as well as other of its functionalities`}
+                Principal developer of Moixa’s Mobile Customer app v2 (React
+                Native)
               </li>
-              <li>{`Implemented Moixa's Styleguide`}</li>
               <li>
-                {
-                  "Helped with refactoring the FE's monorepo to become functional via React Hooks"
-                }
+                Implemented Admin’s Commissioner’s module V3, as well as other
+                of its functionalities
+              </li>
+              <li>Implemented Moixa’s Styleguide</li>
+              <li>
+                Helped to refactor the FE’s monorepo to become functional via
+                React Hooks
               </li>
             </ul>
           </section>
@@ -238,14 +242,7 @@ export default function CV(_: AppProps) {
           </section>
         </article>
       </main>
-      <aside
-        css={{
-          backgroundColor: colors.aside,
-          paddingLeft: space.xl,
-          paddingRight: space.xl,
-          minWidth: "350px",
-        }}
-      >
+      <aside>
         <section css={sectionCss}>
           <H2 id="contact-details">Contact Details</H2>
           <hr />
@@ -305,11 +302,11 @@ export default function CV(_: AppProps) {
           <hr />
           <ul css={skillsListCss}>
             <li>Typescript / JS / HTML / CSS</li>
-            <li>{"React / Native / NextJS"}</li>
+            <li>React / Native / NextJS</li>
             <li>NodeJS</li>
             <li>AWS DynamoDB / Elastic Search / IoT</li>
             <li>Haskell / Elixir</li>
-            <li>{"(Functional) Reactive Programming"}</li>
+            <li>(Functional) Reactive Programming</li>
             <li>DotNet C# / SQL-Server / Azure</li>
             <li>PostgreSQL</li>
             <li>Unity3D</li>
@@ -317,10 +314,17 @@ export default function CV(_: AppProps) {
           </ul>
         </section>
         <section css={sectionCss}>
-          <H2 id="personal">Personal Skills</H2>
+          <H2 id="personal">Languages</H2>
           <hr />
           <ul css={skillsListCss}>
-            <li>Spanish language</li>
+            <li>English (Fluent)</li>
+            <li>Spanish (Native)</li>
+          </ul>
+        </section>
+        <section css={sectionCss}>
+          <H2 id="personal">Personal Interests</H2>
+          <hr />
+          <ul css={skillsListCss}>
             <li>Digital Painting</li>
             <li>Karate Shotokan</li>
             <li>Tennis</li>
@@ -344,17 +348,28 @@ const docCss = {
   },
   hr: {
     border: 0,
-    borderColor: "rgba(0, 0, 0, 0)",
+    borderColor: colors.transparent,
     height: "1px",
     width: "100%",
     marginBottom: space.xs,
     marginTop: space.xs,
     backgroundColor: colors.text,
   },
+  aside: {
+    backgroundColor: colors.aside,
+    paddingLeft: space.xl,
+    paddingRight: space.xl,
+    minWidth: "350px",
+  },
   "@media screen and (max-width: 768px)": {
     fontSize: "14px",
     display: "block",
+    padding: `${space.xl} ${space.none} ${space.none} ${space.none}`,
+    main: {
+      padding: `${space.none} ${space.default}`,
+    },
     aside: {
+      padding: space.default,
       marginTop: space.xxxl,
     },
   },
