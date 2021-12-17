@@ -48,197 +48,206 @@ export default function CV(_: AppProps) {
             </p>
           </section>
 
-          <H2 id="work-experience">Experience</H2>
-          <hr />
           <section css={sectionCss}>
-            <H3 id="prima">Principal Developer</H3>
-            <div css={institutionCss}>Prima Assicurazioni UK</div>
-            <div>
-              <em>Jan 2021 - Present</em>
-            </div>
-            <p>
-              Kickstart the new tech stack for Prima’s UK branch, a tech-focused
-              motor insurance company that’s been a major success in Italy.
-              Language stack is comprised mainly of Typescript, Elixir, Rust and
-              Elm.
-            </p>
-            <p>
-              Full-Stack development • Building of the UK tech stack • Mentoring
-              developers on TS, React and FRP
-            </p>
-            <ul css={highlightsCss}>
-              <li>Principal developer of the public facing app</li>
-              <li>Set up and maintain FE build/lint/test monorepo</li>
-              <li>Develop Elixir Graphql APIs</li>
-              <li>Develop Email and PDF React rendering tools</li>
-              <li>Set up cypress integration test environment</li>
-            </ul>
-          </section>
-          <section css={sectionCss}>
-            <H3 id="moixa-ltd">Senior Software Developer</H3>
-            <div css={institutionCss}>Moixa Ltd.</div>
-            <div>
-              <em>Jun 2019 - Dec 2020</em>
-            </div>
-            <p>
-              Developing and upgrading pieces of the Moixa Gridshare stack, a
-              system to smartly control charge/discharge rates of eco-powered
-              batteries/EVs across several countries, mainly the UK and Japan.
-            </p>
-            <p>
-              Full-Stack development • Maintaining the monorepo stack •
-              Mentoring developers on TS and React • Developing new systems
-            </p>
-            <ul css={highlightsCss}>
-              <li>
-                Principal developer of Moixa’s Hub Installer app in a team of
-                two
-              </li>
-              <li>
-                Re-implemented the Japanese weather alert system (AWS ES,
-                Dynamo, SQS)
-              </li>
-              <li>
-                Principal developer of Moixa’s Mobile Customer app v2 (React
-                Native)
-              </li>
-              <li>
-                Implemented Admin’s Commissioner’s module V3, as well as other
-                of its functionalities
-              </li>
-              <li>Implemented Moixa’s Styleguide</li>
-              <li>
-                Helped to refactor the FE’s monorepo to become functional via
-                React Hooks
-              </li>
-            </ul>
-          </section>
-          <section css={sectionCss}>
-            <H3 id="freelancer-2016">Freelancer</H3>
-            <div>
-              <em>Jan 2016 - Jun 2019</em>
-            </div>
-            <p>
-              Several jobs of interest. Dealing with different clients,
-              requirements and businesses. React, Reflex-FRP (Haskell) web
-              applications. Haskell FRP.
-            </p>
-          </section>
-          <section css={sectionCss}>
-            <H3 id="propago">Lead Software Developer</H3>
-            <div css={institutionCss}>Propago AR</div>
-            <p>
-              <em>Mar 2014 - Dec 2015</em>
-            </p>
-            <div>
-              Realise the Full-Stack architecture for Propago’s financial
-              system. Lead and train staff in then new technology React. Back
-              End was developed using C#/SQL Server, deployed to Azure.
-            </div>
-            <ul css={highlightsCss}>
-              <li>Leading staff of six developers</li>
-              <li>Involvement in company decisions</li>
-              <li>Hiring, training, supervising staff</li>
-            </ul>
-          </section>
-          <section css={sectionCss}>
-            <H3 id="eventbrite">Front-End Software Developer</H3>
-            <div css={institutionCss}>Eventbrite</div>
-            <div>
-              <em>May 2013 - November 2013</em>
-            </div>
-            <p>
-              Front-End developer, in charge of fixing and upgrading their Seat
-              Designer app. A large HTML/canvas/svg app full of UI drag and drop
-              interactivity.
-            </p>
-            <ul css={highlightsCss}>
-              <li>Backbone JS app development</li>
-              <li>Upgrading SVG editor rich internet app</li>
-            </ul>
-          </section>
-          <section css={sectionCss}>
-            <H3 id="freelancer-2010">Freelancer</H3>
-            <div>
-              <em>Jan 2010 - May 2013</em>
-            </div>
-            <p>
-              Several jobs of interest. Dealing with multiple clients,
-              requirements and businesses. Web apps, game development.
-            </p>
-          </section>
-          <section css={sectionCss}>
-            <H3 id="estudio-minero">Web Programmer</H3>
-            <div css={institutionCss}>Estudio Minero</div>
-            <div>
-              <em>Jan 2008 - Jan 2010</em>
-            </div>
-            <p>
-              Design and develop web pages and embedded applications with Flash
-              and Javascript.
-            </p>
-            <ul css={highlightsCss}>
-              <li>Static web pages</li>
-              <li>Design and implementation</li>
-              <li>Flash web applications (as3)</li>
-              <li>PHP/Wordpress BEs</li>
-            </ul>
+            <H2 id="work-experience">Experience</H2>
+            <hr />
+
+            <section css={sectionCss}>
+              <H3 id="prima">Principal Developer</H3>
+              <div css={institutionCss}>Prima Assicurazioni UK</div>
+              <div>
+                <em>Jan 2021 - Present</em>
+              </div>
+              <p>
+                Kickstart the new tech stack for Prima’s UK branch, a
+                tech-focused motor insurance company that’s been a major success
+                in Italy. Language stack is comprised mainly of Typescript,
+                Elixir, Rust and Elm.
+              </p>
+              <p>
+                Full-Stack development • Building of the UK tech stack •
+                Mentoring developers on TS, React and FRP
+              </p>
+              <ul css={highlightsCss}>
+                <li>Principal developer of the public facing app</li>
+                <li>Set up and maintain FE build/lint/test monorepo</li>
+                <li>Develop Elixir Graphql APIs</li>
+                <li>Develop Email and PDF React rendering tools</li>
+                <li>Set up cypress integration test environment</li>
+              </ul>
+            </section>
+            <section css={sectionCss}>
+              <H3 id="moixa-ltd">Senior Software Developer</H3>
+              <div css={institutionCss}>Moixa Ltd.</div>
+              <div>
+                <em>Jun 2019 - Dec 2020</em>
+              </div>
+              <p>
+                Developing and upgrading pieces of the Moixa Gridshare stack, a
+                system to smartly control charge/discharge rates of eco-powered
+                batteries/EVs across several countries, mainly the UK and Japan.
+              </p>
+              <p>
+                Full-Stack development • Maintaining the monorepo stack •
+                Mentoring developers on TS and React • Developing new systems
+              </p>
+              <ul css={highlightsCss}>
+                <li>
+                  Principal developer of Moixa’s Hub Installer app in a team of
+                  two
+                </li>
+                <li>
+                  Re-implemented the Japanese weather alert system (AWS ES,
+                  Dynamo, SQS)
+                </li>
+                <li>
+                  Principal developer of Moixa’s Mobile Customer app v2 (React
+                  Native)
+                </li>
+                <li>
+                  Implemented Admin’s Commissioner’s module V3, as well as other
+                  of its functionalities
+                </li>
+                <li>Implemented Moixa’s Styleguide</li>
+                <li>
+                  Helped to refactor the FE’s monorepo to become functional via
+                  React Hooks
+                </li>
+              </ul>
+            </section>
+            <section css={sectionCss}>
+              <H3 id="freelancer-2016">Freelancer</H3>
+              <div>
+                <em>Jan 2016 - Jun 2019</em>
+              </div>
+              <p>
+                Several jobs of interest. Dealing with different clients,
+                requirements and businesses. React, Reflex-FRP (Haskell) web
+                applications. Haskell FRP.
+              </p>
+            </section>
+            <section css={sectionCss}>
+              <H3 id="propago">Lead Software Developer</H3>
+              <div css={institutionCss}>Propago AR</div>
+              <p>
+                <em>Mar 2014 - Dec 2015</em>
+              </p>
+              <div>
+                Realise the Full-Stack architecture for Propago’s financial
+                system. Lead and train staff in then new technology React. Back
+                End was developed using C#/SQL Server, deployed to Azure.
+              </div>
+              <ul css={highlightsCss}>
+                <li>Leading staff of six developers</li>
+                <li>Involvement in company decisions</li>
+                <li>Hiring, training, supervising staff</li>
+              </ul>
+            </section>
+            <section css={sectionCss}>
+              <H3 id="eventbrite">Front-End Software Developer</H3>
+              <div css={institutionCss}>Eventbrite</div>
+              <div>
+                <em>May 2013 - November 2013</em>
+              </div>
+              <p>
+                Front-End developer, in charge of fixing and upgrading their
+                Seat Designer app. A large HTML/canvas/svg app full of UI drag
+                and drop interactivity.
+              </p>
+              <ul css={highlightsCss}>
+                <li>Backbone JS app development</li>
+                <li>Upgrading SVG editor rich internet app</li>
+              </ul>
+            </section>
+            <section css={sectionCss}>
+              <H3 id="freelancer-2010">Freelancer</H3>
+              <div>
+                <em>Jan 2010 - May 2013</em>
+              </div>
+              <p>
+                Several jobs of interest. Dealing with multiple clients,
+                requirements and businesses. Web apps, game development.
+              </p>
+            </section>
+            <section css={sectionCss}>
+              <H3 id="estudio-minero">Web Programmer</H3>
+              <div css={institutionCss}>Estudio Minero</div>
+              <div>
+                <em>Jan 2008 - Jan 2010</em>
+              </div>
+              <p>
+                Design and develop web pages and embedded applications with
+                Flash and Javascript.
+              </p>
+              <ul css={highlightsCss}>
+                <li>Static web pages</li>
+                <li>Design and implementation</li>
+                <li>Flash web applications (as3)</li>
+                <li>PHP/Wordpress BEs</li>
+              </ul>
+            </section>
           </section>
 
-          <H2 id="education">Education</H2>
-          <hr />
-
           <section css={sectionCss}>
-            <H3 id="udemy-robotics">
-              {"Electricity & electronics - Robotics, learn by building"}
-            </H3>
-            <div css={institutionCss}>Udemy Academy</div>
-            <div>
-              <em>2020 - 2021</em>
-            </div>
-            <ul
-              css={{ listStyle: "inside", padding: 0, listStyleType: "circle" }}
-            >
-              <li>
-                <a
-                  css={linkCss}
-                  href="https://www.udemy.com/course/analog-electronics-robotics-learn-by-building"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <span css={{ marginRight: space.xs }}>
-                    Module I - Analog Electronics
-                  </span>
-                  <NewTabIcon />
-                </a>
-              </li>
-              <li>
-                <a
-                  css={linkCss}
-                  href="https://www.udemy.com/course/digital-electronics-robotics-learn-by-building-module-ii"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <span css={{ marginRight: space.xs }}>
-                    Module II - Digital Electronics
-                  </span>
-                  <NewTabIcon />
-                </a>
-              </li>
-            </ul>
-          </section>
+            <H2 id="education">Education</H2>
+            <hr />
 
-          <section>
-            <H3 id="caece">Systems Engineer</H3>
-            <div css={institutionCss}>University CAECE Mar del Plata</div>
-            <div>
-              <em>2006 - 2012</em>
-            </div>
-            <p>
-              Computer science. Algorithms, data structures and software
-              patterns. Project management. Quality assurance. Electronic
-              circuits.
-            </p>
+            <section css={sectionCss}>
+              <H3 id="udemy-robotics">
+                {"Electricity & electronics - Robotics, learn by building"}
+              </H3>
+              <div css={institutionCss}>Udemy Academy</div>
+              <div>
+                <em>2020 - 2021</em>
+              </div>
+              <ul
+                css={{
+                  listStyle: "inside",
+                  padding: 0,
+                  listStyleType: "circle",
+                }}
+              >
+                <li>
+                  <a
+                    css={linkCss}
+                    href="https://www.udemy.com/course/analog-electronics-robotics-learn-by-building"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span css={{ marginRight: space.xs }}>
+                      Module I - Analog Electronics
+                    </span>
+                    <NewTabIcon />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    css={linkCss}
+                    href="https://www.udemy.com/course/digital-electronics-robotics-learn-by-building-module-ii"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span css={{ marginRight: space.xs }}>
+                      Module II - Digital Electronics
+                    </span>
+                    <NewTabIcon />
+                  </a>
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <H3 id="caece">Systems Engineer</H3>
+              <div css={institutionCss}>University CAECE Mar del Plata</div>
+              <div>
+                <em>2006 - 2012</em>
+              </div>
+              <p>
+                Computer science. Algorithms, data structures and software
+                patterns. Project management. Quality assurance. Electronic
+                circuits.
+              </p>
+            </section>
           </section>
         </article>
       </main>
