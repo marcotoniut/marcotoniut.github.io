@@ -22,6 +22,34 @@ export default function CV(_: AppProps) {
           content="This is my professional Curriculum Vitae in interactive web format - Marco Toniut"
         />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="preload"
+          href="/fonts/Calibri/calibri-regular.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Calibri/calibri-bold.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Calibri/calibri-italic.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Calibri/calibri-bold-italic.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
       </Head>
 
       <main>
@@ -88,7 +116,7 @@ export default function CV(_: AppProps) {
                 batteries/EVs across several countries, mainly the UK and Japan.
               </p>
               <p>
-                Full-Stack development • Maintaining the monorepo stack •
+                Full-Stack development • Working on the Gridshare Monorepo •
                 Mentoring developers on TS and React • Developing new systems
               </p>
               <ul css={highlightsCss}>
@@ -151,8 +179,8 @@ export default function CV(_: AppProps) {
               </div>
               <p>
                 Front-End developer, in charge of fixing and upgrading their
-                Seat Designer app. A large HTML/canvas/svg app full of UI drag
-                and drop interactivity.
+                Seat Designer application. A large HTML/canvas/svg app full of
+                UI drag and drop interactivity.
               </p>
               <ul css={highlightsCss}>
                 <li>Backbone JS app development</li>
@@ -406,7 +434,7 @@ const skillsListCss = {
   listStyle: "none",
   padding: 0,
   "> li": {
-    "&:not(:first-child)": {
+    "&:not(:first-of-type)": {
       marginTop: space.small,
     },
   },
