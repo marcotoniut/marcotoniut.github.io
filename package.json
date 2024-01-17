@@ -6,10 +6,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export",
-    "predeploy": "rm -rf node_modules/.cache && rm -rf out/ && yarn build && yarn export && touch out/.nojekyll",
+    "predeploy": "rm -rf node_modules/.cache && rm -rf out/ && yarn build && touch out/.nojekyll",
     "deploy": "gh-pages -d out -t",
-    "print-cv": "yarn build && yarn export && html-pdf out/cv.html local/prints/cv.pdf"
+    "print-cv": "yarn build && html-pdf out/cv.html local/prints/cv.pdf"
   },
   "dependencies": {
     "@emotion/babel-plugin": "^11.3.0",
