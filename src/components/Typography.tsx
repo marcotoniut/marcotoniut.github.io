@@ -1,6 +1,5 @@
-import React, { ReactNode } from "react";
-
-import { colors, fontSizes, space } from "../styles/theme";
+import { ReactNode } from "react";
+import { h1Cn, h2Cn, h3Cn } from "./Typography.css";
 
 interface HProps {
   readonly children: ReactNode;
@@ -8,39 +7,19 @@ interface HProps {
 }
 
 export const H1 = ({ children, ...props }: HProps): JSX.Element => (
-  <h1
-    css={{
-      fontSize: fontSizes.xxl,
-      color: colors.main,
-    }}
-    {...props}
-  >
+  <h1 className={h1Cn} {...props}>
     {children}
   </h1>
 );
 
 export const H2 = ({ children, ...props }: HProps): JSX.Element => (
-  <h2
-    css={{
-      fontSize: fontSizes.default,
-      color: colors.main,
-      marginBottom: space.xs,
-      marginTop: space.xl,
-    }}
-    {...props}
-  >
+  <h2 className={h2Cn} {...props}>
     {children}
   </h2>
 );
 
 export const H3 = ({ children, ...props }: HProps): JSX.Element => (
-  <h3
-    css={{
-      fontSize: fontSizes.large,
-      marginBottom: space.xs,
-    }}
-    {...props}
-  >
+  <h3 className={h3Cn} {...props}>
     {children}
   </h3>
 );
