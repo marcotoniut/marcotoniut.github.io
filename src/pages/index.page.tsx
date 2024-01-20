@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import { mainCn } from "./index.css";
 
 const Home: NextPage = () => (
   <div className={styles.container}>
@@ -15,7 +16,7 @@ const Home: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <main className={styles.main}>
+    <main className={mainCn}>
       <h1 className={styles.title}>Marco Toniut</h1>
 
       <p className={styles.description}></p>
