@@ -10,7 +10,6 @@ const nextConfig = {
   output: 'export',
   reactStrictMode: true,
   images: { loader: "custom" },
-  pageExtensions: ['page.tsx', 'page.ts'],
   // NOTE Project-based
   // assetPrefix: !debug ? "/project/" : "",
 };

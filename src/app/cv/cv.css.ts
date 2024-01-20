@@ -1,5 +1,5 @@
 import { style, globalStyle } from "@vanilla-extract/css";
-import { colors, space } from "../styles/theme";
+import { colors, space } from "../../styles/theme";
 
 export const docCn = style({
   fontSize: "16px",

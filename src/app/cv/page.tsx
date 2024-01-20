@@ -1,37 +1,34 @@
-import type { AppProps } from "next/app";
-import Head from "next/head";
-import { GithubIcon, LinkedInIcon, NewTabIcon } from "../components/Icons";
-import { H1, H2, H3 } from "../components/Typography";
-import { email, phone } from "../info";
+import { colors, space } from "@/styles/theme";
+import { GithubIcon, LinkedInIcon, NewTabIcon } from "../../components/Icons";
+import { H1, H2, H3 } from "../../components/Typography";
+import { email, phone } from "../../info";
 import {
   docCn,
   highlightsCss as highlightsCn,
-  institutionCn as institutionCn,
+  institutionCn,
   linkCss as linkCn,
   paragraphCn,
-  sectionCn as sectionCn,
+  sectionCn,
   skillsListCn,
 } from "./cv.css";
-import { colors, space } from "@/styles/theme";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Marco Toniut | Curriculum Vitae",
+  description:
+    "This is my professional Curriculum Vitae in interactive web format - Marco Toniut",
+};
 
 function useTargetProps() {
   // TODO context api NextJS export
   return false ? { "data-size": "A4" } : {};
 }
 
-export default function CV(_: AppProps) {
+export default function CV() {
   const sheetProps = useTargetProps();
   return (
     <div className={docCn} {...sheetProps}>
-      <Head>
-        <title>Marco Toniut | Curriculum Vitae</title>
-        <meta
-          name="description"
-          content="This is my professional Curriculum Vitae in interactive web format - Marco Toniut"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main>
         <H1 id="me">Marco Stefano Toniut</H1>
         <article>
