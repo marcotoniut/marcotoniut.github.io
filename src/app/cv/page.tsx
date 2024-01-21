@@ -1,18 +1,23 @@
-import { colors, space } from "@/styles/theme";
+import { space } from "@/styles/theme";
 import { GithubIcon, LinkedInIcon, NewTabIcon } from "../../components/Icons";
 import { H1, H2, H3 } from "../../components/Typography";
 import { email, phone } from "../../info";
 import {
+  asideCn,
   docCn,
-  highlightsCss as highlightsCn,
+  learningHighlightsCn as educationHighlightsCn,
   institutionCn,
-  linkCss as linkCn,
+  link2Cn,
+  linkCn,
   paragraphCn,
   sectionCn,
   skillsListCn,
+  highlightsCn as workHighlightsCn,
 } from "./cv.css";
 
 import { Metadata } from "next";
+
+const isPDFPrinting = process.env.PDF_PRINTING === "true";
 
 export const metadata: Metadata = {
   title: "Marco Toniut | Curriculum Vitae",
@@ -21,8 +26,7 @@ export const metadata: Metadata = {
 };
 
 function useTargetProps() {
-  // TODO context api NextJS export
-  return false ? { "data-size": "A4" } : {};
+  return isPDFPrinting ? { "data-size": "A4" } : {};
 }
 
 export default function CV() {
@@ -35,21 +39,18 @@ export default function CV() {
           <section className={sectionCn}>
             <H3 id="systems-engineer">Systems Engineer</H3>
             <p>
-              As an independent developer for a good part of my career, I’ve had
-              to undertake a varied amount of tasks, with multiple companies,
-              clients and environments, vesting me with an eclectic array of
-              technical knowledge as well as a pushing demand for
-              self-actualization.
+              As an independent developer for a significant part of my career,
+              {"I've"} tackled diverse tasks across various companies and
+              clients, cultivating an eclectic range of technical knowledge and
+              a commitment to self-actualization.
             </p>
             <p>
-              I’ve been positions of leadership, mentoring and negotiation,
-              having to coordinate dev teams, pushing for the adoption of modern
-              techniques, tools and good practices.
-            </p>
-            <p>
-              Very detail oriented, experimental, code attentive, but aware that
-              deadlines and milestones are paramount. I do my best at keeping
-              within schedule by planning my battles.
+              In leadership, mentoring, and negotiation roles, {"I've "}
+              successfully coordinated development teams, championing the
+              adoption of modern techniques and tools. Detail-oriented and
+              experimental in my coding approach, I prioritize deadlines and
+              milestones, planning tasks meticulously for on-time project
+              completion.
             </p>
           </section>
           <H2 id="work-experience">Work Experience</H2>
@@ -61,23 +62,31 @@ export default function CV() {
               <em>Jan 2021 - Present</em>
             </div>
             <p>
-              {`Kickstart the new tech stack for Prima's UK branch, a tech-focused
-              motor insurance company that's been a major success in Italy.
-              Language stack is mainly comprised of Typescript, Elixir, Rust and
-              Elm.`}
+              {`Independent developer leading the adoption of a new tech stack for Prima's
+    UK branch, a motor insurance company that achieved success in Italy. Focused on
+    TypeScript, Elixir, Rust, and Elm.`}
             </p>
-            <p>
-              Full-Stack development • Building of the UK tech stack • Mentoring
-              developers on TS, React and FRP
-            </p>
-            <ul className={highlightsCn}>
-              <li>Principal developer of the public facing app</li>
-              <li>Set up and maintain FE build/lint/test monorepo</li>
-              <li>Develop Elixir Graphql APIs</li>
-              <li>Develop Email and PDF React rendering tools</li>
-              <li>Set up cypress integration test environment</li>
+            <ul className={workHighlightsCn}>
+              <li>Lead development of the public-facing app</li>
+              <li>
+                Establish and maintain a front-end build/lint/test monorepo,
+                incorporating Elm.
+              </li>
+              <li>
+                Engineer Elixir GraphQL APIs for seamless integration with the
+                tech architecture.
+              </li>
+              <li>
+                Develop Email and PDF React rendering tools for enhanced user
+                communication.
+              </li>
+              <li>
+                Implement and maintain the Cypress integration test environment
+                for quality assurance.
+              </li>
             </ul>
           </section>
+
           <section className={sectionCn}>
             <H3 id="moixa-ltd">Senior Software Developer</H3>
             <div className={institutionCn}>Moixa Ltd.</div>
@@ -85,33 +94,26 @@ export default function CV() {
               <em>Jun 2019 - Dec 2020</em>
             </div>
             <p>
-              Developing and upgrading pieces of the Moixa Gridshare stack, a
-              system that smartly controls charge/discharge rates of
-              batteries/EVs across several countries, mainly the UK and Japan.
+              {`Senior software developer contributing to the Moixa Gridshare stack, managing charge/
+    discharge rates of batteries/EVs in the UK and Japan.`}
             </p>
-            <p>
-              Full-Stack development • Maintaining the monorepo stack •
-              Mentoring developers on TS and React • Developing new systems
-            </p>
-            <ul className={highlightsCn}>
-              <li>{`Sole developer of Moixa's Hub Installer app`}</li>
+            <ul className={workHighlightsCn}>
+              <li>Sole developer of {"Moixa's"} Hub Installer app</li>
               <li>
-                {`Re-implemented the Japanese weather alert system (AWS ES, Dynamo,
-              SQS)`}
+                Re-implemented the Japanese weather alert system using AWS ES,
+                Dynamo, and SQS.
               </li>
               <li>
-                {
-                  "Principal developer of Moixa's Mobile Customer app v2 (React Native)"
-                }
+                Principal developer of {"Moixa's"} Mobile Customer app v2 (React
+                Native).
               </li>
               <li>
-                {`Implemented Admin's Commissioner's module V3, as well as other of its functionalities`}
+                Implemented {"Admin's Commissioner's"} module V3 and other
+                associated functionalities.
               </li>
-              <li>{`Implemented Moixa's Styleguide`}</li>
               <li>
-                {
-                  "Helped with refactoring the FE's monorepo to become functional via React Hooks"
-                }
+                Implemented {"Moixa's"} Styleguide and contributed to front-end
+                monorepo refactoring.
               </li>
             </ul>
           </section>
@@ -121,11 +123,12 @@ export default function CV() {
               <em>Jan 2016 - Jun 2019</em>
             </div>
             <p>
-              Several jobs of interest. Dealing with different clients,
-              requirements and businesses. React, Reflex-FRP (Haskell) web
-              applications. Haskell FRP.
+              {`Undertook diverse projects, collaborating with clients across different industries.
+    Developed React and Reflex-FRP (Haskell) web applications, showcasing versatility
+    in meeting client requirements.`}
             </p>
           </section>
+
           <section className={sectionCn}>
             <H3 id="propago">Lead Software Developer</H3>
             <div className={institutionCn}>Propago AR</div>
@@ -133,16 +136,18 @@ export default function CV() {
               <em>Mar 2014 - Dec 2015</em>
             </p>
             <div>
-              Realise the Full-Stack architecture for Propago’s financial
-              system. Lead and train staff in then new technology React. Back
-              End was developed using C#/SQL Server, deployed to Azure.
+              {`Led the development of the Full-Stack architecture for Propago’s financial system.
+    Provided leadership and training in React technology. Back End developed using
+    C#/SQL Server, deployed to Azure.`}
             </div>
-            <ul className={highlightsCn}>
-              <li>Leading staff of six developers</li>
-              <li>Involvement in company decisions</li>
-              <li>Hiring, training, supervising staff</li>
+            <ul className={workHighlightsCn}>
+              <li>Lead a team of six developers</li>
+              <li>
+                Participated in key company decisions and supervised staff
+              </li>
             </ul>
           </section>
+
           <section className={sectionCn}>
             <H3 id="eventbrite">Front-End Software Developer</H3>
             <div className={institutionCn}>Eventbrite</div>
@@ -150,25 +155,27 @@ export default function CV() {
               <em>May 2013 - November 2013</em>
             </div>
             <p>
-              Front-End developer, in charge of fixing and upgrading their Seat
-              Designer app. A large HTML/canvas/svg app full of UI drag and drop
-              interactivity.
+              {`Front-End developer responsible for fixing and upgrading Eventbrite's Seat Designer app,
+    a large HTML/canvas/svg app with extensive UI drag and drop interactivity.`}
             </p>
-            <ul className={highlightsCn}>
-              <li>Backbone JS app development</li>
-              <li>Upgrading SVG editor rich internet app</li>
+            <ul className={workHighlightsCn}>
+              <li>Improved and refactored their Backbone JS application</li>
+              <li>Upgraded their SVG editor rich internet app</li>
             </ul>
           </section>
+
           <section className={sectionCn}>
             <H3 id="freelancer-2010">Freelancer</H3>
             <div>
               <em>Jan 2010 - May 2013</em>
             </div>
             <p>
-              Several jobs of interest. Dealing with multiple clients,
-              requirements and businesses. Web apps, game development.
+              {`Engaged in various projects, collaborating with multiple clients across diverse industries.
+    Developed web applications and contributed to game development, showcasing adaptability
+    in meeting client requirements.`}
             </p>
           </section>
+
           <section className={sectionCn}>
             <H3 id="estudio-minero">Web Programmer</H3>
             <div className={institutionCn}>Estudio Minero</div>
@@ -176,35 +183,35 @@ export default function CV() {
               <em>Jan 2008 - Jan 2010</em>
             </div>
             <p>
-              Design and develop web pages and embedded applications with Flash
-              and Javascript.
+              {`Designed and developed web pages and embedded applications using Flash and Javascript.`}
             </p>
-            <ul className={highlightsCn}>
-              <li>Static web pages</li>
-              <li>Design and implementation</li>
-              <li>Flash web applications (as3)</li>
-              <li>PHP/Wordpress BEs</li>
+            <ul className={workHighlightsCn}>
+              <li>Created static web pages</li>
+              <li>Led design and implementation efforts</li>
+              <li>Developed Flash web applications (AS3)</li>
+              <li>Implemented PHP/Wordpress backend systems</li>
             </ul>
           </section>
 
           <H2 id="education">Education</H2>
           <hr />
 
+          <section>
+            <H3 id="caece">Systems Engineer</H3>
+            <div className={institutionCn}>University CAECE Mar del Plata</div>
+            <p>
+              Computer science. Algorithms, data structures and software
+              patterns. Project management. Quality assurance. Electronic
+              circuits.
+            </p>
+          </section>
+
           <section className={sectionCn}>
             <H3 id="udemy-robotics">
-              {"Electricity & electronics - Robotics, learn by building"}
+              {"Electricity & Electronics - Robotics, Learn by Building"}
             </H3>
             <div className={institutionCn}>Udemy Academy</div>
-            <div>
-              <em>2020 - 2021</em>
-            </div>
-            <ul
-              style={{
-                listStyle: "inside",
-                padding: 0,
-                listStyleType: "circle",
-              }}
-            >
+            <ul className={educationHighlightsCn}>
               <li>
                 <a
                   className={linkCn}
@@ -233,43 +240,23 @@ export default function CV() {
               </li>
             </ul>
           </section>
-
-          <section>
-            <H3 id="caece">Systems Engineer</H3>
-            <div className={institutionCn}>University CAECE Mar del Plata</div>
-            <div>
-              <em>2006 - 2012</em>
-            </div>
-            <p>
-              Computer science. Algorithms, data structures and software
-              patterns. Project management. Quality assurance. Electronic
-              circuits.
-            </p>
-          </section>
         </article>
       </main>
-      <aside
-        style={{
-          backgroundColor: colors.aside,
-          paddingLeft: space.xl,
-          paddingRight: space.xl,
-          minWidth: "350px",
-        }}
-      >
+      <aside className={asideCn}>
         <section className={sectionCn}>
           <H2 id="contact-details">Contact Details</H2>
           <hr />
           <section className={paragraphCn}>
             <div>
               <a
-                style={{ color: colors.action }}
+                className={link2Cn}
                 href={`mailto:${email}?subject=Hello Marco!`}
               >
                 {email}
               </a>
             </div>
             <div>
-              <a style={{ color: colors.action }} href={`tel:${phone}`}>
+              <a className={link2Cn} href={`tel:${phone}`}>
                 {phone}
               </a>
             </div>
@@ -310,14 +297,13 @@ export default function CV() {
           <ul className={skillsListCn}>
             <li>Typescript / JS / HTML / CSS</li>
             <li>{"React / Native / NextJS"}</li>
-            <li>NodeJS</li>
-            <li>AWS DynamoDB / Elastic Search / IoT</li>
-            <li>Haskell / Elixir</li>
-            <li>{"(Functional) Reactive Programming"}</li>
-            <li>DotNet C# / SQL-Server / Azure</li>
-            <li>PostgreSQL</li>
-            <li>Unity3D</li>
-            <li>Electronics</li>
+            <li>Angular / Jest / Cypress</li>
+            <li>AWS / NodeJS</li>
+            <li>Rust / Haskell / Elixir</li>
+            <li>SQL (Postgres / SQL-Server)</li>
+            <li>DotNet</li>
+            <li>Game dev (Bevy / Unity)</li>
+            <li>Electronic circuits</li>
           </ul>
         </section>
         <section className={sectionCn}>
