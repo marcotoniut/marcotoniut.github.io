@@ -1,5 +1,10 @@
 import { space } from "@/styles/theme";
-import { GithubIcon, LinkedInIcon, NewTabIcon } from "../../components/Icons";
+import {
+  GithubIcon,
+  ItchIOIcon,
+  LinkedInIcon,
+  NewTabIcon,
+} from "../../components/Icons";
 import { H1, H2, H3 } from "../../components/Typography";
 import { email, phone } from "../../info";
 import {
@@ -149,13 +154,13 @@ export default function CV() {
           </section>
 
           <section className={sectionCn}>
-            <H3 id="eventbrite">Front-End Software Developer</H3>
+            <H3 id="eventbrite">Software Developer</H3>
             <div className={institutionCn}>Eventbrite</div>
             <div>
               <em>May 2013 - November 2013</em>
             </div>
             <p>
-              {`Front-End developer responsible for fixing and upgrading Eventbrite's Seat Designer app,
+              {`Responsible for fixing and upgrading Eventbrite's Seat Designer app,
     a large HTML/canvas/svg app with extensive UI drag and drop interactivity.`}
             </p>
             <ul className={workHighlightsCn}>
@@ -219,9 +224,7 @@ export default function CV() {
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span style={{ marginRight: space.xs }}>
-                    Module I - Analog Electronics
-                  </span>
+                  <span>Module I - Analog Electronics</span>
                   <NewTabIcon />
                 </a>
               </li>
@@ -232,12 +235,49 @@ export default function CV() {
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span style={{ marginRight: space.xs }}>
-                    Module II - Digital Electronics
-                  </span>
+                  <span>Module II - Digital Electronics</span>
                   <NewTabIcon />
                 </a>
               </li>
+            </ul>
+          </section>
+
+          <H2 id="personal-projects">Personal Projects</H2>
+          <hr />
+          <section className={sectionCn}>
+            <H3 id="carcinisation">Project Owner and Developer</H3>
+            <div className={institutionCn}>
+              <span>Carcinisation (Game Boy inspired game)</span>
+              <a
+                href="https://github.com/marcotoniut/carcenisation"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <GithubIcon />
+              </a>
+              <a
+                href="https://marcotoniut.itch.io/carcinisation"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <ItchIOIcon />
+              </a>
+            </div>
+            <div>
+              <em>Oct 2023</em>
+            </div>
+            <p>
+              Lead the development of a game prototype for the Game Boy Jam of
+              2023, which lasted 15 days. The project was developed using the
+              experimental ECS game engine{" "}
+              <a href="https://bevyengine.org/">Bevy</a>, which is written in
+              Rust.
+            </p>
+            <ul className={workHighlightsCn}>
+              <li>Lead development and coordination of a team of six</li>
+              <li>Primary coder and game designer</li>
+              <li>Art and story direction</li>
+              <li>Assistance on selection of music and sound</li>
             </ul>
           </section>
         </article>

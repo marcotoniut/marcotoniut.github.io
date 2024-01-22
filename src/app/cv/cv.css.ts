@@ -60,9 +60,10 @@ globalStyle(`${paragraphCn} > *`, { marginTop: space.small });
 export const highlightsCn = style({ listStyle: "inside", padding: 0 });
 
 export const linkCn = style({
+  alignItems: "center",
   color: colors.action,
   display: "inline-flex",
-  alignItems: "center",
+  gap: space.small,
 });
 
 export const sectionCn = style({
@@ -82,7 +83,10 @@ globalStyle(`${skillsListCn} > li:not(:first-child)`, {
 });
 
 export const institutionCn = style({
+  alignItems: "center",
+  display: "flex",
   fontSize: space.large,
+  gap: space.small,
   marginBottom: space.small,
   marginTop: space.small,
 });
