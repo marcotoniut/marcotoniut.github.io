@@ -1,10 +1,7 @@
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { h1Cn, h2Cn, h3Cn } from "./Typography.css";
 
-interface HProps {
-  readonly children: ReactNode;
-  readonly id?: string;
-}
+type HProps = Pick<HTMLAttributes<unknown>, "children" | "id" | "style">;
 
 export const H1 = ({ children, ...props }: HProps): JSX.Element => (
   <h1 className={h1Cn} {...props}>

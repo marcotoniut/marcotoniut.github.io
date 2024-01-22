@@ -1,6 +1,6 @@
 export const colors = {
   main: "#3552a1",
-  action: "#595d6a",
+  action: "#598d6a",
   // action: "#5f7fe1",
   aside: "#f4f5f7",
   text: "#595d6a",

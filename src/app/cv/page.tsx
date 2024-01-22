@@ -1,4 +1,4 @@
-import { space } from "@/styles/theme";
+import { fontSizes, space } from "../../styles/theme";
 import {
   GithubIcon,
   ItchIOIcon,
@@ -22,6 +22,7 @@ import {
 import { isPDFPrinting } from "../../env";
 
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Marco Toniut | Curriculum Vitae",
@@ -29,8 +30,10 @@ export const metadata: Metadata = {
     "This is my professional Curriculum Vitae in interactive web format - Marco Toniut",
 };
 
+const pdfIsPrinting = isPDFPrinting();
+
 function useTargetProps() {
-  return isPDFPrinting() ? { "data-size": "A4" } : {};
+  return pdfIsPrinting ? { "data-size": "A4" } : {};
 }
 
 export default function CV() {
@@ -38,7 +41,22 @@ export default function CV() {
   return (
     <div {...sheetProps} className={docCn}>
       <main>
-        <H1 id="me">Marco Stefano Toniut</H1>
+        <H1 id="me">
+          <span>Marco Stefano Toniut</span>
+          {!pdfIsPrinting ? (
+            <span
+              style={{
+                fontSize: fontSizes.default,
+              }}
+            >
+              <Link className={linkCn} passHref href="/">
+                Go back home
+              </Link>
+            </span>
+          ) : (
+            <></>
+          )}
+        </H1>
         <article>
           <section className={sectionCn}>
             <H3 id="systems-engineer">Systems Engineer</H3>
@@ -345,79 +363,97 @@ export default function CV() {
         </article>
       </main>
       <aside className={asideCn}>
-        <section className={sectionCn}>
-          <H2 id="contact-details">Contact Details</H2>
-          <hr />
-          <section className={paragraphCn}>
-            <div>
-              <a
-                className={link2Cn}
-                href={`mailto:${email}?subject=Hello Marco!`}
-              >
-                {email}
-              </a>
-            </div>
-            <div>
-              <a className={link2Cn} href={`tel:${phone}`}>
-                {phone}
-              </a>
-            </div>
-            <div>London, UK</div>
-            <div style={{ display: "flex", gap: space.small }}>
-              <a
-                href="https://github.com/marcotoniut"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <GithubIcon />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/marco-toniut-4b6a143a/"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <LinkedInIcon />
-              </a>
-            </div>
+        <section>
+          <section className={sectionCn}>
+            <H2 id="contact-details">Contact Details</H2>
+            <hr />
+            <section className={paragraphCn}>
+              <div>
+                <a
+                  className={link2Cn}
+                  href={`mailto:${email}?subject=Hello Marco!`}
+                >
+                  {email}
+                </a>
+              </div>
+              <div>
+                <a className={link2Cn} href={`tel:${phone}`}>
+                  {phone}
+                </a>
+              </div>
+              <div>London, UK</div>
+              <div style={{ display: "flex", gap: space.small }}>
+                <a
+                  href="https://github.com/marcotoniut"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <GithubIcon />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/marco-toniut-4b6a143a/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <LinkedInIcon />
+                </a>
+              </div>
+            </section>
+          </section>
+          <section className={sectionCn}>
+            <H2 id="skills">Professional Skills</H2>
+            <hr />
+            <ul className={skillsListCn}>
+              <li>Lead software development</li>
+              <li>Team management and mentoring</li>
+              <li>Software architecture</li>
+              <li>Code review</li>
+              <li>Recruiting</li>
+              <li>Dealing with stakeholders</li>
+            </ul>
+          </section>
+          <section className={sectionCn}>
+            <H2 id="knowledge">Software Knowledge</H2>
+            <hr />
+            <ul className={skillsListCn}>
+              <li>Typescript / JS / HTML / CSS</li>
+              <li>{"React / Native / NextJS"}</li>
+              <li>Angular / Jest / Cypress</li>
+              <li>AWS / NodeJS</li>
+              <li>Rust / Haskell / Elixir</li>
+              <li>C# / Java / Python</li>
+              <li>SQL (Postgres / SQL-Server)</li>
+              <li>Game dev (Bevy / Unity)</li>
+            </ul>
+          </section>
+          <section className={sectionCn}>
+            <H2 id="personal">Personal</H2>
+            <hr />
+            <ul className={skillsListCn}>
+              <li>Spanish (fluent)</li>
+              <li>Digital Painting</li>
+              <li>Martial Arts</li>
+              <li>Tenis</li>
+              <li>Bouldering</li>
+            </ul>
           </section>
         </section>
-        <section className={sectionCn}>
-          <H2 id="skills">Professional Skills</H2>
-          <hr />
-          <ul className={skillsListCn}>
-            <li>Lead software development</li>
-            <li>Team management and mentoring</li>
-            <li>Software architecture</li>
-            <li>Code review</li>
-            <li>Recruiting</li>
-            <li>Dealing with stakeholders</li>
-          </ul>
-        </section>
-        <section className={sectionCn}>
-          <H2 id="knowledge">Software Knowledge</H2>
-          <hr />
-          <ul className={skillsListCn}>
-            <li>Typescript / JS / HTML / CSS</li>
-            <li>{"React / Native / NextJS"}</li>
-            <li>Angular / Jest / Cypress</li>
-            <li>AWS / NodeJS</li>
-            <li>Rust / Haskell / Elixir</li>
-            <li>C# / Java / Python</li>
-            <li>SQL (Postgres / SQL-Server)</li>
-            <li>Game dev (Bevy / Unity)</li>
-          </ul>
-        </section>
-        <section className={sectionCn}>
-          <H2 id="personal">Personal</H2>
-          <hr />
-          <ul className={skillsListCn}>
-            <li>Spanish (fluent)</li>
-            <li>Digital Painting</li>
-            <li>Martial Arts</li>
-            <li>Tenis</li>
-            <li>Bouldering</li>
-          </ul>
-        </section>
+        {pdfIsPrinting ? (
+          <footer
+            style={{ fontSize: fontSizes.small, paddingBlock: space.default }}
+          >
+            {/* TODO use route with base url instead */}
+            <a className={linkCn} href="https://marcotoniut.github.io/cv">
+              Web version
+            </a>{" "}
+            of this CV. Generated using{" "}
+            <a className={linkCn} href="https://nextjs.org/">
+              NextJS.
+            </a>
+          </footer>
+        ) : (
+          <></>
+        )}
       </aside>
     </div>
   );
