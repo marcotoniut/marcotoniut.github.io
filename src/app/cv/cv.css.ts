@@ -1,7 +1,16 @@
 import { style, globalStyle } from "@vanilla-extract/css";
 import { colors, space } from "../../styles/theme";
+import { isPDFPrinting } from "../../env";
 
 const dataSizeA4 = '[data-size="A4"]';
+
+if (isPDFPrinting()) {
+  const PAGE_COUNT = 3;
+
+  globalStyle(`body`, {
+    height: `${PAGE_COUNT * 100}vh`,
+  });
+}
 
 export const docCn = style({
   color: colors.text,

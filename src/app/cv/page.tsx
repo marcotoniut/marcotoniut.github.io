@@ -19,10 +19,9 @@ import {
   skillsListCn,
   highlightsCn as workHighlightsCn,
 } from "./cv.css";
+import { isPDFPrinting } from "../../env";
 
 import { Metadata } from "next";
-
-const isPDFPrinting = process.env.PDF_PRINTING === "true";
 
 export const metadata: Metadata = {
   title: "Marco Toniut | Curriculum Vitae",
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 function useTargetProps() {
-  return isPDFPrinting ? { "data-size": "A4" } : {};
+  return isPDFPrinting() ? { "data-size": "A4" } : {};
 }
 
 export default function CV() {
@@ -61,10 +60,73 @@ export default function CV() {
           <H2 id="work-experience">Work Experience</H2>
           <hr />
           <section className={sectionCn}>
+            <H3 id="fintern">Lead Front-End Developer</H3>
+            <div className={institutionCn}>Fintern (Render)</div>
+            <div>
+              <em>Aug 2022 - Present</em>
+            </div>
+            <p>
+              {`As the Lead Front-End Developer at Fintern, I drive the development of "Render," a Python + Angular 
+    application serving as underwriting and decisioning Software as a Service (SaaS) for banks and lenders.`}
+            </p>
+            <p>
+              {`In this role, I focus on key architectural decisions, guiding the team, and mentoring developers. My 
+    responsibilities include integrating "Abound" (customer-facing) and "Render" (B2B), ensuring a cohesive 
+    and user-friendly experience.`}
+            </p>
+            <ul className={workHighlightsCn}>
+              <li>
+                {`Lead Front-End development for Render, including setting up a unified vision for the architecture.`}
+              </li>
+              <li>
+                Drive key architectural decisions for enhanced performance and
+                user experience.
+              </li>
+              <li>
+                Lay out the groundworks for the Broker Portal (first
+                conceptualised for mortgage lenders.)
+              </li>
+              <li>
+                Mentor and guide developers for a collaborative and innovative
+                team environment.
+              </li>
+              <li>
+                Contribute to continuous improvement of the test and automated
+                code generation stack.
+              </li>
+            </ul>
+          </section>
+
+          <section className={sectionCn}>
+            <H3 id="bondsmith-zelt">Startup Application Booster</H3>
+            <div className={institutionCn}>Bondsmith & Zelt</div>
+            <div>
+              <em>Mar 2022 - Jul 2022</em>
+            </div>
+            <p>
+              {`Key contributor to fintech startup Bondsmith, focusing on the initial stages of their advisor platform. At Zelt, played a comprehensive role in improving code reliability, testing, theming, and implementing key features like calendar integration.`}
+            </p>
+            <ul className={workHighlightsCn}>
+              <li>
+                {`Led development for Bondsmith's advisor platform, shaping its initial stages.`}
+              </li>
+              <li>
+                {`Enhanced Zelt's code reliability, testing practices, and application theming.`}
+              </li>
+              <li>
+                {`Implemented critical features, including a seamless calendar integration for Zelt.`}
+              </li>
+              <li>
+                {`Contributed significantly to Zelt's overall business aspects and technology stack.`}
+              </li>
+            </ul>
+          </section>
+
+          <section className={sectionCn}>
             <H3 id="prima">Principal Developer</H3>
             <div className={institutionCn}>Prima Assicurazioni UK</div>
             <div>
-              <em>Jan 2021 - Present</em>
+              <em>Jan 2021 - Feb 2022</em>
             </div>
             <p>
               {`Independent developer leading the adoption of a new tech stack for Prima's
@@ -249,7 +311,7 @@ export default function CV() {
             <div className={institutionCn}>
               <span>Carcinisation (Game Jam)</span>
               <a
-                href="https://github.com/marcotoniut/carcenisation"
+                href="https://github.com/marcotoniut/carcinisation"
                 rel="noreferrer"
                 target="_blank"
               >
