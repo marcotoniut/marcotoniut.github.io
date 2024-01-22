@@ -37,7 +37,7 @@ function useTargetProps() {
 export default function CV() {
   const sheetProps = useTargetProps();
   return (
-    <div className={docCn} {...sheetProps}>
+    <div {...sheetProps} className={docCn}>
       <main>
         <H1 id="me">Marco Stefano Toniut</H1>
         <article>
@@ -45,15 +45,15 @@ export default function CV() {
             <H3 id="systems-engineer">Systems Engineer</H3>
             <p>
               As an independent developer for a significant part of my career,
-              {"I've"} tackled diverse tasks across various companies and
+              {" I've"} tackled diverse tasks across various companies and
               clients, cultivating an eclectic range of technical knowledge and
-              a commitment to self-actualization.
+              a commitment to self-actualisation.
             </p>
             <p>
               In leadership, mentoring, and negotiation roles, {"I've "}
               successfully coordinated development teams, championing the
               adoption of modern techniques and tools. Detail-oriented and
-              experimental in my coding approach, I prioritize deadlines and
+              experimental in my coding approach, I prioritise deadlines and
               milestones, planning tasks meticulously for on-time project
               completion.
             </p>
@@ -103,7 +103,7 @@ export default function CV() {
     discharge rates of batteries/EVs in the UK and Japan.`}
             </p>
             <ul className={workHighlightsCn}>
-              <li>Sole developer of {"Moixa's"} Hub Installer app</li>
+              <li>Sole developer for {"Moixa's"} Hub Installer app</li>
               <li>
                 Re-implemented the Japanese weather alert system using AWS ES,
                 Dynamo, and SQS.
@@ -247,7 +247,7 @@ export default function CV() {
           <section className={sectionCn}>
             <H3 id="carcinisation">Project Owner and Developer</H3>
             <div className={institutionCn}>
-              <span>Carcinisation (Game Boy inspired game)</span>
+              <span>Carcinisation (Game Jam)</span>
               <a
                 href="https://github.com/marcotoniut/carcenisation"
                 rel="noreferrer"
@@ -267,9 +267,9 @@ export default function CV() {
               <em>Oct 2023</em>
             </div>
             <p>
-              Lead the development of a game prototype for the Game Boy Jam of
-              2023, which lasted 15 days. The project was developed using the
-              experimental ECS game engine{" "}
+              Lead the development of a Game boy inspired game prototype for the
+              GBJam of 2023, which lasted 15 days. The project was developed
+              using the experimental ECS game engine{" "}
               <a href="https://bevyengine.org/">Bevy</a>, which is written in
               Rust.
             </p>
@@ -326,9 +326,9 @@ export default function CV() {
             <li>Lead software development</li>
             <li>Team management and mentoring</li>
             <li>Software architecture</li>
-            <li>Code assessment</li>
+            <li>Code review</li>
             <li>Recruiting</li>
-            <li>Negotiation</li>
+            <li>Dealing with stakeholders</li>
           </ul>
         </section>
         <section className={sectionCn}>
@@ -340,20 +340,19 @@ export default function CV() {
             <li>Angular / Jest / Cypress</li>
             <li>AWS / NodeJS</li>
             <li>Rust / Haskell / Elixir</li>
+            <li>C# / Java / Python</li>
             <li>SQL (Postgres / SQL-Server)</li>
-            <li>DotNet</li>
             <li>Game dev (Bevy / Unity)</li>
-            <li>Electronic circuits</li>
           </ul>
         </section>
         <section className={sectionCn}>
-          <H2 id="personal">Personal Skills</H2>
+          <H2 id="personal">Personal</H2>
           <hr />
           <ul className={skillsListCn}>
-            <li>Spanish language</li>
+            <li>Spanish (fluent)</li>
             <li>Digital Painting</li>
-            <li>Karate Shotokan</li>
-            <li>Tennis</li>
+            <li>Martial Arts</li>
+            <li>Tenis</li>
             <li>Bouldering</li>
           </ul>
         </section>

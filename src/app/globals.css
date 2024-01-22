@@ -32,7 +32,7 @@
 
 html,
 body {
-  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
   font-family:
     "Calibri",
     -apple-system,
