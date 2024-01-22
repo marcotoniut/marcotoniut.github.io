@@ -25,6 +25,13 @@ globalStyle(`${docCn}${dataSizeA4}`, {
   height: "100%",
 });
 
+globalStyle(`${docCn} h1`, {
+  alignItems: "baseline",
+  display: "flex",
+  justifyContent: "space-between",
+  marginRight: space.xxxl,
+});
+
 globalStyle(`${docCn} article`, {
   marginRight: space.xxxl,
 });
@@ -105,6 +112,9 @@ export const asideCn = style({
   paddingLeft: space.xl,
   paddingRight: space.xl,
   minWidth: "350px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
 });
 
 export const link2Cn = style({ color: colors.action });
