@@ -41,3 +41,6 @@ local/
 
 # binaries
 .cache/puppeteer
+
+# i18n
+src/i18n/i18n-*

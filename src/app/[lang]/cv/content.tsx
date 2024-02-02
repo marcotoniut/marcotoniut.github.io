@@ -1,12 +1,14 @@
-import { fontSizes, space } from "../../styles/theme";
+"use client";
+
+import { fontSizes, space } from "../../../styles/theme";
 import {
   GithubIcon,
   ItchIOIcon,
   LinkedInIcon,
   NewTabIcon,
-} from "../../components/Icons";
-import { H1, H2, H3 } from "../../components/Typography";
-import { email, phone } from "../../info";
+} from "../../../components/Icons";
+import { H1, H2, H3 } from "../../../components/Typography";
+import { email, phone } from "../../../info";
 import {
   asideCn,
   docCn,
@@ -19,16 +21,15 @@ import {
   skillsListCn,
   highlightsCn as workHighlightsCn,
 } from "./cv.css";
-import { isPDFPrinting } from "../../env";
+import { isPDFPrinting } from "../../../env";
 
 import { Metadata } from "next";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Marco Toniut | Curriculum Vitae",
-  description:
-    "This is my professional Curriculum Vitae in interactive web format - Marco Toniut",
-};
+import { useContext } from "react";
+import { I18nContext } from "@/i18n/i18n-react";
+import { loadLocale } from "@/i18n/i18n-util.sync";
+import { loadedLocales } from "@/i18n/i18n-util";
+import { MetadataAttributes } from "@/types";
 
 const pdfIsPrinting = isPDFPrinting();
 
@@ -36,8 +37,10 @@ function useTargetProps() {
   return pdfIsPrinting ? { "data-size": "A4" } : {};
 }
 
-export default function CV() {
+export function CVContent() {
   const sheetProps = useTargetProps();
+  const { locale, LL, setLocale } = useContext(I18nContext);
+
   return (
     <div {...sheetProps} className={docCn}>
       <main>
@@ -50,7 +53,7 @@ export default function CV() {
               }}
             >
               <Link className={linkCn} passHref href="/">
-                Go back home
+                {LL.CVPage.goBack()}
               </Link>
             </span>
           ) : (
@@ -59,23 +62,13 @@ export default function CV() {
         </H1>
         <article>
           <section className={sectionCn}>
-            <H3 id="systems-engineer">Systems Engineer</H3>
-            <p>
-              As an independent developer for a significant part of my career,
-              {" I've"} tackled diverse tasks across various companies and
-              clients, cultivating an eclectic range of technical knowledge and
-              a commitment to self-actualisation.
-            </p>
-            <p>
-              In leadership, mentoring, and negotiation roles, {"I've "}
-              successfully coordinated development teams, championing the
-              adoption of modern techniques and tools. Detail-oriented and
-              experimental in my coding approach, I prioritise deadlines and
-              milestones, planning tasks meticulously for on-time project
-              completion.
-            </p>
+            <H3 id="systems-engineer">{LL.CVPage.profession()}</H3>
+            <p>{LL.CVPage.summary[0]()}</p>
+            <p>{LL.CVPage.summary[1]()}</p>
           </section>
-          <H2 id="work-experience">Work Experience</H2>
+          <H2 id="work-experience">
+            {LL.CVPage.sections.workExperience.title()}
+          </H2>
           <hr />
           <section className={sectionCn}>
             <H3 id="fintern">Lead Front-End Developer</H3>

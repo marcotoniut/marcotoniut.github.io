@@ -2876,6 +2876,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fp-ts@npm:^2.16.2":
+  version: 2.16.2
+  resolution: "fp-ts@npm:2.16.2"
+  checksum: 58b57b7e8cf7856de354d2e5855e1c0dee00ae719d5de739a60f201c7b31c2f6a501d333dfb875199a8649b29cfbe9fa6979df3e8aef87ef7b151179c2b59f6e
+  languageName: node
+  linkType: hard
+
 "fs-extra@npm:^11.1.1":
   version: 11.2.0
   resolution: "fs-extra@npm:11.2.0"
@@ -3413,6 +3420,15 @@ __metadata:
     hasown: "npm:^2.0.0"
     side-channel: "npm:^1.0.4"
   checksum: aa37cafc8ffbf513a340de58f40d5017b4949d99722d7e4f0e24b182455bdd258000d4bb1d7b4adcf9f8979b97049b99fe9defa9db8e18a78071d2637ac143fb
+  languageName: node
+  linkType: hard
+
+"io-ts@npm:^2.2.21":
+  version: 2.2.21
+  resolution: "io-ts@npm:2.2.21"
+  peerDependencies:
+    fp-ts: ^2.5.0
+  checksum: 4e59e2135c26ced17f9c357c554486e716ac4c75d9bf69164702f66d41400e165786b0d653263bcd2afb4dee947bff4eb7869899ec810050ef067307764f6c32
   languageName: node
   linkType: hard
 
@@ -4041,12 +4057,15 @@ __metadata:
     cross-env: "npm:^7.0.3"
     eslint: "npm:7.32.0"
     eslint-config-next: "npm:^14.0.4"
+    fp-ts: "npm:^2.16.2"
     gh-pages: "npm:^6.1.1"
+    io-ts: "npm:^2.2.21"
     next: "npm:^14.0.4"
     prettier: "npm:^3.2.4"
     puppeteer: "npm:^21.7.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    typesafe-i18n: "npm:^5.26.2"
     typescript: "npm:4.5.2"
   languageName: unknown
   linkType: soft
@@ -5729,6 +5748,17 @@ __metadata:
     for-each: "npm:^0.3.3"
     is-typed-array: "npm:^1.1.9"
   checksum: c5163c0103d07fefc8a2ad0fc151f9ca9a1f6422098c00f695d55f9896e4d63614cd62cf8d8a031c6cee5f418e8980a533796597174da4edff075b3d275a7e23
+  languageName: node
+  linkType: hard
+
+"typesafe-i18n@npm:^5.26.2":
+  version: 5.26.2
+  resolution: "typesafe-i18n@npm:5.26.2"
+  peerDependencies:
+    typescript: ">=3.5.1"
+  bin:
+    typesafe-i18n: cli/typesafe-i18n.mjs
+  checksum: f13b13d54bf121701c85424de2d677f3d3e61c6b7160dffa681e3ffcbb2843ea10931d5842fcc382faed78bac727b234259e9fc767a44cd9dc1d64ddd8ddf397
   languageName: node
   linkType: hard
 
