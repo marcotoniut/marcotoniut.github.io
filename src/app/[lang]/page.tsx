@@ -3,16 +3,24 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Home.module.css";
 import { mainCn } from "./index.css";
-import { GithubIcon, ItchIOIcon } from "../components/Icons";
+import { GithubIcon, ItchIOIcon } from "../../components/Icons";
 import { space } from "@/styles/theme";
+import { MetadataAttributes } from "@/types";
+import { loadedLocales } from "@/i18n/i18n-util";
+import { loadLocale } from "@/i18n/i18n-util.sync";
 
-export const metadata: Metadata = {
-  title: "Marco Toniut",
-  description:
-    "Personal page of Marco Toniut, for experiments and publications",
-};
+export async function generateMetadata({
+  params,
+}: MetadataAttributes): Promise<Metadata> {
+  loadLocale(params.lang);
+  const dict = loadedLocales[params.lang];
+  return {
+    title: dict.HomePage.meta.title,
+    description: dict.HomePage.meta.description,
+  };
+}
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className={styles.container}>
       <main className={mainCn}>

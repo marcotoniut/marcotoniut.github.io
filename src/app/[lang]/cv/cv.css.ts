@@ -1,6 +1,6 @@
 import { style, globalStyle } from "@vanilla-extract/css";
-import { colors, space } from "../../styles/theme";
-import { isPDFPrinting } from "../../env";
+import { colors, space } from "../../../styles/theme";
+import { isPDFPrinting } from "../../../env";
 
 const dataSizeA4 = '[data-size="A4"]';
 
