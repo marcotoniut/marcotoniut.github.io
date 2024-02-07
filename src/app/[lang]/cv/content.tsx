@@ -1,6 +1,6 @@
 "use client";
 
-import { fontSizes, space } from "../../../styles/theme";
+import { format } from "date-fns";
 import {
   GithubIcon,
   ItchIOIcon,
@@ -8,28 +8,34 @@ import {
   NewTabIcon,
 } from "../../../components/Icons";
 import { H1, H2, H3 } from "../../../components/Typography";
+import { isPDFPrinting } from "../../../env";
 import { email, phone } from "../../../info";
+import { space } from "../../../styles/theme";
 import {
   asideCn,
   docCn,
-  learningHighlightsCn as educationHighlightsCn,
+  footerCn,
   institutionCn,
+  learningHighlightsCn,
   link2Cn,
   linkCn,
   paragraphCn,
+  pdfIsPrintingCn,
   sectionCn,
   skillsListCn,
   highlightsCn as workHighlightsCn,
 } from "./cv.css";
-import { isPDFPrinting } from "../../../env";
 
-import { Metadata } from "next";
+import { I18nContext } from "@/i18n/i18n-react";
+import * as RA from "fp-ts/ReadonlyArray";
+import * as RR from "fp-ts/ReadonlyRecord";
+import { pipe } from "fp-ts/function";
 import Link from "next/link";
 import { useContext } from "react";
-import { I18nContext } from "@/i18n/i18n-react";
-import { loadLocale } from "@/i18n/i18n-util.sync";
-import { loadedLocales } from "@/i18n/i18n-util";
-import { MetadataAttributes } from "@/types";
+import { LocalizedString } from "typesafe-i18n";
+import { Meta } from "./data";
+
+const DATE_FORMAT = "MMM yyyy";
 
 const pdfIsPrinting = isPDFPrinting();
 
@@ -39,7 +45,7 @@ function useTargetProps() {
 
 export function CVContent() {
   const sheetProps = useTargetProps();
-  const { locale, LL, setLocale } = useContext(I18nContext);
+  const { LL } = useContext(I18nContext);
 
   return (
     <div {...sheetProps} className={docCn}>
@@ -47,11 +53,7 @@ export function CVContent() {
         <H1 id="me">
           <span>Marco Stefano Toniut</span>
           {!pdfIsPrinting ? (
-            <span
-              style={{
-                fontSize: fontSizes.default,
-              }}
-            >
+            <span className={pdfIsPrintingCn}>
               <Link className={linkCn} passHref href="/">
                 {LL.CVPage.goBack()}
               </Link>
@@ -63,233 +65,78 @@ export function CVContent() {
         <article>
           <section className={sectionCn}>
             <H3 id="systems-engineer">{LL.CVPage.profession()}</H3>
-            <p>{LL.CVPage.summary[0]()}</p>
-            <p>{LL.CVPage.summary[1]()}</p>
+            {pipe(
+              LL.CVPage.summary,
+              (xs) => Object.values(xs),
+              RA.mapWithIndex((i, t) => <p key={i}>{t()}</p>),
+            )}
           </section>
-          <H2 id="work-experience">
-            {LL.CVPage.sections.workExperience.title()}
-          </H2>
+          <H2 id="work-experience">{LL.CVPage.workExperience.title()}</H2>
           <hr />
-          <section className={sectionCn}>
-            <H3 id="fintern">Lead Front-End Developer</H3>
-            <div className={institutionCn}>Fintern (Render)</div>
-            <div>
-              <em>Aug 2022 - Present</em>
-            </div>
-            <p>
-              {`As the Lead Front-End Developer at Fintern, I drive the development of "Render," a Python + Angular 
-    application serving as underwriting and decisioning Software as a Service (SaaS) for banks and lenders.`}
-            </p>
-            <p>
-              {`In this role, I focus on key architectural decisions, guiding the team, and mentoring developers. My 
-    responsibilities include integrating "Abound" (customer-facing) and "Render" (B2B), ensuring a cohesive 
-    and user-friendly experience.`}
-            </p>
-            <ul className={workHighlightsCn}>
-              <li>
-                {`Lead Front-End development for Render, including setting up a unified vision for the architecture.`}
-              </li>
-              <li>
-                Drive key architectural decisions for enhanced performance and
-                user experience.
-              </li>
-              <li>
-                Lay out the groundworks for the Broker Portal (first
-                conceptualised for mortgage lenders.)
-              </li>
-              <li>
-                Mentor and guide developers for a collaborative and innovative
-                team environment.
-              </li>
-              <li>
-                Contribute to continuous improvement of the test and automated
-                code generation stack.
-              </li>
-            </ul>
-          </section>
+          {pipe(
+            LL.CVPage.workExperience.history,
+            RR.toReadonlyArray,
+            RA.mapWithIndex((index, [k, x]) => {
+              const meta = Meta[k];
+              return (
+                <section className={sectionCn} key={index}>
+                  <H3 id={meta.id}>{x.role()}</H3>
+                  {"institution" in meta ? (
+                    <div className={institutionCn}>{meta.institution}</div>
+                  ) : (
+                    <></>
+                  )}
+                  <div>
+                    <em>{`${format(meta.dates.start, DATE_FORMAT)} - ${"end" in meta.dates ? format(meta.dates.end, DATE_FORMAT) : "Present"}`}</em>
+                  </div>
+                  {pipe(
+                    x.description,
+                    (xs) => Object.values(xs),
+                    RA.mapWithIndex((i, t) => <p key={i}>{t()}</p>),
+                  )}
+                  {"highlights" in x ? (
+                    <ul className={workHighlightsCn}>
+                      {pipe(
+                        x.highlights,
+                        (xs) =>
+                          Object.values(
+                            xs as unknown as RR.ReadonlyRecord<
+                              string,
+                              () => LocalizedString
+                            >,
+                          ),
+                        RA.mapWithIndex((i, t) => <li key={i}>{t()}</li>),
+                      )}
+                    </ul>
+                  ) : (
+                    <></>
+                  )}
+                </section>
+              );
+            }),
+          )}
 
-          <section className={sectionCn}>
-            <H3 id="bondsmith-zelt">Startup Application Booster</H3>
-            <div className={institutionCn}>Bondsmith & Zelt</div>
-            <div>
-              <em>Mar 2022 - Jul 2022</em>
-            </div>
-            <p>
-              {`Key contributor to fintech startup Bondsmith, focusing on the initial stages of their advisor platform. At Zelt, played a comprehensive role in improving code reliability, testing, theming, and implementing key features like calendar integration.`}
-            </p>
-            <ul className={workHighlightsCn}>
-              <li>
-                {`Led development for Bondsmith's advisor platform, shaping its initial stages.`}
-              </li>
-              <li>
-                {`Enhanced Zelt's code reliability, testing practices, and application theming.`}
-              </li>
-              <li>
-                {`Implemented critical features, including a seamless calendar integration for Zelt.`}
-              </li>
-              <li>
-                {`Contributed significantly to Zelt's overall business aspects and technology stack.`}
-              </li>
-            </ul>
-          </section>
-
-          <section className={sectionCn}>
-            <H3 id="prima">Principal Developer</H3>
-            <div className={institutionCn}>Prima Assicurazioni UK</div>
-            <div>
-              <em>Jan 2021 - Feb 2022</em>
-            </div>
-            <p>
-              {`Independent developer leading the adoption of a new tech stack for Prima's
-    UK branch, a motor insurance company that achieved success in Italy. Focused on
-    TypeScript, Elixir, Rust, and Elm.`}
-            </p>
-            <ul className={workHighlightsCn}>
-              <li>Lead development of the public-facing app</li>
-              <li>
-                Establish and maintain a front-end build/lint/test monorepo,
-                incorporating Elm.
-              </li>
-              <li>
-                Engineer Elixir GraphQL APIs for seamless integration with the
-                tech architecture.
-              </li>
-              <li>
-                Develop Email and PDF React rendering tools for enhanced user
-                communication.
-              </li>
-              <li>
-                Implement and maintain the Cypress integration test environment
-                for quality assurance.
-              </li>
-            </ul>
-          </section>
-
-          <section className={sectionCn}>
-            <H3 id="moixa-ltd">Senior Software Developer</H3>
-            <div className={institutionCn}>Moixa Ltd.</div>
-            <div>
-              <em>Jun 2019 - Dec 2020</em>
-            </div>
-            <p>
-              {`Senior software developer contributing to the Moixa Gridshare stack, managing charge/
-    discharge rates of batteries/EVs in the UK and Japan.`}
-            </p>
-            <ul className={workHighlightsCn}>
-              <li>Sole developer for {"Moixa's"} Hub Installer app</li>
-              <li>
-                Re-implemented the Japanese weather alert system using AWS ES,
-                Dynamo, and SQS.
-              </li>
-              <li>
-                Principal developer of {"Moixa's"} Mobile Customer app v2 (React
-                Native).
-              </li>
-              <li>
-                Implemented {"Admin's Commissioner's"} module V3 and other
-                associated functionalities.
-              </li>
-              <li>
-                Implemented {"Moixa's"} Styleguide and contributed to front-end
-                monorepo refactoring.
-              </li>
-            </ul>
-          </section>
-          <section className={sectionCn}>
-            <H3 id="freelancer-2016">Freelancer</H3>
-            <div>
-              <em>Jan 2016 - Jun 2019</em>
-            </div>
-            <p>
-              {`Undertook diverse projects, collaborating with clients across different industries.
-    Developed React and Reflex-FRP (Haskell) web applications, showcasing versatility
-    in meeting client requirements.`}
-            </p>
-          </section>
-
-          <section className={sectionCn}>
-            <H3 id="propago">Lead Software Developer</H3>
-            <div className={institutionCn}>Propago AR</div>
-            <p>
-              <em>Mar 2014 - Dec 2015</em>
-            </p>
-            <div>
-              {`Led the development of the Full-Stack architecture for Propago’s financial system.
-    Provided leadership and training in React technology. Back End developed using
-    C#/SQL Server, deployed to Azure.`}
-            </div>
-            <ul className={workHighlightsCn}>
-              <li>Lead a team of six developers</li>
-              <li>
-                Participated in key company decisions and supervised staff
-              </li>
-            </ul>
-          </section>
-
-          <section className={sectionCn}>
-            <H3 id="eventbrite">Software Developer</H3>
-            <div className={institutionCn}>Eventbrite</div>
-            <div>
-              <em>May 2013 - November 2013</em>
-            </div>
-            <p>
-              {`Responsible for fixing and upgrading Eventbrite's Seat Designer app,
-    a large HTML/canvas/svg app with extensive UI drag and drop interactivity.`}
-            </p>
-            <ul className={workHighlightsCn}>
-              <li>Improved and refactored their Backbone JS application</li>
-              <li>Upgraded their SVG editor rich internet app</li>
-            </ul>
-          </section>
-
-          <section className={sectionCn}>
-            <H3 id="freelancer-2010">Freelancer</H3>
-            <div>
-              <em>Jan 2010 - May 2013</em>
-            </div>
-            <p>
-              {`Engaged in various projects, collaborating with multiple clients across diverse industries.
-    Developed web applications and contributed to game development, showcasing adaptability
-    in meeting client requirements.`}
-            </p>
-          </section>
-
-          <section className={sectionCn}>
-            <H3 id="estudio-minero">Web Programmer</H3>
-            <div className={institutionCn}>Estudio Minero</div>
-            <div>
-              <em>Jan 2008 - Jan 2010</em>
-            </div>
-            <p>
-              {`Designed and developed web pages and embedded applications using Flash and Javascript.`}
-            </p>
-            <ul className={workHighlightsCn}>
-              <li>Created static web pages</li>
-              <li>Led design and implementation efforts</li>
-              <li>Developed Flash web applications (AS3)</li>
-              <li>Implemented PHP/Wordpress backend systems</li>
-            </ul>
-          </section>
-
-          <H2 id="education">Education</H2>
+          <H2 id="education">{LL.CVPage.education.title()}</H2>
           <hr />
 
           <section>
-            <H3 id="caece">Systems Engineer</H3>
-            <div className={institutionCn}>University CAECE Mar del Plata</div>
-            <p>
-              Computer science. Algorithms, data structures and software
-              patterns. Project management. Quality assurance. Electronic
-              circuits.
-            </p>
+            <H3 id="caece">
+              {LL.CVPage.education.education.undergrad.degree()}
+            </H3>
+            <div className={institutionCn}>
+              {LL.CVPage.education.education.undergrad.institution()}
+            </div>
+            <p>{LL.CVPage.education.education.undergrad.description()}</p>
           </section>
 
           <section className={sectionCn}>
             <H3 id="udemy-robotics">
-              {"Electricity & Electronics - Robotics, Learn by Building"}
+              {LL.CVPage.education.education.courses.robotics.course()}
             </H3>
-            <div className={institutionCn}>Udemy Academy</div>
-            <ul className={educationHighlightsCn}>
+            <div className={institutionCn}>
+              {LL.CVPage.education.education.courses.robotics.institution()}
+            </div>
+            <ul className={learningHighlightsCn}>
               <li>
                 <a
                   className={linkCn}
@@ -297,7 +144,9 @@ export function CVContent() {
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span>Module I - Analog Electronics</span>
+                  <span>
+                    {LL.CVPage.education.education.courses.robotics.module1()}
+                  </span>
                   <NewTabIcon />
                 </a>
               </li>
@@ -308,19 +157,25 @@ export function CVContent() {
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span>Module II - Digital Electronics</span>
+                  <span>
+                    {LL.CVPage.education.education.courses.robotics.module2()}
+                  </span>
                   <NewTabIcon />
                 </a>
               </li>
             </ul>
           </section>
 
-          <H2 id="personal-projects">Personal Projects</H2>
+          <H2 id="personal-projects">{LL.CVPage.personalProjects.title()}</H2>
           <hr />
           <section className={sectionCn}>
-            <H3 id="carcinisation">Project Owner and Developer</H3>
+            <H3 id="carcinisation">
+              {LL.CVPage.personalProjects.projects.carcinisation.role()}
+            </H3>
             <div className={institutionCn}>
-              <span>Carcinisation (Game Jam)</span>
+              <span>
+                {LL.CVPage.personalProjects.projects.carcinisation.name()}
+              </span>
               <a
                 href="https://github.com/marcotoniut/carcinisation"
                 rel="noreferrer"
@@ -337,20 +192,19 @@ export function CVContent() {
               </a>
             </div>
             <div>
-              <em>Oct 2023</em>
+              <em>{format(new Date(2023, 9), DATE_FORMAT)}</em>
             </div>
             <p>
-              Lead the development of a Game boy inspired game prototype for the
-              GBJam of 2023, which lasted 15 days. The project was developed
-              using the experimental ECS game engine{" "}
-              <a href="https://bevyengine.org/">Bevy</a>, which is written in
-              Rust.
+              {LL.CVPage.personalProjects.projects.carcinisation.description.p1()}
+              <a href="https://bevyengine.org/">Bevy</a>
+              {LL.CVPage.personalProjects.projects.carcinisation.description.p2()}
             </p>
             <ul className={workHighlightsCn}>
-              <li>Lead development and coordination of a team of six</li>
-              <li>Primary coder and game designer</li>
-              <li>Art and story direction</li>
-              <li>Assistance on selection of music and sound</li>
+              {pipe(
+                LL.CVPage.personalProjects.projects.carcinisation.highlights,
+                (xs) => Object.values(xs),
+                RA.mapWithIndex((i, t) => <li key={i}>{t()}</li>),
+              )}
             </ul>
           </section>
         </article>
@@ -358,13 +212,13 @@ export function CVContent() {
       <aside className={asideCn}>
         <section>
           <section className={sectionCn}>
-            <H2 id="contact-details">Contact Details</H2>
+            <H2 id="contact-details">{LL.CVPage.contactDetails.title()}</H2>
             <hr />
             <section className={paragraphCn}>
               <div>
                 <a
                   className={link2Cn}
-                  href={`mailto:${email}?subject=Hello Marco!`}
+                  href={`mailto:${email}?subject=${LL.CVPage.contactDetails.subject()}`}
                 >
                   {email}
                 </a>
@@ -394,52 +248,46 @@ export function CVContent() {
             </section>
           </section>
           <section className={sectionCn}>
-            <H2 id="skills">Professional Skills</H2>
+            <H2 id="skills">{LL.CVPage.skills.professional.title()}</H2>
             <hr />
             <ul className={skillsListCn}>
-              <li>Lead software development</li>
-              <li>Team management and mentoring</li>
-              <li>Software architecture</li>
-              <li>Code review</li>
-              <li>Recruiting</li>
-              <li>Dealing with stakeholders</li>
+              {pipe(
+                LL.CVPage.skills.professional.list,
+                (xs) => Object.values(xs),
+                RA.mapWithIndex((i, t) => <li key={i}>{t()} </li>),
+              )}
             </ul>
           </section>
           <section className={sectionCn}>
-            <H2 id="knowledge">Software Knowledge</H2>
+            <H2 id="knowledge">{LL.CVPage.skills.software.title()}</H2>
             <hr />
             <ul className={skillsListCn}>
-              <li>Typescript / JS / HTML / CSS</li>
-              <li>{"React / Native / NextJS"}</li>
-              <li>Angular / Jest / Cypress</li>
-              <li>AWS / NodeJS</li>
-              <li>Rust / Haskell / Elixir</li>
-              <li>C# / Java / Python</li>
-              <li>SQL (Postgres / SQL-Server)</li>
-              <li>Game dev (Bevy / Unity)</li>
+              {pipe(
+                LL.CVPage.skills.software.list,
+                (xs) => Object.values(xs),
+                RA.mapWithIndex((i, t) => <li key={i}>{t()} </li>),
+              )}
             </ul>
           </section>
           <section className={sectionCn}>
-            <H2 id="personal">Personal</H2>
+            <H2 id="personal">{LL.CVPage.skills.personal.title()}</H2>
             <hr />
             <ul className={skillsListCn}>
-              <li>Spanish (fluent)</li>
-              <li>Digital Painting</li>
-              <li>Martial Arts</li>
-              <li>Tenis</li>
-              <li>Bouldering</li>
+              {pipe(
+                LL.CVPage.skills.personal.list,
+                (xs) => Object.values(xs),
+                RA.mapWithIndex((i, t) => <li key={i}>{t()} </li>),
+              )}
             </ul>
           </section>
         </section>
         {pdfIsPrinting ? (
-          <footer
-            style={{ fontSize: fontSizes.small, paddingBlock: space.default }}
-          >
+          <footer className={footerCn}>
             {/* TODO use route with base url instead */}
             <a className={linkCn} href="https://marcotoniut.github.io/cv">
-              Web version
-            </a>{" "}
-            of this CV. Generated using{" "}
+              {LL.CVPage.footer.p1()}
+            </a>
+            {LL.CVPage.footer.p2()}
             <a className={linkCn} href="https://nextjs.org/">
               NextJS.
             </a>

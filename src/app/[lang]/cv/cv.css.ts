@@ -1,5 +1,5 @@
 import { style, globalStyle } from "@vanilla-extract/css";
-import { colors, space } from "../../../styles/theme";
+import { colors, fontSizes, space } from "../../../styles/theme";
 import { isPDFPrinting } from "../../../env";
 
 const dataSizeA4 = '[data-size="A4"]';
@@ -130,3 +130,12 @@ export const learningHighlightsCn = style({
 //   pageBreakBefore: "always",
 //   marginTop: space.xl,
 // });
+
+export const footerCn = style({
+  fontSize: fontSizes.small,
+  paddingBlock: space.default,
+});
+
+export const pdfIsPrintingCn = style({
+  fontSize: fontSizes.default,
+});

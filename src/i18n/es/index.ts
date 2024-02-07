@@ -9,20 +9,20 @@ const esEs: Translation = {
     },
     profession: "Ingeniero en Sistemas",
     goBack: "Volver al inicio",
-    summary: {
-      0: `As an independent developer for a significant part of my career,
+    summary: [
+      `As an independent developer for a significant part of my career,
 	  I've tackled diverse tasks across various companies and
 	  clients, cultivating an eclectic range of technical knowledge and
 	  a commitment to self-actualisation.
 	  `,
-      1: `In leadership, mentoring, and negotiation roles, I've
+      `In leadership, mentoring, and negotiation roles, I've
 	  successfully coordinated development teams, championing the
 	  adoption of modern techniques and tools. Detail-oriented and
 	  experimental in my coding approach, I prioritise deadlines and
 	  milestones, planning tasks meticulously for on-time project
 	  completion.
 	  `,
-    },
+    ],
     sections: {
       workExperience: {
         title: "Experiencia Laboral",
