@@ -4,37 +4,50 @@ import { isPDFPrinting } from "../../../env";
 
 const dataSizeA4 = '[data-size="A4"]';
 
-if (isPDFPrinting()) {
-  const PAGE_COUNT = 3;
+const maxWidth = 1200;
 
-  globalStyle(`body`, {
-    height: `${PAGE_COUNT * 100}vh`,
-  });
-}
+export const headerCn = style({
+  display: "flex",
+  gap: space.xxl,
+  margin: "0 auto",
+  alignItems: "baseline",
+  maxWidth,
+  paddingBottom: space.small,
+  paddingInline: space.xxl,
+  paddingTop: space.default,
+});
+
+export const cvCn = style({
+  fontSize: fontSizes.xl,
+  fontWeight: "bold",
+});
 
 export const docCn = style({
   color: colors.text,
   display: "flex",
   flex: 1,
   fontSize: "16px",
+  gap: space.xxxl,
   margin: "0 auto",
-  maxWidth: "1200px",
+  maxWidth,
+  paddingTop: space.default,
   paddingInline: space.xxl,
 });
-globalStyle(`${docCn}${dataSizeA4}`, {
-  height: "100%",
-});
 
-globalStyle(`${docCn} h1`, {
-  alignItems: "baseline",
-  display: "flex",
-  justifyContent: "space-between",
-  marginRight: space.xxxl,
-});
+if (isPDFPrinting()) {
+  const PAGE_COUNT = 3;
 
-globalStyle(`${docCn} article`, {
-  marginRight: space.xxxl,
-});
+  globalStyle(`body`, {
+    height: `${PAGE_COUNT * 100}vh`,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  });
+
+  globalStyle(`${docCn}${dataSizeA4}`, {
+    height: `${PAGE_COUNT * 100}vh`,
+  });
+}
 
 globalStyle(`${docCn} hr`, {
   border: 0,
@@ -44,6 +57,22 @@ globalStyle(`${docCn} hr`, {
   marginBottom: space.xs,
   marginTop: space.xs,
   backgroundColor: colors.text,
+});
+
+export const nameCn = style({
+  marginTop: space.default,
+  marginBottom: space.none,
+});
+
+export const professionCn = style({
+  marginTop: space.xs,
+  marginBottom: space.none,
+});
+
+export const pictureCn = style({
+  height: 140,
+  marginTop: space.small,
+  width: 100,
 });
 
 const doc_mediaCn = `${docCn} @media screen and (max-width: 768px)`;
@@ -59,13 +88,11 @@ globalStyle(`${doc_mediaCn} aside`, {
 const doc_dataSizeCn = `${docCn}${dataSizeA4}`;
 globalStyle(doc_dataSizeCn, {
   fontSize: "9pt",
-  padding: space.none,
-  paddingLeft: space.xl,
   maxWidth: "210mm",
 });
 
 globalStyle(`${doc_dataSizeCn} aside`, {
-  maxWidth: "80mm",
+  maxWidth: "75mm",
   minWidth: "60mm",
 });
 
@@ -80,6 +107,13 @@ export const linkCn = style({
   color: colors.action,
   display: "inline-flex",
   gap: space.small,
+});
+
+export const profileCn = style({
+  alignItems: "center",
+  display: "flex",
+  flexDirection: "column",
+  textAlign: "center",
 });
 
 export const sectionCn = style({
@@ -108,10 +142,8 @@ export const institutionCn = style({
 });
 
 export const asideCn = style({
-  backgroundColor: colors.aside,
-  paddingLeft: space.xl,
-  paddingRight: space.xl,
-  minWidth: "350px",
+  paddingInline: space.none,
+  maxWidth: 350,
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
@@ -133,7 +165,10 @@ export const learningHighlightsCn = style({
 
 export const footerCn = style({
   fontSize: fontSizes.small,
-  paddingBlock: space.default,
+  margin: "0 auto",
+  maxWidth,
+  paddingBlock: space.small,
+  paddingBottom: space.small,
 });
 
 export const pdfIsPrintingCn = style({

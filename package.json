@@ -5,7 +5,7 @@
     "build": "next build",
     "deploy": "gh-pages -d out -t",
     "dev": "next",
-    "dev:pdf": "cross-env PDF_PRINTING=true next -p 3001",
+    "dev:pdf": "cross-env NEXT_PUBLIC_PDF_PRINTING=true next -p 3001",
     "lint": "next lint",
     "predeploy": "rm -rf node_modules/.cache && rm -rf out/ && yarn build && touch out/.nojekyll",
     "print-cv": "yarn node scripts/print-cv.js",
