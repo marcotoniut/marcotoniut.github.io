@@ -12,8 +12,8 @@ export const fontSizes = {
   default: "1rem",
   large: "1.25rem",
   xl: "1.5rem",
-  xxl: "2rem",
-  xxxl: "2.5rem",
+  xxl: "1.75rem",
+  xxxl: "2rem",
 } as const;
 
 export const space = {

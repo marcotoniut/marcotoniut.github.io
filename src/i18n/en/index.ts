@@ -8,21 +8,8 @@ const enUs: BaseTranslation = {
       title: "Marco Toniut | Curriculum Vitae",
     },
     profession: "Systems Engineer",
-    goBack: "Go back to home",
-    summary: [
-      `As an independent developer for a significant part of my career,
-	  I've tackled diverse tasks across various companies and
-	  clients, cultivating an eclectic range of technical knowledge and
-	  a commitment to self-actualisation.
-	  `,
-      `In leadership, mentoring, and negotiation roles, I've
-	  successfully coordinated development teams, championing the
-	  adoption of modern techniques and tools. Detail-oriented and
-	  experimental in my coding approach, I prioritise deadlines and
-	  milestones, planning tasks meticulously for on-time project
-	  completion.
-	  `,
-    ],
+    goBack: "Go back",
+
     workExperience: {
       title: "Work Experience",
       history: [
@@ -34,7 +21,7 @@ const enUs: BaseTranslation = {
           ],
           highlights: [
             `Led Front-End development for Render, setting up a unified architecture.`,
-            `Drove key decisions for enhanced performance and user experience.`,
+            `Drove key decisions for enhanced UX and performance.`,
             `Initiated groundwork for the Broker Portal (first conceptualized for mortgage lenders).`,
             `Mentored and guided developers for a collaborative environment.`,
             `Contributed to the CI, testing and automated code generation stacks.`,
@@ -166,6 +153,23 @@ const enUs: BaseTranslation = {
           ],
         },
       },
+    },
+    summary: {
+      title: "Profile",
+      summary: [
+        `As an independent developer for a significant part of my career,
+        I've tackled diverse tasks across various companies and
+        clients, cultivating an eclectic range of technical knowledge and
+        a commitment to self-actualisation.
+	      `,
+        `In leadership, mentoring, and negotiation roles, I've
+        successfully coordinated development teams, championing the
+        adoption of modern techniques and tools. Detail-oriented and
+        experimental in my coding approach, I prioritise deadlines and
+        milestones, planning tasks meticulously for on-time project
+        completion.
+	      `,
+      ],
     },
     contactDetails: { title: "Contact Details", subject: "Hello Marco!" },
     skills: {
