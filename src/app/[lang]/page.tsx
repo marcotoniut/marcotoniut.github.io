@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./Home.module.css";
-import { mainCn } from "./index.css";
-import { GithubIcon, ItchIOIcon } from "../../components/Icons";
-import { space } from "@/styles/theme";
-import { MetadataAttributes } from "@/types";
 import { loadedLocales } from "@/i18n/i18n-util";
 import { loadLocale } from "@/i18n/i18n-util.sync";
+import { space } from "@/styles/theme";
+import { MetadataAttributes } from "@/types";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { GithubIcon, ItchIOIcon } from "../../components/Icons";
+import styles from "./Home.module.css";
+import { mainCn } from "./index.css";
 
 export async function generateMetadata({
   params,

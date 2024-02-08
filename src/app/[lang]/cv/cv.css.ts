@@ -30,7 +30,7 @@ export const docCn = style({
   gap: space.xxxl,
   margin: "0 auto",
   maxWidth,
-  paddingTop: space.default,
+  paddingBlock: space.small,
   paddingInline: space.xxl,
 });
 
@@ -46,6 +46,7 @@ if (isPDFPrinting()) {
 
   globalStyle(`${docCn}${dataSizeA4}`, {
     height: `${PAGE_COUNT * 100}vh`,
+    paddingBlock: space.none,
   });
 }
 
@@ -70,9 +71,9 @@ export const professionCn = style({
 });
 
 export const pictureCn = style({
-  height: 140,
-  marginTop: space.small,
-  width: 100,
+  display: "inline-flex",
+  overflow: "hidden",
+  borderRadius: "50%",
 });
 
 const doc_mediaCn = `${docCn} @media screen and (max-width: 768px)`;
@@ -103,7 +104,6 @@ globalStyle(`${paragraphCn} > *`, { marginTop: space.small });
 export const highlightsCn = style({ listStyle: "inside", padding: 0 });
 
 export const linkCn = style({
-  alignItems: "center",
   color: colors.action,
   display: "inline-flex",
   gap: space.small,
@@ -111,6 +111,7 @@ export const linkCn = style({
 
 export const profileCn = style({
   alignItems: "center",
+  gap: space.xs,
   display: "flex",
   flexDirection: "column",
   textAlign: "center",
@@ -168,7 +169,6 @@ export const footerCn = style({
   margin: "0 auto",
   maxWidth,
   paddingBlock: space.small,
-  paddingBottom: space.small,
 });
 
 export const pdfIsPrintingCn = style({

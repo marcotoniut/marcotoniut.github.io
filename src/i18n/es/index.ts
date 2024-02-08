@@ -9,14 +9,16 @@ const esEs: Translation = {
     },
     profession: "Ingeniero de Sistemas",
     goBack: "Volver",
-
-    workExperience: {
-      title: "Experiencia Laboral",
+    profile: {
+      picture: "Imagen de perfil",
+    },
+    experience: {
+      title: "Experiencia",
       history: [
         {
           role: "Desarrollador Front-End Líder",
           description: [
-            `Desarrollador Front-End Líder en Fintern, liderando el desarrollo de "Render," una aplicación Python + Angular que sirve como Software as a Service (SaaS) para bancos y prestamistas. Enfoque en decisiones arquitectónicas clave, orientación de equipo y mentoría.`,
+            `Desarrollador Front-End Líder en Fintern, liderando el desarrollo de "Render," una aplicación Python + Angular (, Render y Vue) que sirve como Software as a Service (SaaS) para bancos y prestamistas. Enfoque en decisiones arquitectónicas clave, orientación de equipo y mentoría.`,
             `Integración de "Abound" (orientado al cliente) y "Render" (B2B) para una experiencia cohesiva y amigable para el usuario.`,
           ],
           highlights: [
@@ -40,7 +42,6 @@ const esEs: Translation = {
         },
         {
           role: "Desarrollador Principal",
-          institution: "Prima Assicurazioni UK",
           description: [
             `Desarrollador independiente liderando la adopción de una nueva pila tecnológica para la sucursal del Reino Unido de Prima, una compañía de seguros de automóviles. Enfoque en TypeScript, Elixir, Rust y Elm.`,
           ],
@@ -54,7 +55,6 @@ const esEs: Translation = {
         },
         {
           role: "Desarrollador Senior de Software",
-          institution: "Moixa Ltd.",
           description: [
             `Desarrollador de software senior contribuyendo al stack Moixa Gridshare, gestionando tasas de carga / descarga de baterías / vehículos eléctricos en el Reino Unido y Japón.`,
           ],
@@ -73,7 +73,6 @@ const esEs: Translation = {
         },
         {
           role: "Líder de Desarrollo de Software",
-          institution: "Propago AR",
           description: [
             `Liderazgo en el desarrollo de la arquitectura Full-Stack para el sistema financiero de Propago. Proporcionando liderazgo y capacitación en tecnología React, C# y SQL Server.`,
           ],
@@ -84,7 +83,6 @@ const esEs: Translation = {
         },
         {
           role: "Desarrollador de Software",
-          institution: "Eventbrite",
           description: [
             `Responsable de corregir y mejorar la aplicación Seat Designer de Eventbrite, una gran aplicación HTML / canvas / svg con una extensa interactividad de arrastrar y soltar.`,
           ],
@@ -101,7 +99,6 @@ const esEs: Translation = {
         },
         {
           role: "Programador Web",
-          institution: "Estudio Minero",
           description: [
             `Diseño y desarrollo de páginas web y aplicaciones integradas utilizando Flash y JavaScript.`,
           ],
@@ -137,8 +134,10 @@ const esEs: Translation = {
       title: "Proyectos Personales",
       projects: {
         carcinisation: {
-          role: "Propietario y Desarrollador del Proyecto",
-          name: "Carcinisation (Game Jam)",
+          about: {
+            itchio: "Carcinisation en itch.io",
+            github: "Repositorio de Github de Carcinisation",
+          },
           description: {
             p1: `Liderazgo en el desarrollo de un prototipo de juego inspirado en Game Boy para la GBJam de 2023, que duró 10 días. El proyecto fue desarrollado utilizando el motor de juego ECS experimental`,
             p2: `, que está escrito en Rust.`,
@@ -149,6 +148,8 @@ const esEs: Translation = {
             "Dirección de arte e historia.",
             "Asistencia en la selección de música y sonido.",
           ],
+          name: "Carcinisation (Game Jam)",
+          role: "Propietario y Desarrollador del Proyecto",
         },
       },
     },
@@ -161,7 +162,11 @@ const esEs: Translation = {
         `,
       ],
     },
-    contactDetails: { title: "Detalles de Contacto", subject: "¡Hola Marco!" },
+    contactDetails: {
+      location: "Londres, Reino Unido",
+      title: "Detalles de Contacto",
+      subject: "¡Hola Marco!",
+    },
     skills: {
       professional: {
         title: "Habilidades Profesionales",
@@ -176,16 +181,9 @@ const esEs: Translation = {
       },
       software: {
         title: "Software",
-        list: [
-          "Typescript / JS / HTML / CSS",
-          "React / Native / NextJS",
-          "Angular / Jest / Cypress",
-          "AWS / NodeJS",
-          "Rust / Haskell / Elixir",
-          "C# / Java / Python",
-          "SQL (Postgres / SQL-Server)",
-          "Desarrollo de juegos (Bevy / Unity)",
-        ],
+        list: {
+          gameDev: "Game development (Unity / Bevy)",
+        },
       },
       personal: {
         title: "Personal",

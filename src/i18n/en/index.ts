@@ -9,14 +9,16 @@ const enUs: BaseTranslation = {
     },
     profession: "Systems Engineer",
     goBack: "Go back",
-
-    workExperience: {
-      title: "Work Experience",
+    profile: {
+      picture: "Profile picture",
+    },
+    experience: {
+      title: "Experience",
       history: [
         {
           role: "Lead Front-End Developer",
           description: [
-            `Lead Front-End Developer at Fintern, driving the development of "Render," a Python + Angular application serving as underwriting and decisioning Software as a Service (SaaS) for banks and lenders. Focus on key architectural decisions, team guidance, and mentoring.`,
+            `Lead Front-End Developer at Fintern, driving the development of "Render," a Python + Angular (, React and Vue) application serving as underwriting and decisioning Software as a Service (SaaS) for banks and lenders. Focus on key architectural decisions, team guidance, and mentoring.`,
             `Integrated "Abound" (customer-facing) and "Render" (B2B) for a cohesive and user-friendly experience.`,
           ],
           highlights: [
@@ -40,7 +42,6 @@ const enUs: BaseTranslation = {
         },
         {
           role: "Principal Developer",
-          institution: "Prima Assicurazioni UK",
           description: [
             `Independent developer leading the adoption of a new tech stack for Prima's UK branch, a motor insurance company. Focused on TypeScript, Elixir, Rust, and Elm.`,
           ],
@@ -54,7 +55,6 @@ const enUs: BaseTranslation = {
         },
         {
           role: "Senior Software Developer",
-          institution: "Moixa Ltd.",
           description: [
             `Senior software developer contributing to the Moixa Gridshare stack, managing charge/discharge rates of batteries/EVs in the UK and Japan.`,
           ],
@@ -73,7 +73,6 @@ const enUs: BaseTranslation = {
         },
         {
           role: "Lead Software Developer",
-          institution: "Propago AR",
           description: [
             `Led the development of the Full-Stack architecture for Propago’s financial system. Provided leadership and training in React technology, C# and SQL Server.`,
           ],
@@ -84,7 +83,6 @@ const enUs: BaseTranslation = {
         },
         {
           role: "Software Developer",
-          institution: "Eventbrite",
           description: [
             `Responsible for fixing and upgrading Eventbrite's Seat Designer app, a large HTML/canvas/svg app with extensive UI drag and drop interactivity.`,
           ],
@@ -101,7 +99,6 @@ const enUs: BaseTranslation = {
         },
         {
           role: "Web Programmer",
-          institution: "Estudio Minero",
           description: [
             `Designed and developed web pages and embedded applications using Flash and Javascript.`,
           ],
@@ -137,8 +134,10 @@ const enUs: BaseTranslation = {
       title: "Personal Projects",
       projects: {
         carcinisation: {
-          role: "Project Owner and Developer",
-          name: "Carcinisation (Game Jam)",
+          about: {
+            itchio: "Carcinisation in itch.io",
+            github: "Github repository of carcinisation",
+          },
           description: {
             p1: `Lead the development of a Game boy inspired game prototype for the
             GBJam of 2023, which lasted 10 days. The project was developed
@@ -151,6 +150,8 @@ const enUs: BaseTranslation = {
             "Art and story direction",
             "Assistance on selection of music and sound",
           ],
+          name: "Carcinisation (Game Jam)",
+          role: "Project Owner and Developer",
         },
       },
     },
@@ -171,7 +172,11 @@ const enUs: BaseTranslation = {
 	      `,
       ],
     },
-    contactDetails: { title: "Contact Details", subject: "Hello Marco!" },
+    contactDetails: {
+      location: "London, UK",
+      title: "Contact Details",
+      subject: "Hello Marco!",
+    },
     skills: {
       professional: {
         title: "Professional Skills",
@@ -186,16 +191,9 @@ const enUs: BaseTranslation = {
       },
       software: {
         title: "Software",
-        list: [
-          "Typescript / JS / HTML / CSS",
-          "React / Native / NextJS",
-          "Angular / Jest / Cypress",
-          "AWS / NodeJS",
-          "Rust / Haskell / Elixir",
-          "C# / Java / Python",
-          "SQL (Postgres / SQL-Server)",
-          "Game dev (Bevy / Unity)",
-        ],
+        list: {
+          gameDev: "Desarrollo de juegos (Unity / Bevy)",
+        },
       },
       personal: {
         title: "Personal",

@@ -29,7 +29,7 @@ const path = `${LOCAL_DIR}/Marco Toniut (CV).pdf`;
 
     await page.pdf({
       format: "A4",
-      margin: { top: 0, right: 0, bottom: 0, left: 0 },
+      margin: { top: "1cm", right: 0, bottom: "0.5cm", left: 0 },
       path,
       printBackground: true,
     });

@@ -1,6 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
+import Image from "next/image";
 import {
   GithubIcon,
   ItchIOIcon,
@@ -38,6 +39,7 @@ import { pipe } from "fp-ts/function";
 import Link from "next/link";
 import { useContext } from "react";
 import { LocalizedString } from "typesafe-i18n";
+import profilePic from "../../../../public/cv/profile.jpeg";
 import { Meta } from "./data";
 
 const DATE_FORMAT = "MMM yyyy";
@@ -73,7 +75,13 @@ export function CVContent() {
               <H1 className={nameCn} id="me">
                 Marco Stefano Toniut
               </H1>
-              <div className={pictureCn}></div>
+              <div className={pictureCn}>
+                <Image
+                  src={profilePic}
+                  height={180}
+                  alt={LL.CVPage.profile.picture()}
+                />
+              </div>
               <H3 className={professionCn} id="systems-engineer">
                 {LL.CVPage.profession()}
               </H3>
@@ -104,12 +112,13 @@ export function CVContent() {
                     {phone}
                   </a>
                 </div>
-                <div>London, UK</div>
+                <div>{LL.CVPage.contactDetails.location()}</div>
                 <div style={{ display: "flex", gap: space.small }}>
                   <a
                     href="https://github.com/marcotoniut"
                     rel="noreferrer"
                     target="_blank"
+                    about="Github"
                   >
                     <GithubIcon />
                   </a>
@@ -117,6 +126,7 @@ export function CVContent() {
                     href="https://www.linkedin.com/in/marco-toniut-4b6a143a/"
                     rel="noreferrer"
                     target="_blank"
+                    about="Linkedin"
                   >
                     <LinkedInIcon />
                   </a>
@@ -139,9 +149,17 @@ export function CVContent() {
               <hr />
               <ul className={skillsListCn}>
                 {pipe(
-                  LL.CVPage.skills.software.list,
-                  (xs) => Object.values(xs),
-                  RA.mapWithIndex((i, t) => <li key={i}>{t()} </li>),
+                  [
+                    "Typescripvt / JS / HTML / CSS",
+                    "React / React Native / NextJS",
+                    "Angular / Jest / Cypress",
+                    "AWS / NodeJS",
+                    "Rust / Haskell / Elixir",
+                    "C# / Java / Python",
+                    "SQL (Postgres / SQL-Server)",
+                    LL.CVPage.skills.software.list.gameDev(),
+                  ],
+                  RA.mapWithIndex((i, x) => <li key={i}>{x} </li>),
                 )}
               </ul>
             </section>
@@ -160,10 +178,10 @@ export function CVContent() {
         </aside>
         <main>
           <article>
-            <H2 id="work-experience">{LL.CVPage.workExperience.title()}</H2>
+            <H2 id="work-experience">{LL.CVPage.experience.title()}</H2>
             <hr />
             {pipe(
-              LL.CVPage.workExperience.history,
+              LL.CVPage.experience.history,
               RR.toReadonlyArray,
               RA.mapWithIndex((index, [k, x]) => {
                 const meta = Meta[k];
@@ -233,10 +251,7 @@ export function CVContent() {
                     rel="noreferrer"
                     target="_blank"
                   >
-                    <span>
-                      {LL.CVPage.education.education.courses.robotics.module1()}
-                    </span>
-                    <NewTabIcon />
+                    {LL.CVPage.education.education.courses.robotics.module1()}
                   </a>
                 </li>
                 <li>
@@ -246,10 +261,7 @@ export function CVContent() {
                     rel="noreferrer"
                     target="_blank"
                   >
-                    <span>
-                      {LL.CVPage.education.education.courses.robotics.module2()}
-                    </span>
-                    <NewTabIcon />
+                    {LL.CVPage.education.education.courses.robotics.module2()}
                   </a>
                 </li>
               </ul>
@@ -269,6 +281,7 @@ export function CVContent() {
                   href="https://github.com/marcotoniut/carcinisation"
                   rel="noreferrer"
                   target="_blank"
+                  about={LL.CVPage.personalProjects.projects.carcinisation.about.github()}
                 >
                   <GithubIcon />
                 </a>
@@ -276,6 +289,7 @@ export function CVContent() {
                   href="https://marcotoniut.itch.io/carcinisation"
                   rel="noreferrer"
                   target="_blank"
+                  about={LL.CVPage.personalProjects.projects.carcinisation.about.itchio()}
                 >
                   <ItchIOIcon />
                 </a>
