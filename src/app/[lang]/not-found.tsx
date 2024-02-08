@@ -1,8 +1,7 @@
-import { baseLocale, loadedLocales } from "@/i18n/i18n-util";
+import { loadedLocales } from "@/i18n/i18n-util";
 import { loadLocale } from "@/i18n/i18n-util.sync";
 import { MetadataAttributes, PageProps } from "@/types";
 import { Metadata } from "next";
-import { i18nDictionary } from "./common";
 import { NotFoundContent } from "./not-found.content";
 
 export async function generateMetadata({

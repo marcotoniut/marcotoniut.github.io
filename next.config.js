@@ -7,7 +7,7 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const nextConfig = {
   // output: "export",
   reactStrictMode: true,
-  images: { loader: "custom" },
+  // images: { loader: "custom" },
   // NOTE Project-based
   // assetPrefix: !debug ? "/project/" : "",
 };
