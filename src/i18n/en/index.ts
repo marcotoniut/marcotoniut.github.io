@@ -16,95 +16,112 @@ const enUs: BaseTranslation = {
       title: "Experience",
       history: [
         {
-          role: "Lead Front-End Developer",
+          role: "Senior Software Engineer V (Contracted through YLD for Ledger)",
           description: [
-            `Lead Front-End Developer at Fintern, driving the development of "Render," a Python + Angular (, React and Vue) application serving as underwriting and decisioning Software as a Service (SaaS) for banks and lenders. Focus on key architectural decisions, team guidance, and mentoring.`,
-            `Integrated "Abound" (customer-facing) and "Render" (B2B) for a cohesive and user-friendly experience.`,
+            "Senior Software Engineer contracted through YLD for Ledger, the cryptocurrency hardware wallet leader. Initially assigned to the Earn section of Ledger Live (Electron + React Native), where I restructured its architecture and improved developer workflows.",
+            "Currently contributing to the core Ledger Live app, focusing on performance, scalability, and modernization across mobile and desktop.",
+            "Additionally acting as line manager for three developers at YLD, providing technical guidance, mentorship, and support across client engagements.",
           ],
           highlights: [
-            `Led Front-End development for Render, setting up a unified architecture.`,
-            `Drove key decisions for enhanced UX and performance.`,
-            `Initiated groundwork for the Broker Portal (first conceptualized for mortgage lenders).`,
-            `Mentored and guided developers for a collaborative environment.`,
-            `Contributed to the CI, testing and automated code generation stacks.`,
+            "Reworked the architecture of Ledger Live Earn, improving modularity, maintainability, and development efficiency.",
+            "Implemented a Mock Service Worker (MSW)–based API mocking system and automated API code generation.",
+            "Integrated and configured Braze for in-app campaigns and targeted user engagement.",
+            "Migrated and optimized state management in the Wallet XP feature, significantly improving startup time and performance.",
+            "Supported the React Native New Architecture migration and resolved key compatibility issues.",
+            "Promoted best practices in TypeScript, testing, and design system consistency.",
+            "Mentored developers and aligned teams around architectural and coding standards.",
           ],
         },
         {
-          role: "Startup Application Booster",
+          role: "Lead Front-End Developer",
           description: [
-            `Key contributor to fintech startup Bondsmith, focusing on the initial stages of their advisor platform. At Zelt, played a comprehensive role in improving code reliability, testing, theming, and implementing key features.`,
+            `Lead Front-End Developer at Abound, driving the development of "Render," a Python + Angular (React and Vue) SaaS platform for banks and lenders.`,
+            `Integrated "Abound" (customer-facing) and "Render" (B2B) into a cohesive, user-friendly experience.`,
           ],
           highlights: [
-            `Led development for Bondsmith's advisor platform, shaping its initial stages.`,
-            `Enhanced Zelt's code reliability, testing practices, and theming.`,
-            `Implemented critical features, including seamless Google Calendar integration for Zelt.`,
+            `Led Front-End architecture and best practices for Render.`,
+            `Defined key decisions to improve performance and user experience.`,
+            `Laid the groundwork for the Broker Portal for mortgage lenders.`,
+            `Mentored developers and strengthened team collaboration.`,
+            `Enhanced CI, testing, and automated code generation pipelines.`,
+          ],
+        },
+        {
+          role: "Software Engineer",
+          description: [
+            `Key contributor at Zelt, improving code reliability, testing, and theming, while implementing new features and integrations for its HR management platform.`,
+          ],
+          highlights: [
+            `Improved code reliability and testing practices.`,
+            `Enhanced theming and visual consistency across the product.`,
+            `Implemented key features, including seamless Google Calendar integration.`,
           ],
         },
         {
           role: "Principal Developer",
           description: [
-            `Independent developer leading the adoption of a new tech stack for Prima's UK branch, a motor insurance company. Focused on TypeScript, Elixir, Rust, and Elm.`,
+            `Independent developer leading the adoption of a new tech stack for Prima’s UK branch, a motor insurance company. Focused on TypeScript, Elixir, Rust, and Elm.`,
           ],
           highlights: [
             `Led development of the public-facing app.`,
-            `Established and maintained a front-end monorepo, incorporating Elm.`,
-            `Engineered Elixir GraphQL APIs for seamless integration.`,
-            `Developed Email and PDF rendering tools for enhanced user communication.`,
-            `Implemented and maintained the Cypress integration test environment.`,
+            `Set up and maintained a Front-End monorepo using Elm.`,
+            `Designed Elixir GraphQL APIs for seamless integration.`,
+            `Built tools for email and PDF rendering.`,
+            `Maintained Cypress-based integration testing environment.`,
           ],
         },
         {
           role: "Senior Software Developer",
           description: [
-            `Senior software developer contributing to the Moixa Gridshare stack, managing charge/discharge rates of batteries/EVs in the UK and Japan.`,
+            `Contributed to the Moixa Gridshare stack, managing charge and discharge rates of batteries and EVs in the UK and Japan.`,
           ],
           highlights: [
-            `Principal developer of Moixa's Hub Installer app as well as the Mobile Customer app v2 (React Native).`,
-            `Re-implemented the Japanese weather alert system using AWS services such as Dynamo and ES.`,
-            `Implemented Commissioning module and other admin's functionalities.`,
-            `Contributed to front-end monorepo refactoring and implemented Moixa's Styleguide.`,
+            `Developed Moixa’s Hub Installer app and Mobile Customer app v2 (React Native).`,
+            `Reimplemented Japan’s weather alert system with AWS (DynamoDB, Elasticsearch).`,
+            `Built the Commissioning module and admin tools.`,
+            `Refactored the Front-End monorepo and implemented the company styleguide.`,
           ],
         },
         {
           role: "Freelancer",
           description: [
-            `Undertook diverse projects, collaborating with clients across different industries. Developed React and Reflex-FRP (Haskell) web applications, showcasing versatility in meeting client requirements.`,
+            `Delivered projects across multiple industries, building React and Reflex-FRP (Haskell) web apps. Hands-on with all stages of design and development.`,
           ],
         },
         {
           role: "Lead Software Developer",
           description: [
-            `Led the development of the Full-Stack architecture for Propago’s financial system. Provided leadership and training in React technology, C# and SQL Server.`,
+            `Led full-stack architecture for Propago’s financial system. Provided training in React, C#, and SQL Server.`,
           ],
           highlights: [
             `Led a team of six developers and participated in key company decisions.`,
-            `Supervised staff and provided technical guidance.`,
+            `Supervised and mentored developers, providing technical guidance.`,
           ],
         },
         {
           role: "Software Developer",
           description: [
-            `Responsible for fixing and upgrading Eventbrite's Seat Designer app, a large HTML/canvas/svg app with extensive UI drag and drop interactivity.`,
+            `Maintained and improved Eventbrite’s Seat Designer, a large HTML/canvas/SVG app with complex drag-and-drop interactions.`,
           ],
           highlights: [
-            `Improved and refactored their Backbone JS application.`,
-            `Upgraded their SVG editor rich internet app.`,
+            `Refactored and optimized the Backbone.js codebase.`,
+            `Enhanced and modernized the SVG-based UI editor.`,
           ],
         },
         {
           role: "Freelancer",
           description: [
-            `Engaged in various projects, collaborating with multiple clients across diverse industries. Developed web applications and contributed to game development, showcasing adaptability in meeting client requirements.`,
+            `Worked on web and game projects across different industries, adapting to a wide range of technologies and client needs.`,
           ],
         },
         {
           role: "Web Programmer",
           description: [
-            `Designed and developed web pages and embedded applications using Flash and Javascript.`,
+            `Designed and developed websites and embedded applications using Flash and JavaScript.`,
           ],
           highlights: [
-            `Created static web pages and led design and implementation efforts.`,
-            `Developed Flash web applications (AS3) and implemented PHP/Wordpress backend systems.`,
+            `Created static websites, leading design and implementation.`,
+            `Developed Flash (AS3) web apps and integrated PHP/WordPress backends.`,
           ],
         },
       ],
@@ -116,9 +133,8 @@ const enUs: BaseTranslation = {
           degree: "Systems Engineer",
           institution: "University CAECE Mar del Plata",
           description: `
-          Computer science. Algorithms, data structures and software
-          patterns. Project management. Quality assurance. Electronic
-          circuits.`,
+          Computer science: algorithms, data structures, and software patterns.
+          Project management. Quality assurance. Electronic circuits.`,
         },
         courses: {
           robotics: {
@@ -135,20 +151,18 @@ const enUs: BaseTranslation = {
       projects: {
         carcinisation: {
           about: {
-            itchio: "Carcinisation in itch.io",
-            github: "Github repository of carcinisation",
+            itchio: "Carcinisation on itch.io",
+            github: "GitHub repository of Carcinisation",
           },
           description: {
-            p1: `Lead the development of a Game boy inspired game prototype for the
-            GBJam of 2023, which lasted 10 days. The project was developed
-            using the experimental ECS game engine `,
-            p2: `, which is written in Rust.`,
+            p1: `Led the development of a Game Boy–inspired prototype for the GBJam 2023, developed over 10 days using the experimental ECS game engine `,
+            p2: `, written in Rust.`,
           },
           highlights: [
-            "Lead development and coordination of a team of six",
-            "Primary coder and game designer",
-            "Art and story direction",
-            "Assistance on selection of music and sound",
+            "Led development and coordination of a team of six.",
+            "Primary coder and game designer.",
+            "Directed art and story development.",
+            "Contributed to music and sound selection.",
           ],
           name: "Carcinisation (Game Jam)",
           role: "Project Owner and Developer",
@@ -158,18 +172,8 @@ const enUs: BaseTranslation = {
     summary: {
       title: "Profile",
       summary: [
-        `As an independent developer for a significant part of my career,
-        I've tackled diverse tasks across various companies and
-        clients, cultivating an eclectic range of technical knowledge and
-        a commitment to self-actualisation.
-	      `,
-        `In leadership, mentoring, and negotiation roles, I've
-        successfully coordinated development teams, championing the
-        adoption of modern techniques and tools. Detail-oriented and
-        experimental in my coding approach, I prioritise deadlines and
-        milestones, planning tasks meticulously for on-time project
-        completion.
-	      `,
+        "As an independent developer for much of my career, I've taken on diverse projects across multiple companies and clients, cultivating a broad technical foundation and a strong sense of ownership.",
+        "In leadership, mentoring, and negotiation roles, I've successfully coordinated development teams and driven the adoption of modern technologies and workflows. Detail-oriented and pragmatic, I combine an experimental mindset with disciplined execution, ensuring timely delivery of high-quality results.",
       ],
     },
     contactDetails: {
@@ -181,9 +185,9 @@ const enUs: BaseTranslation = {
       professional: {
         title: "Professional Skills",
         list: [
-          "Lead software development",
+          "Software development leadership",
           "Team management",
-          "Dealing with stakeholders",
+          "Stakeholder engagement",
           "Code review",
           "Mentoring",
           "Recruiting",
@@ -192,28 +196,28 @@ const enUs: BaseTranslation = {
       software: {
         title: "Software",
         list: {
-          gameDev: "Desarrollo de juegos (Unity / Bevy)",
+          gameDev: "Game development (Unity / Bevy)",
         },
       },
       personal: {
         title: "Personal",
         list: [
           "Spanish (fluent)",
-          "Digital Painting",
-          "Martial Arts",
-          "Tenis",
+          "Digital painting",
+          "Martial arts",
+          "Tennis",
           "Bouldering",
         ],
       },
     },
     footer: {
       p1: "Web version",
-      p2: " of this CV. Generated using ",
+      p2: " of this CV. Built with Next.js and TypeScript.",
     },
   },
   HomePage: {
     meta: {
-      description: "Personal page, for experiments and publications",
+      description: "Personal page for experiments and publications",
       title: "Marco Toniut",
     },
   },
