@@ -1,20 +1,28 @@
-export const Meta = {
-  "0": {
-    id: "fintern",
-    institution: "Fintern (Render)",
+export const Meta = [
+  {
+    id: "yld",
+    institution: "YLD (Ledger)",
     dates: {
-      start: new Date(2022, 7),
+      start: new Date(2024, 4),
     },
   },
-  "1": {
-    id: "bondsmithZelt",
-    institution: "Bondsmith & Zelt",
+  {
+    id: "abound",
+    institution: "Abound (Render)",
     dates: {
-      start: new Date(2022, 2),
+      start: new Date(2022, 7),
+      end: new Date(2024, 2),
+    },
+  },
+  {
+    id: "zelt",
+    institution: "Zelt",
+    dates: {
+      start: new Date(2022, 3),
       end: new Date(2022, 5),
     },
   },
-  "2": {
+  {
     id: "prima",
     institution: "Prima Assicurazioni UK",
     dates: {
@@ -22,7 +30,7 @@ export const Meta = {
       end: new Date(2022, 1),
     },
   },
-  "3": {
+  {
     id: "moixa",
     institution: "Moixa Ltd.",
     dates: {
@@ -30,27 +38,27 @@ export const Meta = {
       end: new Date(2020, 11),
     },
   },
-  "4": {
+  {
     id: "freelancer-2016",
     dates: { start: new Date(2016, 0), end: new Date(2019, 4) },
   },
-  "5": {
+  {
     id: "propago",
     institution: "Propago AR",
     dates: { start: new Date(2014, 2), end: new Date(2015, 11) },
   },
-  "6": {
+  {
     id: "eventbrite",
     institution: "Eventbrite",
     dates: { start: new Date(2013, 4), end: new Date(2013, 10) },
   },
-  "7": {
+  {
     id: "freelancer-2010",
     dates: { start: new Date(2010, 0), end: new Date(2013, 4) },
   },
-  "8": {
+  {
     id: "estudio-minero",
     institution: "Estudio Minero",
     dates: { start: new Date(2008, 0), end: new Date(2010, 0) },
   },
-} as const;
+] as const;

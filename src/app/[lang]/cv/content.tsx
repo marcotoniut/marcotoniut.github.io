@@ -321,9 +321,6 @@ export function CVContent() {
               {LL.CVPage.footer.p1()}
             </a>
             {LL.CVPage.footer.p2()}
-            <a className={linkCn} href="https://nextjs.org/">
-              NextJS.
-            </a>
           </span>
         </footer>
       ) : (
