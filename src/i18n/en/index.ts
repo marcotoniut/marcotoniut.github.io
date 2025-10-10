@@ -162,7 +162,6 @@ const enUs: BaseTranslation = {
             "Led development and coordination of a team of six.",
             "Primary coder and game designer.",
             "Directed art and story development.",
-            "Contributed to music and sound selection.",
           ],
           name: "Carcinisation (Game Jam)",
           role: "Project Owner and Developer",
