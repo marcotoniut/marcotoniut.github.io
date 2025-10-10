@@ -163,7 +163,6 @@ const esEs: Translation = {
             "Liderazgo en el desarrollo y coordinación de un equipo de seis personas.",
             "Codificador principal y diseñador de juegos.",
             "Dirección de arte e historia.",
-            "Asistencia en la selección de música y sonido.",
           ],
           name: "Carcinisation (Game Jam)",
           role: "Propietario y Desarrollador del Proyecto",

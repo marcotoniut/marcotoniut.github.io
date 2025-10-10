@@ -1,29 +1,25 @@
 export const colors = {
-  main: "#3552a1",
-  action: "#598d6a",
-  // action: "#5f7fe1",
-  aside: "#f4f5f7",
-  text: "#595d6a",
-} as const;
-
-export const fontSizes = {
-  xs: ".75rem",
-  small: ".8rem",
-  default: "1rem",
-  large: "1.25rem",
-  xl: "1.5rem",
-  xxl: "1.75rem",
-  xxxl: "2rem",
+  text: "#222222",
+  action: "#007C91",
+  accent: "#00A3B1",
+  background: "#FFFFFF",
+  sidebarBg: "#F7F9FA",
 } as const;
 
 export const space = {
-  none: "0rem",
-  xxs: ".3rem",
-  xs: ".5rem",
-  small: ".7rem",
-  default: "1rem",
-  large: "1.2rem",
-  xl: "1.6rem",
-  xxl: "2rem",
-  xxxl: "2.5rem",
+  none: "0",
+  xs: "4px",
+  small: "8px",
+  default: "16px",
+  large: "20px",
+  xl: "24px",
+  xxl: "32px",
+  xxxl: "48px",
+} as const;
+
+export const fontSizes = {
+  small: "12px",
+  default: "14px",
+  large: "16px",
+  xl: "18px",
 } as const;

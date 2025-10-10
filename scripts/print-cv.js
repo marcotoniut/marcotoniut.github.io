@@ -4,7 +4,12 @@ const puppeteer = require("puppeteer");
 
 const BASE_URL = `http://localhost:3001`;
 const LOCAL_DIR = "./local";
-const path = `${LOCAL_DIR}/Marco Toniut (CV).pdf`;
+
+const now = new Date();
+const year = now.getFullYear();
+const month = String(now.getMonth() + 1).padStart(2, "0");
+const filename = `Marco_Toniut_CV_${year}-${month}.pdf`;
+const path = `${LOCAL_DIR}/${filename}`;
 
 (async () => {
   if (!fs.existsSync(LOCAL_DIR)) {
@@ -55,6 +60,7 @@ const path = `${LOCAL_DIR}/Marco Toniut (CV).pdf`;
         "--single-process",
       ],
     });
+
     const page = await browser.newPage();
 
     console.log(`Navigating to ${BASE_URL}/cv...`);

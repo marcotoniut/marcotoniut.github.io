@@ -3,7 +3,6 @@ import { colors, fontSizes, space } from "../../../styles/theme";
 import { isPDFPrinting } from "../../../env";
 
 const dataSizeA4 = '[data-size="A4"]';
-
 const maxWidth = 1200;
 
 export const headerCn = style({
@@ -34,6 +33,7 @@ export const docCn = style({
   paddingInline: space.xxl,
 });
 
+// PDF layout adjustments
 if (isPDFPrinting()) {
   const PAGE_COUNT = 3;
 
@@ -50,19 +50,45 @@ if (isPDFPrinting()) {
   });
 }
 
+globalStyle("body", {
+  WebkitPrintColorAdjust: "exact",
+  "@media": {
+    print: {
+      WebkitPrintColorAdjust: "exact",
+    },
+  },
+});
+
+// Divider line
 globalStyle(`${docCn} hr`, {
   border: 0,
-  borderColor: "rgba(0, 0, 0, 0)",
-  height: "1px",
+  height: "0.75px",
   width: "100%",
   marginBottom: space.xs,
   marginTop: space.xs,
-  backgroundColor: colors.text,
+  backgroundColor: colors.action,
+});
+
+// Accent section titles
+globalStyle(`${docCn} h2`, {
+  color: colors.action,
+  fontWeight: 600,
+});
+
+// Accent links
+globalStyle(`${docCn} a`, {
+  color: colors.action,
+  textDecoration: "none",
+});
+globalStyle(`${docCn} a:hover`, {
+  color: colors.accent,
+  textDecoration: "underline",
 });
 
 export const nameCn = style({
   marginTop: space.default,
   marginBottom: space.none,
+  color: colors.action, // highlight your name
 });
 
 export const professionCn = style({
@@ -76,7 +102,7 @@ export const pictureCn = style({
   borderRadius: "50%",
 });
 
-const doc_mediaCn = `${docCn} @media screen and (max-width: 768px)`;
+const doc_mediaCn = `${docCn} @media screen and (max-width: 768px)` as const;
 globalStyle(doc_mediaCn, {
   fontSize: "14px",
   display: "block",
@@ -98,10 +124,14 @@ globalStyle(`${doc_dataSizeCn} aside`, {
 });
 
 export const paragraphCn = style({});
-
 globalStyle(`${paragraphCn} > *`, { marginTop: space.small });
 
-export const highlightsCn = style({ listStyle: "inside", padding: 0 });
+export const highlightsCn = style({
+  listStyle: "disc inside",
+  padding: 0,
+  lineHeight: 1.45,
+});
+globalStyle(`${highlightsCn} li + li`, { marginTop: "4px" });
 
 export const linkCn = style({
   color: colors.action,
@@ -128,7 +158,6 @@ export const skillsListCn = style({
   listStyle: "none",
   padding: 0,
 });
-
 globalStyle(`${skillsListCn} > li:not(:first-child)`, {
   marginTop: space.small,
 });
@@ -142,12 +171,15 @@ export const institutionCn = style({
   marginTop: space.small,
 });
 
+// Sidebar accent
 export const asideCn = style({
-  paddingInline: space.none,
+  padding: space.default,
   maxWidth: 350,
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
+  backgroundColor: colors.sidebarBg,
+  borderRadius: space.small,
 });
 
 export const link2Cn = style({ color: colors.action });
@@ -157,12 +189,6 @@ export const learningHighlightsCn = style({
   padding: 0,
   listStyleType: "circle",
 });
-
-// export const pageBreakCn = style({});
-// globalStyle(`${pageBreakCn}${dataSizeA4}`, {
-//   pageBreakBefore: "always",
-//   marginTop: space.xl,
-// });
 
 export const footerCn = style({
   fontSize: fontSizes.small,
