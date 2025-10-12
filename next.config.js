@@ -12,4 +12,4 @@ const nextConfig = {
   // assetPrefix: !debug ? "/project/" : "",
 };
 
-module.exports = module.exports = withVanillaExtract(nextConfig);
+module.exports = withVanillaExtract(nextConfig);

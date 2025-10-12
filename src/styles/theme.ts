@@ -4,6 +4,7 @@ export const colors = {
   accent: "#00A3B1",
   background: "#FFFFFF",
   sidebarBg: "#F7F9FA",
+  main: "#007C91",
 } as const;
 
 export const space = {
@@ -22,4 +23,5 @@ export const fontSizes = {
   default: "14px",
   large: "16px",
   xl: "18px",
+  xxl: "24px",
 } as const;
