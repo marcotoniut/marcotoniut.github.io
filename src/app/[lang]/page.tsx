@@ -1,7 +1,7 @@
 import { loadedLocales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
 import { space } from "@/styles/theme"
-import { MetadataAttributes, PageProps } from "@/types"
+import type { MetadataAttributes, PageProps } from "@/types"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { GithubIcon, ItchIOIcon } from "../../components/Icons"

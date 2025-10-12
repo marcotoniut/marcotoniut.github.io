@@ -1,4 +1,4 @@
-import { ComponentProps } from "react"
+import type { ComponentProps } from "react"
 import NextLink from "next/link"
 import { useI18nContext } from "../../i18n/i18n-react"
 

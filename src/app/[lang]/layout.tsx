@@ -1,4 +1,4 @@
-import { PageProps } from "@/types"
+import type { PageProps } from "@/types"
 import { baseLocale, locales } from "../../i18n/i18n-util"
 import { i18nDictionary } from "./common"
 import ClientComponent from "./layoutClient"
