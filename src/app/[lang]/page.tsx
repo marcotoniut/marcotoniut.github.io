@@ -1,4 +1,4 @@
-import { loadedLocales } from "@/i18n/i18n-util"
+import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
 import { space } from "@/styles/theme"
 import type { MetadataAttributes, PageProps } from "@/types"
@@ -11,15 +11,25 @@ import { mainCn } from "./index.css"
 export async function generateMetadata({
   params,
 }: MetadataAttributes): Promise<Metadata> {
-  loadLocale(params.lang)
-  const dict = loadedLocales[params.lang]
+  const { lang } = await params
+  const locale = locales.includes(lang as (typeof locales)[number])
+    ? (lang as (typeof locales)[number])
+    : baseLocale
+
+  loadLocale(locale)
+  const dict = loadedLocales[locale]
   return {
     title: dict.HomePage.meta.title,
     description: dict.HomePage.meta.description,
   }
 }
 
-export default function HomePage({ params }: PageProps) {
+export default async function HomePage({ params }: PageProps) {
+  const { lang } = await params
+  const locale = locales.includes(lang as (typeof locales)[number])
+    ? (lang as (typeof locales)[number])
+    : baseLocale
+
   return (
     <div className={styles.container}>
       <main className={mainCn}>
@@ -28,7 +38,7 @@ export default function HomePage({ params }: PageProps) {
         <p className={styles.description}></p>
 
         <div className={styles.grid}>
-          <Link className={styles.card} href={`/${params.lang}/cv`}>
+          <Link className={styles.card} href={`/${locale}/cv`}>
             <h2>Curriculum Vitae &rarr;</h2>
           </Link>
 
