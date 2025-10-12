@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css"
 
 export const mainCn = style({
   minHeight: "100vh",
@@ -8,4 +8,4 @@ export const mainCn = style({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-});
+})

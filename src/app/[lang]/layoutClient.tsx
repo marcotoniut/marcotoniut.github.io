@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import { ReactNode, useEffect } from "react";
-import TypesafeI18n from "../../i18n/i18n-react";
-import { Locales, Translation } from "../../i18n/i18n-types";
-import { loadedLocales } from "../../i18n/i18n-util";
-import { loadFormatters } from "../../i18n/i18n-util.sync";
+import { ReactNode, useEffect } from "react"
+import TypesafeI18n from "../../i18n/i18n-react"
+import { Locales, Translation } from "../../i18n/i18n-types"
+import { loadedLocales } from "../../i18n/i18n-util"
+import { loadFormatters } from "../../i18n/i18n-util.sync"
 
 interface Props {
-  children: ReactNode;
-  locale: Locales;
-  translation: Translation;
+  children: ReactNode
+  locale: Locales
+  translation: Translation
 }
 
 export default function ClientComponent({
@@ -17,12 +17,12 @@ export default function ClientComponent({
   locale,
   translation,
 }: Props) {
-  loadedLocales[locale] = translation;
-  loadFormatters(locale);
+  loadedLocales[locale] = translation
+  loadFormatters(locale)
 
   useEffect(() => {
-    document.documentElement.lang = locale;
-  }, [locale]);
+    document.documentElement.lang = locale
+  }, [locale])
 
-  return <TypesafeI18n locale={locale}>{children}</TypesafeI18n>;
+  return <TypesafeI18n locale={locale}>{children}</TypesafeI18n>
 }

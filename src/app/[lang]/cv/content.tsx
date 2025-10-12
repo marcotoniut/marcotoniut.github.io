@@ -1,21 +1,16 @@
-"use client";
+"use client"
 
-import { I18nContext } from "@/i18n/i18n-react";
-import { format } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
-import { useContext } from "react";
-import { LocalizedString } from "typesafe-i18n";
-import profilePic from "../../../../public/cv/profile.jpeg";
-import {
-  GithubIcon,
-  ItchIOIcon,
-  LinkedInIcon,
-} from "../../../components/Icons";
-import { H1, H2, H3 } from "../../../components/Typography";
-import { isPDFPrinting } from "../../../env";
-import { email, phone } from "../../../info";
-import { space } from "../../../styles/theme";
+import { I18nContext } from "@/i18n/i18n-react"
+import { format } from "date-fns"
+import Image from "next/image"
+import Link from "next/link"
+import { useContext } from "react"
+import profilePic from "../../../../public/cv/profile.jpeg"
+import { GithubIcon, ItchIOIcon, LinkedInIcon } from "../../../components/Icons"
+import { H1, H2, H3 } from "../../../components/Typography"
+import { isPDFPrinting } from "../../../env"
+import { email, phone } from "../../../info"
+import { space } from "../../../styles/theme"
 import {
   asideCn,
   cvCn,
@@ -34,20 +29,20 @@ import {
   sectionCn,
   skillsListCn,
   highlightsCn as workHighlightsCn,
-} from "./cv.css";
-import { Meta } from "./data";
+} from "./cv.css"
+import { Meta } from "./data"
 
-const DATE_FORMAT = "MMM yyyy";
+const DATE_FORMAT = "MMM yyyy"
 
-const pdfIsPrinting = isPDFPrinting();
+const pdfIsPrinting = isPDFPrinting()
 
 function useTargetProps() {
-  return pdfIsPrinting ? { "data-size": "A4" } : {};
+  return pdfIsPrinting ? { "data-size": "A4" } : {}
 }
 
 export function CVContent() {
-  const sheetProps = useTargetProps();
-  const { LL } = useContext(I18nContext);
+  const sheetProps = useTargetProps()
+  const { LL } = useContext(I18nContext)
 
   return (
     <>
@@ -60,9 +55,7 @@ export function CVContent() {
           </span>
           <span className={cvCn}>Curriculum Vitae</span>
         </header>
-      ) : (
-        <></>
-      )}
+      ) : null}
       <div {...sheetProps} className={docCn}>
         <aside className={asideCn}>
           <section>
@@ -133,7 +126,7 @@ export function CVContent() {
                 {Object.values(LL.CVPage.skills.professional.list).map(
                   (t, i) => (
                     <li key={i}>{t()} </li>
-                  ),
+                  )
                 )}
               </ul>
             </section>
@@ -171,18 +164,19 @@ export function CVContent() {
             <H2 id="work-experience">{LL.CVPage.experience.title()}</H2>
             <hr />
             {Object.values(LL.CVPage.experience.history).map((entry, index) => {
-              const meta = Meta[index];
-              const highlights = "highlights" in entry
-                ? Object.values(entry.highlights)
-                : undefined;
-              const descriptions = Object.values(entry.description);
+              const meta = Meta[index]
+              const highlights =
+                "highlights" in entry
+                  ? Object.values(entry.highlights)
+                  : undefined
+              const descriptions = Object.values(entry.description)
 
               if (!meta) {
-                return null;
+                return null
               }
 
               const institution =
-                "institution" in meta ? meta.institution : undefined;
+                "institution" in meta ? meta.institution : undefined
 
               return (
                 <section className={sectionCn} key={index} id={meta.id}>
@@ -204,7 +198,7 @@ export function CVContent() {
                     </ul>
                   ) : null}
                 </section>
-              );
+              )
             })}
 
             <H2 id="education">{LL.CVPage.education.title()}</H2>
@@ -288,7 +282,7 @@ export function CVContent() {
               </p>
               <ul className={workHighlightsCn}>
                 {Object.values(
-                  LL.CVPage.personalProjects.projects.carcinisation.highlights,
+                  LL.CVPage.personalProjects.projects.carcinisation.highlights
                 ).map((t, i) => (
                   <li key={i}>{t()}</li>
                 ))}
@@ -311,5 +305,5 @@ export function CVContent() {
         <></>
       )}
     </>
-  );
+  )
 }

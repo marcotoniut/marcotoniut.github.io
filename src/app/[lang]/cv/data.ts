@@ -61,4 +61,4 @@ export const Meta = [
     institution: "Estudio Minero",
     dates: { start: new Date(2008, 0), end: new Date(2010, 0) },
   },
-] as const;
+] as const
