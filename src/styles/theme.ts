@@ -5,7 +5,7 @@ export const colors = {
   background: "#FFFFFF",
   sidebarBg: "#F7F9FA",
   main: "#007C91",
-} as const;
+} as const
 
 export const space = {
   none: "0",
@@ -16,7 +16,7 @@ export const space = {
   xl: "24px",
   xxl: "32px",
   xxxl: "48px",
-} as const;
+} as const
 
 export const fontSizes = {
   small: "12px",
@@ -24,4 +24,4 @@ export const fontSizes = {
   large: "16px",
   xl: "18px",
   xxl: "24px",
-} as const;
+} as const

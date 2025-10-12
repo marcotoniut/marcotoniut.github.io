@@ -1,22 +1,22 @@
-import { loadedLocales } from "@/i18n/i18n-util";
-import { loadLocale } from "@/i18n/i18n-util.sync";
-import { space } from "@/styles/theme";
-import { MetadataAttributes, PageProps } from "@/types";
-import type { Metadata } from "next";
-import Link from "next/link";
-import { GithubIcon, ItchIOIcon } from "../../components/Icons";
-import styles from "./Home.module.css";
-import { mainCn } from "./index.css";
+import { loadedLocales } from "@/i18n/i18n-util"
+import { loadLocale } from "@/i18n/i18n-util.sync"
+import { space } from "@/styles/theme"
+import { MetadataAttributes, PageProps } from "@/types"
+import type { Metadata } from "next"
+import Link from "next/link"
+import { GithubIcon, ItchIOIcon } from "../../components/Icons"
+import styles from "./Home.module.css"
+import { mainCn } from "./index.css"
 
 export async function generateMetadata({
   params,
 }: MetadataAttributes): Promise<Metadata> {
-  loadLocale(params.lang);
-  const dict = loadedLocales[params.lang];
+  loadLocale(params.lang)
+  const dict = loadedLocales[params.lang]
   return {
     title: dict.HomePage.meta.title,
     description: dict.HomePage.meta.description,
-  };
+  }
 }
 
 export default function HomePage({ params }: PageProps) {
@@ -56,5 +56,5 @@ export default function HomePage({ params }: PageProps) {
 
       <footer className={styles.footer}>Circa 2024</footer>
     </div>
-  );
+  )
 }

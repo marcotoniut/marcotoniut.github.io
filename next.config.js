@@ -1,7 +1,7 @@
 // const debug = process.env.NODE_ENV !== "production";
 
-const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
-const withVanillaExtract = createVanillaExtractPlugin();
+const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin")
+const withVanillaExtract = createVanillaExtractPlugin()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -10,6 +10,6 @@ const nextConfig = {
   // images: { loader: "custom" },
   // NOTE Project-based
   // assetPrefix: !debug ? "/project/" : "",
-};
+}
 
-module.exports = withVanillaExtract(nextConfig);
+module.exports = withVanillaExtract(nextConfig)

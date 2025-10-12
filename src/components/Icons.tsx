@@ -1,8 +1,8 @@
-import { colors, fontSizes } from "../styles/theme";
+import { colors } from "../styles/theme"
 
-const iconSize = "1.4rem";
+const iconSize = "1.4rem"
 
-const xmlns = "http://www.w3.org/2000/svg";
+const xmlns = "http://www.w3.org/2000/svg"
 
 export const GithubIcon = () => (
   <svg xmlns={xmlns} height={iconSize} width={iconSize} viewBox="0 0 16 16">
@@ -12,7 +12,7 @@ export const GithubIcon = () => (
       fill={colors.text}
     ></path>
   </svg>
-);
+)
 
 export const LinkedInIcon = () => (
   <svg xmlns={xmlns} width={iconSize} height={iconSize} viewBox="0 0 34 34">
@@ -24,7 +24,7 @@ export const LinkedInIcon = () => (
       ></path>
     </g>
   </svg>
-);
+)
 
 export const ItchIOIcon = () => (
   <svg
@@ -40,4 +40,4 @@ export const ItchIOIcon = () => (
       fill={colors.text}
     />
   </svg>
-);
+)

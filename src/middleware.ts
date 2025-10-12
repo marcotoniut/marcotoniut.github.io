@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server"
 import {
   initAcceptLanguageHeaderDetector,
   initRequestCookiesDetector,
-} from "typesafe-i18n/detectors";
-import { detectLocale, locales } from "./i18n/i18n-util";
+} from "typesafe-i18n/detectors"
+import { detectLocale, locales } from "./i18n/i18n-util"
 
 // function escapeRegExp(str: string) {
 //   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -14,24 +14,22 @@ import { detectLocale, locales } from "./i18n/i18n-util";
 function getLocale(request: NextRequest) {
   const requestCookiesDetector = initRequestCookiesDetector({
     cookies: request.cookies.toString(),
-  });
-  const acceptLanguageHeaderDetector =
-    initAcceptLanguageHeaderDetector(request);
-  return detectLocale(requestCookiesDetector, acceptLanguageHeaderDetector);
+  })
+  const acceptLanguageHeaderDetector = initAcceptLanguageHeaderDetector(request)
+  return detectLocale(requestCookiesDetector, acceptLanguageHeaderDetector)
 }
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname } = request.nextUrl
 
   const pathnameIsMissingLocale = locales.every(
-    (locale) =>
-      !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
-  );
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  )
 
   if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
+    const locale = getLocale(request)
 
-    return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
+    return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url))
   }
 }
 
@@ -42,4 +40,4 @@ export const config = {
     // `/((?!_next)(?=[^.]*$)${LOCALE_PATHS_REGEX}.*)`,
     // "/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)",
   ],
-};
+}

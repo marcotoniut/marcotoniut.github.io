@@ -1,0 +1,13 @@
+.next
+.next/**
+.cache
+.cache/**
+.vercel
+.vercel/**
+node_modules
+out
+coverage
+**/.next/**
+**/.cache/**
+src/i18n
+src/i18n/**

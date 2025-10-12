@@ -1,4 +1,4 @@
-import type { BaseTranslation } from "../i18n-types";
+import type { BaseTranslation } from "../i18n-types"
 
 const enUs: BaseTranslation = {
   CVPage: {
@@ -227,6 +227,6 @@ const enUs: BaseTranslation = {
     },
     title: "Not found",
   },
-};
+}
 
-export default enUs;
+export default enUs
