@@ -1,12 +1,16 @@
 "use client";
 
+import { I18nContext } from "@/i18n/i18n-react";
 import { format } from "date-fns";
 import Image from "next/image";
+import Link from "next/link";
+import { useContext } from "react";
+import { LocalizedString } from "typesafe-i18n";
+import profilePic from "../../../../public/cv/profile.jpeg";
 import {
   GithubIcon,
   ItchIOIcon,
   LinkedInIcon,
-  NewTabIcon,
 } from "../../../components/Icons";
 import { H1, H2, H3 } from "../../../components/Typography";
 import { isPDFPrinting } from "../../../env";
@@ -31,15 +35,6 @@ import {
   skillsListCn,
   highlightsCn as workHighlightsCn,
 } from "./cv.css";
-
-import { I18nContext } from "@/i18n/i18n-react";
-import * as RA from "fp-ts/ReadonlyArray";
-import * as RR from "fp-ts/ReadonlyRecord";
-import { pipe } from "fp-ts/function";
-import Link from "next/link";
-import { useContext } from "react";
-import { LocalizedString } from "typesafe-i18n";
-import profilePic from "../../../../public/cv/profile.jpeg";
 import { Meta } from "./data";
 
 const DATE_FORMAT = "MMM yyyy";
@@ -89,11 +84,9 @@ export function CVContent() {
             <section className={sectionCn}>
               <H2 id="summary">{LL.CVPage.summary.title()}</H2>
               <hr />
-              {pipe(
-                LL.CVPage.summary.summary,
-                (xs) => Object.values(xs),
-                RA.mapWithIndex((i, t) => <p key={i}>{t()}</p>),
-              )}
+              {Object.values(LL.CVPage.summary.summary).map((t, i) => (
+                <p key={i}>{t()}</p>
+              ))}
             </section>
             <section className={sectionCn}>
               <H2 id="contact-details">{LL.CVPage.contactDetails.title()}</H2>
@@ -137,10 +130,10 @@ export function CVContent() {
               <H2 id="skills">{LL.CVPage.skills.professional.title()}</H2>
               <hr />
               <ul className={skillsListCn}>
-                {pipe(
-                  LL.CVPage.skills.professional.list,
-                  (xs) => Object.values(xs),
-                  RA.mapWithIndex((i, t) => <li key={i}>{t()} </li>),
+                {Object.values(LL.CVPage.skills.professional.list).map(
+                  (t, i) => (
+                    <li key={i}>{t()} </li>
+                  ),
                 )}
               </ul>
             </section>
@@ -148,30 +141,27 @@ export function CVContent() {
               <H2 id="knowledge">{LL.CVPage.skills.software.title()}</H2>
               <hr />
               <ul className={skillsListCn}>
-                {pipe(
-                  [
-                    "Typescripvt / JS / HTML / CSS",
-                    "React / React Native / NextJS",
-                    "Angular / Jest / Cypress",
-                    "AWS / NodeJS",
-                    "Rust / Haskell / Elixir",
-                    "C# / Java / Python",
-                    "SQL (Postgres / SQL-Server)",
-                    LL.CVPage.skills.software.list.gameDev(),
-                  ],
-                  RA.mapWithIndex((i, x) => <li key={i}>{x} </li>),
-                )}
+                {[
+                  "Typescripvt / JS / HTML / CSS",
+                  "React / React Native / NextJS",
+                  "Angular / Jest / Cypress",
+                  "AWS / NodeJS",
+                  "Rust / Haskell / Elixir",
+                  "C# / Java / Python",
+                  "SQL (Postgres / SQL-Server)",
+                  LL.CVPage.skills.software.list.gameDev(),
+                ].map((x, i) => (
+                  <li key={i}>{x} </li>
+                ))}
               </ul>
             </section>
             <section className={sectionCn}>
               <H2 id="personal">{LL.CVPage.skills.personal.title()}</H2>
               <hr />
               <ul className={skillsListCn}>
-                {pipe(
-                  LL.CVPage.skills.personal.list,
-                  (xs) => Object.values(xs),
-                  RA.mapWithIndex((i, t) => <li key={i}>{t()} </li>),
-                )}
+                {Object.values(LL.CVPage.skills.personal.list).map((t, i) => (
+                  <li key={i}>{t()} </li>
+                ))}
               </ul>
             </section>
           </section>
@@ -180,48 +170,47 @@ export function CVContent() {
           <article>
             <H2 id="work-experience">{LL.CVPage.experience.title()}</H2>
             <hr />
-            {pipe(
-              LL.CVPage.experience.history,
-              RR.toReadonlyArray,
-              RA.mapWithIndex((index, [k, x]) => {
-                const meta = Meta[k];
-                return (
-                  <section className={sectionCn} key={index}>
-                    <H3 id={meta.id}>{x.role()}</H3>
-                    {"institution" in meta ? (
-                      <div className={institutionCn}>{meta.institution}</div>
-                    ) : (
-                      <></>
-                    )}
-                    <div>
-                      <em>{`${format(meta.dates.start, DATE_FORMAT)} - ${"end" in meta.dates ? format(meta.dates.end, DATE_FORMAT) : "Present"}`}</em>
-                    </div>
-                    {pipe(
-                      x.description,
-                      (xs) => Object.values(xs),
-                      RA.mapWithIndex((i, t) => <p key={i}>{t()}</p>),
-                    )}
-                    {"highlights" in x ? (
-                      <ul className={workHighlightsCn}>
-                        {pipe(
-                          x.highlights,
-                          (xs) =>
-                            Object.values(
-                              xs as unknown as RR.ReadonlyRecord<
-                                string,
-                                () => LocalizedString
-                              >,
-                            ),
-                          RA.mapWithIndex((i, t) => <li key={i}>{t()}</li>),
-                        )}
-                      </ul>
-                    ) : (
-                      <></>
-                    )}
-                  </section>
-                );
-              }),
-            )}
+            {Object.values(LL.CVPage.experience.history).map((entry, index) => {
+              const meta = Meta[index];
+              const highlights =
+                "highlights" in entry
+                  ? (Object.values(entry.highlights) as Array<
+                      () => LocalizedString
+                    >)
+                  : undefined;
+              const descriptions = Object.values(entry.description) as Array<
+                () => LocalizedString
+              >;
+
+              if (!meta) {
+                return null;
+              }
+
+              const institution =
+                "institution" in meta ? meta.institution : undefined;
+
+              return (
+                <section className={sectionCn} key={index} id={meta.id}>
+                  <H3 id={meta.id ?? `experience-${index}`}>{entry.role()}</H3>
+                  {institution ? (
+                    <div className={institutionCn}>{institution}</div>
+                  ) : null}
+                  <div>
+                    <em>{`${format(meta.dates.start, DATE_FORMAT)} - ${"end" in meta.dates ? format(meta.dates.end, DATE_FORMAT) : "Present"}`}</em>
+                  </div>
+                  {descriptions.map((t, i) => (
+                    <p key={i}>{t()}</p>
+                  ))}
+                  {highlights ? (
+                    <ul className={workHighlightsCn}>
+                      {highlights.map((t, i) => (
+                        <li key={i}>{t()}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </section>
+              );
+            })}
 
             <H2 id="education">{LL.CVPage.education.title()}</H2>
             <hr />
@@ -303,11 +292,11 @@ export function CVContent() {
                 {LL.CVPage.personalProjects.projects.carcinisation.description.p2()}
               </p>
               <ul className={workHighlightsCn}>
-                {pipe(
+                {Object.values(
                   LL.CVPage.personalProjects.projects.carcinisation.highlights,
-                  (xs) => Object.values(xs),
-                  RA.mapWithIndex((i, t) => <li key={i}>{t()}</li>),
-                )}
+                ).map((t, i) => (
+                  <li key={i}>{t()}</li>
+                ))}
               </ul>
             </section>
           </article>

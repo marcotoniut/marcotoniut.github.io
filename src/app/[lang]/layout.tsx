@@ -11,16 +11,12 @@ export default async function GlobalLayout({ children, params }: PageProps) {
   // const langE = DIO_Locale.decode(params.lang);
   // const locale = langE._tag === "Right" ? langE.right : baseLocale;
 
-  const locale = params.lang;
-  const i18n = await i18nDictionary(locale ?? baseLocale);
+  const locale = params.lang ?? baseLocale;
+  const i18n = await i18nDictionary(locale);
 
   return (
-    <html lang={i18n.locale}>
-      <body>
-        <ClientComponent locale={i18n.locale} translation={i18n.dictionary}>
-          {children}
-        </ClientComponent>
-      </body>
-    </html>
+    <ClientComponent locale={i18n.locale} translation={i18n.dictionary}>
+      {children}
+    </ClientComponent>
   );
 }

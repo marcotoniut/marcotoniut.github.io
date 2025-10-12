@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import TypesafeI18n from "../../i18n/i18n-react";
 import { Locales, Translation } from "../../i18n/i18n-types";
 import { loadedLocales } from "../../i18n/i18n-util";
@@ -19,6 +19,10 @@ export default function ClientComponent({
 }: Props) {
   loadedLocales[locale] = translation;
   loadFormatters(locale);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   return <TypesafeI18n locale={locale}>{children}</TypesafeI18n>;
 }

@@ -12,13 +12,13 @@
     "predeploy": "rm -rf node_modules/.cache && rm -rf out/ && pnpm build && touch out/.nojekyll",
     "print-cv": "pnpm node scripts/print-cv.js",
     "start": "next start",
+    "typecheck": "tsc --pretty --noEmit",
     "typesafe-i18n": "typesafe-i18n --no-watch",
     "typesafe-i18n:watch": "typesafe-i18n"
   },
   "dependencies": {
     "@vanilla-extract/css": "^1.17.4",
     "date-fns": "^3.3.1",
-    "fp-ts": "^2.16.2",
     "io-ts": "^2.2.21",
     "next": "^14.0.4",
     "react": "^18.2.0",

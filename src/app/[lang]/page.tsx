@@ -1,7 +1,7 @@
 import { loadedLocales } from "@/i18n/i18n-util";
 import { loadLocale } from "@/i18n/i18n-util.sync";
 import { space } from "@/styles/theme";
-import { MetadataAttributes } from "@/types";
+import { MetadataAttributes, PageProps } from "@/types";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { GithubIcon, ItchIOIcon } from "../../components/Icons";
@@ -19,7 +19,7 @@ export async function generateMetadata({
   };
 }
 
-export default function HomePage() {
+export default function HomePage({ params }: PageProps) {
   return (
     <div className={styles.container}>
       <main className={mainCn}>
@@ -28,28 +28,27 @@ export default function HomePage() {
         <p className={styles.description}></p>
 
         <div className={styles.grid}>
-          <span className={styles.card}>
-            <Link passHref href="/cv">
-              <h2>Curriculum Vitae &rarr;</h2>
-            </Link>
-          </span>
+          <Link className={styles.card} href={`/${params.lang}/cv`}>
+            <h2>Curriculum Vitae &rarr;</h2>
+          </Link>
 
           <span className={styles.card}>
             <h2 style={{ display: "flex", gap: space.small }}>
               <span>Carcinisation</span>
-              <Link
-                passHref
+              <a
                 href="https://github.com/marcotoniut/carcinisation"
                 rel="noreferrer"
+                target="_blank"
               >
                 <GithubIcon />
-              </Link>
-              <Link
+              </a>
+              <a
                 href="https://marcotoniut.itch.io/carcinisation"
                 rel="noreferrer"
+                target="_blank"
               >
                 <ItchIOIcon />
-              </Link>
+              </a>
             </h2>
           </span>
         </div>
