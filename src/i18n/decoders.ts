@@ -1,12 +1,17 @@
-import * as DIO from "io-ts/Decoder";
+import { z } from "zod";
 import { locales } from "./i18n-util";
 import { Locales } from "./i18n-types";
 
-export const LOCALES = ["en", "es"] as const;
+function assertNonEmptyLocales(
+  value: readonly Locales[]
+): asserts value is readonly [Locales, ...Locales[]] {
+  if (value.length === 0) {
+    throw new Error("The locales array must contain at least one locale.");
+  }
+}
 
-type LOCALES = (typeof LOCALES)[number];
+assertNonEmptyLocales(locales);
 
-export const DIO_Locale: DIO.Decoder<
-  unknown,
-  Locales extends LOCALES ? Locales : never
-> = DIO.literal(...LOCALES);
+export const LOCALES = locales;
+
+export const LocaleSchema = z.enum(LOCALES);

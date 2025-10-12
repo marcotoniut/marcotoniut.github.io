@@ -8,8 +8,8 @@ export const generateStaticParams = async () => {
 };
 
 export default async function GlobalLayout({ children, params }: PageProps) {
-  // const langE = DIO_Locale.decode(params.lang);
-  // const locale = langE._tag === "Right" ? langE.right : baseLocale;
+  // const langResult = LocaleSchema.safeParse(params.lang);
+  // const locale = langResult.success ? langResult.data : baseLocale;
 
   const locale = params.lang ?? baseLocale;
   const i18n = await i18nDictionary(locale);
