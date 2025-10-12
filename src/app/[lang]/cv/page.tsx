@@ -1,7 +1,7 @@
 import { loadedLocales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
-import { MetadataAttributes } from "@/types"
-import { Metadata } from "next"
+import type { MetadataAttributes } from "@/types"
+import type { Metadata } from "next"
 import { CVContent } from "./content"
 
 export async function generateMetadata({

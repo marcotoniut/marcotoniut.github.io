@@ -1,5 +1,5 @@
-import { ReactNode } from "react"
-import { Locales } from "./i18n/i18n-types"
+import type { ReactNode } from "react"
+import type { Locales } from "./i18n/i18n-types"
 
 export interface PageProps {
   children?: ReactNode

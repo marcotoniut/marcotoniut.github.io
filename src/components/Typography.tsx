@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react"
+import type { HTMLAttributes } from "react"
 import { h1Cn, h2Cn, h3Cn } from "./Typography.css"
 
 type HProps = Pick<

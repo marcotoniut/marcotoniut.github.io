@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { locales } from "./i18n-util"
-import { Locales } from "./i18n-types"
+import type { Locales } from "./i18n-types"
 
 function assertNonEmptyLocales(
   value: readonly Locales[]
