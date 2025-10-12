@@ -172,15 +172,10 @@ export function CVContent() {
             <hr />
             {Object.values(LL.CVPage.experience.history).map((entry, index) => {
               const meta = Meta[index];
-              const highlights =
-                "highlights" in entry
-                  ? (Object.values(entry.highlights) as Array<
-                      () => LocalizedString
-                    >)
-                  : undefined;
-              const descriptions = Object.values(entry.description) as Array<
-                () => LocalizedString
-              >;
+              const highlights = "highlights" in entry
+                ? Object.values(entry.highlights)
+                : undefined;
+              const descriptions = Object.values(entry.description);
 
               if (!meta) {
                 return null;

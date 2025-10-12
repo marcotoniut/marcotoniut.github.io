@@ -1,3 +1,12 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "TSAsExpression:not([typeAnnotation.typeName.name='const'])",
+        "message": "Avoid using TypeScript type assertions; prefer safer alternatives."
+      }
+    ]
+  }
 }
