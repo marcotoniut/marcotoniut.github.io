@@ -1,20 +1,23 @@
-import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
+import { loadedLocales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
 import { space } from "@/styles/theme"
-import type { MetadataAttributes, PageProps } from "@/types"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { GithubIcon, ItchIOIcon } from "../../components/Icons"
+import { LocaleSwitcher } from "../../components/LocaleSwitcher"
 import styles from "./Home.module.css"
 import { mainCn } from "./index.css"
+import { resolveLocale } from "./utils"
+
+type PageProps = {
+  params: Promise<{ lang: string }>
+}
 
 export async function generateMetadata({
   params,
-}: MetadataAttributes): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   const { lang } = await params
-  const locale = locales.includes(lang as (typeof locales)[number])
-    ? (lang as (typeof locales)[number])
-    : baseLocale
+  const locale = resolveLocale(lang)
 
   loadLocale(locale)
   const dict = loadedLocales[locale]
@@ -26,12 +29,11 @@ export async function generateMetadata({
 
 export default async function HomePage({ params }: PageProps) {
   const { lang } = await params
-  const locale = locales.includes(lang as (typeof locales)[number])
-    ? (lang as (typeof locales)[number])
-    : baseLocale
+  const locale = resolveLocale(lang)
 
   return (
     <div className={styles.container}>
+      <LocaleSwitcher currentLocale={locale} />
       <main className={mainCn}>
         <h1 className={styles.title}>Marco Toniut</h1>
 
@@ -64,7 +66,7 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </main>
 
-      <footer className={styles.footer}>Circa 2024</footer>
+      <footer className={styles.footer}>© 2025</footer>
     </div>
   )
 }

@@ -31,6 +31,7 @@ import {
   highlightsCn as workHighlightsCn,
 } from "./cv.css"
 import { Meta } from "./data"
+// TODO should be done like this only on pdf print, use public/profile.png otherwise
 
 const DATE_FORMAT = "MMM yyyy"
 
@@ -42,14 +43,14 @@ function useTargetProps() {
 
 export function CVContent() {
   const sheetProps = useTargetProps()
-  const { LL } = useContext(I18nContext)
+  const { LL, locale } = useContext(I18nContext)
 
   return (
     <>
       {!pdfIsPrinting ? (
         <header className={headerCn}>
           <span>
-            <Link className={linkCn} passHref href="/">
+            <Link className={linkCn} passHref href={`/${locale}/`}>
               {LL.CVPage.goBack()}
             </Link>
           </span>

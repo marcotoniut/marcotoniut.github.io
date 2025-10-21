@@ -1,12 +1,15 @@
 import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
-import type { MetadataAttributes } from "@/types"
 import type { Metadata } from "next"
 import { CVContent } from "./content"
 
+type PageProps = {
+  params: Promise<{ lang: string }>
+}
+
 export async function generateMetadata({
   params,
-}: MetadataAttributes): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   const { lang } = await params
   const locale = locales.includes(lang as (typeof locales)[number])
     ? (lang as (typeof locales)[number])

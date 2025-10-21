@@ -50,24 +50,57 @@ const path = `${LOCAL_DIR}/${filename}`
     console.log("Launching puppeteer process...")
     const browser = await puppeteer.launch({
       headless: "new",
-      executablePath: puppeteer.executablePath("chrome"),
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-gpu",
-        "--no-first-run",
-        "--no-zygote",
-        "--single-process",
-      ],
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
     })
 
     const page = await browser.newPage()
 
-    console.log(`Navigating to ${BASE_URL}/cv...`)
-    await page.goto(`${BASE_URL}/cv`, {
-      waitUntil: "networkidle0",
-      timeout: 60000,
-    })
+    console.log(`Navigating to ${BASE_URL}/en/cv/...`)
+
+    // Try navigation with more forgiving wait condition
+    try {
+      await page.goto(`${BASE_URL}/en/cv/`, {
+        waitUntil: "domcontentloaded",
+        timeout: 30000,
+      })
+    } catch (error) {
+      console.error("Navigation error:", error.message)
+      throw error
+    }
+
+    // Wait for the CV content to be fully rendered
+    console.log("Waiting for CV content to load...")
+
+    // Debug: Check what's actually on the page
+    const pageContent = await page.content()
+    console.log("Page title:", await page.title())
+
+    // Check if it's a 404 page
+    const bodyText = await page.evaluate(() => document.body.innerText)
+    if (
+      bodyText.includes("404") ||
+      bodyText.includes("Not Found") ||
+      bodyText.includes("Page not found")
+    ) {
+      console.error("ERROR: Page shows 404 or Not Found")
+      console.error("Body text:", bodyText.substring(0, 200))
+      throw new Error("CV page returned 404")
+    }
+
+    // Wait for h1 with better error message
+    try {
+      await page.waitForSelector("h1", { timeout: 10000 })
+    } catch (error) {
+      console.error("Failed to find h1 element")
+      console.error(
+        "Page HTML (first 500 chars):",
+        pageContent.substring(0, 500)
+      )
+      throw error
+    }
+
+    // Wait for network to be idle
+    await page.waitForNetworkIdle({ idleTime: 500, timeout: 10000 })
 
     console.log("Generating PDF...")
     await page.pdf({
