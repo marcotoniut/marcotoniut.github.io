@@ -29,6 +29,7 @@ const enUs: BaseTranslation = {
             "Migrated and optimized state management in the Wallet XP feature, significantly improving startup time and performance.",
             "Supported the React Native New Architecture migration and resolved key compatibility issues.",
             "Promoted best practices in TypeScript, testing, and design system consistency.",
+            "Conducted close to 30 interviews for software engineering roles, strengthening YLD’s hiring pipeline.",
             "Mentored developers and aligned teams around architectural and coding standards.",
           ],
         },
@@ -218,6 +219,13 @@ const enUs: BaseTranslation = {
     meta: {
       description: "Personal page for experiments and publications",
       title: "Marco Toniut",
+    },
+    cv: {
+      label: "Curriculum Vitae",
+      hint: "View the resume →",
+    },
+    carcinisation: {
+      label: "Carcinisation",
     },
   },
   NotFoundPage: {

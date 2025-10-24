@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { LocaleRedirect } from "@/components/locale-redirect"
 import { baseLocale } from "@/i18n/i18n-util"
 import { buildLocalizedHref } from "@/utils/locale"
+import { redirectWrapper } from "./redirect.css"
 
 const fallbackHref = buildLocalizedHref(baseLocale)
 
@@ -14,15 +15,7 @@ export default function RootRedirectPage() {
   return (
     <>
       <LocaleRedirect />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "100vh",
-          fontFamily: "system-ui, -apple-system, sans-serif",
-        }}
-      >
+      <div className={redirectWrapper}>
         <p>Redirecting...</p>
       </div>
       <noscript>
