@@ -29,6 +29,7 @@ const esEs: Translation = {
             "Migración y optimización de la gestión de estado en Wallet XP, mejorando notablemente el tiempo de arranque y el rendimiento.",
             "Soporte en la migración a la Nueva Arquitectura de React Native y resolución de problemas de compatibilidad clave.",
             "Promoción de buenas prácticas en TypeScript, pruebas y consistencia del sistema de diseño.",
+            "Realización de cerca de 30 entrevistas para roles de ingeniería de software, fortaleciendo el proceso de contratación de YLD.",
             "Mentoría de desarrolladores y alineación de equipos en estándares de arquitectura y desarrollo.",
           ],
         },
@@ -219,6 +220,13 @@ const esEs: Translation = {
     meta: {
       description: "Página personal para experimentos y publicaciones",
       title: "Marco Toniut",
+    },
+    cv: {
+      label: "Curriculum Vitae",
+      hint: "Ver el currículum →",
+    },
+    carcinisation: {
+      label: "Carcinisation",
     },
   },
   NotFoundPage: {

@@ -139,6 +139,12 @@ export const linkCn = style({
   gap: space.small,
 })
 
+export const socialLinksCn = style({
+  display: "flex",
+  gap: space.small,
+  alignItems: "center",
+})
+
 export const profileCn = style({
   alignItems: "center",
   gap: space.xs,

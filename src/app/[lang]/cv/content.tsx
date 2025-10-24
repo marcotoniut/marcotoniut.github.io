@@ -10,7 +10,6 @@ import { GithubIcon, ItchIOIcon, LinkedInIcon } from "../../../components/Icons"
 import { H1, H2, H3 } from "../../../components/Typography"
 import { isPDFPrinting } from "../../../env"
 import { email, phone } from "../../../info"
-import { space } from "../../../styles/theme"
 import {
   asideCn,
   cvCn,
@@ -28,6 +27,7 @@ import {
   profileCn,
   sectionCn,
   skillsListCn,
+  socialLinksCn,
   highlightsCn as workHighlightsCn,
 } from "./cv.css"
 import { Meta } from "./data"
@@ -100,7 +100,7 @@ export function CVContent() {
                   </a>
                 </div>
                 <div>{LL.CVPage.contactDetails.location()}</div>
-                <div style={{ display: "flex", gap: space.small }}>
+                <div className={socialLinksCn}>
                   <a
                     href="https://github.com/marcotoniut"
                     rel="noreferrer"
