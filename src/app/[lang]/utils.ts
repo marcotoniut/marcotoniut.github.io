@@ -1,5 +1,5 @@
-import type { Locales } from "@/i18n/i18n-types"
 import { notFound } from "next/navigation"
+import type { Locales } from "@/i18n/i18n-types"
 import { locales } from "../../i18n/i18n-util"
 
 export function resolveLocale(candidate: string | Locales): Locales {

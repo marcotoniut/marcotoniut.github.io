@@ -1,14 +1,4 @@
 import type { Metadata } from "next"
-
-import {
-  buttonGrid,
-  cardShowcase,
-  heading,
-  lead,
-  page,
-  section,
-  surface,
-} from "./page.css"
 import {
   Button,
   Card,
@@ -19,6 +9,15 @@ import {
   LinkButton,
 } from "@/components/ui"
 import { baseLocale } from "@/i18n/i18n-util"
+import {
+  buttonGrid,
+  cardShowcase,
+  heading,
+  lead,
+  page,
+  section,
+  surface,
+} from "./page.css"
 
 export const metadata: Metadata = {
   title: "Interface primitives demo | Marco Toniut",

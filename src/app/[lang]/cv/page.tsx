@@ -1,6 +1,6 @@
+import type { Metadata } from "next"
 import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
-import type { Metadata } from "next"
 import { CVContent } from "./content"
 
 type PageProps = {

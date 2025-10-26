@@ -2,16 +2,15 @@
 
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 import { useMemo } from "react"
-
-import { Button } from "@/components/ui/button"
 import { useTheme } from "@/components/theme-provider"
+import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
   const { theme, toggleTheme, mounted } = useTheme()
 
   const label = useMemo(
     () => (theme === "dark" ? "Dark mode" : "Light mode"),
-    [theme]
+    [theme],
   )
 
   // Prevent hydration mismatch by not rendering theme-specific content until mounted

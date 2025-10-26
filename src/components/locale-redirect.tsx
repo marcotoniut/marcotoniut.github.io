@@ -10,7 +10,7 @@ const supportedLocales: readonly Locales[] = locales
 const defaultLocale: Locales = baseLocale
 const localePattern = new RegExp(
   `^/(?:${supportedLocales.join("|")})(?:/|$)`,
-  "i"
+  "i",
 )
 
 type LocaleRedirectProps = {
@@ -43,7 +43,7 @@ function pickSupportedLocale(candidateLocales: readonly string[]): Locales {
   for (const candidate of candidateLocales) {
     const normalized = candidate.toLowerCase()
     const exactMatch = supportedLocales.find(
-      (locale) => locale.toLowerCase() === normalized
+      (locale) => locale.toLowerCase() === normalized,
     )
 
     if (exactMatch) {
@@ -52,7 +52,7 @@ function pickSupportedLocale(candidateLocales: readonly string[]): Locales {
 
     const shortCode = normalized.split("-")[0]
     const partialMatch = supportedLocales.find(
-      (locale) => locale.split("-")[0]?.toLowerCase() === shortCode
+      (locale) => locale.split("-")[0]?.toLowerCase() === shortCode,
     )
 
     if (partialMatch) {

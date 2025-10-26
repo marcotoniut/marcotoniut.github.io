@@ -1,6 +1,16 @@
 import { style } from "@vanilla-extract/css"
 
-import { colors, fontSizes, radii, shadows, space } from "@/styles/theme"
+import {
+  colors,
+  fontFamilies,
+  fontSizes,
+  fontWeights,
+  letterSpacing,
+  lineHeights,
+  radii,
+  shadows,
+  space,
+} from "@/styles/theme"
 
 export const container = style({
   minHeight: "100svh",
@@ -39,7 +49,9 @@ export const footer = style({
   justifyContent: "center",
   alignItems: "center",
   color: colors.textMuted,
-  fontSize: fontSizes.small,
+  fontFamily: fontFamilies.body,
+  fontSize: fontSizes.bodySm,
+  fontWeight: fontWeights.body.medium,
   letterSpacing: "0.08em",
   textTransform: "uppercase",
 })
@@ -53,7 +65,7 @@ export const title = style({
 
 export const description = style({
   margin: 0,
-  lineHeight: 1.6,
+  lineHeight: lineHeights.body,
   fontSize: "1.25rem",
   maxWidth: "42rem",
   color: colors.textMuted,
@@ -112,13 +124,17 @@ export const cardLabel = style({
 
 export const cardHint = style({
   margin: 0,
-  fontSize: fontSizes.large,
+  fontSize: fontSizes.body,
   color: colors.textMuted,
 })
 
 export const cardHeading = style({
   margin: 0,
+  fontFamily: fontFamilies.heading,
   fontSize: "1.5rem",
+  fontWeight: fontWeights.heading.regular,
+  letterSpacing: letterSpacing.h3,
+  lineHeight: lineHeights.h3,
   display: "inline-flex",
   alignItems: "center",
   gap: space.small,
@@ -135,7 +151,11 @@ export const cardHeadingArrow = style({
 
 export const projectHeading = style({
   margin: 0,
+  fontFamily: fontFamilies.heading,
   fontSize: "1.5rem",
+  fontWeight: fontWeights.heading.regular,
+  letterSpacing: letterSpacing.h3,
+  lineHeight: lineHeights.h3,
   whiteSpace: "nowrap",
 })
 

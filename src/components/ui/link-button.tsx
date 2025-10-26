@@ -47,7 +47,7 @@ export const LinkButton = forwardRef<ElementRef<"a">, LinkButtonProps>(
       legacyBehavior,
       ...anchorProps
     },
-    ref
+    ref,
   ) => {
     if (external) {
       return (
@@ -98,7 +98,7 @@ export const LinkButton = forwardRef<ElementRef<"a">, LinkButtonProps>(
         <Link {...linkProps}>{children}</Link>
       </Button>
     )
-  }
+  },
 )
 
 LinkButton.displayName = "LinkButton"

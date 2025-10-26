@@ -36,18 +36,47 @@ const themeContract = createThemeContract({
     glow: null,
   },
   font: {
-    family: null,
+    family: {
+      heading: null,
+      body: null,
+      mono: null,
+    },
     size: {
-      xs: null,
-      sm: null,
-      md: null,
-      lg: null,
-      xl: null,
+      h1: null,
+      h2: null,
+      h3: null,
+      body: null,
+      bodySm: null,
+      ui: null,
+    },
+    lineHeight: {
+      h1: null,
+      h2: null,
+      h3: null,
+      body: null,
+      bodySm: null,
+      ui: null,
+    },
+    letterSpacing: {
+      h1: null,
+      h2: null,
+      h3: null,
+      body: null,
+      bodySm: null,
     },
     weight: {
-      regular: null,
-      medium: null,
-      semibold: null,
+      heading: {
+        regular: null,
+        bold: null,
+      },
+      body: {
+        regular: null,
+        medium: null,
+        bold: null,
+      },
+      ui: {
+        medium: null,
+      },
     },
   },
 })
@@ -76,19 +105,55 @@ const sharedShadow = {
   glow: "0 0 0 1px rgba(86, 243, 201, 0.45)",
 } as const
 
+const headingStack =
+  '"Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+const bodyStack =
+  '"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+const monoStack =
+  '"IBM Plex Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace'
+
 const sharedFont = {
-  family: `"IBM Plex Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace`,
+  family: {
+    heading: headingStack,
+    body: bodyStack,
+    mono: monoStack,
+  },
   size: {
-    xs: "12px",
-    sm: "14px",
-    md: "16px",
-    lg: "18px",
-    xl: "22px",
+    h1: "clamp(2.5rem, 5vw, 4rem)",
+    h2: "clamp(2rem, 3.5vw, 3rem)",
+    h3: "1.75rem",
+    body: "0.95rem",
+    bodySm: "0.85rem",
+    ui: "0.9375rem",
+  },
+  lineHeight: {
+    h1: "1.05",
+    h2: "1.12",
+    h3: "1.18",
+    body: "1.55",
+    bodySm: "1.5",
+    ui: "1.5",
+  },
+  letterSpacing: {
+    h1: "-0.01em",
+    h2: "-0.01em",
+    h3: "-0.005em",
+    body: "0em",
+    bodySm: "0em",
   },
   weight: {
-    regular: "400",
-    medium: "500",
-    semibold: "600",
+    heading: {
+      regular: "600",
+      bold: "700",
+    },
+    body: {
+      regular: "400",
+      medium: "500",
+      bold: "600",
+    },
+    ui: {
+      medium: "500",
+    },
   },
 } as const
 

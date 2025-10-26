@@ -1,5 +1,5 @@
-const { spawn } = require("child_process")
-const fs = require("fs")
+const { spawn } = require("node:child_process")
+const fs = require("node:fs")
 const puppeteer = require("puppeteer")
 
 const BASE_URL = `http://localhost:3001`
@@ -31,7 +31,7 @@ const path = `${LOCAL_DIR}/${filename}`
     await new Promise((resolve, reject) => {
       const timeout = setTimeout(
         () => reject(new Error("Timed out waiting for dev server to start.")),
-        15000
+        15000,
       )
 
       devPdfProcess.stdout.on("data", (data) => {
@@ -94,7 +94,7 @@ const path = `${LOCAL_DIR}/${filename}`
       console.error("Failed to find h1 element")
       console.error(
         "Page HTML (first 500 chars):",
-        pageContent.substring(0, 500)
+        pageContent.substring(0, 500),
       )
       throw error
     }

@@ -20,7 +20,7 @@ export const Card = forwardRef<ElementRef<"div">, CardProps>(
     return (
       <div {...props} className={mergeClassNames(card, className)} ref={ref} />
     )
-  }
+  },
 )
 Card.displayName = "Card"
 
@@ -35,7 +35,7 @@ export const CardHeader = forwardRef<ElementRef<"div">, CardHeaderProps>(
         ref={ref}
       />
     )
-  }
+  },
 )
 CardHeader.displayName = "CardHeader"
 
@@ -50,7 +50,7 @@ export const CardTitle = forwardRef<ElementRef<"h3">, CardTitleProps>(
         ref={ref}
       />
     )
-  }
+  },
 )
 CardTitle.displayName = "CardTitle"
 
@@ -65,7 +65,7 @@ export const CardSubtitle = forwardRef<ElementRef<"p">, CardSubtitleProps>(
         ref={ref}
       />
     )
-  }
+  },
 )
 CardSubtitle.displayName = "CardSubtitle"
 
@@ -80,6 +80,6 @@ export const CardContent = forwardRef<ElementRef<"div">, CardContentProps>(
         ref={ref}
       />
     )
-  }
+  },
 )
 CardContent.displayName = "CardContent"
