@@ -20,8 +20,8 @@ export const buttonRecipe = recipe({
     cursor: "pointer",
     display: "inline-flex",
     fontFamily,
-    fontSize: fontSizes.large,
-    fontWeight: fontWeights.medium,
+    fontSize: fontSizes.ui,
+    fontWeight: fontWeights.ui.medium,
     gap: space.xs,
     justifyContent: "center",
     letterSpacing: "0.02em",
@@ -88,19 +88,19 @@ export const buttonRecipe = recipe({
     size: {
       sm: {
         height: "32px",
-        fontSize: fontSizes.default,
+        fontSize: fontSizes.bodySm,
         paddingInline: space.small,
         paddingBlock: space.xs,
       },
       md: {
         height: "40px",
-        fontSize: fontSizes.large,
+        fontSize: fontSizes.ui,
         paddingInline: space.default,
         paddingBlock: space.xs,
       },
       lg: {
         height: "48px",
-        fontSize: fontSizes.xl,
+        fontSize: fontSizes.body,
         paddingInline: space.xl,
         paddingBlock: space.small,
       },

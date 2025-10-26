@@ -2,8 +2,11 @@ import { style } from "@vanilla-extract/css"
 
 import {
   colors,
-  fontFamily,
+  fontFamilies,
   fontSizes,
+  fontWeights,
+  letterSpacing,
+  lineHeights,
   radii,
   shadows,
   space,
@@ -28,17 +31,20 @@ export const section = style({
 })
 
 export const heading = style({
-  fontFamily,
-  fontSize: fontSizes.xxl,
-  letterSpacing: "0.08em",
+  fontFamily: fontFamilies.heading,
+  fontSize: fontSizes.h1,
+  fontWeight: fontWeights.heading.bold,
+  letterSpacing: letterSpacing.h1,
+  lineHeight: lineHeights.h1,
   margin: 0,
   textTransform: "uppercase",
 })
 
 export const lead = style({
   color: colors.textMuted,
-  fontFamily,
-  fontSize: fontSizes.large,
+  fontFamily: fontFamilies.body,
+  fontSize: fontSizes.body,
+  lineHeight: lineHeights.body,
   margin: 0,
   maxWidth: "640px",
 })

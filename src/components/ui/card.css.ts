@@ -2,9 +2,11 @@ import { style } from "@vanilla-extract/css"
 
 import {
   colors,
-  fontFamily,
+  fontFamilies,
   fontSizes,
   fontWeights,
+  letterSpacing,
+  lineHeights,
   radii,
   shadows,
   space,
@@ -30,26 +32,26 @@ export const cardHeader = style({
 })
 
 export const cardTitle = style({
-  fontFamily,
-  fontSize: fontSizes.xxl,
-  fontWeight: fontWeights.semibold,
-  letterSpacing: "0.03em",
-  lineHeight: 1.1,
+  fontFamily: fontFamilies.heading,
+  fontSize: fontSizes.h2,
+  fontWeight: fontWeights.heading.regular,
+  letterSpacing: letterSpacing.h2,
+  lineHeight: lineHeights.h2,
   margin: 0,
   color: colors.text,
 })
 
 export const cardSubtitle = style({
   color: colors.textMuted,
-  fontFamily,
-  fontSize: fontSizes.large,
+  fontFamily: fontFamilies.body,
+  fontSize: fontSizes.body,
   letterSpacing: "0.02em",
   margin: 0,
 })
 
 export const cardContent = style({
   color: colors.textMuted,
-  fontFamily,
-  fontSize: fontSizes.large,
-  lineHeight: 1.6,
+  fontFamily: fontFamilies.body,
+  fontSize: fontSizes.body,
+  lineHeight: lineHeights.body,
 })

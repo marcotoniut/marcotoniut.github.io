@@ -1,7 +1,7 @@
 import { Slot } from "@radix-ui/react-slot"
+import type { RecipeVariants } from "@vanilla-extract/recipes"
 import type { ComponentPropsWithoutRef, ElementRef } from "react"
 import { forwardRef } from "react"
-import type { RecipeVariants } from "@vanilla-extract/recipes"
 
 import { buttonRecipe } from "./button.css"
 
@@ -16,7 +16,7 @@ export type ButtonProps = ButtonBaseProps &
 export const Button = forwardRef<ElementRef<"button">, ButtonProps>(
   (
     { asChild = false, className, variant, size, fullWidth, type, ...props },
-    ref
+    ref,
   ) => {
     const composedClassName = className
       ? `${buttonRecipe({ variant, size, fullWidth })} ${className}`
@@ -36,7 +36,7 @@ export const Button = forwardRef<ElementRef<"button">, ButtonProps>(
         type={type ?? "button"}
       />
     )
-  }
+  },
 )
 
 Button.displayName = "Button"

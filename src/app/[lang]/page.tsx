@@ -1,12 +1,11 @@
-import Link from "next/link"
 import type { Metadata } from "next"
-
-import { GithubIcon, ItchIOIcon } from "../../components/Icons"
-import { LocaleSwitcher } from "../../components/LocaleSwitcher"
+import Link from "next/link"
 import { loadedLocales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
-import { resolveLocale } from "./utils"
+import { GithubIcon, ItchIOIcon } from "../../components/Icons"
+import { LocaleSwitcher } from "../../components/LocaleSwitcher"
 import * as styles from "./home.css"
+import { resolveLocale } from "./utils"
 
 type PageProps = {
   params: Promise<{ lang: string }>

@@ -1,10 +1,10 @@
 "use client"
 
-import { I18nContext } from "@/i18n/i18n-react"
 import { format } from "date-fns"
 import Image from "next/image"
 import Link from "next/link"
-import { useContext } from "react"
+import { useContext, useId } from "react"
+import { I18nContext } from "@/i18n/i18n-react"
 import profilePic from "../../../../public/cv/profile.jpeg"
 import { GithubIcon, ItchIOIcon, LinkedInIcon } from "../../../components/Icons"
 import { H1, H2, H3 } from "../../../components/Typography"
@@ -31,7 +31,6 @@ import {
   highlightsCn as workHighlightsCn,
 } from "./cv.css"
 import { Meta } from "./data"
-// TODO should be done like this only on pdf print, use public/profile.png otherwise
 
 const DATE_FORMAT = "MMM yyyy"
 
@@ -44,6 +43,7 @@ function useTargetProps() {
 export function CVContent() {
   const sheetProps = useTargetProps()
   const { LL, locale } = useContext(I18nContext)
+  const uid = useId()
 
   return (
     <>
@@ -61,29 +61,33 @@ export function CVContent() {
         <aside className={asideCn}>
           <section>
             <section className={profileCn}>
-              <H1 className={nameCn} id="me">
+              <H1 className={nameCn} id={`me-${uid}`}>
                 Marco Stefano Toniut
               </H1>
-              <div className={pictureCn}>
-                <Image
-                  src={profilePic}
-                  height={180}
-                  alt={LL.CVPage.profile.picture()}
-                />
-              </div>
-              <H3 className={professionCn} id="systems-engineer">
+              {pdfIsPrinting ? (
+                <div className={pictureCn}>
+                  <Image
+                    src={profilePic}
+                    height={180}
+                    alt={LL.CVPage.profile.picture()}
+                  />
+                </div>
+              ) : null}
+              <H3 className={professionCn} id={`systems-engineer-${uid}`}>
                 {LL.CVPage.profession()}
               </H3>
             </section>
             <section className={sectionCn}>
-              <H2 id="summary">{LL.CVPage.summary.title()}</H2>
+              <H2 id={`summary-${uid}`}>{LL.CVPage.summary.title()}</H2>
               <hr />
-              {Object.values(LL.CVPage.summary.summary).map((t, i) => (
+              {Object.entries(LL.CVPage.summary.summary).map(([i, t]) => (
                 <p key={i}>{t()}</p>
               ))}
             </section>
             <section className={sectionCn}>
-              <H2 id="contact-details">{LL.CVPage.contactDetails.title()}</H2>
+              <H2 id={`contact-details-${uid}`}>
+                {LL.CVPage.contactDetails.title()}
+              </H2>
               <hr />
               <section className={paragraphCn}>
                 <div>
@@ -121,22 +125,26 @@ export function CVContent() {
               </section>
             </section>
             <section className={sectionCn}>
-              <H2 id="skills">{LL.CVPage.skills.professional.title()}</H2>
+              <H2 id={`skills-${uid}`}>
+                {LL.CVPage.skills.professional.title()}
+              </H2>
               <hr />
               <ul className={skillsListCn}>
-                {Object.values(LL.CVPage.skills.professional.list).map(
-                  (t, i) => (
+                {Object.entries(LL.CVPage.skills.professional.list).map(
+                  ([i, t]) => (
                     <li key={i}>{t()} </li>
-                  )
+                  ),
                 )}
               </ul>
             </section>
             <section className={sectionCn}>
-              <H2 id="knowledge">{LL.CVPage.skills.software.title()}</H2>
+              <H2 id={`knowledge-${uid}`}>
+                {LL.CVPage.skills.software.title()}
+              </H2>
               <hr />
               <ul className={skillsListCn}>
                 {[
-                  "Typescripvt / JS / HTML / CSS",
+                  "Typescript / JS / HTML / CSS",
                   "React / React Native / NextJS",
                   "Angular / Jest / Cypress",
                   "AWS / NodeJS",
@@ -144,69 +152,79 @@ export function CVContent() {
                   "C# / Java / Python",
                   "SQL (Postgres / SQL-Server)",
                   LL.CVPage.skills.software.list.gameDev(),
-                ].map((x, i) => (
-                  <li key={i}>{x} </li>
+                ].map((x) => (
+                  <li key={x}>{x} </li>
                 ))}
               </ul>
             </section>
             <section className={sectionCn}>
-              <H2 id="personal">{LL.CVPage.skills.personal.title()}</H2>
+              <H2 id={`personal-${uid}`}>
+                {LL.CVPage.skills.personal.title()}
+              </H2>
               <hr />
               <ul className={skillsListCn}>
-                {Object.values(LL.CVPage.skills.personal.list).map((t, i) => (
-                  <li key={i}>{t()} </li>
-                ))}
+                {Object.entries(LL.CVPage.skills.personal.list).map(
+                  ([i, t]) => (
+                    <li key={i}>{t()} </li>
+                  ),
+                )}
               </ul>
             </section>
           </section>
         </aside>
         <main>
           <article>
-            <H2 id="work-experience">{LL.CVPage.experience.title()}</H2>
+            <H2 id={`work-experience-${uid}`}>
+              {LL.CVPage.experience.title()}
+            </H2>
             <hr />
-            {Object.values(LL.CVPage.experience.history).map((entry, index) => {
-              const meta = Meta[index]
-              const highlights =
-                "highlights" in entry
-                  ? Object.values(entry.highlights)
-                  : undefined
-              const descriptions = Object.values(entry.description)
+            {Object.entries(LL.CVPage.experience.history).map(
+              ([index, entry], i) => {
+                const meta = Meta[i]
+                const highlights =
+                  "highlights" in entry
+                    ? Object.entries(entry.highlights)
+                    : undefined
+                const descriptions = Object.entries(entry.description)
 
-              if (!meta) {
-                return null
-              }
+                if (!meta) {
+                  return null
+                }
 
-              const institution =
-                "institution" in meta ? meta.institution : undefined
+                const institution =
+                  "institution" in meta ? meta.institution : undefined
 
-              return (
-                <section className={sectionCn} key={index} id={meta.id}>
-                  <H3 id={meta.id ?? `experience-${index}`}>{entry.role()}</H3>
-                  {institution ? (
-                    <div className={institutionCn}>{institution}</div>
-                  ) : null}
-                  <div>
-                    <em>{`${format(meta.dates.start, DATE_FORMAT)} - ${"end" in meta.dates ? format(meta.dates.end, DATE_FORMAT) : "Present"}`}</em>
-                  </div>
-                  {descriptions.map((t, i) => (
-                    <p key={i}>{t()}</p>
-                  ))}
-                  {highlights ? (
-                    <ul className={workHighlightsCn}>
-                      {highlights.map((t, i) => (
-                        <li key={i}>{t()}</li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </section>
-              )
-            })}
+                return (
+                  <section className={sectionCn} key={index} id={meta.id}>
+                    <H3 id={meta.id ?? `experience-${index}`}>
+                      {entry.role()}
+                    </H3>
+                    {institution ? (
+                      <div className={institutionCn}>{institution}</div>
+                    ) : null}
+                    <div>
+                      <em>{`${format(meta.dates.start, DATE_FORMAT)} - ${"end" in meta.dates ? format(meta.dates.end, DATE_FORMAT) : "Present"}`}</em>
+                    </div>
+                    {descriptions.map(([i, t]) => (
+                      <p key={i}>{t()}</p>
+                    ))}
+                    {highlights ? (
+                      <ul className={workHighlightsCn}>
+                        {highlights.map(([i, t]) => (
+                          <li key={i}>{t()}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </section>
+                )
+              },
+            )}
 
-            <H2 id="education">{LL.CVPage.education.title()}</H2>
+            <H2 id={`education-${uid}`}>{LL.CVPage.education.title()}</H2>
             <hr />
 
             <section>
-              <H3 id="caece">
+              <H3 id={`caece-${uid}`}>
                 {LL.CVPage.education.education.undergrad.degree()}
               </H3>
               <div className={institutionCn}>
@@ -216,7 +234,7 @@ export function CVContent() {
             </section>
 
             <section className={sectionCn}>
-              <H3 id="udemy-robotics">
+              <H3 id={`udemy-robotics-${uid}`}>
                 {LL.CVPage.education.education.courses.robotics.course()}
               </H3>
               <div className={institutionCn}>
@@ -246,10 +264,12 @@ export function CVContent() {
               </ul>
             </section>
 
-            <H2 id="personal-projects">{LL.CVPage.personalProjects.title()}</H2>
+            <H2 id={`personal-projects-${uid}`}>
+              {LL.CVPage.personalProjects.title()}
+            </H2>
             <hr />
             <section className={sectionCn}>
-              <H3 id="carcinisation">
+              <H3 id={`carcinisation-${uid}`}>
                 {LL.CVPage.personalProjects.projects.carcinisation.role()}
               </H3>
               <div className={institutionCn}>
@@ -282,9 +302,9 @@ export function CVContent() {
                 {LL.CVPage.personalProjects.projects.carcinisation.description.p2()}
               </p>
               <ul className={workHighlightsCn}>
-                {Object.values(
-                  LL.CVPage.personalProjects.projects.carcinisation.highlights
-                ).map((t, i) => (
+                {Object.entries(
+                  LL.CVPage.personalProjects.projects.carcinisation.highlights,
+                ).map(([i, t]) => (
                   <li key={i}>{t()}</li>
                 ))}
               </ul>
@@ -302,9 +322,7 @@ export function CVContent() {
             {LL.CVPage.footer.p2()}
           </span>
         </footer>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </>
   )
 }

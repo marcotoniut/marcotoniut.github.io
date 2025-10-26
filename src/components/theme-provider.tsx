@@ -1,5 +1,6 @@
 "use client"
 
+import type { ReactNode } from "react"
 import {
   createContext,
   useCallback,
@@ -10,7 +11,6 @@ import {
   useRef,
   useState,
 } from "react"
-import type { ReactNode } from "react"
 
 import type { ThemeMode } from "@/styles/theme"
 import {
@@ -44,7 +44,7 @@ function getInitialTheme(): ThemeMode {
   }
 
   const prefersLight = window.matchMedia?.(
-    "(prefers-color-scheme: light)"
+    "(prefers-color-scheme: light)",
   ).matches
 
   return prefersLight ? "light" : "dark"
@@ -86,7 +86,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       toggleTheme,
       mounted,
     }),
-    [setTheme, theme, toggleTheme, mounted]
+    [setTheme, theme, toggleTheme, mounted],
   )
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

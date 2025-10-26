@@ -1,9 +1,9 @@
 import { z } from "zod"
-import { locales } from "./i18n-util"
 import type { Locales } from "./i18n-types"
+import { locales } from "./i18n-util"
 
 function assertNonEmptyLocales(
-  value: readonly Locales[]
+  value: readonly Locales[],
 ): asserts value is readonly [Locales, ...Locales[]] {
   if (value.length === 0) {
     throw new Error("The locales array must contain at least one locale.")

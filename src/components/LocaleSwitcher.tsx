@@ -2,8 +2,8 @@
 
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons"
 import * as Select from "@radix-ui/react-select"
-import { useCallback, useMemo } from "react"
 import { usePathname, useRouter } from "next/navigation"
+import { useCallback, useMemo } from "react"
 
 import { ThemeToggle } from "@/components/ThemeToggle"
 import type { Locales } from "@/i18n/i18n-types"
@@ -43,7 +43,7 @@ export function LocaleSwitcher({ currentLocale }: { currentLocale: Locales }) {
       const target = createLocalePath(pathname, typedLocale)
       router.push(target)
     },
-    [currentLocale, pathname, router]
+    [currentLocale, pathname, router],
   )
 
   return (
