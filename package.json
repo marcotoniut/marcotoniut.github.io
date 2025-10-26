@@ -6,9 +6,10 @@
     "deploy": "gh-pages -d out --nojekyll",
     "dev": "pnpm generate && concurrently \"pnpm generate:watch\" \"next dev --webpack\"",
     "dev:pdf": "cross-env NEXT_PUBLIC_PDF_PRINTING=true next dev --webpack -p 3001",
+    "format": "biome format",
+    "format:check": "biome check",
     "lint": "biome check",
     "lint:fix": "biome check --write",
-    "format": "biome format",
     "generate": "pnpm typesafe-i18n",
     "generate:watch": "pnpm typesafe-i18n:watch",
     "predeploy": "rm -rf node_modules/.cache && rm -rf out/ && pnpm build",
@@ -33,7 +34,7 @@
     "zod": "4.1.12"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.5",
+    "@biomejs/biome": "2.2.5",
     "@types/node": "24.7.2",
     "@types/react": "19.2.2",
     "@vanilla-extract/next-plugin": "^2.3.2",
@@ -45,5 +46,5 @@
     "puppeteer": "^24.24.0",
     "typescript": "5.9.3"
   },
-  "packageManager": "pnpm@10.18.1"
+  "packageManager": "pnpm@10.19.0"
 }
