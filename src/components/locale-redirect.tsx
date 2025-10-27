@@ -4,6 +4,7 @@ import { useEffect } from "react"
 
 import type { Locales } from "@/i18n/i18n-types"
 import { baseLocale, locales } from "@/i18n/i18n-util"
+import { getStoredLocale } from "@/utils/language-storage"
 import { buildLocalizedHref } from "@/utils/locale"
 
 const supportedLocales: readonly Locales[] = locales
@@ -71,8 +72,13 @@ export function LocaleRedirect({ pathSuffix }: LocaleRedirectProps) {
         return
       }
 
+      const storedLocale = getStoredLocale()
       const navigatorLocales = getNavigatorLocales()
-      const targetLocale = pickSupportedLocale(navigatorLocales)
+      const candidateLocales = [
+        ...(storedLocale ? [storedLocale] : []),
+        ...navigatorLocales,
+      ]
+      const targetLocale = pickSupportedLocale(candidateLocales)
       const targetHref = buildLocalizedHref(targetLocale, pathSuffix)
 
       window.location.replace(targetHref)
