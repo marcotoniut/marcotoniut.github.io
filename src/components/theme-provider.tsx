@@ -20,6 +20,8 @@ import {
 } from "@/styles/theme"
 
 const STORAGE_KEY = "marcotoniut-theme"
+const THEME_TRANSITION_CLASS = "theme-transition"
+const THEME_TRANSITION_DURATION_MS = 450
 
 type ThemeContextValue = {
   theme: ThemeMode
@@ -54,6 +56,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<ThemeMode>("dark")
   const [mounted, setMounted] = useState(false)
   const hasHydrated = useRef(false)
+  const transitionTimeoutRef = useRef<number | null>(null)
+  const shouldSkipNextTransition = useRef(true)
 
   useIsomorphicLayoutEffect(() => {
     if (typeof document === "undefined") return
@@ -68,7 +72,39 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const root = document.documentElement
     root.classList.remove(darkThemeClass, lightThemeClass)
     root.classList.add(themeClassByMode[theme])
+    root.dataset.theme = theme
     window.localStorage.setItem(STORAGE_KEY, theme)
+
+    if (shouldSkipNextTransition.current) {
+      shouldSkipNextTransition.current = false
+      return
+    }
+
+    const prefersReducedMotion =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false
+
+    if (prefersReducedMotion) {
+      return
+    }
+
+    if (transitionTimeoutRef.current) {
+      window.clearTimeout(transitionTimeoutRef.current)
+    }
+
+    root.classList.add(THEME_TRANSITION_CLASS)
+
+    transitionTimeoutRef.current = window.setTimeout(() => {
+      root.classList.remove(THEME_TRANSITION_CLASS)
+      transitionTimeoutRef.current = null
+    }, THEME_TRANSITION_DURATION_MS)
+
+    return () => {
+      if (transitionTimeoutRef.current) {
+        window.clearTimeout(transitionTimeoutRef.current)
+        transitionTimeoutRef.current = null
+      }
+      root.classList.remove(THEME_TRANSITION_CLASS)
+    }
   }, [theme])
 
   const setTheme = useCallback((mode: ThemeMode) => {
