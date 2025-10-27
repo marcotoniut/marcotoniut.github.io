@@ -9,6 +9,7 @@ import { ThemeToggle } from "@/components/ThemeToggle"
 import type { Locales } from "@/i18n/i18n-types"
 import { locales } from "@/i18n/i18n-util"
 
+import { setStoredLocale } from "@/utils/language-storage"
 import {
   controlBar,
   selectContent,
@@ -40,6 +41,7 @@ export function LocaleSwitcher({ currentLocale }: { currentLocale: Locales }) {
       const typedLocale = locale as Locales
       if (typedLocale === currentLocale) return
 
+      setStoredLocale(typedLocale)
       const target = createLocalePath(pathname, typedLocale)
       router.push(target)
     },
