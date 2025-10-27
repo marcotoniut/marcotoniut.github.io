@@ -1,4 +1,4 @@
-import { globalStyle } from "@vanilla-extract/css"
+import { globalStyle, keyframes } from "@vanilla-extract/css"
 
 import {
   fontFamilies,
@@ -9,6 +9,81 @@ import {
   space,
 } from "./theme"
 import { themeVars } from "./theme.css"
+
+const themeTransitionProperties =
+  "background-color, color, border-color, outline-color, box-shadow, fill, stroke"
+const themeTransitionDuration = "450ms"
+const themeTransitionTiming = "cubic-bezier(0.45, 0, 0.55, 1)"
+
+const themeTransitionOverlay = keyframes({
+  "0%": { opacity: 0, transform: "scale(0.98)" },
+  "50%": { opacity: 0.18, transform: "scale(1)" },
+  "100%": { opacity: 0, transform: "scale(1.02)" },
+})
+
+globalStyle(":root.theme-transition", {
+  transitionProperty: themeTransitionProperties,
+  transitionDuration: themeTransitionDuration,
+  transitionTimingFunction: themeTransitionTiming,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      transitionDuration: "0ms",
+    },
+    print: {
+      transitionDuration: "0ms",
+    },
+  },
+})
+
+globalStyle(":root.theme-transition *", {
+  transitionProperty: themeTransitionProperties,
+  transitionDuration: themeTransitionDuration,
+  transitionTimingFunction: themeTransitionTiming,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      transitionDuration: "0ms",
+    },
+    print: {
+      transitionDuration: "0ms",
+    },
+  },
+})
+
+globalStyle(":root.theme-transition *::before, :root.theme-transition *::after", {
+  transitionProperty: themeTransitionProperties,
+  transitionDuration: themeTransitionDuration,
+  transitionTimingFunction: themeTransitionTiming,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      transitionDuration: "0ms",
+    },
+    print: {
+      transitionDuration: "0ms",
+    },
+  },
+})
+
+globalStyle(":root.theme-transition::before", {
+  content: "",
+  position: "fixed",
+  inset: 0,
+  pointerEvents: "none",
+  background:
+    "radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.22), transparent 65%), radial-gradient(circle at 75% 75%, rgba(13, 110, 253, 0.18), transparent 70%)",
+  mixBlendMode: "screen",
+  opacity: 0,
+  animation: `${themeTransitionOverlay} ${themeTransitionDuration} ${themeTransitionTiming}`,
+  zIndex: 2147483646,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animation: "none",
+      opacity: 0,
+    },
+    print: {
+      display: "none",
+    },
+  },
+})
 
 globalStyle("body", {
   backgroundColor: themeVars.color.background,
