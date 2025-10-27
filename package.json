@@ -13,7 +13,7 @@
     "generate": "pnpm typesafe-i18n",
     "generate:watch": "pnpm typesafe-i18n:watch",
     "predeploy": "rm -rf node_modules/.cache && rm -rf out/ && pnpm build",
-    "print-cv": "pnpm node scripts/print-cv.js",
+    "print-cv": "pnpm tsx scripts/print-cv.ts",
     "start": "next start",
     "test": "",
     "typecheck": "tsc --pretty --noEmit",
@@ -44,6 +44,7 @@
     "cross-env": "10.1.0",
     "gh-pages": "^6.1.1",
     "puppeteer": "^24.24.0",
+    "tsx": "^4.19.1",
     "typescript": "5.9.3"
   },
   "packageManager": "pnpm@10.19.0"
