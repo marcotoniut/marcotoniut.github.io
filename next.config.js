@@ -5,6 +5,9 @@ const withVanillaExtract = createVanillaExtractPlugin()
 const nextConfig = {
   output: "export",
   reactStrictMode: true,
+  reactCompiler: {
+    compilationMode: "annotation",
+  },
   images: {
     // GitHub Pages does not support Next.js image optimization pipelines
     unoptimized: true,

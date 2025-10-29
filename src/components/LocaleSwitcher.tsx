@@ -1,14 +1,13 @@
 "use client"
+"use memo"
 
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons"
 import * as Select from "@radix-ui/react-select"
 import { usePathname, useRouter } from "next/navigation"
-import { useCallback, useMemo } from "react"
-
 import { ThemeToggle } from "@/components/ThemeToggle"
 import type { Locales } from "@/i18n/i18n-types"
 import { locales } from "@/i18n/i18n-util"
-
+import { LocaleSchema } from "@/i18n/schemas"
 import { setStoredLocale } from "@/utils/language-storage"
 import {
   controlBar,
@@ -22,7 +21,10 @@ import {
 
 function createLocalePath(pathname: string, newLocale: Locales): string {
   const segments = pathname.split("/").filter(Boolean)
-  if (segments.length > 0 && locales.includes(segments[0] as Locales)) {
+  const parsedSegment =
+    segments.length > 0 ? LocaleSchema.safeParse(segments[0]) : null
+
+  if (parsedSegment?.success) {
     segments[0] = newLocale
     return `/${segments.join("/")}`
   }
@@ -33,24 +35,18 @@ export function LocaleSwitcher({ currentLocale }: { currentLocale: Locales }) {
   const pathname = usePathname()
   const router = useRouter()
 
-  const value = useMemo(() => currentLocale, [currentLocale])
+  const onValueChange = (locale: string) => {
+    const typedLocale = LocaleSchema.parse(locale)
+    if (typedLocale === currentLocale) return
 
-  const onValueChange = useCallback(
-    (locale: string) => {
-      if (!locales.includes(locale as Locales)) return
-      const typedLocale = locale as Locales
-      if (typedLocale === currentLocale) return
-
-      setStoredLocale(typedLocale)
-      const target = createLocalePath(pathname, typedLocale)
-      router.push(target)
-    },
-    [currentLocale, pathname, router],
-  )
+    setStoredLocale(typedLocale)
+    const target = createLocalePath(pathname, typedLocale)
+    router.push(target)
+  }
 
   return (
     <div className={controlBar}>
-      <Select.Root value={value} onValueChange={onValueChange}>
+      <Select.Root value={currentLocale} onValueChange={onValueChange}>
         <Select.Trigger aria-label="Change language" className={selectTrigger}>
           <Select.Value />
           <Select.Icon className={selectIcon}>

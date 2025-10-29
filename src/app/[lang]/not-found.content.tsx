@@ -1,4 +1,5 @@
 "use client"
+"use memo"
 
 import { useContext } from "react"
 import { I18nContext } from "@/i18n/i18n-react"

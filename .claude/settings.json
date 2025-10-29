@@ -10,8 +10,5 @@
     ]
   },
   "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": [
-    "playwright",
-    "playwright-headed"
-  ]
+  "enabledMcpjsonServers": ["playwright", "playwright-headed"]
 }

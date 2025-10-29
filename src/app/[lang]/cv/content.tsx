@@ -1,4 +1,5 @@
 "use client"
+"use memo"
 
 import { format } from "date-fns"
 import Image from "next/image"

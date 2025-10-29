@@ -1,3 +1,5 @@
+"use memo"
+
 import { colors } from "../styles/theme"
 
 const iconSize = "1.4rem"

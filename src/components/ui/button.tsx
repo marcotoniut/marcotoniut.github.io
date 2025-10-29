@@ -1,3 +1,5 @@
+"use memo"
+
 import { Slot } from "@radix-ui/react-slot"
 import type { RecipeVariants } from "@vanilla-extract/recipes"
 import type { ComponentPropsWithoutRef, ElementRef } from "react"
