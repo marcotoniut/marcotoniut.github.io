@@ -1,3 +1,5 @@
+"use memo"
+
 import Link from "next/link"
 import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from "react"
 import { forwardRef } from "react"

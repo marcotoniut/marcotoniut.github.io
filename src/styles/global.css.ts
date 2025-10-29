@@ -49,19 +49,22 @@ globalStyle(":root.theme-transition *", {
   },
 })
 
-globalStyle(":root.theme-transition *::before, :root.theme-transition *::after", {
-  transitionProperty: themeTransitionProperties,
-  transitionDuration: themeTransitionDuration,
-  transitionTimingFunction: themeTransitionTiming,
-  "@media": {
-    "(prefers-reduced-motion: reduce)": {
-      transitionDuration: "0ms",
-    },
-    print: {
-      transitionDuration: "0ms",
+globalStyle(
+  ":root.theme-transition *::before, :root.theme-transition *::after",
+  {
+    transitionProperty: themeTransitionProperties,
+    transitionDuration: themeTransitionDuration,
+    transitionTimingFunction: themeTransitionTiming,
+    "@media": {
+      "(prefers-reduced-motion: reduce)": {
+        transitionDuration: "0ms",
+      },
+      print: {
+        transitionDuration: "0ms",
+      },
     },
   },
-})
+)
 
 globalStyle(":root.theme-transition::before", {
   content: "",

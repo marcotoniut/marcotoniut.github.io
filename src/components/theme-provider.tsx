@@ -1,17 +1,15 @@
 "use client"
+"use memo"
 
 import type { ReactNode } from "react"
 import {
   createContext,
-  useCallback,
   useContext,
   useEffect,
   useLayoutEffect,
-  useMemo,
   useRef,
   useState,
 } from "react"
-
 import type { ThemeMode } from "@/styles/theme"
 import {
   darkThemeClass,
@@ -107,25 +105,26 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, [theme])
 
-  const setTheme = useCallback((mode: ThemeMode) => {
+  const setTheme = (mode: ThemeMode) => {
     setThemeState(mode)
-  }, [])
+  }
 
-  const toggleTheme = useCallback(() => {
+  const toggleTheme = () => {
     setThemeState((prev) => (prev === "dark" ? "light" : "dark"))
-  }, [])
+  }
 
-  const value = useMemo(
-    () => ({
-      theme,
-      setTheme,
-      toggleTheme,
-      mounted,
-    }),
-    [setTheme, theme, toggleTheme, mounted],
+  return (
+    <ThemeContext.Provider
+      value={{
+        theme,
+        setTheme,
+        toggleTheme,
+        mounted,
+      }}
+    >
+      {children}
+    </ThemeContext.Provider>
   )
-
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
 
 export function useTheme() {

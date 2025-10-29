@@ -1,17 +1,14 @@
 "use client"
+"use memo"
 
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { useMemo } from "react"
 import { useTheme } from "@/components/theme-provider"
 import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
   const { theme, toggleTheme, mounted } = useTheme()
 
-  const label = useMemo(
-    () => (theme === "dark" ? "Dark mode" : "Light mode"),
-    [theme],
-  )
+  const label = theme === "dark" ? "Dark mode" : "Light mode"
 
   // Prevent hydration mismatch by not rendering theme-specific content until mounted
   if (!mounted) {

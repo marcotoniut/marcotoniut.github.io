@@ -42,6 +42,7 @@
     "@types/node": "24.7.2",
     "@types/react": "19.2.2",
     "@vanilla-extract/next-plugin": "^2.3.2",
+    "babel-plugin-react-compiler": "^1.0.0",
     "child_process": "^1.0.2",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.2.1",
