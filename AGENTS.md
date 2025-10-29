@@ -73,6 +73,30 @@ Refer to other files (e.g., scripts under `scripts/` or utilities under `src/`) 
 
 ---
 
+## MCP Tool Discovery
+
+To discover available MCP servers and their capabilities programmatically:
+
+```bash
+pnpm mcp:discover
+```
+
+This script reads `.mcp.json` and lists all configured MCP servers, their capabilities, and configuration details.
+
+### Playwright MCP
+
+Two Playwright MCP servers are configured:
+- `playwright` (headless) – Default for automated testing, no visible browser
+- `playwright-headed` (visible) – For debugging when you need to see browser interactions
+
+**Test server**: Run `pnpm dev:test` to start the application on port 4747 for testing.
+
+**Tool naming**: In Claude Code, tools are prefixed as `mcp__<server>__<capability>`. For example: `mcp__playwright__browser_navigate` or `mcp__playwright-headed__browser_snapshot`.
+
+**Configuration**: Both servers use 1920×1080 viewport with 10s/30s action/navigation timeouts. Screenshots and traces save to `.playwright-mcp/` (gitignored).
+
+For full server options, run `pnpm exec mcp-server-playwright --help`.
+
 ## Communication Norms
 
 - Be explicit about assumptions and uncertainties.
