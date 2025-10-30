@@ -116,6 +116,7 @@ const generatePdf = async (pdfPath: string): Promise<void> => {
       throw selectorError
     }
 
+    await page.emulateMediaType("print")
     await page.waitForNetworkIdle({ idleTime: 500, timeout: 10_000 })
 
     console.log("Generating PDF...")

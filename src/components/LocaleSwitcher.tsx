@@ -4,6 +4,7 @@
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons"
 import * as Select from "@radix-ui/react-select"
 import { usePathname, useRouter } from "next/navigation"
+import { BuyMeACoffeeCTA } from "@/components/BuyMeACoffeeCTA"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import type { Locales } from "@/i18n/i18n-types"
 import { locales } from "@/i18n/i18n-util"
@@ -17,7 +18,7 @@ import {
   selectItemIndicator,
   selectTrigger,
   selectViewport,
-} from "./locale-switcher.css"
+} from "./LocaleSwitcher.css"
 
 function createLocalePath(pathname: string, newLocale: Locales): string {
   const segments = pathname.split("/").filter(Boolean)
@@ -46,6 +47,8 @@ export function LocaleSwitcher({ currentLocale }: { currentLocale: Locales }) {
 
   return (
     <div className={controlBar}>
+      <BuyMeACoffeeCTA />
+      <ThemeToggle />
       <Select.Root value={currentLocale} onValueChange={onValueChange}>
         <Select.Trigger aria-label="Change language" className={selectTrigger}>
           <Select.Value />
@@ -68,7 +71,6 @@ export function LocaleSwitcher({ currentLocale }: { currentLocale: Locales }) {
           </Select.Content>
         </Select.Portal>
       </Select.Root>
-      <ThemeToggle />
     </div>
   )
 }

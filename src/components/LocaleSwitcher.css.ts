@@ -16,7 +16,9 @@ export const controlBar = style({
   right: space.xl,
   display: "flex",
   alignItems: "center",
-  gap: space.small,
+  gap: space.default,
+  flexWrap: "wrap",
+  justifyContent: "flex-end",
   zIndex: 1000,
 })
 

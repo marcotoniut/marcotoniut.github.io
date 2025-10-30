@@ -59,7 +59,6 @@ export default async function HomePage({ params }: PageProps) {
                 className={styles.iconLink}
                 href="https://github.com/marcotoniut/carcinisation"
                 rel="noreferrer"
-                target="_blank"
                 aria-label="View Carcinisation on GitHub"
               >
                 <GithubIcon />
@@ -68,7 +67,6 @@ export default async function HomePage({ params }: PageProps) {
                 className={styles.iconLink}
                 href="https://marcotoniut.itch.io/carcinisation"
                 rel="noreferrer"
-                target="_blank"
                 aria-label="Play Carcinisation on itch.io"
               >
                 <ItchIOIcon />
