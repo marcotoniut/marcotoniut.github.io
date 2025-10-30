@@ -32,6 +32,7 @@ import {
   highlightsCn as workHighlightsCn,
 } from "./cv.css"
 import { Meta } from "./data"
+import "./pdf.cv.css"
 
 const DATE_FORMAT = "MMM yyyy"
 
@@ -55,7 +56,7 @@ export function CVContent() {
               {LL.CVPage.goBack()}
             </Link>
           </span>
-          <span className={cvCn}>Curriculum Vitae</span>
+          <span className={cvCn}>{LL.CVPage.title()}</span>
         </header>
       ) : null}
       <div {...sheetProps} className={docCn}>
@@ -80,7 +81,6 @@ export function CVContent() {
             </section>
             <section className={sectionCn}>
               <H2 id={`summary-${uid}`}>{LL.CVPage.summary.title()}</H2>
-              <hr />
               {Object.entries(LL.CVPage.summary.summary).map(([i, t]) => (
                 <p key={i}>{t()}</p>
               ))}
@@ -89,7 +89,6 @@ export function CVContent() {
               <H2 id={`contact-details-${uid}`}>
                 {LL.CVPage.contactDetails.title()}
               </H2>
-              <hr />
               <section className={paragraphCn}>
                 <div>
                   <a
@@ -109,7 +108,6 @@ export function CVContent() {
                   <a
                     href="https://github.com/marcotoniut"
                     rel="noreferrer"
-                    target="_blank"
                     about="Github"
                   >
                     <GithubIcon />
@@ -117,7 +115,6 @@ export function CVContent() {
                   <a
                     href="https://www.linkedin.com/in/marco-toniut-4b6a143a/"
                     rel="noreferrer"
-                    target="_blank"
                     about="Linkedin"
                   >
                     <LinkedInIcon />
@@ -129,7 +126,6 @@ export function CVContent() {
               <H2 id={`skills-${uid}`}>
                 {LL.CVPage.skills.professional.title()}
               </H2>
-              <hr />
               <ul className={skillsListCn}>
                 {Object.entries(LL.CVPage.skills.professional.list).map(
                   ([i, t]) => (
@@ -142,7 +138,6 @@ export function CVContent() {
               <H2 id={`knowledge-${uid}`}>
                 {LL.CVPage.skills.software.title()}
               </H2>
-              <hr />
               <ul className={skillsListCn}>
                 {[
                   "Typescript / JS / HTML / CSS",
@@ -162,7 +157,6 @@ export function CVContent() {
               <H2 id={`personal-${uid}`}>
                 {LL.CVPage.skills.personal.title()}
               </H2>
-              <hr />
               <ul className={skillsListCn}>
                 {Object.entries(LL.CVPage.skills.personal.list).map(
                   ([i, t]) => (
@@ -178,7 +172,6 @@ export function CVContent() {
             <H2 id={`work-experience-${uid}`}>
               {LL.CVPage.experience.title()}
             </H2>
-            <hr />
             {Object.entries(LL.CVPage.experience.history).map(
               ([index, entry], i) => {
                 const meta = Meta[i]
@@ -222,7 +215,6 @@ export function CVContent() {
             )}
 
             <H2 id={`education-${uid}`}>{LL.CVPage.education.title()}</H2>
-            <hr />
 
             <section>
               <H3 id={`caece-${uid}`}>
@@ -247,7 +239,6 @@ export function CVContent() {
                     className={linkCn}
                     href="https://www.udemy.com/course/analog-electronics-robotics-learn-by-building"
                     rel="noreferrer"
-                    target="_blank"
                   >
                     {LL.CVPage.education.education.courses.robotics.module1()}
                   </a>
@@ -257,7 +248,6 @@ export function CVContent() {
                     className={linkCn}
                     href="https://www.udemy.com/course/digital-electronics-robotics-learn-by-building-module-ii"
                     rel="noreferrer"
-                    target="_blank"
                   >
                     {LL.CVPage.education.education.courses.robotics.module2()}
                   </a>
@@ -268,7 +258,6 @@ export function CVContent() {
             <H2 id={`personal-projects-${uid}`}>
               {LL.CVPage.personalProjects.title()}
             </H2>
-            <hr />
             <section className={sectionCn}>
               <H3 id={`carcinisation-${uid}`}>
                 {LL.CVPage.personalProjects.projects.carcinisation.role()}
@@ -280,7 +269,6 @@ export function CVContent() {
                 <a
                   href="https://github.com/marcotoniut/carcinisation"
                   rel="noreferrer"
-                  target="_blank"
                   about={LL.CVPage.personalProjects.projects.carcinisation.about.github()}
                 >
                   <GithubIcon />
@@ -288,7 +276,6 @@ export function CVContent() {
                 <a
                   href="https://marcotoniut.itch.io/carcinisation"
                   rel="noreferrer"
-                  target="_blank"
                   about={LL.CVPage.personalProjects.projects.carcinisation.about.itchio()}
                 >
                   <ItchIOIcon />

@@ -1,0 +1,48 @@
+{
+  "version": "0.2",
+  "language": "en-GB,es-ES",
+  "import": [
+    "@cspell/dict-en-gb/cspell-ext.json",
+    "@cspell/dict-es-es/cspell-ext.json"
+  ],
+  "useGitignore": true,
+  "ignorePaths": [
+    ".next",
+    ".turbo",
+    ".vscode",
+    "node_modules",
+    "out",
+    "public",
+    "coverage",
+    "pnpm-lock.yaml",
+    "tsconfig.tsbuildinfo"
+  ],
+  "allowCompoundWords": false,
+  "enableFiletypes": [
+    "cjs",
+    "css",
+    "json",
+    "jsonc",
+    "md",
+    "mjs",
+    "ts",
+    "tsx",
+    "yaml"
+  ],
+  "languageSettings": [
+    {
+      "languageId": "markdown",
+      "dictionaries": ["en-gb", "es-es"],
+      "caseSensitive": false
+    },
+    {
+      "languageId": [
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact"
+      ],
+      "dictionaries": ["en-gb", "es-es"]
+    }
+  ]
+}

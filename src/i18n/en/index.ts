@@ -4,11 +4,12 @@ const enUs: BaseTranslation = {
   CVPage: {
     meta: {
       description:
-        "This is my professional Curriculum Vitae in interactive web format - Marco Toniut",
-      title: "Marco Toniut | Curriculum Vitae",
+        "This is my professional Resume in interactive web format - Marco Toniut",
+      title: "Marco Toniut | Resume",
     },
     profession: "Systems Engineer",
     goBack: "Go back",
+    title: "Resume",
     profile: {
       picture: "Profile picture",
     },
@@ -27,7 +28,6 @@ const enUs: BaseTranslation = {
             "Implemented a Mock Service Worker (MSW)–based API mocking system and automated API code generation.",
             "Integrated and configured Braze for in-app campaigns and targeted user engagement.",
             "Migrated and optimized state management in the Wallet XP feature, significantly improving startup time and performance.",
-            "Supported the React Native New Architecture migration and resolved key compatibility issues.",
             "Promoted best practices in TypeScript, testing, and design system consistency.",
             "Conducted close to 30 interviews for software engineering roles, strengthening YLD’s hiring pipeline.",
             "Mentored developers and aligned teams around architectural and coding standards.",
@@ -105,7 +105,7 @@ const enUs: BaseTranslation = {
             `Maintained and improved Eventbrite’s Seat Designer, a large HTML/canvas/SVG app with complex drag-and-drop interactions.`,
           ],
           highlights: [
-            `Refactored and optimized the Backbone.js codebase.`,
+            `Refactored and optimised the Backbone.js codebase.`,
             `Enhanced and modernized the SVG-based UI editor.`,
           ],
         },
@@ -134,8 +134,8 @@ const enUs: BaseTranslation = {
           degree: "Systems Engineer",
           institution: "University CAECE Mar del Plata",
           description: `
-          Computer science: algorithms, data structures, and software patterns.
-          Project management. Quality assurance. Electronic circuits.`,
+            Comprehensive training in computer science, covering algorithms, data structures, and software architecture patterns. 
+            Additional focus on project management, quality assurance, and electronic circuit design.`,
         },
         courses: {
           robotics: {
@@ -221,7 +221,7 @@ const enUs: BaseTranslation = {
       title: "Marco Toniut",
     },
     cv: {
-      label: "Curriculum Vitae",
+      label: "Resume",
       hint: "View the resume →",
     },
     carcinisation: {

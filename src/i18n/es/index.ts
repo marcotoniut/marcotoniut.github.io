@@ -9,6 +9,7 @@ const esEs: Translation = {
     },
     profession: "Ingeniero de Sistemas",
     goBack: "Volver",
+    title: "Curriculum Vitae",
     profile: {
       picture: "Imagen de perfil",
     },
@@ -27,7 +28,6 @@ const esEs: Translation = {
             "Implementación de un sistema de mocking de APIs basado en Mock Service Worker (MSW) y generación automática de código para APIs.",
             "Integración y configuración de Braze para campañas dentro de la app y comunicación con los usuarios.",
             "Migración y optimización de la gestión de estado en Wallet XP, mejorando notablemente el tiempo de arranque y el rendimiento.",
-            "Soporte en la migración a la Nueva Arquitectura de React Native y resolución de problemas de compatibilidad clave.",
             "Promoción de buenas prácticas en TypeScript, pruebas y consistencia del sistema de diseño.",
             "Realización de cerca de 30 entrevistas para roles de ingeniería de software, fortaleciendo el proceso de contratación de YLD.",
             "Mentoría de desarrolladores y alineación de equipos en estándares de arquitectura y desarrollo.",
@@ -134,8 +134,8 @@ const esEs: Translation = {
           degree: "Ingeniero de Sistemas",
           institution: "Universidad CAECE Mar del Plata",
           description: `
-          Ciencias de la computación. Algoritmos, estructuras de datos y patrones de software.
-          Gestión de proyectos. Aseguramiento de calidad. Circuitos electrónicos.`,
+            Formación integral en ciencias de la computación, abarcando algoritmos, estructuras de datos y patrones de arquitectura de software. 
+            Enfoque adicional en gestión de proyectos, aseguramiento de la calidad y diseño de circuitos electrónicos.`,
         },
         courses: {
           robotics: {
