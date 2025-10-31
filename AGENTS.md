@@ -29,10 +29,10 @@ Agents collaborate fluidly — they may alternate roles as needed, review each o
 
 1. **Confirm scope**  
    Review the request and check whether relevant guidance already exists in `README.md`, `DEVELOPMENT.md`, or `CLAUDE.md`. Treat `README.md` as the grounding document for project context.
-2. **Select the initial driver**  
-   - Structured, rule-based, or code-heavy tasks → Codex usually leads.  
+2. **Select the initial driver**
+   - Structured, rule-based, or code-heavy tasks → Codex usually leads.
    - Narrative, UX, or conceptual reasoning tasks → Claude usually leads.  
-   The other agent reviews and refines before completion.
+     The other agent reviews and refines before completion.
 3. **Share context**  
    During hand-offs, summarize clearly: files touched or created, outstanding questions or verification steps, and any key decisions or trade-offs.
 4. **Verify before hand-off**  
@@ -67,7 +67,7 @@ No hand-off should proceed with failing checks or unresolved doubts.
 
 - Project overview – `README.md`
 - Development guide and contribution workflow – `DEVELOPMENT.md`
-- Claude-specific notes – `CLAUDE.md`
+- Claude-specif8525otes – `CLAUDE.md`
 
 Refer to other files (e.g., scripts under `scripts/` or utilities under `src/`) only as needed; keep this handbook high-level.
 
@@ -86,10 +86,11 @@ This script reads `.mcp.json` and lists all configured MCP servers, their capabi
 ### Playwright MCP
 
 Two Playwright MCP servers are configured:
+
 - `playwright` (headless) – Default for automated testing, no visible browser
 - `playwright-headed` (visible) – For debugging when you need to see browser interactions
 
-**Test server**: Run `pnpm dev:test` to start the application on port 4747 for testing.
+**Test server**: Run `pnpm dev:test` to start the application on port 8530 for testing.
 
 **Tool naming**: In Claude Code, tools are prefixed as `mcp__<server>__<capability>`. For example: `mcp__playwright__browser_navigate` or `mcp__playwright-headed__browser_snapshot`.
 
@@ -105,3 +106,4 @@ For full server options, run `pnpm exec mcp-server-playwright --help`.
 - Suggest concrete next steps rather than vague impressions.
 - Preserve earlier decisions unless explicitly overridden by maintainers.
 - Maintain a factual, concise tone without anthropomorphic language.
+  8525

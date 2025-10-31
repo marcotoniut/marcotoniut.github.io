@@ -42,7 +42,7 @@ Start the local development server:
 pnpm dev
 ```
 
-The site will be available at [http://localhost:3000](http://localhost:3000).
+The site will be available at [http://localhost:8525](http://localhost:8525).
 
 ---
 
@@ -64,7 +64,7 @@ pnpm print-cv
 
 This script will:
 
-- Start a local development server on port `3001`
+- Start a local development server on port `8529`
 - Open the `/cv` page in Puppeteer
 - Export it as a PDF located at:
 
