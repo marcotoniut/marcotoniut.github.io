@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import "./globals.css"
 import "@/styles/global.css.ts"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -14,6 +15,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+
   return (
     <html className={themeClass} lang={baseLocale}>
       <head>
@@ -52,8 +55,32 @@ export default function RootLayout({
           rel="preload"
           type="font/woff2"
         />
+        <link
+          as="font"
+          crossOrigin="anonymous"
+          href="/fonts/cookie/cookie-regular.ttf"
+          rel="preload"
+          type="font/ttf"
+        />
       </head>
       <body>
+        {gaMeasurementId ? (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}', { page_path: window.location.pathname });
+              `}
+            </Script>
+          </>
+        ) : null}
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
