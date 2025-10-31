@@ -228,6 +228,11 @@ const enUs: BaseTranslation = {
       label: "Carcinisation",
     },
   },
+  Common: {
+    buyMeACoffee: "Buy me a coffee",
+    buyMeACoffeeIconAlt: "Buy me a coffee logo",
+    supportTagline: "Support my work",
+  },
   NotFoundPage: {
     meta: {
       description: "Are you lost, by any chance?",

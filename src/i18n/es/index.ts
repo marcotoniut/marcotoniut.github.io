@@ -229,6 +229,11 @@ const esEs: Translation = {
       label: "Carcinisation",
     },
   },
+  Common: {
+    buyMeACoffee: "Comprame un café",
+    buyMeACoffeeIconAlt: "Comprame un café logo",
+    supportTagline: "Apoyá mi trabajo",
+  },
   NotFoundPage: {
     meta: {
       description: "¿Estás perdido, por casualidad?",

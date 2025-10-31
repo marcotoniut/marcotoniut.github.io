@@ -4,7 +4,7 @@ import { existsSync, mkdirSync } from "node:fs"
 import { join } from "node:path"
 import puppeteer from "puppeteer"
 
-const BASE_URL = "http://localhost:3001"
+const BASE_URL = "http://localhost:8829"
 const LOCAL_DIR = "local"
 
 const now = new Date()
@@ -20,7 +20,7 @@ const ensureLocalDirectory = (directory: string): void => {
 }
 
 const startDevServer = (): ChildProcessWithoutNullStreams => {
-  const childProcess = spawn("pnpm", ["dev:pdf"], { stdio: "pipe" })
+  const childProcess = spawn("pnpm", ["dev:pdf:print"], { stdio: "pipe" })
 
   if (!childProcess.stdout || !childProcess.stderr) {
     childProcess.kill()

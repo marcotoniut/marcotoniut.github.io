@@ -13,6 +13,9 @@ const themeContract = createThemeContract({
     accentSoft: null,
     accentContrast: null,
     focusRing: null,
+    buyMeACoffeeBackground: null,
+    buyMeACoffeeText: null,
+    buyMeACoffeeAccent: null,
   },
   space: {
     none: null,
@@ -157,19 +160,40 @@ const sharedFont = {
   },
 } as const
 
+const lightThemeColors = {
+  background: "#f6f8fb",
+  surface: "#ffffff",
+  surfaceElevated: "#f1f4fa",
+  border: "#d4d9e4",
+  borderMuted: "#e3e7f1",
+  textPrimary: "#1f2330",
+  textMuted: "#5a6072",
+  accent: "#0d6efd",
+  accentSoft: "#5ea8ff",
+  accentContrast: "#ffffff",
+  focusRing: "rgba(13, 110, 253, 0.35)",
+} as const
+
+const darkThemeColors = {
+  background: "#0b0d12",
+  surface: "#12141c",
+  surfaceElevated: "#161922",
+  border: "#232737",
+  borderMuted: "#1b1f2d",
+  textPrimary: "#f5f6fa",
+  textMuted: "#a7adc6",
+  accent: "#56f3c9",
+  accentSoft: "#2ab69a",
+  accentContrast: "#050607",
+  focusRing: "rgba(86, 243, 201, 0.45)",
+} as const
+
 export const lightThemeClass = createTheme(themeContract, {
   color: {
-    background: "#f6f8fb",
-    surface: "#ffffff",
-    surfaceElevated: "#f1f4fa",
-    border: "#d4d9e4",
-    borderMuted: "#e3e7f1",
-    textPrimary: "#1f2330",
-    textMuted: "#5a6072",
-    accent: "#0d6efd",
-    accentSoft: "#5ea8ff",
-    accentContrast: "#ffffff",
-    focusRing: "rgba(13, 110, 253, 0.35)",
+    ...lightThemeColors,
+    buyMeACoffeeBackground: lightThemeColors.surfaceElevated,
+    buyMeACoffeeText: lightThemeColors.textPrimary,
+    buyMeACoffeeAccent: "#ffdd00",
   },
   space: sharedSpace,
   radius: sharedRadius,
@@ -179,17 +203,10 @@ export const lightThemeClass = createTheme(themeContract, {
 
 export const darkThemeClass = createTheme(themeContract, {
   color: {
-    background: "#0b0d12",
-    surface: "#12141c",
-    surfaceElevated: "#161922",
-    border: "#232737",
-    borderMuted: "#1b1f2d",
-    textPrimary: "#f5f6fa",
-    textMuted: "#a7adc6",
-    accent: "#56f3c9",
-    accentSoft: "#2ab69a",
-    accentContrast: "#050607",
-    focusRing: "rgba(86, 243, 201, 0.45)",
+    ...darkThemeColors,
+    buyMeACoffeeBackground: darkThemeColors.textPrimary,
+    buyMeACoffeeText: darkThemeColors.surface,
+    buyMeACoffeeAccent: "#ffdd00",
   },
   space: sharedSpace,
   radius: sharedRadius,

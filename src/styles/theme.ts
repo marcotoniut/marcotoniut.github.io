@@ -25,6 +25,9 @@ export const colors = {
   sidebarBg: themeVars.color.surface,
   main: themeVars.color.accent,
   focusRing: themeVars.color.focusRing,
+  buyMeACoffeeBackground: themeVars.color.buyMeACoffeeBackground,
+  buyMeACoffeeText: themeVars.color.buyMeACoffeeText,
+  buyMeACoffeeAccent: themeVars.color.buyMeACoffeeAccent,
 } as const
 
 export const space = {
