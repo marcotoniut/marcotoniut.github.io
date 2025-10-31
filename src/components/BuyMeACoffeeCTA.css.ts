@@ -1,4 +1,4 @@
-import { style, globalStyle } from "@vanilla-extract/css"
+import { globalStyle, style } from "@vanilla-extract/css"
 import { colors, shadows, space } from "@/styles/theme"
 
 const whiteSegmentWidth = "2.75rem"

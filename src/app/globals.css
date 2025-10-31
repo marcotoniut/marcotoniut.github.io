@@ -101,7 +101,8 @@
   src:
     local("Cookie Regular"),
     url("/fonts/cookie/cookie-regular.ttf") format("truetype"),
-    url("https://fonts.gstatic.com/s/cookie/v16/syky-bgYocVEo5IuWLgNsQ.woff2") format("woff2");
+    url("https://fonts.gstatic.com/s/cookie/v16/syky-bgYocVEo5IuWLgNsQ.woff2")
+    format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
