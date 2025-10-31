@@ -4,8 +4,12 @@ Quick reference for developing this Next.js personal website.
 
 ## Installation
 
+This project uses [`proto`](https://moonrepo.dev/docs/proto) to pin tool versions.
+
 ```bash
+proto install          # installs Node.js, pnpm, Lefthook
 pnpm install
+lefthook install       # sets up Git hooks (skip in CI)
 ```
 
 ## Development
