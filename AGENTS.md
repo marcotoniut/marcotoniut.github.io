@@ -89,7 +89,7 @@ Two Playwright MCP servers are configured:
 - `playwright` (headless) – Default for automated testing, no visible browser
 - `playwright-headed` (visible) – For debugging when you need to see browser interactions
 
-**Test server**: Run `pnpm dev:test` to start the application on port 4747 for testing.
+**Test server**: Run `pnpm dev:test` to start the application on port 8530 for testing.
 
 **Tool naming**: In Claude Code, tools are prefixed as `mcp__<server>__<capability>`. For example: `mcp__playwright__browser_navigate` or `mcp__playwright-headed__browser_snapshot`.
 

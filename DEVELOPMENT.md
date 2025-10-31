@@ -14,7 +14,7 @@ pnpm install
 pnpm dev  # Starts dev server + translation watcher
 ```
 
-Runs at [http://localhost:3000](http://localhost:3000)
+Runs at [http://localhost:8825](http://localhost:8825)
 
 ## Key Commands
 

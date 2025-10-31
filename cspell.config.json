@@ -32,7 +32,10 @@
   "languageSettings": [
     {
       "languageId": "markdown",
-      "dictionaries": ["en-gb", "es-es"],
+      "dictionaries": [
+        "en-gb",
+        "es-es"
+      ],
       "caseSensitive": false
     },
     {
@@ -42,7 +45,16 @@
         "javascript",
         "javascriptreact"
       ],
-      "dictionaries": ["en-gb", "es-es"]
+      "dictionaries": [
+        "en-gb",
+        "es-es"
+      ]
     }
+  ],
+  "words": [
+    "carcinisation",
+    "Comprame",
+    "Linkedin",
+    "Vars"
   ]
 }
