@@ -45,5 +45,27 @@
       "dictionaries": ["en-gb", "es-es"]
     }
   ],
-  "words": ["carcinisation", "Comprame", "Linkedin", "typesafe", "Vars"]
+  "words": [
+    "boomershooter",
+    "caece",
+    "carcinisation",
+    "Carcinisation",
+    "Comprame",
+    "itchio",
+    "Linkedin",
+    "marcotoniut",
+    "modelcontextprotocol",
+    "overengineering",
+    "Satoshi",
+    "Shadcn",
+    "Stefano",
+    "Supabase",
+    "Toniut",
+    "typesafe",
+    "Typesafe",
+    "udemy",
+    "Vars",
+    "vercel",
+    "zipline"
+  ]
 }
