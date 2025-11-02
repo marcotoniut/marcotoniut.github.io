@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { loadedLocales } from "@/i18n/i18n-util"
+import { siteConfig } from "@/config/site"
+import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
+import { buildLocalizedHref } from "@/utils/locale"
 import { GithubIcon, ItchIOIcon } from "../../components/Icons"
 import { LocaleSwitcher } from "../../components/LocaleSwitcher"
 import * as styles from "./home.css"
@@ -19,9 +21,36 @@ export async function generateMetadata({
 
   loadLocale(locale)
   const dict = loadedLocales[locale]
+
+  const languageAlternates = Object.fromEntries(
+    locales.map((availableLocale) => [
+      availableLocale,
+      buildLocalizedHref(availableLocale),
+    ]),
+  )
+
+  const canonicalPath = buildLocalizedHref(locale)
+
+  const languages = {
+    ...languageAlternates,
+    "x-default": buildLocalizedHref(baseLocale),
+  }
+
   return {
     title: dict.HomePage.meta.title,
     description: dict.HomePage.meta.description,
+    alternates: {
+      canonical: canonicalPath,
+      languages,
+    },
+    openGraph: {
+      title: dict.HomePage.meta.title,
+      description: dict.HomePage.meta.description,
+      url: canonicalPath,
+      siteName: siteConfig.name,
+      locale,
+      type: "website",
+    },
   }
 }
 

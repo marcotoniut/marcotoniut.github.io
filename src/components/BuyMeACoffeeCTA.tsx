@@ -1,5 +1,4 @@
 "use client"
-"use memo"
 
 import Image from "next/image"
 import type { ComponentPropsWithoutRef } from "react"

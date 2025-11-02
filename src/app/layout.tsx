@@ -2,12 +2,30 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import "./globals.css"
 import "@/styles/global.css.ts"
+import { Analytics } from "@/components/Analytics"
 import { ThemeProvider } from "@/components/theme-provider"
-import { baseLocale } from "@/i18n/i18n-util"
+import { siteConfig } from "@/config/site"
+import { env } from "@/env"
+import { baseLocale, locales } from "@/i18n/i18n-util"
 import { themeClass } from "@/styles/theme"
+import { buildLocalizedHref } from "@/utils/locale"
+
+const languageAlternates = Object.fromEntries(
+  locales.map((locale) => [locale, buildLocalizedHref(locale)]),
+)
+
+const languagesWithDefault = {
+  ...languageAlternates,
+  "x-default": buildLocalizedHref(baseLocale),
+}
 
 export const metadata: Metadata = {
-  title: "Marco Toniut",
+  metadataBase: new URL(siteConfig.baseUrl),
+  title: siteConfig.name,
+  alternates: {
+    canonical: buildLocalizedHref(baseLocale),
+    languages: languagesWithDefault,
+  },
 }
 
 export default function RootLayout({
@@ -15,7 +33,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+  const gaMeasurementId = env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
   return (
     <html className={themeClass} lang={baseLocale}>
@@ -81,7 +99,10 @@ export default function RootLayout({
             </Script>
           </>
         ) : null}
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Analytics />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -1,5 +1,4 @@
 "use client"
-"use memo"
 
 import { format } from "date-fns"
 import Image from "next/image"
@@ -9,7 +8,7 @@ import { I18nContext } from "@/i18n/i18n-react"
 import profilePic from "../../../../public/cv/profile.jpeg"
 import { GithubIcon, ItchIOIcon, LinkedInIcon } from "../../../components/Icons"
 import { H1, H2, H3 } from "../../../components/Typography"
-import { isPDFPrinting } from "../../../env"
+import { env } from "../../../env"
 import { email, phone } from "../../../info"
 import {
   asideCn,
@@ -36,10 +35,10 @@ import "./pdf.cv.css"
 
 const DATE_FORMAT = "MMM yyyy"
 
-const pdfIsPrinting = isPDFPrinting()
+const isPdfPrinting = env.NEXT_PUBLIC_PDF_PRINTING
 
 function useTargetProps() {
-  return pdfIsPrinting ? { "data-size": "A4" } : {}
+  return isPdfPrinting ? { "data-size": "A4" } : {}
 }
 
 export function CVContent() {
@@ -49,7 +48,7 @@ export function CVContent() {
 
   return (
     <>
-      {!pdfIsPrinting ? (
+      {!isPdfPrinting ? (
         <header className={headerCn}>
           <span>
             <Link className={linkCn} passHref href={`/${locale}/`}>
@@ -66,7 +65,7 @@ export function CVContent() {
               <H1 className={nameCn} id={`me-${uid}`}>
                 Marco Stefano Toniut
               </H1>
-              {pdfIsPrinting ? (
+              {isPdfPrinting ? (
                 <div className={pictureCn}>
                   <Image
                     src={profilePic}
@@ -300,7 +299,7 @@ export function CVContent() {
           </article>
         </main>
       </div>
-      {pdfIsPrinting ? (
+      {isPdfPrinting ? (
         <footer className={footerCn}>
           <span>
             {/* TODO use route with base url instead */}

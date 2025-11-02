@@ -1,4 +1,4 @@
-"use memo"
+"use client"
 
 import { Slot } from "@radix-ui/react-slot"
 import type { RecipeVariants } from "@vanilla-extract/recipes"

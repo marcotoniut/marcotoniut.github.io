@@ -1,5 +1,4 @@
 "use client"
-"use memo"
 
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons"
 import * as Select from "@radix-ui/react-select"

@@ -1,5 +1,4 @@
 "use client"
-"use memo"
 
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 import { useTheme } from "@/components/theme-provider"

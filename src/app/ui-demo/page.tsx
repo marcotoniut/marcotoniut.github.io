@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+
 import {
   Button,
   Card,
@@ -8,6 +9,7 @@ import {
   CardTitle,
   LinkButton,
 } from "@/components/ui"
+import { siteConfig } from "@/config/site"
 import { baseLocale } from "@/i18n/i18n-util"
 import {
   buttonGrid,
@@ -23,6 +25,17 @@ export const metadata: Metadata = {
   title: "Interface primitives demo | Marco Toniut",
   description:
     "Preview of the reusable Button, LinkButton, and Card components that power the new UI language.",
+  alternates: {
+    canonical: "/ui-demo/",
+  },
+  openGraph: {
+    title: "Interface primitives demo | Marco Toniut",
+    description:
+      "Preview of the reusable Button, LinkButton, and Card components that power the new UI language.",
+    url: "/ui-demo/",
+    siteName: siteConfig.name,
+    type: "website",
+  },
 }
 
 export default function UIDemoPage() {

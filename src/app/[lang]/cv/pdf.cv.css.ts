@@ -1,6 +1,7 @@
 import { globalStyle } from "@vanilla-extract/css"
+
+import { env } from "@/env"
 import { colors, space } from "@/styles/theme"
-import { isPDFPrinting } from "../../../env"
 import {
   asideCn,
   baseLineHeight,
@@ -13,7 +14,8 @@ import {
 } from "./cv.css"
 
 const dataSizeA4 = '[data-size="A4"]'
-const printScale = process.env.NEXT_PUBLIC_PRINT_SCALE ?? "75%"
+
+const printScale = env.NEXT_PUBLIC_PRINT_SCALE ?? "75%"
 const printColumnGap = "1.35rem"
 const printPaddingInline = "1.5rem"
 const printPaddingBlock = "4rem"
@@ -22,7 +24,7 @@ const printListSpacing = "0.12rem"
 const printListIndent = "0.72rem"
 const printDivider = `0.0625rem solid ${colors.borderMuted}`
 
-if (isPDFPrinting()) {
+if (env.NEXT_PUBLIC_PDF_PRINTING) {
   const docDataSizeCn = `${docCn}${dataSizeA4}`
   globalStyle(docDataSizeCn, {
     maxWidth: "210mm",
