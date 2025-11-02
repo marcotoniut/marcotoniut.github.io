@@ -56,7 +56,8 @@ Before marking any task complete or handing it off:
 - Type safety (`pnpm typecheck`) succeeds with no outstanding errors.
 - Build (`pnpm build`) finishes without warnings that need action.
 - Key functionality and UI flows that were touched behave as expected.
-- Documentation and comments reflect the implemented behavior.
+- When working on a web app and the work targets a specific use case, functional element, or visual change, exercise it via the Playwright MCP to confirm the behaviour in a real browser context.
+- Documentation and comments reflect the implemented behaviour.
 - Any skipped verifications are explicitly recorded for the next agent.
 
 No hand-off should proceed with failing checks or unresolved doubts.
