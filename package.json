@@ -20,7 +20,7 @@
     "predeploy": "rm -rf node_modules/.cache && rm -rf out/ && pnpm build",
     "print-cv": "pnpm tsx scripts/print-cv.ts",
     "start": "next start",
-    "test": "",
+    "test": "echo \"No automated tests yet\"",
     "typecheck": "tsc --pretty --noEmit",
     "typesafe-i18n": "typesafe-i18n --no-watch",
     "typesafe-i18n:watch": "typesafe-i18n"
