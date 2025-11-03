@@ -64,6 +64,24 @@ No hand-off should proceed with failing checks or unresolved doubts.
 
 ---
 
+## Web testing (headless, single server)
+
+**Ports**
+- Dev (human): 8825
+- Agents: 8830
+
+**Workflow**
+1) Start server in background: `Bash({ command: "pnpm dev:agents", run_in_background: true })`
+2) Wait ~10s for server readiness
+3) Test with `mcp__playwright__*` tools (headless)
+4) Kill shell: `KillShell({ shell_id })`
+
+**Rules**
+- Use headless by default. No manual browser windows.
+- Always kill background shell after testing.
+
+---
+
 ## Document Map
 
 - Project overview – `README.md`
@@ -86,18 +104,15 @@ This script reads `.mcp.json` and lists all configured MCP servers, their capabi
 
 ### Playwright MCP
 
-Two Playwright MCP servers are configured:
+Two servers configured:
+- `playwright` (headless) – Default for testing
+- `playwright-headed` (visible) – Debugging only, requires maintainer approval
 
-- `playwright` (headless) – Default for automated testing, no visible browser
-- `playwright-headed` (visible) – For debugging when you need to see browser interactions
+**Agent server**: `pnpm dev:agents` on port 8830 (avoids conflict with dev:8825).
 
-**Test server**: Run `pnpm dev:test` to start the application on port 8530 for testing.
+**Tool naming**: `mcp__<server>__<capability>` (e.g., `mcp__playwright__browser_navigate`)
 
-**Tool naming**: In Claude Code, tools are prefixed as `mcp__<server>__<capability>`. For example: `mcp__playwright__browser_navigate` or `mcp__playwright-headed__browser_snapshot`.
-
-**Configuration**: Both servers use 1920×1080 viewport with 10s/30s action/navigation timeouts. Screenshots and traces save to `.playwright-mcp/` (gitignored).
-
-For full server options, run `pnpm exec mcp-server-playwright --help`.
+**Config**: 1920×1080 viewport, 10s/30s timeouts. Output: `.playwright-mcp/` (gitignored).
 
 ## Communication Norms
 
