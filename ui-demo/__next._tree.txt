@@ -1,0 +1,19 @@
+1:"$Sreact.fragment"
+2:I[1259,[],"ViewportBoundary"]
+4:I[1259,[],"MetadataBoundary"]
+5:"$Sreact.suspense"
+:HL["/_next/static/css/4e7107a0977dc0b0.css","style"]
+:HL["/_next/static/css/66aa0bd42f93f37b.css","style"]
+:HL["/_next/static/css/0ab3f93f3a5360a7.css","style"]
+:HL["/_next/static/css/3651d3f2e564a018.css","style"]
+:HL["/_next/static/css/d2fd540f71c4003b.css","style"]
+:HL["/_next/static/css/f4b55f866c5b5323.css","style"]
+:HL["/fonts/satoshi/satoshi-400.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+:HL["/fonts/satoshi/satoshi-500.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+:HL["/fonts/ibm-plex-sans/ibm-plex-sans-400.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+:HL["/fonts/ibm-plex-sans/ibm-plex-sans-500.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+:HL["/fonts/space-grotesk/space-grotesk-600.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+:HL["/fonts/cookie/cookie-regular.ttf","font",{"crossOrigin":"anonymous","type":"font/ttf"}]
+0:{"buildId":"MKYmxUjXa6fLpF0xUJmi7","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"ui-demo","paramType":null,"paramKey":"ui-demo","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"head":["$","$1","h",{"children":[null,["$","$L2",null,{"children":"$@3"}],["$","div",null,{"hidden":true,"children":["$","$L4",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":"$@6"}]}]}],null]}],"isHeadPartial":false,"staleTime":300}
+3:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+6:[["$","title","0",{"children":"Interface primitives demo | Marco Toniut"}],["$","meta","1",{"name":"description","content":"Preview of the reusable Button, LinkButton, and Card components that power the new UI language."}],["$","link","2",{"rel":"canonical","href":"https://marcotoniut.github.io/ui-demo/"}],["$","meta","3",{"property":"og:title","content":"Interface primitives demo | Marco Toniut"}],["$","meta","4",{"property":"og:description","content":"Preview of the reusable Button, LinkButton, and Card components that power the new UI language."}],["$","meta","5",{"property":"og:url","content":"https://marcotoniut.github.io/ui-demo/"}],["$","meta","6",{"property":"og:site_name","content":"Marco Toniut"}],["$","meta","7",{"property":"og:type","content":"website"}],["$","meta","8",{"name":"twitter:card","content":"summary"}],["$","meta","9",{"name":"twitter:title","content":"Interface primitives demo | Marco Toniut"}],["$","meta","10",{"name":"twitter:description","content":"Preview of the reusable Button, LinkButton, and Card components that power the new UI language."}]]
