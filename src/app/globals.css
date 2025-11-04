@@ -3,10 +3,7 @@
   src:
     local("IBM Plex Sans"),
     url("/fonts/ibm-plex-sans/ibm-plex-sans-400.woff2") format("woff2"),
-    url("/fonts/ibm-plex-sans/ibm-plex-sans-400.ttf") format("truetype"),
-    url("https://fonts.gstatic.com/s/ibmplexsans/v23/zYXgKVElMYYaJe8bpLHnCwDKhdDSeZ6IUw.woff2")
-    format("woff2");
-  font-style: normal;
+    url("/fonts/ibm-plex-sans/ibm-plex-sans-400.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
 }
@@ -16,10 +13,7 @@
   src:
     local("IBM Plex Sans Medium"),
     url("/fonts/ibm-plex-sans/ibm-plex-sans-500.woff2") format("woff2"),
-    url("/fonts/ibm-plex-sans/ibm-plex-sans-500.ttf") format("truetype"),
-    url("https://fonts.gstatic.com/s/ibmplexsans/v23/zYXgKVElMYYaJe8bpLHnCwDKhdDSeZ6GUw.woff2")
-    format("woff2");
-  font-style: normal;
+    url("/fonts/ibm-plex-sans/ibm-plex-sans-500.ttf") format("truetype");
   font-weight: 500;
   font-display: swap;
 }
@@ -28,10 +22,7 @@
   font-family: "Space Grotesk";
   src:
     local("Space Grotesk Regular"),
-    url("/fonts/space-grotesk/space-grotesk-400.woff2") format("woff2"),
-    url("https://fonts.gstatic.com/s/spacegrotesk/v22/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7oUXskPMA.woff2")
-    format("woff2");
-  font-style: normal;
+    url("/fonts/space-grotesk/space-grotesk-400.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
@@ -40,10 +31,7 @@
   font-family: "Space Grotesk";
   src:
     local("Space Grotesk SemiBold"),
-    url("/fonts/space-grotesk/space-grotesk-600.woff2") format("woff2"),
-    url("https://fonts.gstatic.com/s/spacegrotesk/v22/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj42VnskPMA.woff2")
-    format("woff2");
-  font-style: normal;
+    url("/fonts/space-grotesk/space-grotesk-600.woff2") format("woff2");
   font-weight: 600;
   font-display: swap;
 }
@@ -52,10 +40,7 @@
   font-family: "Space Grotesk";
   src:
     local("Space Grotesk Bold"),
-    url("/fonts/space-grotesk/space-grotesk-700.woff2") format("woff2"),
-    url("https://fonts.gstatic.com/s/spacegrotesk/v22/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj4PVnskPMA.woff2")
-    format("woff2");
-  font-style: normal;
+    url("/fonts/space-grotesk/space-grotesk-700.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
@@ -64,10 +49,7 @@
   font-family: "Satoshi";
   src:
     local("Satoshi Regular"),
-    url("/fonts/satoshi/satoshi-400.woff2") format("woff2"),
-    url("https://cdn.fontshare.com/wf/TTX2Z3BF3P6Y5BQT3IV2VNOK6FL22KUT/7QYRJOI3JIMYHGY6CH7SOIFRQLZOLNJ6/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.woff2")
-    format("woff2");
-  font-style: normal;
+    url("/fonts/satoshi/satoshi-400.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
@@ -76,10 +58,7 @@
   font-family: "Satoshi";
   src:
     local("Satoshi Medium"),
-    url("/fonts/satoshi/satoshi-500.woff2") format("woff2"),
-    url("https://cdn.fontshare.com/wf/P2LQKHE6KA6ZP4AAGN72KDWMHH6ZH3TA/ZC32TK2P7FPS5GFTL46EU6KQJA24ZYDB/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.woff2")
-    format("woff2");
-  font-style: normal;
+    url("/fonts/satoshi/satoshi-500.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
 }
@@ -88,10 +67,7 @@
   font-family: "Satoshi";
   src:
     local("Satoshi Bold"),
-    url("/fonts/satoshi/satoshi-700.woff2") format("woff2"),
-    url("https://cdn.fontshare.com/wf/LAFFD4SDUCDVQEXFPDC7C53EQ4ZELWQI/PXCT3G6LO6ICM5I3NTYENYPWJAECAWDD/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.woff2")
-    format("woff2");
-  font-style: normal;
+    url("/fonts/satoshi/satoshi-700.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
@@ -103,7 +79,6 @@
     url("/fonts/cookie/cookie-regular.ttf") format("truetype"),
     url("https://fonts.gstatic.com/s/cookie/v16/syky-bgYocVEo5IuWLgNsQ.woff2")
     format("woff2");
-  font-style: normal;
   font-weight: 400;
   font-display: swap;
 }

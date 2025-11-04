@@ -1,7 +1,2 @@
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void
-  }
-}
-
+// Type definitions are now handled by @next/third-parties
 export {}

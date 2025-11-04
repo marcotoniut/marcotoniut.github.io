@@ -1,12 +1,15 @@
 "use client"
+"use memo"
 
 import { format } from "date-fns"
 import Link from "next/link"
-import { useContext, useId } from "react"
+import { useContext, useEffect, useId } from "react"
 import { GithubIcon, ItchIOIcon, LinkedInIcon } from "@/components/Icons"
+import { TrackedAnchor } from "@/components/TrackedLink"
 import { H1, H2, H3 } from "@/components/Typography"
 import { I18nContext } from "@/i18n/i18n-react"
 import { email, phone } from "@/info"
+import { trackCVView } from "@/utils/analytics"
 import {
   asideCn,
   cvCn,
@@ -45,6 +48,13 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
   const { LL, locale } = useContext(I18nContext)
   const uid = useId()
 
+  // Track CV page view (only once on mount)
+  useEffect(() => {
+    if (!isPdfPrinting) {
+      trackCVView(locale)
+    }
+  }, [locale, isPdfPrinting])
+
   return (
     <>
       {!isPdfPrinting ? (
@@ -66,7 +76,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
               </H1>
               {isPdfPrinting ? (
                 <div className={pictureCn}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  {/* biome-ignore lint/performance/noImgElement: Native img required for PDF generation with Puppeteer */}
                   <img
                     src="/cv/profile.jpeg"
                     height={180}
@@ -104,20 +114,37 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                 </div>
                 <div>{LL.CVPage.contactDetails.location()}</div>
                 <div className={socialLinksCn}>
-                  <a
+                  <TrackedAnchor
                     href="https://github.com/marcotoniut"
                     rel="noreferrer"
                     about="Github"
+                    locale={locale}
+                    trackingType="external_link"
+                    trackingParams={{
+                      link_url: "https://github.com/marcotoniut",
+                      link_location: "profile",
+                      link_type: "github",
+                      link_text: "GitHub Profile",
+                    }}
                   >
                     <GithubIcon />
-                  </a>
-                  <a
+                  </TrackedAnchor>
+                  <TrackedAnchor
                     href="https://www.linkedin.com/in/marco-toniut-4b6a143a/"
                     rel="noreferrer"
                     about="Linkedin"
+                    locale={locale}
+                    trackingType="external_link"
+                    trackingParams={{
+                      link_url:
+                        "https://www.linkedin.com/in/marco-toniut-4b6a143a/",
+                      link_location: "profile",
+                      link_type: "linkedin",
+                      link_text: "LinkedIn Profile",
+                    }}
                   >
                     <LinkedInIcon />
-                  </a>
+                  </TrackedAnchor>
                 </div>
               </section>
             </section>
@@ -234,22 +261,40 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
               </div>
               <ul className={learningHighlightsCn}>
                 <li>
-                  <a
+                  <TrackedAnchor
                     className={linkCn}
                     href="https://www.udemy.com/course/analog-electronics-robotics-learn-by-building"
                     rel="noreferrer"
+                    locale={locale}
+                    trackingType="external_link"
+                    trackingParams={{
+                      link_url:
+                        "https://www.udemy.com/course/analog-electronics-robotics-learn-by-building",
+                      link_location: "cv_page",
+                      link_type: "other",
+                      link_text: "Udemy Robotics Module 1",
+                    }}
                   >
                     {LL.CVPage.education.education.courses.robotics.module1()}
-                  </a>
+                  </TrackedAnchor>
                 </li>
                 <li>
-                  <a
+                  <TrackedAnchor
                     className={linkCn}
                     href="https://www.udemy.com/course/digital-electronics-robotics-learn-by-building-module-ii"
                     rel="noreferrer"
+                    locale={locale}
+                    trackingType="external_link"
+                    trackingParams={{
+                      link_url:
+                        "https://www.udemy.com/course/digital-electronics-robotics-learn-by-building-module-ii",
+                      link_location: "cv_page",
+                      link_type: "other",
+                      link_text: "Udemy Robotics Module 2",
+                    }}
                   >
                     {LL.CVPage.education.education.courses.robotics.module2()}
-                  </a>
+                  </TrackedAnchor>
                 </li>
               </ul>
             </section>
@@ -265,27 +310,55 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                 <span>
                   {LL.CVPage.personalProjects.projects.carcinisation.name()}
                 </span>
-                <a
+                <TrackedAnchor
                   href="https://github.com/marcotoniut/carcinisation"
                   rel="noreferrer"
                   about={LL.CVPage.personalProjects.projects.carcinisation.about.github()}
+                  locale={locale}
+                  trackingType="project_link"
+                  trackingParams={{
+                    link_url: "https://github.com/marcotoniut/carcinisation",
+                    link_location: "cv_page",
+                    project_name: "carcinisation",
+                    link_type: "github",
+                  }}
                 >
                   <GithubIcon />
-                </a>
-                <a
+                </TrackedAnchor>
+                <TrackedAnchor
                   href="https://marcotoniut.itch.io/carcinisation"
                   rel="noreferrer"
                   about={LL.CVPage.personalProjects.projects.carcinisation.about.itchio()}
+                  locale={locale}
+                  trackingType="project_link"
+                  trackingParams={{
+                    link_url: "https://marcotoniut.itch.io/carcinisation",
+                    link_location: "cv_page",
+                    project_name: "carcinisation",
+                    link_type: "itch_io",
+                  }}
                 >
                   <ItchIOIcon />
-                </a>
+                </TrackedAnchor>
               </div>
               <div>
                 <em>{format(new Date(2023, 9), DATE_FORMAT)}</em>
               </div>
               <p>
                 {LL.CVPage.personalProjects.projects.carcinisation.description.p1()}
-                <a href="https://bevyengine.org/">Bevy</a>
+                <TrackedAnchor
+                  href="https://bevyengine.org/"
+                  locale={locale}
+                  trackingType="external_link"
+                  trackingParams={{
+                    link_url: "https://bevyengine.org/",
+                    link_location: "cv_page",
+                    link_type: "other",
+                    link_text: "Bevy Engine",
+                  }}
+                >
+                  Bevy
+                </TrackedAnchor>
                 {LL.CVPage.personalProjects.projects.carcinisation.description.p2()}
               </p>
               <ul className={workHighlightsCn}>

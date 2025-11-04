@@ -1,5 +1,5 @@
+import { GoogleAnalytics } from "@next/third-parties/google"
 import type { Metadata } from "next"
-import Script from "next/script"
 import "./globals.css"
 import "@/styles/global.css.ts"
 import { Analytics } from "@/components/Analytics"
@@ -82,27 +82,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {gaMeasurementId ? (
-          <>
-            <Script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaMeasurementId}', { page_path: window.location.pathname });
-              `}
-            </Script>
-          </>
-        ) : null}
         <ThemeProvider>
           <Analytics />
           {children}
         </ThemeProvider>
+        {gaMeasurementId ? <GoogleAnalytics gaId={gaMeasurementId} /> : null}
       </body>
     </html>
   )
