@@ -140,15 +140,6 @@ export const cardHeading = style({
   gap: space.small,
 })
 
-export const cardHeadingArrow = style({
-  transition: "transform 0.2s ease",
-  selectors: {
-    [`${cardInteractive}:hover &`]: {
-      transform: "translateX(4px)",
-    },
-  },
-})
-
 export const projectHeading = style({
   margin: 0,
   fontFamily: fontFamilies.heading,

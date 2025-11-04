@@ -73,9 +73,6 @@ export default async function HomePage({ params }: PageProps) {
           <Link className={styles.cardInteractive} href={`/${locale}/cv`}>
             <h2 className={styles.cardHeading}>
               <span>{dict.HomePage.cv.label}</span>
-              <span aria-hidden="true" className={styles.cardHeadingArrow}>
-                →
-              </span>
             </h2>
           </Link>
 
