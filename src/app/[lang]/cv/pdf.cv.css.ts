@@ -2,16 +2,7 @@ import { globalStyle } from "@vanilla-extract/css"
 
 import { env } from "@/env"
 import { colors, space } from "@/styles/theme"
-import {
-  asideCn,
-  baseLineHeight,
-  docCn,
-  highlightsCn,
-  linkCn,
-  sectionCn,
-  skillsListCn,
-  socialLinksCn,
-} from "./cv.css"
+import { asideCn, baseLineHeight, docCn, highlightsCn } from "./cv.css"
 
 const dataSizeA4 = '[data-size="A4"]'
 
@@ -19,7 +10,6 @@ const printScale = env.NEXT_PUBLIC_PRINT_SCALE ?? "75%"
 const printColumnGap = "1.35rem"
 const printPaddingInline = "1.5rem"
 const printPaddingBlock = "4rem"
-const printSectionSpacing = "1rem"
 const printListSpacing = "0.12rem"
 const printListIndent = "0.72rem"
 const printDivider = `0.0625rem solid ${colors.borderMuted}`
@@ -77,52 +67,9 @@ if (env.NEXT_PUBLIC_PDF_PRINTING) {
 
   globalStyle(`${docCn} h2`, {
     color: colors.action,
-    letterSpacing: "-0.004em",
     textTransform: "none",
-    marginTop: "1rem",
-    marginBottom: "0.35rem",
-    paddingBottom: "0.18rem",
+    marginTop: "2rem",
     borderBottom: printDivider,
-  })
-
-  globalStyle(`${docCn} h3`, {
-    letterSpacing: "-0.002em",
-    lineHeight: 1.25,
-    marginBottom: "0.2rem",
-    marginTop: "0.2rem",
-  })
-
-  globalStyle(`${docCn} hr`, {
-    display: "none",
-  })
-
-  globalStyle(sectionCn, {
-    marginTop: printSectionSpacing,
-    marginBottom: 0,
-  })
-
-  globalStyle(`${docCn} main article section`, {
-    marginBottom: "0.65rem",
-  })
-
-  globalStyle(`${docCn} main article section:last-of-type`, {
-    marginBottom: 0,
-  })
-
-  globalStyle(`${docCn} ${skillsListCn}`, {
-    columnCount: 1,
-    columnGap: "1.25rem",
-    listStylePosition: "outside",
-    paddingInlineStart: printListIndent,
-    marginInlineStart: 0,
-  })
-
-  globalStyle(`${skillsListCn} li`, {
-    lineHeight: baseLineHeight,
-  })
-
-  globalStyle(`${skillsListCn} li + li`, {
-    marginTop: printListSpacing,
   })
 
   globalStyle(highlightsCn, {
@@ -132,14 +79,6 @@ if (env.NEXT_PUBLIC_PDF_PRINTING) {
 
   globalStyle(`${highlightsCn} li + li`, {
     marginTop: printListSpacing,
-  })
-
-  globalStyle(linkCn, {
-    textDecorationThickness: "0.05rem",
-  })
-
-  globalStyle(socialLinksCn, {
-    marginTop: "0.25rem",
   })
 
   globalStyle(asideCn, {

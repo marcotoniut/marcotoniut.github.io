@@ -53,5 +53,6 @@ export async function generateMetadata({
 }
 
 export default function CVPage() {
-  return <CVContent />
+  const isPdfPrinting = process.env.NEXT_PUBLIC_PDF_PRINTING === "true"
+  return <CVContent isPdfPrinting={isPdfPrinting} />
 }

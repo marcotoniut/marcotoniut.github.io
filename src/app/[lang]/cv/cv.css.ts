@@ -15,7 +15,7 @@ const baseSectionSpacing = "1.5rem"
 const baseListSpacing = "0.35rem"
 const headingFontSize = "1.2rem"
 const subheadingFontSize = "1.05rem"
-const nameFontSize = "2.1rem"
+const nameFontSize = "1.8rem"
 const professionFontSize = "0.95rem"
 const labelFontSize = "0.8rem"
 const listIndent = "1.15rem"
@@ -37,7 +37,6 @@ export const cvCn = style({
   fontFamily: fontFamilies.heading,
   fontSize: labelFontSize,
   fontWeight: fontWeights.heading.bold,
-  letterSpacing: "-0.015em",
   textTransform: "none",
 })
 
@@ -48,7 +47,6 @@ export const docCn = style({
   fontFamily: cvBodyFamily,
   fontSize: baseFontSize,
   lineHeight: baseLineHeight,
-  letterSpacing: "0em",
   gap: baseColumnGap,
   margin: "0 auto",
   maxWidth,
@@ -57,13 +55,12 @@ export const docCn = style({
 })
 
 export const nameCn = style({
-  marginTop: "1rem",
+  marginTop: 0,
   marginBottom: space.none,
   color: colors.action, // highlight your name
   fontFamily: fontFamilies.heading,
   fontSize: nameFontSize,
   fontWeight: fontWeights.heading.bold,
-  letterSpacing: "-0.015em",
   lineHeight: 1.1,
   textTransform: "none",
 })
@@ -74,13 +71,15 @@ export const professionCn = style({
   fontFamily: cvBodyFamily,
   fontSize: professionFontSize,
   fontWeight: fontWeights.body.medium,
-  letterSpacing: "-0.002em",
 })
 
 export const pictureCn = style({
   display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
   overflow: "hidden",
   borderRadius: "50%",
+  height: "180px",
 })
 
 export const paragraphCn = style({})
@@ -138,14 +137,13 @@ export const institutionCn = style({
   fontSize: subheadingFontSize,
   fontWeight: fontWeights.body.medium,
   gap: space.small,
-  marginBottom: space.default,
   marginTop: space.small,
 })
 
 // Sidebar accent
 export const asideCn = style({
   padding: 0,
-  maxWidth: "20rem",
+  maxWidth: "23rem",
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
@@ -184,7 +182,6 @@ globalStyle(`${docCn} h2`, {
   fontFamily: printHeadingFamily,
   fontSize: headingFontSize,
   fontWeight: 600,
-  letterSpacing: "-0.005em",
   textTransform: "none",
   marginTop: "1.1rem",
   marginBottom: "0.5rem",
@@ -196,9 +193,6 @@ globalStyle(`${docCn} h3`, {
   fontFamily: printHeadingFamily,
   fontSize: subheadingFontSize,
   fontWeight: 600,
-  letterSpacing: "-0.003em",
-  marginTop: "0.35rem",
-  marginBottom: "0.25rem",
 })
 
 globalStyle(`${docCn} p`, {

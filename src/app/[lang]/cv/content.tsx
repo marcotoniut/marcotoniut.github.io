@@ -1,15 +1,12 @@
 "use client"
 
 import { format } from "date-fns"
-import Image from "next/image"
 import Link from "next/link"
 import { useContext, useId } from "react"
+import { GithubIcon, ItchIOIcon, LinkedInIcon } from "@/components/Icons"
+import { H1, H2, H3 } from "@/components/Typography"
 import { I18nContext } from "@/i18n/i18n-react"
-import profilePic from "../../../../public/cv/profile.jpeg"
-import { GithubIcon, ItchIOIcon, LinkedInIcon } from "../../../components/Icons"
-import { H1, H2, H3 } from "../../../components/Typography"
-import { env } from "../../../env"
-import { email, phone } from "../../../info"
+import { email, phone } from "@/info"
 import {
   asideCn,
   cvCn,
@@ -35,14 +32,16 @@ import "./pdf.cv.css"
 
 const DATE_FORMAT = "MMM yyyy"
 
-const isPdfPrinting = env.NEXT_PUBLIC_PDF_PRINTING
+interface CVContentProps {
+  isPdfPrinting: boolean
+}
 
-function useTargetProps() {
+function useTargetProps(isPdfPrinting: boolean) {
   return isPdfPrinting ? { "data-size": "A4" } : {}
 }
 
-export function CVContent() {
-  const sheetProps = useTargetProps()
+export function CVContent({ isPdfPrinting }: CVContentProps) {
+  const sheetProps = useTargetProps(isPdfPrinting)
   const { LL, locale } = useContext(I18nContext)
   const uid = useId()
 
@@ -67,8 +66,9 @@ export function CVContent() {
               </H1>
               {isPdfPrinting ? (
                 <div className={pictureCn}>
-                  <Image
-                    src={profilePic}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/cv/profile.jpeg"
                     height={180}
                     alt={LL.CVPage.profile.picture()}
                   />

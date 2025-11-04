@@ -4,7 +4,7 @@ import { existsSync, mkdirSync } from "node:fs"
 import { join } from "node:path"
 import puppeteer from "puppeteer"
 
-const BASE_URL = "http://localhost:8829"
+const BASE_URL = "http://localhost:8529"
 const LOCAL_DIR = "local"
 
 const now = new Date()
@@ -118,6 +118,23 @@ const generatePdf = async (pdfPath: string): Promise<void> => {
 
     await page.emulateMediaType("print")
     await page.waitForNetworkIdle({ idleTime: 500, timeout: 10_000 })
+
+    // Wait for images to load
+    console.log("Waiting for images to load...")
+    await page.evaluate(async () => {
+      const images = Array.from(document.images)
+      await Promise.all(
+        images
+          .filter((img) => !img.complete)
+          .map(
+            (img) =>
+              new Promise((resolve, reject) => {
+                img.addEventListener("load", resolve)
+                img.addEventListener("error", reject)
+              }),
+          ),
+      )
+    })
 
     console.log("Generating PDF...")
     await page.pdf({
