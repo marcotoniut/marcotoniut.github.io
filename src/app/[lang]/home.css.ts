@@ -1,5 +1,4 @@
 import { style } from "@vanilla-extract/css"
-
 import {
   colors,
   fontFamilies,
@@ -7,23 +6,11 @@ import {
   fontWeights,
   letterSpacing,
   lineHeights,
-  radii,
   shadows,
   space,
 } from "@/styles/theme"
 
-export const container = style({
-  minHeight: "100svh",
-  width: "100%",
-  padding: `${space.xl} ${space.xxl}`,
-  boxSizing: "border-box",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: space.xl,
-  background: `radial-gradient(circle at top left, rgba(86, 243, 201, 0.08), transparent 55%), ${colors.background}`,
-  color: colors.text,
-})
+const ICON_SIZE = 48
 
 export const main = style({
   width: "100%",
@@ -50,16 +37,16 @@ export const footer = style({
   alignItems: "center",
   color: colors.textMuted,
   fontFamily: fontFamilies.body,
-  fontSize: fontSizes.bodySm,
+  fontSize: "0.75rem",
   fontWeight: fontWeights.body.medium,
-  letterSpacing: "0.08em",
+  letterSpacing: "0.06em",
   textTransform: "uppercase",
 })
 
 export const title = style({
   margin: 0,
   lineHeight: 1.15,
-  fontSize: "clamp(3rem, 8vw, 4.5rem)",
+  fontSize: "clamp(2.4rem, 6vw, 3.6rem)",
   textShadow: "0 20px 60px rgba(10, 12, 18, 0.45)",
 })
 
@@ -81,11 +68,10 @@ export const grid = style({
 })
 
 const cardBase = style({
-  padding: space.xl,
+  padding: space.large,
   textAlign: "center",
   color: "inherit",
   border: `1px solid ${colors.borderMuted}`,
-  borderRadius: radii.lg,
   transition:
     "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
   width: "min(100%, 320px)",
@@ -116,37 +102,37 @@ export const cardInteractive = style([
 export const card = cardBase
 
 export const cardLabel = style({
-  margin: 0,
   fontSize: "1.25rem",
   letterSpacing: "0.04em",
+  margin: 0,
   textTransform: "uppercase",
 })
 
 export const cardHint = style({
-  margin: 0,
-  fontSize: fontSizes.body,
   color: colors.textMuted,
+  fontSize: fontSizes.body,
+  margin: 0,
 })
 
 export const cardHeading = style({
-  margin: 0,
+  alignItems: "center",
+  display: "inline-flex",
   fontFamily: fontFamilies.heading,
-  fontSize: "1.5rem",
+  fontSize: fontSizes.xl,
   fontWeight: fontWeights.heading.regular,
+  gap: space.small,
   letterSpacing: letterSpacing.h3,
   lineHeight: lineHeights.h3,
-  display: "inline-flex",
-  alignItems: "center",
-  gap: space.small,
+  margin: 0,
 })
 
 export const projectHeading = style({
-  margin: 0,
   fontFamily: fontFamilies.heading,
-  fontSize: "1.5rem",
+  fontSize: fontSizes.xl,
   fontWeight: fontWeights.heading.regular,
   letterSpacing: letterSpacing.h3,
   lineHeight: lineHeights.h3,
+  margin: 0,
   whiteSpace: "nowrap",
 })
 
@@ -158,19 +144,18 @@ export const actionRow = style({
 })
 
 export const iconLink = style({
-  padding: space.default,
-  color: colors.text,
-  border: `1px solid ${colors.borderMuted}`,
-  borderRadius: radii.lg,
+  alignItems: "center",
   background: colors.surfaceElevated,
+  border: `1px solid ${colors.borderMuted}`,
   boxShadow: shadows.subtle,
+  color: colors.text,
+  display: "flex",
+  justifyContent: "center",
+  minHeight: ICON_SIZE,
+  minWidth: ICON_SIZE,
+  padding: space.default,
   transition:
     "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  minWidth: "48px",
-  minHeight: "48px",
   selectors: {
     "&:hover, &:focus, &:active": {
       color: colors.accent,

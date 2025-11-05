@@ -7,7 +7,6 @@ import {
   fontWeights,
   letterSpacing,
   lineHeights,
-  radii,
   shadows,
   space,
 } from "@/styles/theme"
@@ -15,7 +14,6 @@ import {
 export const card = style({
   background: colors.surfaceElevated,
   border: `1px solid ${colors.border}`,
-  borderRadius: radii.lg,
   boxShadow: shadows.soft,
   color: colors.text,
   display: "flex",

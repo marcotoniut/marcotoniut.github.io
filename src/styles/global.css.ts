@@ -1,5 +1,4 @@
 import { globalStyle, keyframes } from "@vanilla-extract/css"
-
 import {
   fontFamilies,
   fontSizes,
@@ -22,8 +21,8 @@ const themeTransitionOverlay = keyframes({
 })
 
 globalStyle(":root.theme-transition", {
-  transitionProperty: themeTransitionProperties,
   transitionDuration: themeTransitionDuration,
+  transitionProperty: themeTransitionProperties,
   transitionTimingFunction: themeTransitionTiming,
   "@media": {
     "(prefers-reduced-motion: reduce)": {
@@ -36,8 +35,8 @@ globalStyle(":root.theme-transition", {
 })
 
 globalStyle(":root.theme-transition *", {
-  transitionProperty: themeTransitionProperties,
   transitionDuration: themeTransitionDuration,
+  transitionProperty: themeTransitionProperties,
   transitionTimingFunction: themeTransitionTiming,
   "@media": {
     "(prefers-reduced-motion: reduce)": {
@@ -52,8 +51,8 @@ globalStyle(":root.theme-transition *", {
 globalStyle(
   ":root.theme-transition *::before, :root.theme-transition *::after",
   {
-    transitionProperty: themeTransitionProperties,
     transitionDuration: themeTransitionDuration,
+    transitionProperty: themeTransitionProperties,
     transitionTimingFunction: themeTransitionTiming,
     "@media": {
       "(prefers-reduced-motion: reduce)": {
@@ -67,15 +66,15 @@ globalStyle(
 )
 
 globalStyle(":root.theme-transition::before", {
-  content: "",
-  position: "fixed",
-  inset: 0,
-  pointerEvents: "none",
+  animation: `${themeTransitionOverlay} ${themeTransitionDuration} ${themeTransitionTiming}`,
   background:
     "radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.22), transparent 65%), radial-gradient(circle at 75% 75%, rgba(13, 110, 253, 0.18), transparent 70%)",
+  content: "",
+  inset: 0,
   mixBlendMode: "screen",
   opacity: 0,
-  animation: `${themeTransitionOverlay} ${themeTransitionDuration} ${themeTransitionTiming}`,
+  pointerEvents: "none",
+  position: "fixed",
   zIndex: 2147483646,
   "@media": {
     "(prefers-reduced-motion: reduce)": {
@@ -93,9 +92,9 @@ globalStyle("body", {
   color: themeVars.color.textPrimary,
   fontFamily: fontFamilies.body,
   fontSize: fontSizes.body,
-  lineHeight: lineHeights.body,
-  letterSpacing: letterSpacing.body,
   fontWeight: fontWeights.body.regular,
+  letterSpacing: letterSpacing.body,
+  lineHeight: lineHeights.body,
   margin: 0,
 })
 
@@ -125,8 +124,8 @@ globalStyle("h2, .heading-lg", {
 
 globalStyle("h3, h4, h5, h6, .heading-md", {
   fontSize: fontSizes.h3,
-  lineHeight: lineHeights.h3,
   letterSpacing: letterSpacing.h3,
+  lineHeight: lineHeights.h3,
 })
 
 globalStyle("p, ul, ol, dl", {
@@ -136,21 +135,20 @@ globalStyle("p, ul, ol, dl", {
 globalStyle("p, ul, ol, li, dd, dt", {
   fontFamily: fontFamilies.body,
   fontSize: fontSizes.body,
-  lineHeight: lineHeights.body,
   letterSpacing: letterSpacing.body,
+  lineHeight: lineHeights.body,
 })
 
 globalStyle("small", {
   fontSize: fontSizes.bodySm,
-  lineHeight: lineHeights.bodySm,
   letterSpacing: letterSpacing.bodySm,
+  lineHeight: lineHeights.bodySm,
 })
 
 globalStyle("button, input, select, textarea", {
   fontFamily: fontFamilies.body,
   fontSize: fontSizes.ui,
   fontWeight: fontWeights.ui.medium,
-  letterSpacing: "0.01em",
 })
 
 globalStyle("a", {

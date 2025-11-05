@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import type { Locales } from "@/i18n/i18n-types"
 import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
 import { buildLocalizedHref } from "@/utils/locale"
@@ -9,16 +10,14 @@ import {
 import { CVContent } from "./content"
 
 type PageProps = {
-  params: Promise<{ lang: string }>
+  params: Promise<{ lang: Locales }>
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { lang } = await params
-  const locale = locales.includes(lang as (typeof locales)[number])
-    ? (lang as (typeof locales)[number])
-    : baseLocale
+  const locale = locales.includes(lang) ? lang : baseLocale
 
   loadLocale(locale)
   const dict = loadedLocales[locale]

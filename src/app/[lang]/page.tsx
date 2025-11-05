@@ -1,10 +1,11 @@
 import type { Metadata } from "next"
-import { Controls } from "@/components/Controls"
 import { Footer } from "@/components/Footer"
+import { Header } from "@/components/Header"
 import { GithubIcon, ItchIOIcon } from "@/components/Icons"
 import { TrackedAnchor, TrackedLink } from "@/components/TrackedLink"
 import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
+import * as commonStyles from "@/styles/layouts.css"
 import { buildLocalizedHref } from "@/utils/locale"
 import {
   generateOpenGraphMetadata,
@@ -68,8 +69,8 @@ export default async function HomePage({ params }: PageProps) {
   const dict = loadedLocales[locale]
 
   return (
-    <div className={styles.container}>
-      <Controls currentLocale={locale} />
+    <div className={commonStyles.pageContainer}>
+      <Header currentLocale={locale} />
       <main className={styles.main}>
         <h1 className={styles.title}>Marco Toniut</h1>
 
@@ -83,9 +84,7 @@ export default async function HomePage({ params }: PageProps) {
             trackingType="cv_navigation"
             fromPage="home_page"
           >
-            <h2 className={styles.cardHeading}>
-              <span>{dict.HomePage.cv.label}</span>
-            </h2>
+            <span className={styles.cardHeading}>{dict.HomePage.cv.label}</span>
           </TrackedLink>
 
           <TrackedLink
@@ -95,9 +94,9 @@ export default async function HomePage({ params }: PageProps) {
             trackingType="contact_navigation"
             fromPage="home_page"
           >
-            <h2 className={styles.cardHeading}>
-              <span>{dict.HomePage.contact.label}</span>
-            </h2>
+            <span className={styles.cardHeading}>
+              {dict.HomePage.contact.label}
+            </span>
           </TrackedLink>
 
           <div className={styles.projectRow}>

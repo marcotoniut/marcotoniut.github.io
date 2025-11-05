@@ -83,7 +83,6 @@ if (env.NEXT_PUBLIC_PDF_PRINTING) {
 
   globalStyle(asideCn, {
     backgroundColor: "transparent",
-    borderRadius: 0,
     boxShadow: "none",
     padding: "1.8rem",
   })

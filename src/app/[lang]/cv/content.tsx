@@ -2,8 +2,8 @@
 "use memo"
 
 import { format } from "date-fns"
-import Link from "next/link"
 import { useContext, useEffect, useId } from "react"
+import { Header } from "@/components/Header"
 import { GithubIcon, ItchIOIcon, LinkedInIcon } from "@/components/Icons"
 import { TrackedAnchor } from "@/components/TrackedLink"
 import { H1, H2, H3 } from "@/components/Typography"
@@ -12,10 +12,9 @@ import { email, phone } from "@/info"
 import { trackCVView } from "@/utils/analytics"
 import {
   asideCn,
-  cvCn,
   docCn,
   footerCn,
-  headerCn,
+  headerWrapperCn,
   institutionCn,
   learningHighlightsCn,
   link2Cn,
@@ -58,14 +57,15 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
   return (
     <>
       {!isPdfPrinting ? (
-        <header className={headerCn}>
-          <span>
-            <Link className={linkCn} passHref href={`/${locale}/`}>
-              {LL.CVPage.goBack()}
-            </Link>
-          </span>
-          <span className={cvCn}>{LL.CVPage.title()}</span>
-        </header>
+        <div className={headerWrapperCn}>
+          <Header
+            currentLocale={locale}
+            backLink={{
+              href: `/${locale}/`,
+              label: LL.CVPage.goBack(),
+            }}
+          />
+        </div>
       ) : null}
       <div {...sheetProps} className={docCn}>
         <aside className={asideCn}>

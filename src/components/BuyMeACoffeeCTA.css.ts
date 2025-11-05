@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css"
-import { colors, shadows, space } from "@/styles/theme"
+import { colors, radii, shadows, space } from "@/styles/theme"
 
 const circleSize = "2.25rem"
 
@@ -33,7 +33,6 @@ export const base = style({
       content: "",
       position: "absolute",
       inset: 0,
-      borderRadius: "inherit",
       background: colors.buyMeACoffeeAccent,
 
       WebkitMaskImage:
@@ -52,9 +51,9 @@ export const base = style({
     "&:hover": {
       gridTemplateColumns: `${circleSize} 1fr`,
       columnGap: space.xs,
-      paddingInlineStart: "0.5rem",
-      paddingInlineEnd: "1rem",
-      borderRadius: "999px",
+      paddingInlineStart: space.small,
+      paddingInlineEnd: space.large,
+      borderRadius: radii.pill,
     },
 
     "&:focus-visible": {
@@ -64,7 +63,7 @@ export const base = style({
       columnGap: space.xs,
       paddingInlineStart: "0.5rem",
       paddingInlineEnd: "1rem",
-      borderRadius: "999px",
+      borderRadius: radii.pill,
     },
 
     "&:hover::before, &:focus-visible::before": {

@@ -28,7 +28,6 @@ export const required = style({
 export const input = style({
   padding: "0.75rem 1rem",
   fontSize: "1rem",
-  borderRadius: "0.5rem",
   border: `1px solid ${themeVars.color.border}`,
   backgroundColor: themeVars.color.background,
   color: themeVars.color.textPrimary,
@@ -55,16 +54,15 @@ export const textarea = style([
 ])
 
 export const button = style({
-  padding: "0.875rem 2rem",
-  fontSize: "1rem",
-  fontWeight: 600,
-  borderRadius: "0.5rem",
-  border: "none",
+  alignSelf: "flex-start",
   backgroundColor: themeVars.color.accent,
+  border: "none",
   color: themeVars.color.background,
   cursor: "pointer",
+  fontSize: "1rem",
+  fontWeight: 600,
+  padding: "0.875rem 2rem",
   transition: "transform 0.2s, opacity 0.2s",
-  alignSelf: "flex-start",
 
   ":hover": {
     transform: "translateY(-2px)",

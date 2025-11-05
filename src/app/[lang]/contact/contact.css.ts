@@ -55,4 +55,5 @@ export const backLink = style({
 
 export const footer = style({
   marginTop: "auto",
+  width: "100%",
 })

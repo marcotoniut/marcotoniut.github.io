@@ -1,26 +1,30 @@
 import { style } from "@vanilla-extract/css"
-import { themeVars } from "./theme"
+import { colors, space } from "./theme"
 
 /**
  * Full-height page container with vertical flex layout
  * Common pattern used across contact, home, and other pages
  */
 export const pageContainer = style({
-  minHeight: "100vh",
+  alignItems: "center",
+  background: `radial-gradient(circle at top left, rgba(86, 243, 201, 0.08), transparent 55%), ${colors.background}`,
+  boxSizing: "border-box",
+  color: colors.text,
   display: "flex",
   flexDirection: "column",
-  padding: "1rem 2rem",
-  backgroundColor: themeVars.color.background,
+  gap: space.xl,
+  minHeight: "100svh",
+  padding: `${space.large} ${space.large}`,
+  width: "100%",
 })
-
 /**
  * Centred full-height flex container
  * Commonly used for loading/redirect pages
  */
 export const centredContainer = style({
+  alignItems: "center",
   display: "flex",
   justifyContent: "center",
-  alignItems: "center",
   minHeight: "100vh",
 })
 

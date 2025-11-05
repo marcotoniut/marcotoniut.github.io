@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css"
-import { themeVars } from "@/styles/theme"
+import { fontSizes, themeVars } from "@/styles/theme"
 
 export const footer = style({
   padding: "1rem 0rem",
@@ -15,7 +15,6 @@ export const content = style({
   display: "flex",
   flexDirection: "column",
   gap: "1rem",
-  fontSize: "0.875rem",
   lineHeight: "1.5",
   textAlign: "center",
 })
@@ -23,6 +22,7 @@ export const content = style({
 export const copyright = style({
   margin: 0,
   fontWeight: 500,
+  fontSize: fontSizes.small,
 })
 
 export const aiPolicy = style({

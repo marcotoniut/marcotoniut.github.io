@@ -9,8 +9,6 @@ const printHeadingFamily =
 
 const baseFontSize = "1rem"
 const baseColumnGap = "1.75rem"
-const basePaddingInline = "1.5rem"
-const basePaddingBlock = "1.25rem"
 const baseSectionSpacing = "1.5rem"
 const baseListSpacing = "0.35rem"
 const headingFontSize = "1.2rem"
@@ -22,15 +20,8 @@ const listIndent = "1.15rem"
 
 export const baseLineHeight = 1.46
 
-export const headerCn = style({
-  display: "flex",
-  gap: "2rem",
-  margin: "0 auto",
-  alignItems: "baseline",
-  maxWidth,
-  paddingBottom: "1rem",
-  paddingInline: basePaddingInline,
-  paddingTop: "1.5rem",
+export const headerWrapperCn = style({
+  padding: space.large,
 })
 
 export const cvCn = style({
@@ -50,8 +41,8 @@ export const docCn = style({
   gap: baseColumnGap,
   margin: "0 auto",
   maxWidth,
-  paddingBlock: basePaddingBlock,
-  paddingInline: basePaddingInline,
+  paddingBlock: space.large,
+  paddingInline: space.large,
 })
 
 export const nameCn = style({
@@ -148,7 +139,6 @@ export const asideCn = style({
   flexDirection: "column",
   justifyContent: "space-between",
   backgroundColor: "transparent",
-  borderRadius: "0.75rem",
 })
 
 export const link2Cn = style({

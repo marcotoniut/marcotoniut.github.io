@@ -1,26 +1,23 @@
 import { keyframes, style } from "@vanilla-extract/css"
-
 import {
   colors,
   fontFamily,
   fontSizes,
   fontWeights,
-  radii,
   shadows,
   space,
 } from "@/styles/theme"
 
 export const header = style({
+  alignItems: "center",
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "center",
   width: "100%",
-  marginBottom: "2rem",
 })
 
 export const backLink = style({
-  fontSize: "0.875rem",
   color: colors.action,
+  fontSize: "0.875rem",
   textDecoration: "none",
   transition: "color 0.2s",
 
@@ -30,10 +27,11 @@ export const backLink = style({
 })
 
 export const controlBar = style({
-  display: "flex",
   alignItems: "center",
-  gap: space.default,
+  display: "flex",
+  flex: "1",
   flexWrap: "wrap",
+  gap: space.default,
   justifyContent: "flex-end",
 })
 
@@ -41,7 +39,6 @@ export const selectTrigger = style({
   alignItems: "center",
   backgroundColor: colors.surface,
   border: `1px solid ${colors.border}`,
-  borderRadius: radii.md,
   boxShadow: shadows.subtle,
   color: colors.text,
   cursor: "pointer",
@@ -79,14 +76,13 @@ const fadeIn = keyframes({
 })
 
 export const selectContent = style({
+  animation: `${fadeIn} 120ms ease`,
   backgroundColor: colors.surfaceElevated,
   border: `1px solid ${colors.border}`,
-  borderRadius: radii.lg,
   boxShadow: shadows.soft,
   minWidth: "var(--radix-select-trigger-width)",
   overflow: "hidden",
   zIndex: 2000,
-  animation: `${fadeIn} 120ms ease`,
 })
 
 export const selectViewport = style({
@@ -95,7 +91,6 @@ export const selectViewport = style({
 
 export const selectItem = style({
   alignItems: "center",
-  borderRadius: radii.sm,
   color: colors.text,
   cursor: "pointer",
   display: "flex",
@@ -104,8 +99,8 @@ export const selectItem = style({
   fontWeight: fontWeights.ui.medium,
   gap: space.small,
   lineHeight: 1,
-  paddingInline: space.default,
   paddingBlock: "8px",
+  paddingInline: space.default,
   position: "relative",
   selectors: {
     "&[data-highlighted]": {
@@ -121,8 +116,8 @@ export const selectItem = style({
 })
 
 export const selectItemIndicator = style({
-  marginLeft: "auto",
   color: colors.action,
+  marginLeft: "auto",
 })
 
 export const selectIcon = style({

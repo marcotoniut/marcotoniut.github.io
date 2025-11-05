@@ -33,7 +33,7 @@
   "languageSettings": [
     {
       "languageId": "markdown",
-      "dictionaries": ["en-gb", "es-es"],
+      "dictionaries": ["en-gb", "es-es", "es-ar"],
       "caseSensitive": false
     },
     {
@@ -43,26 +43,39 @@
         "javascript",
         "javascriptreact"
       ],
-      "dictionaries": ["en-gb", "es-es"]
+      "dictionaries": ["en-gb", "es-es", "es-ar"]
     }
   ],
   "words": [
+    "Apoyá",
     "boomershooter",
     "caece",
     "carcinisation",
     "Carcinisation",
     "Comprame",
+    "Gridshare",
+    "Grotesk",
     "itchio",
     "linkedin",
     "Linkedin",
+    "mantenibilidad",
     "marcotoniut",
+    "Mentoría",
     "modelcontextprotocol",
+    "modularidad",
+    "Moixa",
     "noai",
+    "noarchive",
+    "noimageindex",
     "nojekyll",
     "overengineering",
+    "Ponete",
     "Satoshi",
+    "Segoe",
+    "sénior",
     "Shadcn",
     "Stefano",
+    "styleguide",
     "Supabase",
     "Toniut",
     "typesafe",
@@ -70,6 +83,8 @@
     "udemy",
     "Vars",
     "vercel",
+    "xxxl",
+    "zelt",
     "zipline"
   ]
 }

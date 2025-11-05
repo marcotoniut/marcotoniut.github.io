@@ -12,83 +12,84 @@ export const themeClassByMode: Record<ThemeMode, string> = {
 }
 
 export const colors = {
-  text: themeVars.color.textPrimary,
-  textMuted: themeVars.color.textMuted,
-  action: themeVars.color.accent,
   accent: themeVars.color.accentSoft,
   accentContrast: themeVars.color.accentContrast,
+  action: themeVars.color.accent,
   background: themeVars.color.background,
-  surface: themeVars.color.surface,
-  surfaceElevated: themeVars.color.surfaceElevated,
   border: themeVars.color.border,
   borderMuted: themeVars.color.borderMuted,
-  sidebarBg: themeVars.color.surface,
-  main: themeVars.color.accent,
-  focusRing: themeVars.color.focusRing,
+  buyMeACoffeeAccent: themeVars.color.buyMeACoffeeAccent,
   buyMeACoffeeBackground: themeVars.color.buyMeACoffeeBackground,
   buyMeACoffeeText: themeVars.color.buyMeACoffeeText,
-  buyMeACoffeeAccent: themeVars.color.buyMeACoffeeAccent,
+  focusRing: themeVars.color.focusRing,
+  main: themeVars.color.accent,
+  sidebarBg: themeVars.color.surface,
+  surface: themeVars.color.surface,
+  surfaceElevated: themeVars.color.surfaceElevated,
+  text: themeVars.color.textPrimary,
+  textMuted: themeVars.color.textMuted,
 } as const
 
 export const space = {
-  none: themeVars.space.none,
-  xxs: themeVars.space.xxs,
-  xs: themeVars.space.xs,
-  small: themeVars.space.sm,
   default: themeVars.space.md,
   large: themeVars.space.lg,
+  none: themeVars.space.none,
+  small: themeVars.space.sm,
   xl: themeVars.space.xl,
+  xs: themeVars.space.xs,
   xxl: themeVars.space.xxl,
+  xxs: themeVars.space.xxs,
   xxxl: `calc(${themeVars.space.xxl} + ${themeVars.space.lg})`,
 } as const
 
 export const radii = {
-  sm: themeVars.radius.sm,
-  md: themeVars.radius.md,
   lg: themeVars.radius.lg,
+  md: themeVars.radius.md,
   pill: themeVars.radius.pill,
+  sm: themeVars.radius.sm,
 } as const
 
 export const shadows = {
-  subtle: themeVars.shadow.subtle,
-  soft: themeVars.shadow.soft,
   glow: themeVars.shadow.glow,
+  soft: themeVars.shadow.soft,
+  subtle: themeVars.shadow.subtle,
 } as const
 
 export const fontSizes = {
+  body: themeVars.font.size.body,
+  bodySm: themeVars.font.size.bodySm,
+  default: themeVars.font.size.body,
   h1: themeVars.font.size.h1,
   h2: themeVars.font.size.h2,
   h3: themeVars.font.size.h3,
-  body: themeVars.font.size.body,
-  bodySm: themeVars.font.size.bodySm,
-  ui: themeVars.font.size.ui,
-  small: themeVars.font.size.bodySm,
-  default: themeVars.font.size.body,
   large: themeVars.font.size.ui,
-  xl: themeVars.font.size.h3,
+  small: themeVars.font.size.bodySm,
+  ui: themeVars.font.size.ui,
+  xl: themeVars.font.size.bodyLg,
+  xs: themeVars.font.size.bodySmaller,
   xxl: themeVars.font.size.h1,
 } as const
 
 export const lineHeights = {
+  body: themeVars.font.lineHeight.body,
+  bodySm: themeVars.font.lineHeight.bodySm,
   h1: themeVars.font.lineHeight.h1,
   h2: themeVars.font.lineHeight.h2,
   h3: themeVars.font.lineHeight.h3,
-  body: themeVars.font.lineHeight.body,
-  bodySm: themeVars.font.lineHeight.bodySm,
   ui: themeVars.font.lineHeight.ui,
 } as const
 
 export const letterSpacing = {
+  body: themeVars.font.letterSpacing.body,
+  bodySm: themeVars.font.letterSpacing.bodySm,
   h1: themeVars.font.letterSpacing.h1,
   h2: themeVars.font.letterSpacing.h2,
   h3: themeVars.font.letterSpacing.h3,
-  body: themeVars.font.letterSpacing.body,
-  bodySm: themeVars.font.letterSpacing.bodySm,
 } as const
 
 export const fontFamilies = {
-  heading: themeVars.font.family.heading,
   body: themeVars.font.family.body,
+  heading: themeVars.font.family.heading,
   mono: themeVars.font.family.mono,
 } as const
 
@@ -96,19 +97,19 @@ export const fontFamily = fontFamilies.body
 
 export const fontWeights = {
   heading: {
-    regular: themeVars.font.weight.heading.regular,
     bold: themeVars.font.weight.heading.bold,
+    regular: themeVars.font.weight.heading.regular,
   },
   body: {
-    regular: themeVars.font.weight.body.regular,
-    medium: themeVars.font.weight.body.medium,
     bold: themeVars.font.weight.body.bold,
+    medium: themeVars.font.weight.body.medium,
+    regular: themeVars.font.weight.body.regular,
   },
   ui: {
     medium: themeVars.font.weight.ui.medium,
   },
-  regular: themeVars.font.weight.body.regular,
-  medium: themeVars.font.weight.body.medium,
-  semibold: themeVars.font.weight.heading.regular,
   bold: themeVars.font.weight.heading.bold,
+  medium: themeVars.font.weight.body.medium,
+  regular: themeVars.font.weight.body.regular,
+  semibold: themeVars.font.weight.heading.regular,
 } as const
