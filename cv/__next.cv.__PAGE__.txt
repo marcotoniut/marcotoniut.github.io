@@ -4,5 +4,5 @@
 5:"$Sreact.suspense"
 :HL["/_next/static/css/0eb34db9ceaf33fe.css","style"]
 3:[["$","meta",null,{"httpEquiv":"refresh","content":"0;url=/en/cv/"}],["$","p",null,{"children":["JavaScript is required to auto-detect your language."," ",["$","a",null,{"href":"/en/cv/","children":["Continue to the ","EN"," CV"]}],"."]}]]
-0:{"buildId":"MKYmxUjXa6fLpF0xUJmi7","rsc":["$","$1","c",{"children":[[["$","$L2",null,{"pathSuffix":"cv"}],["$","div",null,{"className":"_1ldb7wu0","children":["$","p",null,{"children":"Redirecting to CV..."}]}],["$","noscript",null,{"children":"$3"}]],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/0eb34db9ceaf33fe.css","precedence":"next"}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"kTO0u6vTQJtaYaSz2F3-d","rsc":["$","$1","c",{"children":[[["$","$L2",null,{"pathSuffix":"cv"}],["$","div",null,{"className":"_1ldb7wu0","children":["$","p",null,{"children":"Redirecting to CV..."}]}],["$","noscript",null,{"children":"$3"}]],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/0eb34db9ceaf33fe.css","precedence":"next"}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
 6:null
