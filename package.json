@@ -2,7 +2,7 @@
   "name": "marcotoniut.github.io",
   "private": true,
   "scripts": {
-    "build": "next build --webpack",
+    "build": "pnpm generate:sitemap && next build --webpack",
     "deploy": "gh-pages -d out --nojekyll",
     "dev": "pnpm generate && concurrently \"pnpm generate:watch\" \"next dev --webpack -p 8525\"",
     "dev:agents": "pnpm generate && cross-env BROWSER=none next dev --webpack -p 8530",
@@ -11,6 +11,7 @@
     "format": "biome format",
     "format:check": "biome check",
     "generate": "pnpm typesafe-i18n",
+    "generate:sitemap": "pnpm tsx scripts/generate-sitemap.ts",
     "generate:watch": "pnpm typesafe-i18n:watch",
     "lint": "biome check",
     "lint:fix": "biome check --write",

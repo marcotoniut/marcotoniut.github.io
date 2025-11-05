@@ -122,6 +122,30 @@ src/
 
 ---
 
+## 🔍 SEO & Anti-AI Scraping
+
+**Implementation:**
+- [robots.txt](public/robots.txt) blocks AI crawlers (OpenAI, Anthropic, Google Extended, CCBot, etc.)
+- [sitemap.xml](public/sitemap.xml) auto-generated on build (`pnpm generate:sitemap`)
+- Schema.org JSON-LD, OpenGraph, and Twitter cards in all pages
+- Meta tags: `noai`, `noimageai`, `nocontentai`
+- Footer legal notice
+
+**Verification:**
+```bash
+curl https://marcotoniut.github.io/robots.txt
+curl https://marcotoniut.github.io/sitemap.xml
+```
+
+**Limitations:**
+- GitHub Pages doesn't support HTTP headers (configured in [next.config.js](next.config.js) but ignored)
+- Meta tags provide equivalent protection
+- Compliant crawlers only—cannot block non-compliant bots
+
+**Blocked crawlers:** GPTBot, ChatGPT-User, Google-Extended, ClaudeBot, CCBot, PerplexityBot, FacebookBot, Bytespider, cohere-ai, Diffbot, omgili
+
+---
+
 ## 📬 Contact
 
 **Marco Toniut**  

@@ -1,11 +1,15 @@
 import type { Metadata } from "next"
+import { Footer } from "@/components/Footer"
 import { GithubIcon, ItchIOIcon } from "@/components/Icons"
 import { LocaleSwitcher } from "@/components/LocaleSwitcher"
 import { TrackedAnchor, TrackedLink } from "@/components/TrackedLink"
-import { siteConfig } from "@/config/site"
 import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
 import { buildLocalizedHref } from "@/utils/locale"
+import {
+  generateOpenGraphMetadata,
+  generateTwitterMetadata,
+} from "@/utils/metadata"
 import * as styles from "./home.css"
 import { resolveLocale } from "./utils"
 
@@ -43,14 +47,16 @@ export async function generateMetadata({
       canonical: canonicalPath,
       languages,
     },
-    openGraph: {
+    openGraph: generateOpenGraphMetadata({
       title: dict.HomePage.meta.title,
       description: dict.HomePage.meta.description,
       url: canonicalPath,
-      siteName: siteConfig.name,
       locale,
-      type: "website",
-    },
+    }),
+    twitter: generateTwitterMetadata({
+      title: dict.HomePage.meta.title,
+      description: dict.HomePage.meta.description,
+    }),
   }
 }
 
@@ -124,7 +130,7 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </main>
 
-      <footer className={styles.footer}>© 2025</footer>
+      <Footer className={styles.footer} />
     </div>
   )
 }
