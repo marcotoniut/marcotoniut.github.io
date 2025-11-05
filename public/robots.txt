@@ -88,9 +88,6 @@ Disallow: /
 User-agent: *
 Allow: /
 
-# Disallow utility pages not meant for indexing
-Disallow: /ui-demo/
-
 # ============================================================
 # SITEMAP
 # ============================================================
