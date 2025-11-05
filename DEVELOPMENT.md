@@ -22,8 +22,8 @@ Runs at [http://localhost:8825](http://localhost:8825)
 
 ## Key Commands
 
-| Command          | Purpose                                   | 85258525 |
-| ---------------- | ----------------------------------------- | -------- |
+| Command          | Purpose                                   |
+| ---------------- | ----------------------------------------- |
 | `pnpm dev`       | Start dev server with translation watcher |
 | `pnpm build`     | Production build                          |
 | `pnpm lint`      | Run Biome linter                          |
@@ -91,3 +91,52 @@ Before committing:
 ```bash
 pnpm lint:fix && pnpm typecheck && pnpm build
 ```
+
+## SEO & Anti-AI Scraping
+
+This site implements comprehensive SEO optimization with anti-AI training protection.
+
+### Implementation
+
+- **[robots.txt](public/robots.txt)** — Blocks AI crawlers (OpenAI, Anthropic, Google Extended, CCBot, etc.)
+- **[sitemap.xml](public/sitemap.xml)** — Auto-generated on build via `pnpm generate:sitemap`
+- **Schema.org JSON-LD** — Structured data in [src/app/layout.tsx](src/app/layout.tsx#L70-L94)
+- **OpenGraph & Twitter Cards** — Social media metadata via [src/utils/metadata.ts](src/utils/metadata.ts)
+- **Anti-AI Meta Tags** — `noai`, `noimageai`, `nocontentai` in page metadata
+- **Footer Legal Notice** — [src/components/Footer.tsx](src/components/Footer.tsx)
+
+### Verification
+
+Test robots.txt and sitemap are accessible:
+
+```bash
+curl https://marcotoniut.github.io/robots.txt
+curl https://marcotoniut.github.io/sitemap.xml
+```
+
+### Limitations
+
+- **GitHub Pages doesn't support HTTP headers** — Headers configured in [next.config.js](next.config.js) are ignored on static hosting
+- Meta tags provide equivalent protection for compliant crawlers
+- Cannot block non-compliant bots that ignore `robots.txt`
+
+### Blocked Crawlers
+
+GPTBot, ChatGPT-User, Google-Extended, ClaudeBot, CCBot, PerplexityBot, FacebookBot, Bytespider, cohere-ai, Diffbot, omgili
+
+## Deployment
+
+Deploy to GitHub Pages:
+
+```bash
+pnpm deploy
+```
+
+This command:
+1. Clears build caches (`node_modules/.cache`, `out/`)
+2. Generates sitemap.xml
+3. Runs production build
+4. Pushes to `gh-pages` branch
+5. Adds `.nojekyll` marker to disable Jekyll processing
+
+The site is available at [https://marcotoniut.github.io](https://marcotoniut.github.io)
