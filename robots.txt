@@ -1,0 +1,98 @@
+# robots.txt for marcotoniut.github.io
+# Purpose: Allow legitimate search engines while blocking AI training crawlers
+
+# ============================================================
+# ALLOWED: Legitimate search engine crawlers
+# ============================================================
+
+# Google Search
+User-agent: Googlebot
+Allow: /
+
+# Bing Search
+User-agent: Bingbot
+Allow: /
+
+# DuckDuckGo Search
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex Search
+User-agent: Yandex
+Allow: /
+
+# Yahoo Search
+User-agent: Slurp
+Allow: /
+
+# ============================================================
+# DISALLOWED: AI training and data mining crawlers
+# ============================================================
+
+# OpenAI Crawlers (GPT, ChatGPT)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+# Google Extended (AI training)
+User-agent: Google-Extended
+Disallow: /
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Common Crawl (dataset for AI training)
+User-agent: CCBot
+Disallow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Disallow: /
+
+# Meta/Facebook AI
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: facebookexternalhit
+Disallow: /
+
+# Bytespider (TikTok/ByteDance)
+User-agent: Bytespider
+Disallow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Disallow: /
+
+# Diffbot
+User-agent: Diffbot
+Disallow: /
+
+# Omgili (content aggregation)
+User-agent: omgili
+Disallow: /
+
+# ============================================================
+# GLOBAL RULES: Apply to all other crawlers not listed above
+# ============================================================
+
+User-agent: *
+Allow: /
+
+# Disallow utility pages not meant for indexing
+Disallow: /ui-demo/
+
+# ============================================================
+# SITEMAP
+# ============================================================
+
+Sitemap: https://marcotoniut.github.io/sitemap.xml
