@@ -5,6 +5,7 @@ import type { ComponentPropsWithoutRef } from "react"
 import type { Locales } from "@/i18n/i18n-types"
 import type { ExternalLinkParams, ProjectLinkParams } from "@/utils/analytics"
 import {
+  trackContactNavigation,
   trackCVNavigation,
   trackExternalLinkClick,
   trackProjectLinkClick,
@@ -12,7 +13,7 @@ import {
 
 type TrackedLinkProps = ComponentPropsWithoutRef<typeof Link> & {
   locale: Locales
-  trackingType: "cv_navigation"
+  trackingType: "cv_navigation" | "contact_navigation"
   fromPage: string
 }
 
@@ -42,6 +43,8 @@ export function TrackedLink({
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (trackingType === "cv_navigation") {
       trackCVNavigation({ locale, from_page: fromPage })
+    } else if (trackingType === "contact_navigation") {
+      trackContactNavigation({ locale, from_page: fromPage })
     }
     onClick?.(e)
   }

@@ -224,6 +224,10 @@ const enUs: BaseTranslation = {
       label: "Resume",
       hint: "View the resume →",
     },
+    contact: {
+      label: "Contact",
+      hint: "Get in touch →",
+    },
     carcinisation: {
       label: "Carcinisation",
     },
@@ -239,6 +243,26 @@ const enUs: BaseTranslation = {
       title: "Marco Toniut hasn't been found",
     },
     title: "Not found",
+  },
+  ContactPage: {
+    meta: {
+      description:
+        "Get in touch with Marco Toniut for freelance projects and collaborations",
+      title: "Contact | Marco Toniut",
+    },
+    title: "Get in Touch",
+    description:
+      "Have something you’d like to talk about? Leave a message below and I’ll get back to you soon.",
+    backToHome: "Back to home",
+    form: {
+      title: "Subject",
+      titlePlaceholder: "What's this about?",
+      message: "Message",
+      messagePlaceholder: "Write your message here…",
+      phone: "Phone number (optional)",
+      phonePlaceholder: "+44 123 456 7890",
+      submit: "Send message",
+    },
   },
 }
 

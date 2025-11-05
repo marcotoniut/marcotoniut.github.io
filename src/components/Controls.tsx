@@ -9,15 +9,7 @@ import type { Locales } from "@/i18n/i18n-types"
 import { locales } from "@/i18n/i18n-util"
 import { LocaleSchema } from "@/i18n/schemas"
 import { setStoredLocale } from "@/utils/language-storage"
-import {
-  controlBar,
-  selectContent,
-  selectIcon,
-  selectItem,
-  selectItemIndicator,
-  selectTrigger,
-  selectViewport,
-} from "./LocaleSwitcher.css"
+import * as styles from "./Header.css"
 
 function createLocalePath(pathname: string, newLocale: Locales): string {
   const segments = pathname.split("/").filter(Boolean)
@@ -31,7 +23,7 @@ function createLocalePath(pathname: string, newLocale: Locales): string {
   return `/${newLocale}`
 }
 
-export function LocaleSwitcher({ currentLocale }: { currentLocale: Locales }) {
+export function Controls({ currentLocale }: { currentLocale: Locales }) {
   const pathname = usePathname()
   const router = useRouter()
 
@@ -45,23 +37,30 @@ export function LocaleSwitcher({ currentLocale }: { currentLocale: Locales }) {
   }
 
   return (
-    <div className={controlBar}>
+    <div className={styles.controlBar}>
       <BuyMeACoffeeCTA />
       <ThemeToggle />
       <Select.Root value={currentLocale} onValueChange={onValueChange}>
-        <Select.Trigger aria-label="Change language" className={selectTrigger}>
+        <Select.Trigger
+          aria-label="Change language"
+          className={styles.selectTrigger}
+        >
           <Select.Value />
-          <Select.Icon className={selectIcon}>
+          <Select.Icon className={styles.selectIcon}>
             <ChevronDownIcon />
           </Select.Icon>
         </Select.Trigger>
         <Select.Portal>
-          <Select.Content className={selectContent} sideOffset={8}>
-            <Select.Viewport className={selectViewport}>
+          <Select.Content className={styles.selectContent} sideOffset={8}>
+            <Select.Viewport className={styles.selectViewport}>
               {locales.map((locale) => (
-                <Select.Item className={selectItem} key={locale} value={locale}>
+                <Select.Item
+                  className={styles.selectItem}
+                  key={locale}
+                  value={locale}
+                >
                   <Select.ItemText>{locale.toUpperCase()}</Select.ItemText>
-                  <Select.ItemIndicator className={selectItemIndicator}>
+                  <Select.ItemIndicator className={styles.selectItemIndicator}>
                     <CheckIcon />
                   </Select.ItemIndicator>
                 </Select.Item>

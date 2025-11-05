@@ -2,7 +2,7 @@ import { style } from "@vanilla-extract/css"
 import { themeVars } from "@/styles/theme"
 
 export const footer = style({
-  padding: "2rem 1rem",
+  padding: "1rem 0rem",
   marginTop: "auto",
   borderTop: `1px solid ${themeVars.color.border}`,
   backgroundColor: themeVars.color.background,
@@ -26,9 +26,16 @@ export const copyright = style({
 })
 
 export const aiPolicy = style({
-  margin: 0,
-  color: themeVars.color.textMuted,
-  fontSize: "0.8125rem",
+  // Visually hidden but accessible to screen readers and crawlers
+  position: "absolute",
+  width: "1px",
+  height: "1px",
+  padding: 0,
+  margin: "-1px",
+  overflow: "hidden",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  border: 0,
 })
 
 export const link = style({

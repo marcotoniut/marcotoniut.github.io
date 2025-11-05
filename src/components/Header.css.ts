@@ -10,16 +10,31 @@ import {
   space,
 } from "@/styles/theme"
 
+export const header = style({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  width: "100%",
+  marginBottom: "2rem",
+})
+
+export const backLink = style({
+  fontSize: "0.875rem",
+  color: colors.action,
+  textDecoration: "none",
+  transition: "color 0.2s",
+
+  ":hover": {
+    color: colors.accent,
+  },
+})
+
 export const controlBar = style({
-  position: "fixed",
-  top: space.xl,
-  right: space.xl,
   display: "flex",
   alignItems: "center",
   gap: space.default,
   flexWrap: "wrap",
   justifyContent: "flex-end",
-  zIndex: 1000,
 })
 
 export const selectTrigger = style({

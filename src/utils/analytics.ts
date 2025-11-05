@@ -120,3 +120,18 @@ export function trackCVNavigation(params: {
     from_page: params.from_page,
   })
 }
+
+/**
+ * Track internal navigation to Contact page
+ */
+export function trackContactNavigation(params: {
+  locale: Locales
+  from_page: string
+}) {
+  sendGAEvent("event", "contact_navigation", {
+    event_category: "navigation",
+    event_label: "internal_contact_link",
+    locale: params.locale,
+    from_page: params.from_page,
+  })
+}

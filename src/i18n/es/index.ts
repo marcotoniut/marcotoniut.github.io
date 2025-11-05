@@ -225,6 +225,10 @@ const esEs: Translation = {
       label: "Curriculum Vitae",
       hint: "Ver el currículum →",
     },
+    contact: {
+      label: "Contacto",
+      hint: "Ponerse en contacto →",
+    },
     carcinisation: {
       label: "Carcinisation",
     },
@@ -240,6 +244,26 @@ const esEs: Translation = {
       title: "Marco Toniut no ha sido encontrado",
     },
     title: "No encontrado",
+  },
+  ContactPage: {
+    meta: {
+      description:
+        "Ponete en contacto con Marco Toniut para proyectos freelance y colaboraciones",
+      title: "Contacto | Marco Toniut",
+    },
+    title: "Ponete en Contacto",
+    description:
+      "¿Tienes algo de lo que quieras hablar? Déjame un mensaje y te responderé pronto.",
+    backToHome: "Volver al inicio",
+    form: {
+      title: "Asunto",
+      titlePlaceholder: "¿De qué se trata?",
+      message: "Mensaje",
+      messagePlaceholder: "Escribe tu mensaje aquí…",
+      phone: "Número de teléfono (opcional)",
+      phonePlaceholder: "+54 11 1234 5678",
+      submit: "Enviar mensaje",
+    },
   },
 }
 

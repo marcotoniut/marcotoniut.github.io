@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
+import { Controls } from "@/components/Controls"
 import { Footer } from "@/components/Footer"
 import { GithubIcon, ItchIOIcon } from "@/components/Icons"
-import { LocaleSwitcher } from "@/components/LocaleSwitcher"
 import { TrackedAnchor, TrackedLink } from "@/components/TrackedLink"
 import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
@@ -69,7 +69,7 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <div className={styles.container}>
-      <LocaleSwitcher currentLocale={locale} />
+      <Controls currentLocale={locale} />
       <main className={styles.main}>
         <h1 className={styles.title}>Marco Toniut</h1>
 
@@ -85,6 +85,18 @@ export default async function HomePage({ params }: PageProps) {
           >
             <h2 className={styles.cardHeading}>
               <span>{dict.HomePage.cv.label}</span>
+            </h2>
+          </TrackedLink>
+
+          <TrackedLink
+            className={styles.cardInteractive}
+            href={`/${locale}/contact`}
+            locale={locale}
+            trackingType="contact_navigation"
+            fromPage="home_page"
+          >
+            <h2 className={styles.cardHeading}>
+              <span>{dict.HomePage.contact.label}</span>
             </h2>
           </TrackedLink>
 
