@@ -1,0 +1,267 @@
+# AI-powered code review workflow using OpenAI GPT-4
+# Automatically reviews PRs for security, accessibility, performance, and code quality
+# Requires: OPENAI_API_KEY secret configured in repository settings
+
+name: AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    name: AI Review PR Diff
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Collect PR diff (unified=0 for precise line hints)
+        run: |
+          git fetch origin ${{ github.base_ref }} --depth=1
+          git diff --unified=0 --no-color origin/${{ github.base_ref }}...HEAD > pr.diff
+          # Bound excessively large diffs (keeps runtime sane)
+          head -c 900000 pr.diff > pr.diff.truncated || true
+
+      - name: Build review prompt
+        run: |
+          cat > prompt.txt << 'EOF'
+          You are a senior code reviewer for Marco Toniut's personal website.
+
+          **Tech Stack:**
+          - Next.js 16 (App Router with static export for GitHub Pages)
+          - TypeScript with strict mode
+          - Vanilla Extract for CSS-in-JS styling
+          - Biome for linting and formatting
+          - typesafe-i18n for multilingual support (en, es)
+          - Google Analytics tracking
+          - SEO with anti-AI scraping policies (robots.txt, meta tags)
+
+          **Review Focus:**
+          1. **Correctness & Regressions**: Logic errors, breaking changes, type safety
+          2. **Security**: XSS, SSRF, exposed secrets, unsafe user input handling
+          3. **Performance**: Bundle size, image optimization, lazy loading
+          4. **Accessibility**: ARIA labels, semantic HTML, keyboard navigation
+          5. **SEO**: Meta tags, structured data, robots.txt compliance
+          6. **Anti-AI Protection**: Ensure noai/noimageai meta tags remain on all pages
+          7. **Project Conventions**:
+             - Use Vanilla Extract (.css.ts) not inline styles
+             - Follow App Router patterns (async components, generateMetadata)
+             - Maintain multilingual support
+             - Use TrackedLink/TrackedAnchor for analytics
+
+          **Output Format (strict JSON):**
+          {
+            "risks": [
+              {
+                "severity": "high" | "med" | "low",
+                "file": "path/to/file",
+                "lineHints": ["line 42-45"],
+                "message": "Detailed explanation of the risk"
+              }
+            ],
+            "suggestions": [
+              {
+                "file": "path/to/file",
+                "line": 42,
+                "patchMinimal": "unified diff snippet showing minimal fix"
+              }
+            ],
+            "tests": ["test scenario 1", "test scenario 2"],
+            "verdict": "lgtm" | "changes-requested",
+            "summary": "1-2 paragraph executive summary of the changes and overall assessment"
+          }
+
+          **Critical**: Flag removal of anti-AI meta tags, robots.txt changes, or security vulnerabilities as high severity.
+          EOF
+
+      - name: Call OpenAI Chat Completions API
+        id: ai
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          set -e
+          if [ -z "$OPENAI_API_KEY" ]; then
+            cat > review.json <<'JSON'
+          {
+            "risks": [],
+            "suggestions": [],
+            "tests": [],
+            "verdict": "skipped",
+            "summary": "AI review skipped because OPENAI_API_KEY is not configured for this run."
+          }
+          JSON
+            echo "verdict=skipped" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Build JSON payload using Python for safe escaping
+          python3 - << 'PY'
+          import json
+
+          prompt = open("prompt.txt").read()
+          diff = open("pr.diff.truncated", "rb").read().decode("utf-8", "ignore")
+
+          payload = {
+              "model": "gpt-4o",
+              "messages": [
+                  {
+                      "role": "system",
+                      "content": "You are a precise, security-minded code reviewer who outputs strict JSON only."
+                  },
+                  {
+                      "role": "user",
+                      "content": prompt
+                  },
+                  {
+                      "role": "user",
+                      "content": f"PR DIFF START\n{diff}\nPR DIFF END"
+                  }
+              ],
+              "temperature": 0.3,
+              "response_format": { "type": "json_object" }
+          }
+
+          with open("payload.json", "w") as f:
+              json.dump(payload, f, indent=2)
+          PY
+
+          if ! curl -sS https://api.openai.com/v1/chat/completions \
+            -H "Authorization: Bearer ${OPENAI_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d @payload.json \
+          | tee review.raw.json > /dev/null; then
+            cat > review.json <<'JSON'
+          {
+            "risks": [],
+            "suggestions": [],
+            "tests": [],
+            "verdict": "skipped",
+            "summary": "AI review skipped because the OpenAI request failed."
+          }
+          JSON
+            echo "verdict=skipped" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Extract model output from Chat Completions response
+          python3 - << 'PY'
+          import json, sys
+
+          try:
+              data = json.load(open("review.raw.json"))
+
+              # Chat Completions API returns: { choices: [{ message: { content: "..." } }] }
+              if "choices" in data and data["choices"]:
+                  content = data["choices"][0].get("message", {}).get("content", "")
+                  if content:
+                      try:
+                          parsed = json.loads(content)
+                      except json.JSONDecodeError:
+                          parsed = {
+                              "risks": [],
+                              "suggestions": [],
+                              "tests": [],
+                              "verdict": "changes-requested",
+                              "summary": content[:4000]
+                          }
+                  else:
+                      parsed = {
+                          "risks": [],
+                          "suggestions": [],
+                          "tests": [],
+                          "verdict": "changes-requested",
+                          "summary": "No response from AI"
+                      }
+              else:
+                  error_msg = data.get("error", {}).get("message", "Unknown API error")
+                  parsed = {
+                      "risks": [],
+                      "suggestions": [],
+                      "tests": [],
+                      "verdict": "changes-requested",
+                      "summary": f"API Error: {error_msg}"
+                  }
+
+              with open("review.json", "w") as f:
+                  json.dump(parsed, f, indent=2)
+
+          except Exception as e:
+              print(f"Error parsing API response: {e}", file=sys.stderr)
+              with open("review.json", "w") as f:
+                  json.dump({
+                      "risks": [],
+                      "suggestions": [],
+                      "tests": [],
+                      "verdict": "changes-requested",
+                      "summary": f"Failed to parse response: {str(e)}"
+                  }, f, indent=2)
+          PY
+
+          verdict=$(jq -r '.verdict // "changes-requested"' review.json 2>/dev/null || echo "changes-requested")
+          echo "verdict=${verdict}" >> "$GITHUB_OUTPUT"
+
+      - name: Compose PR comment
+        id: compose
+        if: steps.ai.outputs.verdict != 'skipped'
+        run: |
+          python3 - << 'PY'
+          import json, textwrap
+          r=json.load(open("review.json"))
+          def bullet(items, key=None):
+              if not items: return "_(none)_"
+              if key:
+                  return "\n".join(f"- {i.get(key,'')}" for i in items)
+              return "\n".join(f"- {i}" for i in items)
+
+          risks = r.get("risks",[])
+          risks_md = "_(none)_" if not risks else "\n".join(
+              f"- **{x.get('severity','?').upper()}** — `{x.get('file','?')}` @ {', '.join(x.get('lineHints',[]) or [])}: {x.get('message','')}"
+              for x in risks
+          )
+
+          suggestions = r.get("suggestions",[])
+          sug_md = "_(none)_" if not suggestions else "\n\n".join(
+              f"**{s.get('file','?')}:{s.get('line','?')}**\n```diff\n{s.get('patchMinimal','').strip()}\n```"
+              for s in suggestions
+          )
+
+          tests_md = bullet(r.get("tests",[]))
+          verdict = r.get("verdict","changes-requested")
+          summary = r.get("summary","")
+
+          body = f"""🤖 **AI Code Review**
+
+          **Verdict:** `{verdict}`
+
+          **Summary**
+          {summary or "_(no summary)_"}
+
+          **Top Risks**
+          {risks_md}
+
+          **Suggested Minimal Patches**
+          {sug_md}
+
+          **Tests to Add**
+          {tests_md}
+          """
+          open("comment.md","w").write(body)
+          PY
+
+      - name: Comment on PR with results
+        uses: thollander/actions-comment-pull-request@v2
+        if: steps.ai.outputs.verdict != 'skipped'
+        with:
+          filePath: comment.md
+
+      - name: Fail CI when AI requests changes (optional gate)
+        if: steps.ai.outputs.verdict == 'changes-requested'
+        run: |
+          echo "AI requested changes → failing job."
+          exit 1
