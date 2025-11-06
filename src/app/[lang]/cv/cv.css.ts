@@ -43,6 +43,15 @@ export const docCn = style({
   maxWidth,
   paddingBlock: space.large,
   paddingInline: space.large,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      flexDirection: "column",
+      fontSize: "0.92rem",
+      gap: space.large,
+      paddingInline: space.default,
+      paddingBlock: space.large,
+    },
+  },
 })
 
 export const nameCn = style({
@@ -139,6 +148,13 @@ export const asideCn = style({
   flexDirection: "column",
   justifyContent: "space-between",
   backgroundColor: "transparent",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      maxWidth: "none",
+      width: "100%",
+      order: 0,
+    },
+  },
 })
 
 export const link2Cn = style({
@@ -246,14 +262,4 @@ globalStyle("body", {
       WebkitPrintColorAdjust: "exact",
     },
   },
-})
-
-const docMediaCn = `${docCn} @media screen and (max-width: 768px)` as const
-globalStyle(docMediaCn, {
-  fontSize: "0.85rem",
-  display: "block",
-})
-
-globalStyle(`${docMediaCn} aside`, {
-  marginTop: space.xxxl,
 })
