@@ -1,7 +1,5 @@
 import { GoogleAnalytics } from "@next/third-parties/google"
 import type { Metadata } from "next"
-import "./globals.css"
-import "@/styles/global.css.ts"
 import { Analytics } from "@/components/Analytics"
 import { ThemeProvider } from "@/components/theme-provider"
 import { siteConfig } from "@/config/site"
@@ -14,6 +12,9 @@ import {
   generateOpenGraphMetadata,
   generateTwitterMetadata,
 } from "@/utils/metadata"
+
+import "@/styles/global.css.ts"
+import "./globals.css"
 
 const languageAlternates = Object.fromEntries(
   locales.map((locale) => [locale, buildLocalizedHref(locale)]),

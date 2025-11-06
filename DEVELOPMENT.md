@@ -31,7 +31,7 @@ Runs at [http://localhost:8825](http://localhost:8825)
 | `pnpm typecheck` | Check TypeScript types                    |
 | `pnpm generate`  | Generate translation files                |
 | `pnpm print-cv`  | Generate CV PDF                           |
-| `pnpm deploy`    | Deploy to GitHub Pages                    |
+| `pnpm deploy`    | Reminder: deployments run on `release`    |
 
 ## Development Flow
 
@@ -39,7 +39,7 @@ Runs at [http://localhost:8825](http://localhost:8825)
 2. **Lint** → `pnpm lint:fix && pnpm typecheck`
 3. **Build** → `pnpm build` (verify it works)
 4. **Commit** → Short, imperative messages
-5. **Deploy** → `pnpm deploy` (pushes to `gh-pages` branch)
+5. **Deploy** → merge to `release` (deployment workflow runs automatically)
 
 ## Key Concepts
 
@@ -129,14 +129,10 @@ GPTBot, ChatGPT-User, Google-Extended, ClaudeBot, CCBot, PerplexityBot, Facebook
 Deploy to GitHub Pages:
 
 ```bash
-pnpm deploy
+# Push or merge to the release branch
+git push origin release
 ```
 
-This command:
-1. Clears build caches (`node_modules/.cache`, `out/`)
-2. Generates sitemap.xml
-3. Runs production build
-4. Pushes to `gh-pages` branch
-5. Adds `.nojekyll` marker to disable Jekyll processing
+The GitHub Actions workflow (`Deploy Next.js site to Pages`) runs automatically on the `release` branch, building the static export and publishing it to Pages with the environment-provided analytics credentials.
 
 The site is available at [https://marcotoniut.github.io](https://marcotoniut.github.io)
