@@ -13,15 +13,17 @@ interface HeaderProps {
 
 export function Header({ currentLocale, backLink }: HeaderProps) {
   return (
-    <header className={styles.header}>
-      {backLink ? (
-        <Link href={backLink.href} className={styles.backLink}>
-          ← {backLink.label}
-        </Link>
-      ) : (
-        <div />
-      )}
-      <Controls currentLocale={currentLocale} />
-    </header>
+    <div className={styles.headerContainer}>
+      <header className={styles.header}>
+        {backLink ? (
+          <Link href={backLink.href} className={styles.backLink}>
+            ← {backLink.label}
+          </Link>
+        ) : (
+          <div />
+        )}
+        <Controls currentLocale={currentLocale} />
+      </header>
+    </div>
   )
 }

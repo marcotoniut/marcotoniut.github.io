@@ -1,12 +1,27 @@
 import { style } from "@vanilla-extract/css"
-import { fontSizes, themeVars } from "@/styles/theme"
+import {
+  colors,
+  fontFamilies,
+  fontSizes,
+  fontWeights,
+  space,
+  themeVars,
+} from "@/styles/theme"
 
 export const footer = style({
-  padding: "1rem 0rem",
-  marginTop: "auto",
-  borderTop: `1px solid ${themeVars.color.border}`,
-  backgroundColor: themeVars.color.background,
-  color: themeVars.color.textPrimary,
+  alignItems: "center",
+  alignSelf: "stretch",
+  borderTop: `1px solid ${colors.border}`,
+  color: colors.textMuted,
+  display: "flex",
+  fontFamily: fontFamilies.body,
+  fontSize: fontSizes.small,
+  fontWeight: fontWeights.body.medium,
+  justifyContent: "center",
+  marginInline: "auto",
+  paddingBlock: space.small,
+  textTransform: "uppercase",
+  width: "min(100%, 960px)",
 })
 
 export const content = style({

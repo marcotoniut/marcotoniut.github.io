@@ -52,8 +52,3 @@ export const backLink = style({
     color: themeVars.color.textPrimary,
   },
 })
-
-export const footer = style({
-  marginTop: "auto",
-  width: "100%",
-})

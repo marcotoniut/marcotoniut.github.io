@@ -72,7 +72,7 @@ export default async function ContactPage({ params }: PageProps) {
         currentLocale={locale}
         backLink={{
           href: `/${locale}`,
-          label: dict.ContactPage.backToHome,
+          label: dict.Common.goBack,
         }}
       />
 
@@ -85,7 +85,7 @@ export default async function ContactPage({ params }: PageProps) {
         <ContactForm translations={dict.ContactPage.form} />
       </main>
 
-      <Footer className={styles.footer} />
+      <Footer />
     </div>
   )
 }

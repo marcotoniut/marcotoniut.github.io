@@ -8,7 +8,6 @@ const enUs: BaseTranslation = {
       title: "Marco Toniut | Resume",
     },
     profession: "Systems Engineer",
-    goBack: "Go back",
     title: "Resume",
     profile: {
       picture: "Profile picture",
@@ -235,6 +234,7 @@ const enUs: BaseTranslation = {
   Common: {
     buyMeACoffee: "Buy me a coffee",
     buyMeACoffeeIconAlt: "Buy me a coffee logo",
+    goBack: "Go back",
     supportTagline: "Support my work",
   },
   NotFoundPage: {
@@ -248,12 +248,11 @@ const enUs: BaseTranslation = {
     meta: {
       description:
         "Get in touch with Marco Toniut for freelance projects and collaborations",
-      title: "Contact | Marco Toniut",
+      title: "Contact",
     },
     title: "Get in Touch",
     description:
       "Have something you’d like to talk about? Leave a message below and I’ll get back to you soon.",
-    backToHome: "Back to home",
     form: {
       title: "Subject",
       titlePlaceholder: "What's this about?",

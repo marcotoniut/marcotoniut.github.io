@@ -10,8 +10,6 @@ import {
   space,
 } from "@/styles/theme"
 
-const ICON_SIZE = 48
-
 export const main = style({
   width: "100%",
   flex: "0 1 auto",
@@ -24,23 +22,6 @@ export const main = style({
   textAlign: "center",
   minHeight: "auto",
   marginBlock: "auto",
-})
-
-export const footer = style({
-  width: "min(100%, 960px)",
-  alignSelf: "stretch",
-  marginInline: "auto",
-  display: "flex",
-  paddingBlock: space.small,
-  borderTop: `1px solid ${colors.border}`,
-  justifyContent: "center",
-  alignItems: "center",
-  color: colors.textMuted,
-  fontFamily: fontFamilies.body,
-  fontSize: "0.75rem",
-  fontWeight: fontWeights.body.medium,
-  letterSpacing: "0.06em",
-  textTransform: "uppercase",
 })
 
 export const title = style({
@@ -141,43 +122,6 @@ export const actionRow = style({
   gap: space.small,
   alignItems: "center",
   justifyContent: "center",
-})
-
-export const iconLink = style({
-  alignItems: "center",
-  background: colors.surfaceElevated,
-  border: `1px solid ${colors.borderMuted}`,
-  boxShadow: shadows.subtle,
-  color: colors.text,
-  display: "flex",
-  justifyContent: "center",
-  minHeight: ICON_SIZE,
-  minWidth: ICON_SIZE,
-  padding: space.default,
-  transition:
-    "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease",
-  selectors: {
-    "&:hover, &:focus, &:active": {
-      color: colors.accent,
-      borderColor: colors.accent,
-      boxShadow: shadows.soft,
-      transform: "translateY(-4px)",
-    },
-  },
-})
-
-export const projectRow = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: space.default,
-  textAlign: "center",
-  flexWrap: "nowrap",
-  "@media": {
-    "(max-width: 480px)": {
-      flexWrap: "wrap",
-    },
-  },
 })
 
 export const footerLink = style({

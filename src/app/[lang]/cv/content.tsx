@@ -62,7 +62,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
             currentLocale={locale}
             backLink={{
               href: `/${locale}/`,
-              label: LL.CVPage.goBack(),
+              label: LL.Common.goBack(),
             }}
           />
         </div>

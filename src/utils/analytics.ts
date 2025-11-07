@@ -14,6 +14,9 @@ const LinkClickParamsSchema = z.object({
     "cv_page",
     "footer",
     "profile",
+    "carcinisation_project_page",
+    "carcinisation_project_page_meta",
+    "carcinisation_project_page_external_links",
   ]),
   locale: z.string(),
 })
@@ -33,7 +36,7 @@ const CVViewParamsSchema = z.object({
 
 const ProjectLinkParamsSchema = LinkClickParamsSchema.extend({
   project_name: z.string(),
-  link_type: z.enum(["github", "itch_io"]),
+  link_type: z.enum(["github", "itch_io", "jam"]),
 })
 
 // Type exports

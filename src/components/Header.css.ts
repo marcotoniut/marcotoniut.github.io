@@ -8,6 +8,12 @@ import {
   space,
 } from "@/styles/theme"
 
+export const headerContainer = style({
+  margin: "0 auto",
+  maxWidth: "1080px",
+  width: "100%",
+})
+
 export const header = style({
   alignItems: "center",
   display: "flex",

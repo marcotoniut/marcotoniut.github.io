@@ -1,6 +1,11 @@
-import { darkThemeClass, lightThemeClass, themeVars } from "./theme.css"
+import {
+  darkThemeClass,
+  gameboyThemeClass,
+  lightThemeClass,
+  themeVars,
+} from "./theme.css"
 
-export { themeVars, darkThemeClass, lightThemeClass }
+export { themeVars, darkThemeClass, lightThemeClass, gameboyThemeClass }
 
 export const themeClass = darkThemeClass
 
@@ -28,6 +33,7 @@ export const colors = {
   surfaceElevated: themeVars.color.surfaceElevated,
   text: themeVars.color.textPrimary,
   textMuted: themeVars.color.textMuted,
+  gb: themeVars.color.gb,
 } as const
 
 export const space = {

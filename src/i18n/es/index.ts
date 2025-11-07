@@ -1,6 +1,6 @@
 import type { Translation } from "../i18n-types"
 
-const esEs: Translation = {
+const esEs = {
   CVPage: {
     meta: {
       description:
@@ -8,7 +8,6 @@ const esEs: Translation = {
       title: "Marco Toniut | Currículum Vitae",
     },
     profession: "Ingeniero de Sistemas",
-    goBack: "Volver",
     title: "Curriculum Vitae",
     profile: {
       picture: "Imagen de perfil",
@@ -236,6 +235,7 @@ const esEs: Translation = {
   Common: {
     buyMeACoffee: "Comprame un café",
     buyMeACoffeeIconAlt: "Comprame un café logo",
+    goBack: "Volver",
     supportTagline: "Apoyá mi trabajo",
   },
   NotFoundPage: {
@@ -249,12 +249,11 @@ const esEs: Translation = {
     meta: {
       description:
         "Ponete en contacto con Marco Toniut para proyectos freelance y colaboraciones",
-      title: "Contacto | Marco Toniut",
+      title: "Contacto",
     },
     title: "Ponete en Contacto",
     description:
       "¿Tienes algo de lo que quieras hablar? Déjame un mensaje y te responderé pronto.",
-    backToHome: "Volver al inicio",
     form: {
       title: "Asunto",
       titlePlaceholder: "¿De qué se trata?",
@@ -265,6 +264,6 @@ const esEs: Translation = {
       submit: "Enviar mensaje",
     },
   },
-}
+} satisfies Translation
 
 export default esEs

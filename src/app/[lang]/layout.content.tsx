@@ -13,11 +13,7 @@ interface Props {
   translation: Translation
 }
 
-export default function ClientComponent({
-  children,
-  locale,
-  translation,
-}: Props) {
+export function LayoutContent({ children, locale, translation }: Props) {
   loadedLocales[locale] = translation
   loadFormatters(locale)
 

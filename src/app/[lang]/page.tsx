@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
-import { GithubIcon, ItchIOIcon } from "@/components/Icons"
-import { TrackedAnchor, TrackedLink } from "@/components/TrackedLink"
+import { TrackedLink } from "@/components/TrackedLink"
 import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
 import * as commonStyles from "@/styles/layouts.css"
@@ -71,11 +70,10 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <div className={commonStyles.pageContainer}>
       <Header currentLocale={locale} />
+
       <main className={styles.main}>
         <h1 className={styles.title}>Marco Toniut</h1>
-
         <p className={styles.description}></p>
-
         <div className={styles.grid}>
           <TrackedLink
             className={styles.cardInteractive}
@@ -99,49 +97,21 @@ export default async function HomePage({ params }: PageProps) {
             </span>
           </TrackedLink>
 
-          <div className={styles.projectRow}>
-            <h2 className={styles.projectHeading}>
+          <TrackedLink
+            className={styles.cardInteractive}
+            href={`/${locale}/projects/carcinisation`}
+            locale={locale}
+            trackingType="contact_navigation"
+            fromPage="home_page"
+          >
+            <span className={styles.cardHeading}>
               {dict.HomePage.carcinisation.label}
-            </h2>
-            <div className={styles.actionRow}>
-              <TrackedAnchor
-                className={styles.iconLink}
-                href="https://github.com/marcotoniut/carcinisation"
-                rel="noreferrer"
-                aria-label="View Carcinisation on GitHub"
-                locale={locale}
-                trackingType="project_link"
-                trackingParams={{
-                  link_url: "https://github.com/marcotoniut/carcinisation",
-                  link_location: "home_page",
-                  project_name: "carcinisation",
-                  link_type: "github",
-                }}
-              >
-                <GithubIcon />
-              </TrackedAnchor>
-              <TrackedAnchor
-                className={styles.iconLink}
-                href="https://marcotoniut.itch.io/carcinisation"
-                rel="noreferrer"
-                aria-label="Play Carcinisation on itch.io"
-                locale={locale}
-                trackingType="project_link"
-                trackingParams={{
-                  link_url: "https://marcotoniut.itch.io/carcinisation",
-                  link_location: "home_page",
-                  project_name: "carcinisation",
-                  link_type: "itch_io",
-                }}
-              >
-                <ItchIOIcon />
-              </TrackedAnchor>
-            </div>
-          </div>
+            </span>
+          </TrackedLink>
         </div>
       </main>
 
-      <Footer className={styles.footer} />
+      <Footer />
     </div>
   )
 }

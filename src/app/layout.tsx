@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { siteConfig } from "@/config/site"
 import { env } from "@/env"
 import { baseLocale, locales } from "@/i18n/i18n-util"
+import { pressStartFont } from "@/styles/fonts"
 import { themeClass } from "@/styles/theme"
 import { buildLocalizedHref } from "@/utils/locale"
 import {
@@ -95,7 +96,10 @@ export default function RootLayout({
   }
 
   return (
-    <html className={themeClass} lang={baseLocale}>
+    <html
+      className={`${themeClass} ${pressStartFont.variable}`}
+      lang={baseLocale}
+    >
       <head>
         {/* Font preloads for performance */}
         <link

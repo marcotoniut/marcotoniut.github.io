@@ -16,6 +16,12 @@ const themeContract = createThemeContract({
     buyMeACoffeeBackground: null,
     buyMeACoffeeText: null,
     buyMeACoffeeAccent: null,
+    gb: {
+      dark: null,
+      mid: null,
+      lite: null,
+      pale: null,
+    },
   },
   space: {
     none: null,
@@ -192,12 +198,34 @@ const darkThemeColors = {
   focusRing: "rgba(86, 243, 201, 0.45)",
 } as const
 
+const gbPalette = {
+  dark: "#421032",
+  mid: "#91300a",
+  lite: "#b96740",
+  pale: "#fbe1a8",
+} as const
+
+const gameboyThemeColors = {
+  background: gbPalette.pale,
+  surface: "#f5c78f",
+  surfaceElevated: "#fde7c5",
+  border: gbPalette.mid,
+  borderMuted: "#f2b775",
+  textPrimary: gbPalette.dark,
+  textMuted: "#7c2e24",
+  accent: gbPalette.mid,
+  accentSoft: gbPalette.lite,
+  accentContrast: "#fff7e9",
+  focusRing: "rgba(66, 16, 50, 0.4)",
+} as const
+
 export const lightThemeClass = createTheme(themeContract, {
   color: {
     ...lightThemeColors,
     buyMeACoffeeBackground: lightThemeColors.surfaceElevated,
     buyMeACoffeeText: lightThemeColors.textPrimary,
     buyMeACoffeeAccent: "#ffdd00",
+    gb: gbPalette,
   },
   space: sharedSpace,
   radius: sharedRadius,
@@ -211,6 +239,7 @@ export const darkThemeClass = createTheme(themeContract, {
     buyMeACoffeeBackground: darkThemeColors.textPrimary,
     buyMeACoffeeText: darkThemeColors.surface,
     buyMeACoffeeAccent: "#ffdd00",
+    gb: gbPalette,
   },
   space: sharedSpace,
   radius: sharedRadius,
@@ -218,6 +247,24 @@ export const darkThemeClass = createTheme(themeContract, {
     subtle: "0 1px 2px rgba(0, 0, 0, 0.45)",
     soft: "0 6px 18px rgba(5, 8, 15, 0.45)",
     glow: "0 0 0 1px rgba(86, 243, 201, 0.35)",
+  },
+  font: sharedFont,
+})
+
+export const gameboyThemeClass = createTheme(themeContract, {
+  color: {
+    ...gameboyThemeColors,
+    buyMeACoffeeBackground: gbPalette.lite,
+    buyMeACoffeeText: gbPalette.dark,
+    buyMeACoffeeAccent: gbPalette.mid,
+    gb: gbPalette,
+  },
+  space: sharedSpace,
+  radius: sharedRadius,
+  shadow: {
+    subtle: "0 2px 6px rgba(15, 56, 15, 0.25)",
+    soft: "0 16px 40px rgba(15, 56, 15, 0.35)",
+    glow: "0 0 0 1px rgba(15, 56, 15, 0.4)",
   },
   font: sharedFont,
 })
