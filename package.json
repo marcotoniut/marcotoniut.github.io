@@ -16,6 +16,8 @@
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "lint:fix:unsafe": "biome check --write --unsafe",
+    "format:py": "ruff format .github/workflows/ai-*/*.py",
+    "format:py:check": "ruff format --check .github/workflows/ai-*/*.py",
     "mcp:discover": "pnpm tsx scripts/mcp-discover.ts",
     "print-cv": "pnpm tsx scripts/print-cv.ts",
     "spellcheck": "cspell lint .",

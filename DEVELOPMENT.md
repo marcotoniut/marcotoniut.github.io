@@ -7,7 +7,7 @@ Quick reference for developing this Next.js personal website.
 This project uses [`proto`](https://moonrepo.dev/docs/proto) to pin tool versions.
 
 ```bash
-proto install          # installs Node.js, pnpm, Lefthook
+proto install          # installs Node.js, pnpm, Lefthook, Ruff
 pnpm install
 lefthook install       # sets up Git hooks (skip in CI)
 ```
@@ -31,6 +31,8 @@ Runs at [http://localhost:8825](http://localhost:8825)
 | `pnpm typecheck` | Check TypeScript types                    |
 | `pnpm generate`  | Generate translation files                |
 | `pnpm print-cv`  | Generate CV PDF                           |
+| `pnpm format:py` | Format Python CI helpers with Ruff        |
+| `pnpm format:py:check` | Check Python formatting (CI parity) |
 | `pnpm deploy`    | Reminder: deployments run on `release`    |
 
 ## Development Flow
@@ -90,7 +92,10 @@ Before committing:
 
 ```bash
 pnpm lint:fix && pnpm typecheck && pnpm build
+pnpm format:py
 ```
+
+Run `pnpm format:py:check` (or rely on CI) whenever Python helper scripts change; Ruff is installed via `proto` for consistent local/CI formatting.
 
 ## SEO & Anti-AI Scraping
 
