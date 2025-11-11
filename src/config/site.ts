@@ -22,7 +22,7 @@ export const siteConfig = {
     github: "https://github.com/marcotoniut",
     itch: "https://marcotoniut.itch.io",
     linkedin: "https://www.linkedin.com/in/marco-toniut-4b6a143a/",
-    ogImage: "https://marcotoniut.github.io/cv/profile.jpeg",
+    ogImage: "https://marcotoniut.github.io/PLACEHOLDER.png",
   },
   sameAs: [
     "https://github.com/marcotoniut",

@@ -105,6 +105,7 @@ This site implements comprehensive SEO optimization with anti-AI training protec
 
 - **[robots.txt](public/robots.txt)** — Blocks AI crawlers (OpenAI, Anthropic, Google Extended, CCBot, etc.)
 - **[sitemap.xml](public/sitemap.xml)** — Auto-generated on build via `pnpm generate:sitemap`
+- Pre-push hook reruns `pnpm generate:sitemap` **only when pushing the `release` branch** and blocks the push if `public/sitemap.xml` changes. Commit the regenerated file whenever the date or routes change to unblock release pushes. A matching GitHub workflow enforces the same rule on PRs targeting `release`.
 - **Schema.org JSON-LD** — Structured data in [src/app/layout.tsx](src/app/layout.tsx#L70-L94)
 - **OpenGraph & Twitter Cards** — Social media metadata via [src/utils/metadata.ts](src/utils/metadata.ts)
 - **Anti-AI Meta Tags** — `noai`, `noimageai`, `nocontentai` in page metadata

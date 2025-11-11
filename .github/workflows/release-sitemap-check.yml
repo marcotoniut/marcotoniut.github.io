@@ -1,0 +1,36 @@
+name: Release Sitemap Guard
+
+on:
+  pull_request:
+    branches:
+      - release
+
+jobs:
+  sitemap:
+    name: Verify sitemap is up-to-date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.19.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Regenerate sitemap
+        run: pnpm generate:sitemap
+
+      - name: Ensure sitemap committed
+        run: |
+          if [[ -n "$(git status --short -- public/sitemap.xml)" ]]; then
+            echo "::error ::public/sitemap.xml is out of date. Run 'pnpm generate:sitemap' and commit the result."
+            git status --short -- public/sitemap.xml
+            exit 1
+          fi
