@@ -34,7 +34,7 @@ Agents collaborate fluidly — they may alternate roles as needed, review each o
    - Narrative, UX, or conceptual reasoning tasks → Claude usually leads.  
      The other agent reviews and refines before completion.
 3. **Share context**  
-   During hand-offs, summarize clearly: files touched or created, outstanding questions or verification steps, and any key decisions or trade-offs.
+   Only describe files touched, open questions, verification status, or decisions when a hand-off summary is explicitly requested.
 4. **Verify before hand-off**  
    Run or reason through the standard checks whenever possible:
    ```bash
@@ -45,6 +45,14 @@ Agents collaborate fluidly — they may alternate roles as needed, review each o
    If execution is blocked (for example by sandbox limits), state what remains unverified and why.
 5. **Escalate when unsure**  
    If something conflicts with `DEVELOPMENT.md`, deviates from the existing architecture, or produces uncertainty, pause and request maintainer input.
+
+---
+
+## Process cleanup
+
+- Stop any background services, dev servers, watchers, or other processes that agents start for development or verification once the task is complete. Use the provided helpers (for example `KillShell` for `pnpm dev:agents`) so leftovers do not block future work.
+- Only leave a process running when the maintainer or user explicitly asks for it; note the reason for it in the task notes.
+- The user can start their own manual tests when they are ready, so do not keep your own manual-test servers or scripts lingering after you hand off the work.
 
 ---
 
@@ -68,16 +76,19 @@ No hand-off should proceed with failing checks or unresolved doubts.
 ## Web testing (headless, single server)
 
 **Ports**
+
 - Dev (human): 8825
 - Agents: 8830
 
 **Workflow**
-1) Start server in background: `Bash({ command: "pnpm dev:agents", run_in_background: true })`
-2) Wait ~10s for server readiness
-3) Test with `mcp__playwright__*` tools (headless)
-4) Kill shell: `KillShell({ shell_id })`
+
+1. Start server in background: `Bash({ command: "pnpm dev:agents", run_in_background: true })`
+2. Wait ~10s for server readiness
+3. Test with `mcp__playwright__*` tools (headless)
+4. Kill shell: `KillShell({ shell_id })`
 
 **Rules**
+
 - Use headless by default. No manual browser windows.
 - Always kill background shell after testing.
 
@@ -106,6 +117,7 @@ This script reads `.mcp.json` and lists all configured MCP servers, their capabi
 ### Playwright MCP
 
 Two servers configured:
+
 - `playwright` (headless) – Default for testing
 - `playwright-headed` (visible) – Debugging only, requires maintainer approval
 
@@ -119,8 +131,9 @@ Two servers configured:
 
 - Be explicit about assumptions and uncertainties.
 - Reference files with relative links, e.g. `[src/app/page.tsx:42](src/app/page.tsx#L42)`.
-- Keep hand-offs concise but complete, including verification status.
+- Keep hand-offs concise but complete when requested, including verification status.
 - Suggest concrete next steps rather than vague impressions.
 - Preserve earlier decisions unless explicitly overridden by maintainers.
 - Maintain a factual, concise tone without anthropomorphic language.
+- Keep descriptions as terse as possible without losing essential context.
   8525
