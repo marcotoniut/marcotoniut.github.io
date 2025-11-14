@@ -107,11 +107,13 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                     {email}
                   </a>
                 </div>
-                <div>
-                  <a className={link2Cn} href={`tel:${phone}`}>
-                    {phone}
-                  </a>
-                </div>
+                {isPdfPrinting ? (
+                  <div>
+                    <a className={link2Cn} href={`tel:${phone}`}>
+                      {phone}
+                    </a>
+                  </div>
+                ) : null}
                 <div>{LL.CVPage.contactDetails.location()}</div>
                 <div className={socialLinksCn}>
                   <TrackedAnchor
