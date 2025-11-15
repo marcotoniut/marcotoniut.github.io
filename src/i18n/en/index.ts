@@ -133,7 +133,7 @@ const enUs: BaseTranslation = {
           degree: "Systems Engineer",
           institution: "University CAECE Mar del Plata",
           description: `
-            Comprehensive training in computer science, covering algorithms, data structures, and software architecture patterns. 
+            Comprehensive training in computer science, covering algorithms, data structures, and software architecture patterns.
             Additional focus on project management, quality assurance, and electronic circuit design.`,
         },
         courses: {
@@ -229,6 +229,10 @@ const enUs: BaseTranslation = {
     },
     carcinisation: {
       label: "Carcinisation",
+    },
+    sonicThames: {
+      label: "SonicThames",
+      hint: "Trace London by sound →",
     },
   },
   Common: {

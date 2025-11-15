@@ -27,7 +27,7 @@ export const main = style({
 export const title = style({
   margin: 0,
   lineHeight: 1.15,
-  fontSize: "clamp(2.4rem, 6vw, 3.6rem)",
+  fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
   textShadow: "0 20px 60px rgba(10, 12, 18, 0.45)",
 })
 
@@ -45,7 +45,9 @@ export const grid = style({
   gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
   gap: space.large,
   justifyItems: "center",
-  alignItems: "center",
+  alignItems: "stretch",
+  justifyContent: "stretch",
+  gridAutoRows: "1fr",
 })
 
 const cardBase = style({
@@ -62,6 +64,8 @@ const cardBase = style({
   flexDirection: "column",
   gap: space.small,
   alignItems: "center",
+  height: "100%",
+  justifyContent: "center",
 })
 
 export const cardInteractive = style([
