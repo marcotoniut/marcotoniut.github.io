@@ -108,6 +108,19 @@ export default async function HomePage({ params }: PageProps) {
               {dict.HomePage.carcinisation.label}
             </span>
           </TrackedLink>
+
+          <TrackedLink
+            className={styles.cardInteractive}
+            href={`/${locale}/projects/sonicthames`}
+            locale={locale}
+            trackingType="contact_navigation"
+            fromPage="home_page"
+          >
+            <span className={styles.cardHeading}>
+              {dict.HomePage.sonicThames.label}
+            </span>
+            <p className={styles.cardHint}>{dict.HomePage.sonicThames.hint}</p>
+          </TrackedLink>
         </div>
       </main>
 

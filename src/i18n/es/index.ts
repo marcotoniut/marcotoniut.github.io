@@ -133,7 +133,7 @@ const esEs = {
           degree: "Ingeniero de Sistemas",
           institution: "Universidad CAECE Mar del Plata",
           description: `
-            Formación integral en ciencias de la computación, abarcando algoritmos, estructuras de datos y patrones de arquitectura de software. 
+            Formación integral en ciencias de la computación, abarcando algoritmos, estructuras de datos y patrones de arquitectura de software.
             Enfoque adicional en gestión de proyectos, aseguramiento de la calidad y diseño de circuitos electrónicos.`,
         },
         courses: {
@@ -230,6 +230,10 @@ const esEs = {
     },
     carcinisation: {
       label: "Carcinisation",
+    },
+    sonicThames: {
+      label: "SonicThames",
+      hint: "Percibe Londres por sonido →",
     },
   },
   Common: {

@@ -50,9 +50,9 @@ I'm a London-based software engineer specialising in robust web platforms and de
 
 ## 📊 GitHub Stats
 
-[![GitHub Streak](https://streak-stats.demolab.com?user=marcotoniut&theme=dark&hide_border=true)](https://github.com/DenverCoder1/github-readme-streak-stats)
+[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=marcotoniut&layout=compact&theme=dark&hide_border=true&border_radius=0&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=marcotoniut&layout=compact&theme=dark&hide_border=true&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
+[![Contributions](https://github-readme-stats.vercel.app/api?username=marcotoniut&show_icons=true&theme=dark&hide_border=true&border_radius=0)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
