@@ -46,33 +46,6 @@
 }
 
 @font-face {
-  font-family: "Satoshi";
-  src:
-    local("Satoshi Regular"),
-    url("/fonts/satoshi/satoshi-400.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Satoshi";
-  src:
-    local("Satoshi Medium"),
-    url("/fonts/satoshi/satoshi-500.woff2") format("woff2");
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Satoshi";
-  src:
-    local("Satoshi Bold"),
-    url("/fonts/satoshi/satoshi-700.woff2") format("woff2");
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
   font-family: "Cookie";
   src:
     local("Cookie Regular"),
