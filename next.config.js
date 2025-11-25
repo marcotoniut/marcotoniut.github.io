@@ -42,6 +42,10 @@ const nextConfig = {
             value: "index, follow, noai, noimageai",
           },
           {
+            key: "Content-Signal",
+            value: "search=yes,ai-train=no",
+          },
+          {
             key: "Permissions-Policy",
             // Disable FLoC (Federated Learning of Cohorts) - Google's privacy-invasive tracking
             value: "interest-cohort=()",

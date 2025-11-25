@@ -1,5 +1,6 @@
 # robots.txt for marcotoniut.github.io
 # Purpose: Allow legitimate search engines while blocking AI training crawlers
+# Content-signal directives are provided via HTTP headers (see next.config.js) because robots.txt rejects that format.
 
 # ============================================================
 # ALLOWED: Legitimate search engine crawlers
