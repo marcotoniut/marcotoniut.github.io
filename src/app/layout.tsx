@@ -1,9 +1,8 @@
-import { GoogleAnalytics } from "@next/third-parties/google"
 import type { Metadata } from "next"
 import { Analytics } from "@/components/Analytics"
+import { GoogleAnalyticsLoader } from "@/components/GoogleAnalyticsLoader"
 import { ThemeProvider } from "@/components/theme-provider"
 import { siteConfig } from "@/config/site"
-import { env } from "@/env"
 import { baseLocale, locales } from "@/i18n/i18n-util"
 import { pressStartFont } from "@/styles/fonts"
 import { themeClass } from "@/styles/theme"
@@ -66,8 +65,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const gaMeasurementId = env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-
   // JSON-LD structured data for Schema.org
   const structuredData = {
     "@context": "https://schema.org",
@@ -159,7 +156,7 @@ export default function RootLayout({
           <Analytics />
           {children}
         </ThemeProvider>
-        {gaMeasurementId ? <GoogleAnalytics gaId={gaMeasurementId} /> : null}
+        <GoogleAnalyticsLoader />
       </body>
     </html>
   )
