@@ -4,13 +4,6 @@ import { GoogleAnalytics } from "@next/third-parties/google"
 import { useEffect, useState } from "react"
 import { env } from "@/env"
 
-declare global {
-  interface Window {
-    requestIdleCallback?: (callback: IdleRequestCallback) => number
-    cancelIdleCallback?: (handle: number) => void
-  }
-}
-
 const measurementId = env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 const scheduleIdle = (onReady: () => void) => {
