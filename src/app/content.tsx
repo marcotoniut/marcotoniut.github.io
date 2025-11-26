@@ -1,17 +1,13 @@
 import type { Metadata } from "next"
+import { buildLocalizedMetadataFromMeta } from "@/app/[lang]/common/metadata"
 import * as styles from "@/app/[lang]/home.css"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import { TrackedLink } from "@/components/TrackedLink"
 import type { Locales, Translation } from "@/i18n/i18n-types"
-import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
+import { loadedLocales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
 import * as commonStyles from "@/styles/layouts.css"
-import { buildLocalizedHref } from "@/utils/locale"
-import {
-  generateOpenGraphMetadata,
-  generateTwitterMetadata,
-} from "@/utils/metadata"
 
 export const loadHomePageDictionary = (locale: Locales) => {
   loadLocale(locale)
@@ -21,38 +17,10 @@ export const loadHomePageDictionary = (locale: Locales) => {
 export const buildHomePageMetadata = (locale: Locales): Metadata => {
   const dict = loadHomePageDictionary(locale)
 
-  const languageAlternates = Object.fromEntries(
-    locales.map((availableLocale) => [
-      availableLocale,
-      buildLocalizedHref(availableLocale),
-    ]),
-  )
-
-  const canonicalPath = buildLocalizedHref(locale)
-
-  const languages = {
-    ...languageAlternates,
-    "x-default": buildLocalizedHref(baseLocale),
-  }
-
-  return {
-    title: dict.HomePage.meta.title,
-    description: dict.HomePage.meta.description,
-    alternates: {
-      canonical: canonicalPath,
-      languages,
-    },
-    openGraph: generateOpenGraphMetadata({
-      title: dict.HomePage.meta.title,
-      description: dict.HomePage.meta.description,
-      url: canonicalPath,
-      locale,
-    }),
-    twitter: generateTwitterMetadata({
-      title: dict.HomePage.meta.title,
-      description: dict.HomePage.meta.description,
-    }),
-  }
+  return buildLocalizedMetadataFromMeta({
+    locale,
+    meta: dict.HomePage.meta,
+  })
 }
 
 type HomePageContentProps = {

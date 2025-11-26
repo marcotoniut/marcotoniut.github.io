@@ -1,17 +1,12 @@
 import Image from "next/image"
 import type { ReactNode } from "react"
+import type { LocaleKey } from "@/app/[lang]/common"
 import { GithubIcon, ItchIOIcon } from "@/components/Icons"
 import { TrackedAnchor } from "@/components/TrackedLink"
 import type { Locales } from "@/i18n/i18n-types"
 import { pressStartFont } from "@/styles/fonts"
 import * as styles from "./carcinisation.css"
-import { carcinisationCopyEn } from "./copy/en"
-import { carcinisationCopyEs } from "./copy/es"
-
-const carcinisationCopy = {
-  en: carcinisationCopyEn,
-  es: carcinisationCopyEs,
-} as const
+import { getCarcinisationCopy } from "./i18n"
 
 const screenshotGallery = [
   {
@@ -49,15 +44,13 @@ const screenshotGallery = [
   },
 ] as const
 
-type LocaleKey = keyof typeof carcinisationCopy
-
 type ProjectContentProps = {
   locale: Locales
 }
 
 export function CarcinisationContent({ locale }: ProjectContentProps) {
-  const safeLocale: LocaleKey = locale === "es" ? "es" : "en"
-  const t = carcinisationCopy[safeLocale]
+  const localeKey: LocaleKey = locale === "es" ? "es" : "en"
+  const t = getCarcinisationCopy(locale)
 
   return (
     <section className={styles.page}>
@@ -82,7 +75,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
             href={t.links.itch}
             target="_blank"
             rel="noreferrer"
-            locale={safeLocale}
+            locale={localeKey}
             trackingType="project_link"
             trackingParams={{
               link_location: "carcinisation_project_page",
@@ -99,7 +92,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
             href={t.links.github}
             target="_blank"
             rel="noreferrer"
-            locale={safeLocale}
+            locale={localeKey}
             trackingType="project_link"
             trackingParams={{
               link_location: "carcinisation_project_page",
@@ -122,7 +115,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 href="https://itch.io/jam/gbjam-11"
                 target="_blank"
                 rel="noreferrer"
-                locale={safeLocale}
+                locale={localeKey}
                 trackingType="project_link"
                 trackingParams={{
                   link_location: "carcinisation_project_page_meta",
@@ -249,7 +242,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
           >
             {t.labels.screenshots}
           </h2>
-          <ScreenshotGallery locale={safeLocale} />
+          <ScreenshotGallery locale={localeKey} />
         </article>
 
         <article className={styles.card}>
@@ -265,7 +258,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 target="_blank"
                 rel="noreferrer"
                 className={styles.link}
-                locale={safeLocale}
+                locale={localeKey}
                 trackingType="project_link"
                 trackingParams={{
                   link_location: "carcinisation_project_page_external_links",
@@ -283,7 +276,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 target="_blank"
                 rel="noreferrer"
                 className={styles.link}
-                locale={safeLocale}
+                locale={localeKey}
                 trackingType="project_link"
                 trackingParams={{
                   link_location: "carcinisation_project_page_external_links",

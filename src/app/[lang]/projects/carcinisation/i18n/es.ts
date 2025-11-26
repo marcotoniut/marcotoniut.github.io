@@ -1,4 +1,6 @@
-export const carcinisationCopyEs = {
+import type { CarcinisationCopy } from "./en"
+
+export const esAr = {
   short:
     "Un shooter con tinte GB donde el Capitán Acrab, alterado por la radiación de un asteroide misterioso, combate oleadas de alienígenas para recuperar su nave y su destino.",
   story: [
@@ -94,4 +96,4 @@ export const carcinisationCopyEs = {
     platform: "HTML5 (Web)",
     engine: "Rust + Bevy 0.17",
   },
-} as const
+} as const satisfies CarcinisationCopy

@@ -1,4 +1,6 @@
-export const carcinisationCopyEn = {
+import type { WidenLocaleStrings } from "@/i18n/helpers"
+
+const carcinisationEnBase = {
   short:
     "A GB-tinted top-down shooter where Captain Acrab, warped by radiation from a mysterious asteroid, fights through alien hordes to reclaim his ship and fate.",
   story: [
@@ -96,4 +98,5 @@ export const carcinisationCopyEn = {
   },
 } as const
 
-export type CarcinisationCopy = typeof carcinisationCopyEn
+export type CarcinisationCopy = WidenLocaleStrings<typeof carcinisationEnBase>
+export const enUk: CarcinisationCopy = carcinisationEnBase

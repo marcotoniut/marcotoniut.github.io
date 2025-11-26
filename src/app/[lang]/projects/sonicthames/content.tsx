@@ -1,22 +1,13 @@
 import type { Locales } from "@/i18n/i18n-types"
-import { sonicthamesCopyEn } from "./copy/en"
-import { sonicthamesCopyEs } from "./copy/es"
+import { getSonicThamesCopy } from "./i18n"
 import * as styles from "./sonicthames.css"
-
-const copyByLocale = {
-  en: sonicthamesCopyEn,
-  es: sonicthamesCopyEs,
-} as const
-
-type CopyLocale = keyof typeof copyByLocale
 
 type ProjectContentProps = {
   locale: Locales
 }
 
 export function SonicThamesContent({ locale }: ProjectContentProps) {
-  const safeLocale: CopyLocale = locale === "es" ? "es" : "en"
-  const copy = copyByLocale[safeLocale]
+  const copy = getSonicThamesCopy(locale)
 
   return (
     <div className={styles.content}>

@@ -4,6 +4,7 @@ import { GoogleAnalyticsLoader } from "@/components/GoogleAnalyticsLoader"
 import { ThemeProvider } from "@/components/theme-provider"
 import { siteConfig } from "@/config/site"
 import { baseLocale, locales } from "@/i18n/i18n-util"
+import { toLocaleTag } from "@/i18n/locale-tags"
 import { pressStartFont } from "@/styles/fonts"
 import { themeClass } from "@/styles/theme"
 import { buildLocalizedHref } from "@/utils/locale"
@@ -42,6 +43,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.baseUrl,
     locale: baseLocale,
+    localeTag: toLocaleTag(baseLocale),
   }),
   twitter: generateTwitterMetadata({
     title: siteConfig.name,
@@ -95,7 +97,7 @@ export default function RootLayout({
   return (
     <html
       className={`${themeClass} ${pressStartFont.variable}`}
-      lang={baseLocale}
+      lang={toLocaleTag(baseLocale)}
     >
       <head>
         {/* Font preloads for performance */}

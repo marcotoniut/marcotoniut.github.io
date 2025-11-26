@@ -77,15 +77,16 @@ export function generateOpenGraphMetadata(params: {
   url: string
   image?: string
   locale?: Locales
+  localeTag?: string
 }): Metadata["openGraph"] {
-  const { title, description, url, image, locale = "en" } = params
+  const { title, description, url, image, locale = "en", localeTag } = params
 
   return {
     title,
     description,
     url,
     siteName: siteConfig.name,
-    locale,
+    locale: localeTag ?? locale,
     type: "website",
     images: [
       {

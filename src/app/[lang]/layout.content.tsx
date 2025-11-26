@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react"
 import { useEffect } from "react"
+import { toLocaleTag } from "@/i18n/locale-tags"
 import TypesafeI18n from "../../i18n/i18n-react"
 import type { Locales, Translation } from "../../i18n/i18n-types"
 import { loadedLocales } from "../../i18n/i18n-util"
@@ -18,7 +19,7 @@ export function LayoutContent({ children, locale, translation }: Props) {
   loadFormatters(locale)
 
   useEffect(() => {
-    document.documentElement.lang = locale
+    document.documentElement.lang = toLocaleTag(locale)
   }, [locale])
 
   return <TypesafeI18n locale={locale}>{children}</TypesafeI18n>

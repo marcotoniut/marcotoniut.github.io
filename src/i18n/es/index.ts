@@ -1,6 +1,6 @@
 import type { Translation } from "../i18n-types"
 
-const esEs = {
+const esAr = {
   CVPage: {
     meta: {
       description:
@@ -270,4 +270,4 @@ const esEs = {
   },
 } satisfies Translation
 
-export default esEs
+export default esAr

@@ -1,4 +1,6 @@
-export const sonicthamesCopyEs = {
+import type { SonicThamesCopy } from "./en"
+
+export const esAr = {
   meta: {
     title: "SonicThames",
     description:
@@ -76,6 +78,4 @@ export const sonicthamesCopyEs = {
       "Orquesté los flujos RxJS `goTo$`/`play$`, controles tipo GPS y el acoplamiento de video de proximidad para reproducir una experiencia similar a Find My.",
     ],
   },
-} as const
-
-export type SonicThamesCopy = typeof sonicthamesCopyEs
+} as const satisfies SonicThamesCopy

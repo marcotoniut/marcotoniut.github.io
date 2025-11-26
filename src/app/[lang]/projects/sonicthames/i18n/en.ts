@@ -1,4 +1,6 @@
-export const sonicthamesCopyEn = {
+import type { WidenLocaleStrings } from "@/i18n/helpers"
+
+const sonicThamesEnBase = {
   meta: {
     title: "SonicThames",
     description:
@@ -78,4 +80,5 @@ export const sonicthamesCopyEn = {
   },
 } as const
 
-export type SonicThamesCopy = typeof sonicthamesCopyEn
+export type SonicThamesCopy = WidenLocaleStrings<typeof sonicThamesEnBase>
+export const enUk: SonicThamesCopy = sonicThamesEnBase

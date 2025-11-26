@@ -2,23 +2,13 @@ import type { Metadata } from "next"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import type { Locales } from "@/i18n/i18n-types"
-import { baseLocale, loadedLocales, locales } from "@/i18n/i18n-util"
-import { loadLocale } from "@/i18n/i18n-util.sync"
 import { buildLocalizedHref } from "@/utils/locale"
-import {
-  generateOpenGraphMetadata,
-  generateTwitterMetadata,
-} from "@/utils/metadata"
+import { i18nDictionary } from "../../common"
+import { buildLocalizedMetadataFromMeta } from "../../common/metadata"
 import { resolveLocale } from "../../utils"
 import * as projectStyles from "./carcinisation.css"
 import { CarcinisationContent } from "./content"
-import { carcinisationCopyEn } from "./copy/en"
-import { carcinisationCopyEs } from "./copy/es"
-
-const carcinisationCopy = {
-  en: carcinisationCopyEn,
-  es: carcinisationCopyEs,
-} as const
+import { getCarcinisationCopy } from "./i18n"
 
 type PageParams = {
   params: Promise<{ lang: Locales }>
@@ -31,51 +21,20 @@ export async function generateMetadata({
 }: PageParams): Promise<Metadata> {
   const { lang } = await params
   const locale = resolveLocale(lang)
-  loadLocale(locale)
 
-  const description =
-    carcinisationCopy[locale]?.short ?? carcinisationCopy.en.short
+  const description = getCarcinisationCopy(locale).short
 
-  const languageAlternates = Object.fromEntries(
-    locales.map((availableLocale) => [
-      availableLocale,
-      buildLocalizedHref(availableLocale, "projects/carcinisation"),
-    ]),
-  )
-
-  const canonicalPath = buildLocalizedHref(locale, "projects/carcinisation")
-
-  const languages = {
-    ...languageAlternates,
-    "x-default": buildLocalizedHref(baseLocale, "projects/carcinisation"),
-  }
-
-  return {
-    title: metadataTitle,
-    description,
-    alternates: {
-      canonical: canonicalPath,
-      languages,
-    },
-    openGraph: generateOpenGraphMetadata({
-      title: metadataTitle,
-      description,
-      url: canonicalPath,
-      locale,
-    }),
-    twitter: generateTwitterMetadata({
-      title: metadataTitle,
-      description,
-    }),
-  }
+  return buildLocalizedMetadataFromMeta({
+    locale,
+    meta: { title: metadataTitle, description },
+    pathSuffix: "projects/carcinisation",
+  })
 }
 
 export default async function CarcinisationPage({ params }: PageParams) {
   const { lang } = await params
   const locale = resolveLocale(lang)
-
-  loadLocale(locale)
-  const dict = loadedLocales[locale]
+  const { dictionary: dict } = await i18nDictionary(locale)
 
   return (
     <div className={`${projectStyles.pageShell} ${projectStyles.gbBackdrop}`}>

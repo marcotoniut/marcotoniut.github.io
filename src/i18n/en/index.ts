@@ -1,6 +1,6 @@
 import type { BaseTranslation } from "../i18n-types"
 
-const enUs: BaseTranslation = {
+const enUk: BaseTranslation = {
   CVPage: {
     meta: {
       description:
@@ -259,7 +259,7 @@ const enUs: BaseTranslation = {
       "Have something you’d like to talk about? Leave a message below and I’ll get back to you soon.",
     form: {
       title: "Subject",
-      titlePlaceholder: "What's this about?",
+      titlePlaceholder: "What is it about?",
       message: "Message",
       messagePlaceholder: "Write your message here…",
       phone: "Phone number (optional)",
@@ -269,4 +269,4 @@ const enUs: BaseTranslation = {
   },
 }
 
-export default enUs
+export default enUk
