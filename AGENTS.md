@@ -130,10 +130,11 @@ Two servers configured:
 ## Communication Norms
 
 - Be explicit about assumptions and uncertainties.
+- Ask clarifying questions whenever requirements feel fuzzy or multiple architectural routes are plausible.
 - Reference files with relative links, e.g. `[src/app/page.tsx:42](src/app/page.tsx#L42)`.
 - Keep hand-offs concise but complete when requested, including verification status.
 - Suggest concrete next steps rather than vague impressions.
 - Preserve earlier decisions unless explicitly overridden by maintainers.
 - Maintain a factual, concise tone without anthropomorphic language.
 - Keep descriptions as terse as possible without losing essential context.
-  8525
+- When documenting code or decisions, favour terse JSDoc comments and avoid verbose explanations—treat the repository as self-documenting where possible.
