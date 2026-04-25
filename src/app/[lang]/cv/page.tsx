@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { env } from "@/env"
 import type { Locales } from "@/i18n/i18n-types"
 import { baseLocale, locales } from "@/i18n/i18n-util"
 import { i18nDictionary } from "../common"
@@ -24,6 +25,6 @@ export async function generateMetadata({
 }
 
 export default function CVPage() {
-  const isPdfPrinting = process.env.NEXT_PUBLIC_PDF_PRINTING === "true"
+  const isPdfPrinting = env.NEXT_PUBLIC_PDF_PRINTING
   return <CVContent isPdfPrinting={isPdfPrinting} />
 }

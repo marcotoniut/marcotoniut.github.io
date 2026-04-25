@@ -41,7 +41,7 @@
     "zod": "4.1.12"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.3",
+    "@biomejs/biome": "2.4.13",
     "@cspell/dict-en-gb": "5.0.19",
     "@cspell/dict-es-es": "3.0.8",
     "@playwright/mcp": "0.0.46",

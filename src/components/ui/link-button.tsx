@@ -1,8 +1,12 @@
 "use client"
 
 import Link from "next/link"
-import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from "react"
-import { forwardRef } from "react"
+import type {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ReactNode,
+  RefObject,
+} from "react"
 
 import { Button } from "./button"
 
@@ -28,67 +32,27 @@ function buildExternalRel(value?: string) {
   return Array.from(tokens).join(" ")
 }
 
-export const LinkButton = forwardRef<ElementRef<"a">, LinkButtonProps>(
-  (
-    {
-      href,
-      external = false,
-      variant,
-      size,
-      fullWidth,
-      className,
-      children,
-      rel,
-      target,
-      prefetch,
-      replace,
-      scroll,
-      shallow,
-      locale,
-      passHref,
-      legacyBehavior,
-      ...anchorProps
-    },
-    ref,
-  ) => {
-    if (external) {
-      return (
-        <Button
-          asChild
-          className={className}
-          fullWidth={fullWidth}
-          size={size}
-          variant={variant}
-        >
-          <a
-            {...anchorProps}
-            href={href}
-            ref={ref}
-            rel={buildExternalRel(rel)}
-            target={target ?? "_blank"}
-          >
-            {children}
-          </a>
-        </Button>
-      )
-    }
-
-    // Build link props object, only including defined values
-    const linkProps = {
-      ...anchorProps,
-      href,
-      ref,
-      ...(legacyBehavior !== undefined && { legacyBehavior }),
-      ...(locale !== undefined && { locale }),
-      ...(passHref !== undefined && { passHref }),
-      ...(prefetch !== undefined && { prefetch }),
-      ...(replace !== undefined && { replace }),
-      ...(scroll !== undefined && { scroll }),
-      ...(shallow !== undefined && { shallow }),
-      ...(target !== undefined && { target }),
-      ...(rel !== undefined && { rel }),
-    }
-
+export const LinkButton = ({
+  href,
+  external = false,
+  variant,
+  size,
+  fullWidth,
+  className,
+  children,
+  rel,
+  target,
+  prefetch,
+  replace,
+  scroll,
+  shallow,
+  locale,
+  passHref,
+  legacyBehavior,
+  ref,
+  ...anchorProps
+}: LinkButtonProps & { ref?: RefObject<ElementRef<"a"> | null> }) => {
+  if (external) {
     return (
       <Button
         asChild
@@ -97,10 +61,46 @@ export const LinkButton = forwardRef<ElementRef<"a">, LinkButtonProps>(
         size={size}
         variant={variant}
       >
-        <Link {...linkProps}>{children}</Link>
+        <a
+          {...anchorProps}
+          href={href}
+          ref={ref}
+          rel={buildExternalRel(rel)}
+          target={target ?? "_blank"}
+        >
+          {children}
+        </a>
       </Button>
     )
-  },
-)
+  }
+
+  // Build link props object, only including defined values
+  const linkProps = {
+    ...anchorProps,
+    href,
+    ref,
+    ...(legacyBehavior !== undefined && { legacyBehavior }),
+    ...(locale !== undefined && { locale }),
+    ...(passHref !== undefined && { passHref }),
+    ...(prefetch !== undefined && { prefetch }),
+    ...(replace !== undefined && { replace }),
+    ...(scroll !== undefined && { scroll }),
+    ...(shallow !== undefined && { shallow }),
+    ...(target !== undefined && { target }),
+    ...(rel !== undefined && { rel }),
+  }
+
+  return (
+    <Button
+      asChild
+      className={className}
+      fullWidth={fullWidth}
+      size={size}
+      variant={variant}
+    >
+      <Link {...linkProps}>{children}</Link>
+    </Button>
+  )
+}
 
 LinkButton.displayName = "LinkButton"

@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import * as styles from "./ContactForm.css"
+import { useId, useState } from "react"
+import * as styles from "./contact-form.css"
 
 interface ContactFormProps {
   translations: {
@@ -16,6 +16,10 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ translations }: ContactFormProps) {
+  const id = useId()
+  const titleId = `${id}-title`
+  const messageId = `${id}-message`
+  const phoneId = `${id}-phone`
   const [title, setTitle] = useState("")
   const [message, setMessage] = useState("")
   const [phone, setPhone] = useState("")
@@ -46,12 +50,12 @@ export function ContactForm({ translations }: ContactFormProps) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>
-        <label htmlFor="title" className={styles.label}>
+        <label htmlFor={titleId} className={styles.label}>
           {translations.title} <span className={styles.required}>*</span>
         </label>
         <input
           type="text"
-          id="title"
+          id={titleId}
           className={styles.input}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -61,11 +65,11 @@ export function ContactForm({ translations }: ContactFormProps) {
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="message" className={styles.label}>
+        <label htmlFor={messageId} className={styles.label}>
           {translations.message} <span className={styles.required}>*</span>
         </label>
         <textarea
-          id="message"
+          id={messageId}
           className={styles.textarea}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -76,12 +80,12 @@ export function ContactForm({ translations }: ContactFormProps) {
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="phone" className={styles.label}>
+        <label htmlFor={phoneId} className={styles.label}>
           {translations.phone}
         </label>
         <input
           type="tel"
-          id="phone"
+          id={phoneId}
           className={styles.input}
           value={phone}
           onChange={(e) => setPhone(e.target.value)}

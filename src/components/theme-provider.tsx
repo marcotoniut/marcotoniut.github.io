@@ -69,7 +69,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const root = document.documentElement
     root.classList.remove(darkThemeClass, lightThemeClass)
     root.classList.add(themeClassByMode[theme])
-    root.dataset.theme = theme
+    root.dataset["theme"] = theme
     window.localStorage.setItem(STORAGE_KEY, theme)
 
     if (shouldSkipNextTransition.current) {

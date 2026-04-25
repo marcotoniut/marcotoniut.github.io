@@ -1,7 +1,7 @@
 import Image from "next/image"
 import type { ReactNode } from "react"
 import type { LocaleKey } from "@/app/[lang]/common"
-import { GithubIcon, ItchIOIcon } from "@/components/Icons"
+import { GithubIcon, ItchIOIcon } from "@/components/icons"
 import { TrackedAnchor } from "@/components/TrackedLink"
 import type { Locales } from "@/i18n/i18n-types"
 import { pressStartFont } from "@/styles/fonts"
