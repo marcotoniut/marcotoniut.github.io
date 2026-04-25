@@ -5,7 +5,7 @@ import {
   themeVars,
 } from "./theme.css"
 
-export { themeVars, darkThemeClass, lightThemeClass, gameboyThemeClass }
+export { darkThemeClass, gameboyThemeClass, lightThemeClass, themeVars }
 
 export const themeClass = darkThemeClass
 

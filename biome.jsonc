@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
   "assist": {
     "actions": {
       "source": {
@@ -9,7 +9,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**/*", "!next-env.d.ts"]
+    "includes": ["**/*", "!next-env.d.ts", "!.claude"]
   },
   "formatter": {
     "enabled": true,
@@ -39,14 +39,38 @@
   "html": { "formatter": { "selfCloseVoidElements": "always" } },
   "linter": {
     "enabled": true,
+    "domains": {
+      "react": "all",
+      "next": "all",
+      "project": "all",
+      "types": "all"
+    },
     "rules": {
       "recommended": true,
       "correctness": {
         "noUnusedImports": "error",
-        "noUnusedVariables": "error"
+        "noUnusedVariables": "error",
+        "noGlobalDirnameFilename": "error",
+        "useImportExtensions": "off"
       },
       "suspicious": {
-        "noExplicitAny": "error"
+        "noExplicitAny": "error",
+        "noConstantBinaryExpressions": "error",
+        "noUnusedExpressions": "error",
+        "noVar": "error",
+        "useErrorMessage": "error"
+      },
+      "nursery": {
+        "noFloatingPromises": "error",
+        "noMisusedPromises": "error"
+      },
+      "complexity": {
+        "noUselessCatch": "error",
+        "useLiteralKeys": "off",
+        "noExcessiveCognitiveComplexity": {
+          "level": "error",
+          "options": { "maxAllowedComplexity": 15 }
+        }
       },
       "style": {
         "useConst": "error",
@@ -54,10 +78,79 @@
           "level": "error",
           "options": { "style": "separatedType" }
         },
+        "useExportType": "error",
+        "useNodejsImportProtocol": "error",
+        "useThrowOnlyError": "error",
         "useNamingConvention": "off",
-        "noNonNullAssertion": "warn"
+        "useDefaultParameterLast": "error",
+        "noNonNullAssertion": "error",
+        "noParameterAssign": "error",
+        "noUselessElse": "error",
+        "noNestedTernary": "error",
+        "noEnum": "error"
+      },
+      "security": {
+        "noSecrets": "off"
+      },
+      "performance": {
+        "noDelete": "error"
       }
     }
   },
-  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true }
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "overrides": [
+    {
+      "includes": ["src/**/*.{js,jsx,ts,tsx}"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "error"
+          },
+          "style": {
+            "noProcessEnv": "error",
+            "useFilenamingConvention": "error"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.css.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "src/app/**/page.tsx",
+        "src/app/**/layout.tsx",
+        "src/app/**/not-found.tsx",
+        "src/app/content.tsx",
+        "src/components/theme-provider.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "useComponentExportOnlyModules": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["src/env.ts"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          },
+          "style": {
+            "noProcessEnv": "off"
+          }
+        }
+      }
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import type { HTMLAttributes, JSX } from "react"
-import { h1Cn, h2Cn, h3Cn } from "./Typography.css"
+import { h1Cn, h2Cn, h3Cn } from "./typography.css"
 
 type HProps = Pick<
   HTMLAttributes<unknown>,

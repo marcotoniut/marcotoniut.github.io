@@ -4,7 +4,7 @@ import { Header } from "@/components/Header"
 import { i18nDictionary } from "../common"
 import { buildLocalizedMetadataFromMeta } from "../common/metadata"
 import { resolveLocale } from "../utils"
-import { ContactForm } from "./components/ContactForm"
+import { ContactForm } from "./components/contact-form"
 import * as styles from "./contact.css"
 
 type PageProps = {
