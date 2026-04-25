@@ -1,9 +1,17 @@
 export const Meta = [
   {
+    id: "vitvio",
+    institution: "VitVio",
+    dates: {
+      start: new Date(2026, 0),
+    },
+  },
+  {
     id: "yld",
     institution: "YLD (Ledger)",
     dates: {
       start: new Date(2024, 4),
+      end: new Date(2025, 10),
     },
   },
   {

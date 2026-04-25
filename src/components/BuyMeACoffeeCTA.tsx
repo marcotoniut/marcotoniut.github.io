@@ -47,6 +47,7 @@ export const BuyMeACoffeeCTA = ({
         className={icon}
         height={36}
         src="/icons/buy-me-a-coffee.svg"
+        style={{ height: "auto" }}
         width={48}
       />
       <span className={label}>{LL.Common.buyMeACoffee()}</span>

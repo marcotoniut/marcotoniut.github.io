@@ -16,6 +16,18 @@ const enUk: BaseTranslation = {
       title: "Experience",
       history: [
         {
+          role: "Lead Software Engineer",
+          description: [
+            "Leading development across frontend and backend for VitVio's healthcare platform, delivering production-grade systems spanning patient, surgical, and operational workflows.",
+            "Driving architecture, code quality, and delivery practices within a modern Nx monorepo using React, TypeScript, GraphQL, and shared platform infrastructure.",
+          ],
+          highlights: [
+            "Owned end-to-end delivery of critical platform features across multiple applications, from API design to user-facing interfaces.",
+            "Improved shared platform infrastructure, including typed storage, analytics pipelines, reusable UI flows, and testing patterns.",
+            "Collaborated closely with product, design, and clinical stakeholders to translate complex hospital workflows into scalable, reliable systems.",
+          ],
+        },
+        {
           role: "Senior Software Engineer V (Contracted through YLD for Ledger)",
           description: [
             "Senior Software Engineer contracted through YLD for Ledger, the cryptocurrency hardware wallet leader. Initially assigned to the Earn section of Ledger Live (Electron + React Native), where I restructured its architecture and improved developer workflows.",

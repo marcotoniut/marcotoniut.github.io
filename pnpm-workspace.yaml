@@ -4,3 +4,9 @@ onlyBuiltDependencies:
   - lefthook
   - puppeteer
   - sharp
+
+overrides:
+  file-type@>=13.0.0 <21.3.1: '>=21.3.1'
+  postcss@<8.5.10: '>=8.5.10'
+  webpack@>=5.49.0 <5.104.0: '>=5.104.0'
+  webpack@>=5.49.0 <=5.104.0: '>=5.104.1'

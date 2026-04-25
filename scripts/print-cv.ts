@@ -49,7 +49,8 @@ const waitForServerReady = async (
 
     const handleStdout = (data: Buffer): void => {
       const output = data.toString()
-      if (output.includes(`- Local:        ${expectedUrl}`)) {
+      if (output.includes(expectedUrl)) {
+        // Avoid relying on strict spacing in the Next.js log output.
         clearTimeout(timeout)
         devServer.stdout.off("data", handleStdout)
         resolve()

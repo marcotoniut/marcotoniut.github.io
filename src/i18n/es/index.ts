@@ -16,6 +16,18 @@ const esAr = {
       title: "Experiencia",
       history: [
         {
+          role: "Lead Software Engineer",
+          description: [
+            "Lidero el desarrollo tanto frontend como backend de la plataforma de salud de VitVio, entregando sistemas listos para producción en flujos de pacientes, cirugía y operaciones clínicas.",
+            "Impulso la arquitectura, la calidad del código y las prácticas de entrega dentro de un monorepo moderno con Nx, React, TypeScript, GraphQL e infraestructura compartida.",
+          ],
+          highlights: [
+            "Responsable de la entrega end-to-end de funcionalidades críticas de la plataforma, desde el diseño de APIs hasta interfaces de usuario.",
+            "Mejoré la infraestructura compartida de la plataforma, incluyendo typed storage, pipelines de analytics, flujos UI reutilizables y patrones de testing.",
+            "Colaboré estrechamente con producto, diseño y stakeholders clínicos para convertir workflows hospitalarios complejos en sistemas escalables y fiables.",
+          ],
+        },
+        {
           role: "Ingeniero de Software Senior V (Contratado a través de YLD para Ledger)",
           description: [
             "Ingeniero de Software sénior contratado a través de YLD para Ledger, líder en monederos físicos de criptomonedas. Inicialmente asignado a la aplicación Earn dentro de Ledger Live (Electron + React Native), donde reestructuré su arquitectura y mejoré los flujos de desarrollo.",

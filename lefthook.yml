@@ -1,6 +1,8 @@
 pre-commit:
-  parallel: true
   commands:
+    sitemap:
+      run: pnpm generate:sitemap && git add public/sitemap.xml
+      stage_fixed: true
     lint:
       run: pnpm lint
 
