@@ -1,7 +1,7 @@
 import { keyframes, style } from "@vanilla-extract/css"
 import {
   colors,
-  fontFamily,
+  fontFamilies,
   fontSizes,
   fontWeights,
   shadows,
@@ -22,13 +22,13 @@ export const header = style({
 })
 
 export const backLink = style({
-  color: colors.action,
+  color: colors.accent,
   fontSize: "0.875rem",
   textDecoration: "none",
   transition: "color 0.2s",
 
   ":hover": {
-    color: colors.accent,
+    color: colors.accentSoft,
   },
 })
 
@@ -37,7 +37,7 @@ export const controlBar = style({
   display: "flex",
   flex: "1",
   flexWrap: "wrap",
-  gap: space.default,
+  gap: space.md,
   justifyContent: "flex-end",
 })
 
@@ -49,28 +49,28 @@ export const selectTrigger = style({
   color: colors.text,
   cursor: "pointer",
   display: "inline-flex",
-  fontFamily,
+  fontFamily: fontFamilies.body,
   fontSize: fontSizes.ui,
   fontWeight: fontWeights.ui.medium,
   gap: space.xs,
   height: "36px",
   justifyContent: "space-between",
   minWidth: "96px",
-  paddingInline: space.default,
+  paddingInline: space.md,
   transition:
     "background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
   ":hover": {
-    borderColor: colors.action,
+    borderColor: colors.accent,
     boxShadow: `${shadows.subtle}, ${shadows.glow}`,
   },
   ":focus-visible": {
     outline: "none",
     boxShadow: `${shadows.glow}, ${shadows.subtle}`,
-    borderColor: colors.action,
+    borderColor: colors.accent,
   },
   selectors: {
     '&[data-state="open"]': {
-      borderColor: colors.action,
+      borderColor: colors.accent,
       boxShadow: `${shadows.soft}, ${shadows.glow}`,
     },
   },
@@ -100,29 +100,29 @@ export const selectItem = style({
   color: colors.text,
   cursor: "pointer",
   display: "flex",
-  fontFamily,
+  fontFamily: fontFamilies.body,
   fontSize: fontSizes.ui,
   fontWeight: fontWeights.ui.medium,
-  gap: space.small,
+  gap: space.sm,
   lineHeight: 1,
   paddingBlock: "8px",
-  paddingInline: space.default,
+  paddingInline: space.md,
   position: "relative",
   selectors: {
     "&[data-highlighted]": {
       backgroundColor: colors.surface,
-      color: colors.action,
+      color: colors.accent,
     },
     '&[data-state="checked"]': {
       backgroundColor: colors.surface,
-      color: colors.action,
+      color: colors.accent,
       boxShadow: `${shadows.glow} inset`,
     },
   },
 })
 
 export const selectItemIndicator = style({
-  color: colors.action,
+  color: colors.accent,
   marginLeft: "auto",
 })
 

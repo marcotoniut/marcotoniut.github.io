@@ -2,7 +2,7 @@ import { recipe } from "@vanilla-extract/recipes"
 
 import {
   colors,
-  fontFamily,
+  fontFamilies,
   fontSizes,
   fontWeights,
   shadows,
@@ -17,14 +17,14 @@ export const buttonRecipe = recipe({
     color: colors.text,
     cursor: "pointer",
     display: "inline-flex",
-    fontFamily,
+    fontFamily: fontFamilies.body,
     fontSize: fontSizes.bodySm,
     fontWeight: fontWeights.ui.medium,
     gap: space.xs,
     justifyContent: "center",
     letterSpacing: "0.02em",
     lineHeight: 1.2,
-    paddingInline: space.default,
+    paddingInline: space.md,
     paddingBlock: space.xs,
     position: "relative",
     textDecoration: "none",
@@ -53,8 +53,8 @@ export const buttonRecipe = recipe({
   variants: {
     variant: {
       primary: {
-        backgroundColor: colors.action,
-        borderColor: colors.action,
+        backgroundColor: colors.accent,
+        borderColor: colors.accent,
         color: colors.accentContrast,
         boxShadow: shadows.soft,
         ":hover": {
@@ -69,14 +69,14 @@ export const buttonRecipe = recipe({
         color: colors.text,
         boxShadow: shadows.subtle,
         ":hover": {
-          borderColor: colors.action,
+          borderColor: colors.accent,
           boxShadow: `${shadows.subtle}, ${shadows.glow}`,
         },
       },
       ghost: {
         backgroundColor: "transparent",
         borderColor: "transparent",
-        color: colors.action,
+        color: colors.accent,
         ":hover": {
           backgroundColor: "rgba(86, 243, 201, 0.1)",
           borderColor: "rgba(86, 243, 201, 0.35)",
@@ -87,20 +87,20 @@ export const buttonRecipe = recipe({
       sm: {
         height: "30px",
         fontSize: "0.8rem",
-        paddingInline: space.small,
+        paddingInline: space.sm,
         paddingBlock: space.xs,
       },
       md: {
         height: "38px",
         fontSize: fontSizes.bodySm,
-        paddingInline: space.default,
+        paddingInline: space.md,
         paddingBlock: space.xs,
       },
       lg: {
         height: "46px",
         fontSize: fontSizes.ui,
         paddingInline: space.xl,
-        paddingBlock: space.small,
+        paddingBlock: space.sm,
       },
     },
     fullWidth: {

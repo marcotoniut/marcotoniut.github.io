@@ -18,7 +18,7 @@ export const card = style({
   color: colors.text,
   display: "flex",
   flexDirection: "column",
-  gap: space.default,
+  gap: space.md,
   padding: space.xl,
   position: "relative",
 })

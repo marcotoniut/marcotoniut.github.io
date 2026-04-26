@@ -51,8 +51,8 @@ export const base = style({
     "&:hover": {
       gridTemplateColumns: `${circleSize} 1fr`,
       columnGap: space.xs,
-      paddingInlineStart: space.small,
-      paddingInlineEnd: space.large,
+      paddingInlineStart: space.sm,
+      paddingInlineEnd: space.lg,
       borderRadius: radii.pill,
     },
 

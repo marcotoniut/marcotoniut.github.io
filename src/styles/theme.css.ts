@@ -199,9 +199,9 @@ const darkThemeColors = {
 } as const
 
 const gbPalette = {
-  dark: "#421032",
-  mid: "#91300a",
-  lite: "#b96740",
+  dark: "#34102f",
+  mid: "#743015",
+  lite: "#c69052",
   pale: "#fbe1a8",
 } as const
 

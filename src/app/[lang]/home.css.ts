@@ -43,7 +43,7 @@ export const grid = style({
   width: "100%",
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-  gap: space.large,
+  gap: space.lg,
   justifyItems: "center",
   alignItems: "stretch",
   justifyContent: "stretch",
@@ -51,7 +51,7 @@ export const grid = style({
 })
 
 const cardBase = style({
-  padding: space.large,
+  padding: space.lg,
   textAlign: "center",
   color: "inherit",
   border: `1px solid ${colors.borderMuted}`,
@@ -62,7 +62,7 @@ const cardBase = style({
   boxShadow: shadows.subtle,
   display: "flex",
   flexDirection: "column",
-  gap: space.small,
+  gap: space.sm,
   alignItems: "center",
   height: "100%",
   justifyContent: "center",
@@ -103,9 +103,9 @@ export const cardHeading = style({
   alignItems: "center",
   display: "inline-flex",
   fontFamily: fontFamilies.heading,
-  fontSize: fontSizes.xl,
+  fontSize: fontSizes.bodyLg,
   fontWeight: fontWeights.heading.regular,
-  gap: space.small,
+  gap: space.sm,
   letterSpacing: letterSpacing.h3,
   lineHeight: lineHeights.h3,
   margin: 0,
@@ -113,7 +113,7 @@ export const cardHeading = style({
 
 export const projectHeading = style({
   fontFamily: fontFamilies.heading,
-  fontSize: fontSizes.xl,
+  fontSize: fontSizes.bodyLg,
   fontWeight: fontWeights.heading.regular,
   letterSpacing: letterSpacing.h3,
   lineHeight: lineHeights.h3,
@@ -123,7 +123,7 @@ export const projectHeading = style({
 
 export const actionRow = style({
   display: "flex",
-  gap: space.small,
+  gap: space.sm,
   alignItems: "center",
   justifyContent: "center",
 })

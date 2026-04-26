@@ -97,7 +97,7 @@ const panelSurfaceBase = style({
   borderRadius: radii.md,
   boxShadow: shadows.subtle,
   color: gbThemeVars.text,
-  padding: space.large,
+  padding: space.lg,
 })
 
 const buttonBase = style({
@@ -106,7 +106,7 @@ const buttonBase = style({
   justifyContent: "center",
   gap: space.xs,
   paddingBlock: space.xs,
-  paddingInline: space.large,
+  paddingInline: space.lg,
   borderRadius: radii.pill,
   fontFamily: fontFamilies.body,
   fontSize: fontSizes.body,
@@ -143,7 +143,7 @@ export const pageShellContent = style({
   gap: space.xxxl,
   margin: "0 auto",
   maxWidth: "1080px",
-  padding: space.large,
+  padding: space.lg,
   width: "100%",
 })
 
@@ -151,7 +151,7 @@ export const pageHeader = style({
   background: gbThemeVars.surfaceRaised,
   border: `1px solid ${gbThemeVars.border}`,
   borderRadius: radii.md,
-  padding: `${space.small} ${space.large}`,
+  padding: `${space.sm} ${space.lg}`,
 })
 
 globalStyle(`:where(${pageHeader}) ${headerStyles.header}`, {
@@ -165,7 +165,7 @@ globalStyle(`:where(${pageHeader}) ${headerStyles.backLink}:hover`, {
   color: gbThemeVars.accent,
 })
 globalStyle(`:where(${pageHeader}) ${headerStyles.controlBar}`, {
-  gap: space.small,
+  gap: space.sm,
 })
 globalStyle(`:where(${pageHeader}) ${headerStyles.selectTrigger}`, {
   background: gbThemeVars.surface,
@@ -211,11 +211,11 @@ export const hero = style([
   panelSurfaceBase,
   {
     background: gbThemeVars.surfaceRaised,
-    gap: space.large,
+    gap: space.lg,
     padding: space.xxxl,
     "@media": {
       "(max-width: 600px)": {
-        padding: space.large,
+        padding: space.lg,
       },
     },
   },
@@ -270,14 +270,14 @@ export const ctaRow = style({
   alignItems: "center",
   display: "flex",
   flexWrap: "wrap",
-  gap: space.small,
+  gap: space.sm,
 })
 
 export const button = style([
   buttonBase,
   {
     display: "flex",
-    gap: space.small,
+    gap: space.sm,
     background: gbThemeVars.accentSoft,
     border: `1px solid ${gbThemeVars.accent}`,
     boxShadow: `0 4px 0 0 ${gbThemeVars.accent}`,
@@ -328,10 +328,10 @@ export const iconButton = style([
 export const metaRow = style({
   borderTop: `1px dotted ${gbThemeVars.borderMuted}`,
   display: "grid",
-  gap: space.small,
+  gap: space.sm,
   gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-  marginTop: space.default,
-  paddingTop: space.small,
+  marginTop: space.md,
+  paddingTop: space.sm,
 })
 
 export const metaItem = style({
@@ -366,7 +366,7 @@ export const metaValue = style({
 
 export const controlsTable = style({
   borderCollapse: "collapse",
-  marginTop: space.default,
+  marginTop: space.md,
   width: "100%",
 })
 globalStyle(`:where(${controlsTable}) th`, {
@@ -384,12 +384,12 @@ globalStyle(`:where(${controlsTable}) td`, {
 /* ---------- Cards / lists / gallery ---------- */
 export const card = style([
   panelSurfaceBase,
-  { display: "flex", gap: space.small, flexDirection: "column" },
+  { display: "flex", gap: space.sm, flexDirection: "column" },
 ])
 
 export const sectionGrid = style({
   display: "grid",
-  gap: space.large,
+  gap: space.lg,
 })
 
 export const sectionHeading = style({
@@ -407,21 +407,21 @@ export const jamSummary = style({
   color: gbThemeVars.text,
   fontSize: fontSizes.body,
   lineHeight: lineHeights.body,
-  marginBottom: space.default,
+  marginBottom: space.md,
 })
 
-globalStyle(`:where(${card}) h2`, { margin: 0, marginBottom: space.small })
+globalStyle(`:where(${card}) h2`, { margin: 0, marginBottom: space.sm })
 globalStyle(`:where(${card}) p`, { marginTop: 0 })
 globalStyle(`:where(${card}) ul`, {
   listStyle: "square",
   margin: 0,
-  paddingLeft: space.large,
+  paddingLeft: space.lg,
 })
 
 export const techList = style({
   display: "flex",
   flexWrap: "wrap",
-  gap: space.small,
+  gap: space.sm,
   listStyle: "none",
   margin: 0,
   padding: 0,
@@ -430,7 +430,7 @@ globalStyle(`:where(${techList}) li`, {
   background: gbThemeVars.tagBg,
   border: `1px dashed ${gbThemeVars.border}`,
   borderRadius: radii.md,
-  padding: `${space.xxs} ${space.small}`,
+  padding: `${space.xxs} ${space.sm}`,
 })
 
 export const teamList = style({
@@ -445,13 +445,13 @@ export const continuationNote = style({
   color: gbThemeVars.textMuted,
   fontSize: fontSizes.body,
   lineHeight: lineHeights.body,
-  marginBottom: space.small,
+  marginBottom: space.sm,
 })
 
 export const linkList = style({
   display: "flex",
   flexWrap: "wrap",
-  gap: space.small,
+  gap: space.sm,
   listStyle: "none",
   margin: 0,
   padding: 0,
@@ -472,13 +472,13 @@ export const link = style({
 
 export const gallery = style({
   display: "grid",
-  gap: space.large,
+  gap: space.lg,
   gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
 })
 
 export const screenshotCard = style([
   panelSurfaceBase,
-  { background: gbThemeVars.screenshotBg, padding: space.small },
+  { background: gbThemeVars.screenshotBg, padding: space.sm },
 ])
 
 export const screenshotImage = style({

@@ -54,7 +54,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false)
   const hasHydrated = useRef(false)
   const transitionTimeoutRef = useRef<number | null>(null)
-  const shouldSkipNextTransition = useRef(true)
 
   useIsomorphicLayoutEffect(() => {
     if (typeof document === "undefined") return
@@ -71,11 +70,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.classList.add(themeClassByMode[theme])
     root.dataset["theme"] = theme
     window.localStorage.setItem(STORAGE_KEY, theme)
-
-    if (shouldSkipNextTransition.current) {
-      shouldSkipNextTransition.current = false
-      return
-    }
 
     const prefersReducedMotion =
       window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false

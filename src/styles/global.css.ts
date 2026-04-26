@@ -103,7 +103,7 @@ globalStyle("h1, h2, h3, h4, h5, h6, .heading", {
   fontWeight: fontWeights.heading.regular,
   letterSpacing: letterSpacing.h2,
   lineHeight: lineHeights.h2,
-  marginBlock: space.small,
+  marginBlock: space.sm,
 })
 
 globalStyle("h1, .heading-hero", {
@@ -111,7 +111,7 @@ globalStyle("h1, .heading-hero", {
   fontWeight: fontWeights.heading.bold,
   letterSpacing: letterSpacing.h1,
   lineHeight: lineHeights.h1,
-  marginBlock: space.default,
+  marginBlock: space.md,
 })
 
 globalStyle("h2, .heading-lg", {
@@ -119,7 +119,7 @@ globalStyle("h2, .heading-lg", {
   fontWeight: fontWeights.heading.regular,
   letterSpacing: letterSpacing.h2,
   lineHeight: lineHeights.h2,
-  marginBlock: `${space.default} ${space.small}`,
+  marginBlock: `${space.md} ${space.sm}`,
 })
 
 globalStyle("h3, h4, h5, h6, .heading-md", {
@@ -129,7 +129,7 @@ globalStyle("h3, h4, h5, h6, .heading-md", {
 })
 
 globalStyle("p, ul, ol, dl", {
-  marginBlock: `${space.small} ${space.default}`,
+  marginBlock: `${space.sm} ${space.md}`,
 })
 
 globalStyle("p, ul, ol, li, dd, dt", {

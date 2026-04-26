@@ -21,7 +21,7 @@ const listIndent = "1.15rem"
 export const baseLineHeight = 1.46
 
 export const headerWrapperCn = style({
-  padding: space.large,
+  padding: space.lg,
 })
 
 export const cvCn = style({
@@ -41,15 +41,15 @@ export const docCn = style({
   gap: baseColumnGap,
   margin: "0 auto",
   maxWidth,
-  paddingBlock: space.large,
-  paddingInline: space.large,
+  paddingBlock: space.lg,
+  paddingInline: space.lg,
   "@media": {
     "screen and (max-width: 768px)": {
       flexDirection: "column",
       fontSize: "0.92rem",
-      gap: space.large,
-      paddingInline: space.default,
-      paddingBlock: space.large,
+      gap: space.lg,
+      paddingInline: space.md,
+      paddingBlock: space.lg,
     },
   },
 })
@@ -57,7 +57,7 @@ export const docCn = style({
 export const nameCn = style({
   marginTop: 0,
   marginBottom: space.none,
-  color: colors.action, // highlight your name
+  color: colors.accent, // highlight your name
   fontFamily: fontFamilies.heading,
   fontSize: nameFontSize,
   fontWeight: fontWeights.heading.bold,
@@ -83,7 +83,7 @@ export const pictureCn = style({
 })
 
 export const paragraphCn = style({})
-globalStyle(`${paragraphCn} > *`, { marginTop: space.small })
+globalStyle(`${paragraphCn} > *`, { marginTop: space.sm })
 
 export const highlightsCn = style({
   listStyle: "disc inside",
@@ -93,16 +93,16 @@ export const highlightsCn = style({
 globalStyle(`${highlightsCn} li + li`, { marginTop: "0.25rem" })
 
 export const linkCn = style({
-  color: colors.action,
+  color: colors.accent,
   display: "inline-flex",
-  gap: space.small,
+  gap: space.sm,
   fontFamily: cvBodyFamily,
   fontWeight: fontWeights.body.medium,
 })
 
 export const socialLinksCn = style({
   display: "flex",
-  gap: space.small,
+  gap: space.sm,
   alignItems: "center",
 })
 
@@ -127,7 +127,7 @@ export const skillsListCn = style({
   padding: 0,
 })
 globalStyle(`${skillsListCn} > li:not(:first-child)`, {
-  marginTop: space.small,
+  marginTop: space.sm,
 })
 
 export const institutionCn = style({
@@ -136,8 +136,8 @@ export const institutionCn = style({
   fontFamily: cvBodyFamily,
   fontSize: subheadingFontSize,
   fontWeight: fontWeights.body.medium,
-  gap: space.small,
-  marginTop: space.small,
+  gap: space.sm,
+  marginTop: space.sm,
 })
 
 // Sidebar accent
@@ -158,7 +158,7 @@ export const asideCn = style({
 })
 
 export const link2Cn = style({
-  color: colors.action,
+  color: colors.accent,
   fontFamily: cvBodyFamily,
   fontWeight: fontWeights.body.medium,
 })
@@ -184,7 +184,7 @@ export const pdfIsPrintingCn = style({
 })
 
 globalStyle(`${docCn} h2`, {
-  color: colors.action,
+  color: colors.accent,
   fontFamily: printHeadingFamily,
   fontSize: headingFontSize,
   fontWeight: 600,
@@ -236,13 +236,13 @@ globalStyle(`${highlightsCn} li + li`, {
 })
 
 globalStyle(linkCn, {
-  color: colors.action,
+  color: colors.accent,
   textDecoration: "underline",
   fontWeight: fontWeights.body.medium,
 })
 
 globalStyle(link2Cn, {
-  color: colors.action,
+  color: colors.accent,
   textDecoration: "underline",
   fontWeight: fontWeights.body.medium,
 })
