@@ -60,7 +60,7 @@ test.describe("@visual", () => {
 
   test("pages remain visually stable", async ({ page }) => {
     for (const route of ROUTE_SNAPSHOTS) {
-      await page.goto(route.path, { waitUntil: "domcontentloaded" })
+      await page.goto(route.path, { waitUntil: "load" })
       await expect(page.getByRole("main")).toBeVisible({ timeout: 15_000 })
       await expect(
         page.getByRole("heading", { name: route.heading }),
@@ -76,7 +76,7 @@ test.describe("@visual", () => {
     await page.addInitScript(() => {
       window.localStorage.setItem("marcotoniut-theme", "light")
     })
-    await page.goto("/en/", { waitUntil: "domcontentloaded" })
+    await page.goto("/en/", { waitUntil: "load" })
     await expect(page.getByRole("main")).toBeVisible({ timeout: 15_000 })
     await expect(
       page.getByRole("heading", { name: /marco toniut/i }),
@@ -90,7 +90,7 @@ test.describe("@visual", () => {
   test("mobile viewports remain visually stable", async ({ page }) => {
     await page.setViewportSize(MOBILE_VIEWPORT)
     for (const route of MOBILE_ROUTE_SNAPSHOTS) {
-      await page.goto(route.path, { waitUntil: "domcontentloaded" })
+      await page.goto(route.path, { waitUntil: "load" })
       await expect(page.getByRole("main")).toBeVisible({ timeout: 15_000 })
       await expect(
         page.getByRole("heading", { name: route.heading }),
@@ -104,11 +104,11 @@ test.describe("@visual", () => {
 
   test("not-found page remains visually stable", async ({ page }) => {
     await page.goto("/en/nonexistent-page/", {
-      waitUntil: "domcontentloaded",
+      waitUntil: "load",
     })
-    await expect(page.getByRole("heading", { name: /not found/i })).toBeVisible(
-      { timeout: 15_000 },
-    )
+    await expect(page.getByRole("heading", { name: /404/i })).toBeVisible({
+      timeout: 15_000,
+    })
     await waitForVisualStability(page)
     await expect(page).toHaveScreenshot("not-found.png", {
       fullPage: true,

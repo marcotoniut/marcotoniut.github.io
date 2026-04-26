@@ -6,20 +6,17 @@ import {
   fontWeights,
   letterSpacing,
   lineHeights,
-  shadows,
   space,
 } from "@/styles/theme"
 
 export const main = style({
   width: "100%",
   flex: "0 1 auto",
-  maxWidth: "720px",
+  maxWidth: "1080px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  alignItems: "center",
   gap: space.xl,
-  textAlign: "center",
   minHeight: "auto",
   marginBlock: "auto",
 })
@@ -31,104 +28,126 @@ export const title = style({
   textShadow: "0 20px 60px rgba(10, 12, 18, 0.45)",
 })
 
-export const description = style({
-  margin: 0,
-  lineHeight: lineHeights.body,
-  fontSize: "1.25rem",
-  maxWidth: "42rem",
+export const kicker = style({
   color: colors.textMuted,
+  fontFamily: fontFamilies.mono,
+  fontSize: fontSizes.bodySm,
+  letterSpacing: "0.08em",
+  lineHeight: lineHeights.bodySm,
+  margin: 0,
+  textTransform: "uppercase",
 })
 
-export const grid = style({
-  width: "100%",
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+export const primaryNav = style({
+  alignItems: "baseline",
+  display: "flex",
+  flexWrap: "wrap",
   gap: space.lg,
-  justifyItems: "center",
-  alignItems: "stretch",
-  justifyContent: "stretch",
-  gridAutoRows: "1fr",
 })
 
-const cardBase = style({
-  padding: space.lg,
-  textAlign: "center",
+export const navLink = style({
+  color: colors.text,
+  fontFamily: fontFamilies.heading,
+  fontSize: fontSizes.h3,
+  fontWeight: fontWeights.heading.regular,
+  letterSpacing: letterSpacing.h3,
+  lineHeight: lineHeights.h3,
+  textDecoration: "none",
+  transition: "color 0.2s, transform 0.2s",
+  ":hover": {
+    color: colors.accent,
+  },
+})
+
+export const navSeparator = style({
+  color: colors.textMuted,
+  fontFamily: fontFamilies.body,
+  fontSize: fontSizes.h3,
+  userSelect: "none",
+})
+
+export const projects = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: space.lg,
+  width: "100%",
+})
+
+const projectCardBase = style({
   color: "inherit",
-  border: `1px solid ${colors.borderMuted}`,
-  transition:
-    "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
-  width: "min(100%, 320px)",
-  background: colors.surfaceElevated,
-  boxShadow: shadows.subtle,
   display: "flex",
   flexDirection: "column",
   gap: space.sm,
-  alignItems: "center",
-  height: "100%",
-  justifyContent: "center",
+  padding: space.xl,
+  textDecoration: "none",
+  transition: "border-color 0.2s, filter 0.2s",
+  width: "100%",
+  boxSizing: "border-box",
 })
 
-export const cardInteractive = style([
-  cardBase,
+export const projectCardGb = style([
+  projectCardBase,
   {
-    textDecoration: "none",
-    cursor: "pointer",
+    background: "#34102f18",
+    border: "1px solid #74301550",
+    position: "relative",
+    overflow: "hidden",
     selectors: {
-      "&:hover, &:focus, &:active": {
-        color: colors.accent,
-        borderColor: colors.accent,
-        boxShadow: shadows.soft,
-        transform: "translateY(-4px)",
+      "&::before": {
+        content: "",
+        position: "absolute",
+        inset: 0,
+        backgroundImage: `
+          linear-gradient(#74301518 1px, transparent 1px),
+          linear-gradient(90deg, #74301518 1px, transparent 1px)
+        `,
+        backgroundSize: "12px 12px",
+        pointerEvents: "none",
+      },
+      "&:hover": {
+        borderColor: "#c69052",
+        background: "#34102f33",
       },
     },
   },
 ])
 
-export const card = cardBase
+export const projectCardSonic = style([
+  projectCardBase,
+  {
+    border: "1px solid #28f0ff40",
+    selectors: {
+      "&:hover": {
+        borderColor: "#28f0ff",
+        background: "rgba(40, 240, 255, 0.04)",
+      },
+    },
+  },
+])
 
-export const cardLabel = style({
-  fontSize: "1.25rem",
-  letterSpacing: "0.04em",
+export const projectTitle = style({
+  fontFamily: fontFamilies.heading,
+  fontSize: fontSizes.bodyLg,
+  fontWeight: fontWeights.heading.regular,
+  letterSpacing: letterSpacing.h3,
+  lineHeight: lineHeights.h3,
   margin: 0,
+  position: "relative",
+})
+
+export const projectKicker = style({
+  color: colors.textMuted,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.7rem",
+  letterSpacing: "0.12em",
+  margin: 0,
+  position: "relative",
   textTransform: "uppercase",
 })
 
-export const cardHint = style({
+export const projectHint = style({
   color: colors.textMuted,
-  fontSize: fontSizes.body,
+  fontSize: fontSizes.bodySm,
   margin: 0,
-})
-
-export const cardHeading = style({
-  alignItems: "center",
-  display: "inline-flex",
-  fontFamily: fontFamilies.heading,
-  fontSize: fontSizes.bodyLg,
-  fontWeight: fontWeights.heading.regular,
-  gap: space.sm,
-  letterSpacing: letterSpacing.h3,
-  lineHeight: lineHeights.h3,
-  margin: 0,
-})
-
-export const projectHeading = style({
-  fontFamily: fontFamilies.heading,
-  fontSize: fontSizes.bodyLg,
-  fontWeight: fontWeights.heading.regular,
-  letterSpacing: letterSpacing.h3,
-  lineHeight: lineHeights.h3,
-  margin: 0,
-  whiteSpace: "nowrap",
-})
-
-export const actionRow = style({
-  display: "flex",
-  gap: space.sm,
-  alignItems: "center",
-  justifyContent: "center",
-})
-
-export const footerLink = style({
-  color: "inherit",
-  textDecoration: "none",
+  position: "relative",
 })

@@ -1,13 +1,6 @@
-/**
- * Footer component with AI policy notice
- *
- * This footer displays copyright information and a legal notice
- * explicitly stating that the website content is not authorized
- * for use in AI training datasets.
- */
-
 import Link from "next/link"
 import * as styles from "./Footer.css"
+import { GithubIcon, ItchIOIcon, LinkedInIcon } from "./icons"
 
 interface FooterProps {
   className?: string
@@ -21,7 +14,36 @@ export function Footer({ className }: FooterProps) {
       className={className ? `${styles.footer} ${className}` : styles.footer}
     >
       <div className={styles.content}>
-        <p className={styles.copyright}>© {year} Marco Toniut</p>
+        <p className={styles.copyright}>Marco Toniut, {year}</p>
+        <nav className={styles.iconRow} aria-label="Social links">
+          <a
+            className={styles.iconLink}
+            href="https://github.com/marcotoniut"
+            rel="noreferrer"
+            target="_blank"
+            aria-label="GitHub"
+          >
+            <GithubIcon />
+          </a>
+          <a
+            className={styles.iconLink}
+            href="https://www.linkedin.com/in/marco-toniut-4b6a143a/"
+            rel="noreferrer"
+            target="_blank"
+            aria-label="LinkedIn"
+          >
+            <LinkedInIcon />
+          </a>
+          <a
+            className={styles.iconLink}
+            href="https://marcotoniut.itch.io/"
+            rel="noreferrer"
+            target="_blank"
+            aria-label="itch.io"
+          >
+            <ItchIOIcon />
+          </a>
+        </nav>
         <p className={styles.aiPolicy}>
           This website and its content are{" "}
           <strong>not authorized for use in AI training datasets</strong>.
