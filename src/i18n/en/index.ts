@@ -258,7 +258,9 @@ const enUk: BaseTranslation = {
       description: "Are you lost, by any chance?",
       title: "Marco Toniut hasn't been found",
     },
+    kicker: "Signal lost",
     title: "Not found",
+    returnHome: "Return to signal",
   },
   ContactPage: {
     meta: {

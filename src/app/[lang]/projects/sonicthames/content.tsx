@@ -19,37 +19,22 @@ export function SonicThamesContent({ locale }: ProjectContentProps) {
         <p className={styles.heroSummary}>{copy.hero.summary}</p>
       </header>
 
-      <article className={styles.section}>
-        <h2 className={styles.sectionHeading}>
-          {copy.sections.introduction.heading}
+      <article className={styles.sectionExposition}>
+        <div className={styles.accentLine} />
+        <h2 className={styles.sectionHeadingExposition}>
+          {copy.sections.concept.heading}
         </h2>
-        {copy.sections.introduction.paragraphs.map((paragraph) => (
+        {copy.sections.concept.paragraphs.map((paragraph) => (
           <p key={paragraph} className={styles.sectionParagraph}>
             {paragraph}
           </p>
         ))}
       </article>
 
-      <article className={styles.section}>
-        <h2 className={styles.sectionHeading}>
-          {copy.sections.purpose.heading}
-        </h2>
-        {copy.sections.purpose.paragraphs.map((paragraph) => (
-          <p key={paragraph} className={styles.sectionParagraph}>
-            {paragraph}
-          </p>
-        ))}
-      </article>
-
-      <article className={styles.section}>
-        <h2 className={styles.sectionHeading}>
+      <article className={styles.sectionTechnical}>
+        <h2 className={styles.sectionHeadingTechnical}>
           {copy.sections.technical.heading}
         </h2>
-        {copy.sections.technical.paragraphs.map((paragraph) => (
-          <p key={paragraph} className={styles.sectionParagraph}>
-            {paragraph}
-          </p>
-        ))}
         <ul className={styles.sectionList}>
           {copy.sections.technical.list.map((item) => (
             <li key={item} className={styles.sectionListItem}>
@@ -59,19 +44,8 @@ export function SonicThamesContent({ locale }: ProjectContentProps) {
         </ul>
       </article>
 
-      <article className={styles.section}>
-        <h2 className={styles.sectionHeading}>
-          {copy.sections.scientific.heading}
-        </h2>
-        {copy.sections.scientific.paragraphs.map((paragraph) => (
-          <p key={paragraph} className={styles.sectionParagraph}>
-            {paragraph}
-          </p>
-        ))}
-      </article>
-
-      <article className={styles.section}>
-        <h2 className={styles.sectionHeading}>
+      <article className={styles.sectionAtmospheric}>
+        <h2 className={styles.sectionHeadingAtmospheric}>
           {copy.sections.poetic.heading}
         </h2>
         {copy.sections.poetic.paragraphs.map((paragraph) => (
@@ -81,34 +55,9 @@ export function SonicThamesContent({ locale }: ProjectContentProps) {
         ))}
       </article>
 
-      <article className={styles.section}>
-        <h2 className={styles.sectionHeading}>
-          {copy.sections.metaDesign.heading}
-        </h2>
-        {copy.sections.metaDesign.paragraphs.map((paragraph) => (
-          <p key={paragraph} className={styles.sectionParagraph}>
-            {paragraph}
-          </p>
-        ))}
-      </article>
-
-      <article className={styles.section}>
-        <div className={styles.creditsBox}>
-          <p className={styles.creditsHeading}>{copy.credits.heading}</p>
-          <p className={styles.creditsText}>{copy.credits.text}</p>
-        </div>
-      </article>
-
-      <article className={styles.section}>
-        <h2 className={styles.sectionHeading}>{copy.cv.heading}</h2>
-        <p className={styles.cvLine}>{copy.cv.line}</p>
-        <ul className={styles.cvList}>
-          {copy.cv.bullets.map((bullet) => (
-            <li key={bullet} className={styles.cvListItem}>
-              {bullet}
-            </li>
-          ))}
-        </ul>
+      <article className={styles.sectionAtmospheric}>
+        <p className={styles.creditsHeading}>{copy.credits.heading}</p>
+        <p className={styles.creditsText}>{copy.credits.text}</p>
       </article>
     </div>
   )

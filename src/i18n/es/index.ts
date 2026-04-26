@@ -259,7 +259,9 @@ const esAr = {
       description: "¿Estás perdido, por casualidad?",
       title: "Marco Toniut no ha sido encontrado",
     },
+    kicker: "Señal perdida",
     title: "No encontrado",
+    returnHome: "Volver a la señal",
   },
   ContactPage: {
     meta: {

@@ -13,7 +13,7 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <Button size="sm" variant="ghost" aria-pressed={false}>
-        Theme
+        <span style={{ display: "inline-block", width: 15, height: 15 }} />
       </Button>
     )
   }

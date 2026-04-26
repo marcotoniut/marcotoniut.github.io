@@ -67,10 +67,14 @@ const sectionShell = {
 
 export const page = style({
   background: sonicPalette.dark.background,
+  backgroundImage:
+    "radial-gradient(ellipse at 50% 0%, rgba(40, 240, 255, 0.06) 0%, transparent 60%)",
   color: sonicPalette.dark.text,
   selectors: {
     [`.${lightThemeClass} &`]: {
       background: sonicPalette.light.background,
+      backgroundImage:
+        "radial-gradient(ellipse at 50% 0%, rgba(40, 240, 255, 0.04) 0%, transparent 60%)",
       color: sonicPalette.light.text,
     },
   },
@@ -114,9 +118,9 @@ export const content = style({
 })
 
 export const hero = style({
-  background: sonicPalette.dark.surface,
+  background: `radial-gradient(ellipse at 30% 50%, rgba(40, 240, 255, 0.04), transparent 70%), ${sonicPalette.dark.surface}`,
   border: `1px solid ${sonicPalette.dark.border}`,
-  padding: space.lg,
+  padding: space.xxl,
   display: "flex",
   flexDirection: "column",
   gap: space.sm,
@@ -183,6 +187,37 @@ export const section = style({
   ...sectionSurfaceSelectors,
 })
 
+export const sectionExposition = style({
+  background: "transparent",
+  border: "none",
+  padding: `${space.lg} 0`,
+  display: "flex",
+  flexDirection: "column",
+  gap: space.sm,
+  maxWidth: "75ch",
+})
+
+export const sectionTechnical = style({
+  background: "transparent",
+  border: "none",
+  borderLeft: `3px solid ${waterBlue}`,
+  padding: space.lg,
+  display: "flex",
+  flexDirection: "column",
+  gap: space.sm,
+})
+
+export const sectionAtmospheric = style({
+  background: "transparent",
+  border: "none",
+  padding: `${space.xxl} 0 ${space.lg}`,
+  display: "flex",
+  flexDirection: "column",
+  gap: space.sm,
+  fontStyle: "italic",
+  lineHeight: "1.7",
+})
+
 export const sectionHeading = style({
   margin: 0,
   fontFamily: interStack,
@@ -190,6 +225,37 @@ export const sectionHeading = style({
   letterSpacing: letterSpacing.h3,
   lineHeight: lineHeights.h3,
   fontWeight: fontWeights.heading.regular,
+})
+
+export const sectionHeadingExposition = style({
+  margin: 0,
+  fontFamily: interStack,
+  fontSize: fontSizes.bodyLg,
+  letterSpacing: letterSpacing.h3,
+  lineHeight: lineHeights.h3,
+  fontWeight: fontWeights.heading.regular,
+  color: waterBlue,
+})
+
+export const sectionHeadingTechnical = style({
+  margin: 0,
+  fontFamily: fontFamilies.mono,
+  fontSize: fontSizes.bodySm,
+  letterSpacing: "0.15em",
+  lineHeight: lineHeights.ui,
+  fontWeight: fontWeights.body.medium,
+  textTransform: "uppercase",
+  color: waterBlue,
+})
+
+export const sectionHeadingAtmospheric = style({
+  margin: 0,
+  fontFamily: interStack,
+  fontSize: "1.75rem",
+  letterSpacing: letterSpacing.h3,
+  lineHeight: lineHeights.h3,
+  fontWeight: fontWeights.heading.regular,
+  fontStyle: "normal",
 })
 
 export const sectionParagraph = style({

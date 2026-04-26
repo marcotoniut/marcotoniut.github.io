@@ -1,6 +1,16 @@
 import type { Page } from "@playwright/test"
 
 export const waitForVisualStability = async (page: Page): Promise<void> => {
+  // Wait for React hydration — data-theme attribute only set after client hydration
+  await page
+    .waitForFunction(
+      () => document.documentElement.dataset["theme"] !== undefined,
+      { timeout: 10_000 },
+    )
+    .catch(() => {
+      // Pages without ThemeProvider or pre-hydration timeout
+    })
+
   await page.evaluate(async () => {
     if (document.fonts) {
       await Promise.race([

@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css"
+import { globalStyle, style } from "@vanilla-extract/css"
 import {
   colors,
   fontFamilies,
@@ -11,37 +11,53 @@ import {
 export const footer = style({
   alignItems: "center",
   alignSelf: "stretch",
-  borderTop: `1px solid ${colors.border}`,
+  borderTop: `1px solid ${colors.borderMuted}`,
   color: colors.textMuted,
   display: "flex",
   fontFamily: fontFamilies.body,
   fontSize: fontSizes.bodySm,
   fontWeight: fontWeights.body.medium,
   justifyContent: "center",
-  marginInline: "auto",
   paddingBlock: space.sm,
-  textTransform: "uppercase",
-  width: "min(100%, 960px)",
+  width: "100%",
 })
 
 export const content = style({
-  maxWidth: "48rem",
   margin: "0 auto",
   display: "flex",
   flexDirection: "column",
-  gap: "1rem",
+  alignItems: "center",
+  gap: space.sm,
   lineHeight: "1.5",
   textAlign: "center",
 })
 
 export const copyright = style({
   margin: 0,
-  fontWeight: 500,
   fontSize: fontSizes.bodySm,
 })
 
+export const iconRow = style({
+  display: "flex",
+  alignItems: "center",
+  gap: space.md,
+})
+
+export const iconLink = style({
+  color: colors.textMuted,
+  display: "inline-flex",
+  transition: "color 0.2s",
+  ":hover": {
+    color: themeVars.color.accent,
+  },
+})
+
+globalStyle(`${iconLink} > svg`, {
+  width: "16px",
+  height: "16px",
+})
+
 export const aiPolicy = style({
-  // Visually hidden but accessible to screen readers and crawlers
   position: "absolute",
   width: "1px",
   height: "1px",
@@ -58,7 +74,6 @@ export const link = style({
   textDecoration: "underline",
   textUnderlineOffset: "2px",
   transition: "color 0.2s",
-
   ":hover": {
     color: themeVars.color.textPrimary,
   },
