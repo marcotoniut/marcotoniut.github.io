@@ -7,8 +7,6 @@ import {
 
 export { darkThemeClass, gameboyThemeClass, lightThemeClass, themeVars }
 
-export const themeClass = darkThemeClass
-
 export type ThemeMode = "dark" | "light"
 
 export const themeClassByMode: Record<ThemeMode, string> = {
@@ -17,9 +15,9 @@ export const themeClassByMode: Record<ThemeMode, string> = {
 }
 
 export const colors = {
-  accent: themeVars.color.accentSoft,
+  accent: themeVars.color.accent,
   accentContrast: themeVars.color.accentContrast,
-  action: themeVars.color.accent,
+  accentSoft: themeVars.color.accentSoft,
   background: themeVars.color.background,
   border: themeVars.color.border,
   borderMuted: themeVars.color.borderMuted,
@@ -27,8 +25,6 @@ export const colors = {
   buyMeACoffeeBackground: themeVars.color.buyMeACoffeeBackground,
   buyMeACoffeeText: themeVars.color.buyMeACoffeeText,
   focusRing: themeVars.color.focusRing,
-  main: themeVars.color.accent,
-  sidebarBg: themeVars.color.surface,
   surface: themeVars.color.surface,
   surfaceElevated: themeVars.color.surfaceElevated,
   text: themeVars.color.textPrimary,
@@ -37,14 +33,14 @@ export const colors = {
 } as const
 
 export const space = {
-  default: themeVars.space.md,
-  large: themeVars.space.lg,
   none: themeVars.space.none,
-  small: themeVars.space.sm,
-  xl: themeVars.space.xl,
-  xs: themeVars.space.xs,
-  xxl: themeVars.space.xxl,
   xxs: themeVars.space.xxs,
+  xs: themeVars.space.xs,
+  sm: themeVars.space.sm,
+  md: themeVars.space.md,
+  lg: themeVars.space.lg,
+  xl: themeVars.space.xl,
+  xxl: themeVars.space.xxl,
   xxxl: `calc(${themeVars.space.xxl} + ${themeVars.space.lg})`,
 } as const
 
@@ -63,17 +59,12 @@ export const shadows = {
 
 export const fontSizes = {
   body: themeVars.font.size.body,
+  bodyLg: themeVars.font.size.bodyLg,
   bodySm: themeVars.font.size.bodySm,
-  default: themeVars.font.size.body,
   h1: themeVars.font.size.h1,
   h2: themeVars.font.size.h2,
   h3: themeVars.font.size.h3,
-  large: themeVars.font.size.ui,
-  small: themeVars.font.size.bodySm,
   ui: themeVars.font.size.ui,
-  xl: themeVars.font.size.bodyLg,
-  xs: themeVars.font.size.bodySmaller,
-  xxl: themeVars.font.size.h1,
 } as const
 
 export const lineHeights = {
@@ -99,8 +90,6 @@ export const fontFamilies = {
   mono: themeVars.font.family.mono,
 } as const
 
-export const fontFamily = fontFamilies.body
-
 export const fontWeights = {
   heading: {
     bold: themeVars.font.weight.heading.bold,
@@ -114,8 +103,4 @@ export const fontWeights = {
   ui: {
     medium: themeVars.font.weight.ui.medium,
   },
-  bold: themeVars.font.weight.heading.bold,
-  medium: themeVars.font.weight.body.medium,
-  regular: themeVars.font.weight.body.regular,
-  semibold: themeVars.font.weight.heading.regular,
 } as const

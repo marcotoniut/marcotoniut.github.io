@@ -78,17 +78,17 @@ export const page = style({
 
 export const headerWrapper = style({
   ...sectionShell,
-  paddingBlock: space.small,
+  paddingBlock: space.sm,
 })
 
 export const bodyWrapper = style({
   ...sectionShell,
-  paddingBlock: space.large,
+  paddingBlock: space.lg,
 })
 
 export const footerWrapper = style({
   ...sectionShell,
-  paddingBlock: space.small,
+  paddingBlock: space.sm,
 })
 
 export const footerOverride = style({
@@ -110,16 +110,16 @@ export const content = style({
   width: "100%",
   display: "flex",
   flexDirection: "column",
-  gap: space.large,
+  gap: space.lg,
 })
 
 export const hero = style({
   background: sonicPalette.dark.surface,
   border: `1px solid ${sonicPalette.dark.border}`,
-  padding: space.large,
+  padding: space.lg,
   display: "flex",
   flexDirection: "column",
-  gap: space.small,
+  gap: space.sm,
   ...heroSurfaceSelectors,
 })
 
@@ -142,7 +142,7 @@ export const heroTitle = style({
 })
 
 export const heroSubtitle = style({
-  fontSize: fontSizes.small,
+  fontSize: fontSizes.bodySm,
   margin: 0,
   lineHeight: lineHeights.body,
   letterSpacing: letterSpacing.body,
@@ -176,17 +176,17 @@ export const accentLine = style({
 export const section = style({
   background: sonicPalette.dark.surface,
   border: `1px solid ${sonicPalette.dark.border}`,
-  padding: space.large,
+  padding: space.lg,
   display: "flex",
   flexDirection: "column",
-  gap: space.small,
+  gap: space.sm,
   ...sectionSurfaceSelectors,
 })
 
 export const sectionHeading = style({
   margin: 0,
   fontFamily: interStack,
-  fontSize: fontSizes.xl,
+  fontSize: fontSizes.bodyLg,
   letterSpacing: letterSpacing.h3,
   lineHeight: lineHeights.h3,
   fontWeight: fontWeights.heading.regular,
@@ -199,7 +199,7 @@ export const sectionParagraph = style({
 })
 
 export const sectionList = style({
-  margin: `${space.small} 0 0`,
+  margin: `${space.sm} 0 0`,
   paddingLeft: space.xl,
   listStyle: "disc",
 })
@@ -219,7 +219,7 @@ export const sectionListItem = style({
 
 export const sectionSubtle = style({
   fontSize: fontSizes.bodySm,
-  marginTop: space.small,
+  marginTop: space.sm,
   color: sonicPalette.dark.textMuted,
   selectors: {
     [`.${lightThemeClass} &`]: {
@@ -230,7 +230,7 @@ export const sectionSubtle = style({
 
 export const creditsBox = style({
   border: `1px solid ${sonicPalette.dark.border}`,
-  padding: space.large,
+  padding: space.lg,
   background: sonicPalette.dark.surface,
   display: "flex",
   flexDirection: "column",
@@ -241,7 +241,7 @@ export const creditsBox = style({
 export const creditsHeading = style({
   margin: 0,
   fontFamily: fontFamilies.heading,
-  fontSize: fontSizes.large,
+  fontSize: fontSizes.ui,
   fontWeight: fontWeights.heading.bold,
 })
 
@@ -252,11 +252,11 @@ export const creditsText = style({
 
 export const cvBlock = style({
   border: `1px solid ${waterBlue}`,
-  padding: space.large,
+  padding: space.lg,
   background: sonicPalette.dark.accentSoft ?? sonicPalette.dark.surface,
   display: "flex",
   flexDirection: "column",
-  gap: space.small,
+  gap: space.sm,
   selectors: {
     [`.${lightThemeClass} &`]: {
       background: sonicPalette.light.accentSoft,
@@ -277,7 +277,7 @@ export const cvLine = style({
 })
 
 export const cvList = style({
-  margin: `${space.small} 0 0`,
+  margin: `${space.sm} 0 0`,
   paddingLeft: space.xl,
   listStyle: "disc",
 })

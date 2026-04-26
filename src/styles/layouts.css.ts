@@ -14,7 +14,7 @@ export const pageContainer = style({
   flexDirection: "column",
   gap: space.xl,
   minHeight: "100svh",
-  padding: `${space.large} ${space.large}`,
+  padding: `${space.lg} ${space.lg}`,
   width: "100%",
 })
 /**

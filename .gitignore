@@ -9,6 +9,7 @@
 /coverage
 .playwright-mcp/
 /manual-tests
+tests/e2e/.playwright/
 
 # next.js
 /.next/

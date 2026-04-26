@@ -15,11 +15,11 @@ export const footer = style({
   color: colors.textMuted,
   display: "flex",
   fontFamily: fontFamilies.body,
-  fontSize: fontSizes.small,
+  fontSize: fontSizes.bodySm,
   fontWeight: fontWeights.body.medium,
   justifyContent: "center",
   marginInline: "auto",
-  paddingBlock: space.small,
+  paddingBlock: space.sm,
   textTransform: "uppercase",
   width: "min(100%, 960px)",
 })
@@ -37,7 +37,7 @@ export const content = style({
 export const copyright = style({
   margin: 0,
   fontWeight: 500,
-  fontSize: fontSizes.small,
+  fontSize: fontSizes.bodySm,
 })
 
 export const aiPolicy = style({

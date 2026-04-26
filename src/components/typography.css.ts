@@ -15,7 +15,7 @@ export const h1Cn = style({
   fontWeight: fontWeights.heading.bold,
   letterSpacing: letterSpacing.h1,
   lineHeight: lineHeights.h1,
-  color: colors.main,
+  color: colors.accent,
 })
 
 export const h2Cn = style({
@@ -24,7 +24,7 @@ export const h2Cn = style({
   fontWeight: fontWeights.heading.regular,
   letterSpacing: letterSpacing.h2,
   lineHeight: lineHeights.h2,
-  color: colors.main,
+  color: colors.accent,
   marginBottom: space.xs,
   marginTop: space.xl,
 })

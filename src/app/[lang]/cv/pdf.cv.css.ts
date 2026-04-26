@@ -66,7 +66,7 @@ if (env.NEXT_PUBLIC_PDF_PRINTING) {
   })
 
   globalStyle(`${docCn} h2`, {
-    color: colors.action,
+    color: colors.accent,
     textTransform: "none",
     marginTop: "2rem",
     borderBottom: printDivider,

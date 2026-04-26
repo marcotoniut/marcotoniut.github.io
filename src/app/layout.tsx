@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site"
 import { baseLocale, locales } from "@/i18n/i18n-util"
 import { toLocaleTag } from "@/i18n/locale-tags"
 import { pressStartFont } from "@/styles/fonts"
-import { themeClass } from "@/styles/theme"
+import { darkThemeClass, lightThemeClass } from "@/styles/theme"
 import { buildLocalizedHref } from "@/utils/locale"
 import {
   generateAntiAIMetadata,
@@ -96,10 +96,17 @@ export default function RootLayout({
 
   return (
     <html
-      className={`${themeClass} ${pressStartFont.variable}`}
+      className={pressStartFont.variable}
       lang={toLocaleTag(baseLocale)}
+      suppressHydrationWarning
     >
       <head>
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Blocking theme script prevents flash of wrong theme
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d='${darkThemeClass}',l='${lightThemeClass}',s=localStorage.getItem('marcotoniut-theme'),t=s==='light'?'light':s==='dark'?'dark':window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';document.documentElement.classList.add(t==='light'?l:d);document.documentElement.dataset.theme=t}catch(e){document.documentElement.classList.add('${darkThemeClass}')}})()`,
+          }}
+        />
         {/* Font preloads for performance */}
         <link
           as="font"
