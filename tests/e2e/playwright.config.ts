@@ -55,7 +55,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `cross-env BROWSER=none next dev --webpack -p ${port}`,
+    command: `cross-env BROWSER=none next dev -p ${port}`,
     cwd: projectRoot,
     url: `${baseURL}/en/`,
     reuseExistingServer: !ci,
