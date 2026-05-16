@@ -1,5 +1,8 @@
 pre-commit:
   commands:
+    actionlint:
+      glob: ".github/workflows/*.{yml,yaml}"
+      run: actionlint {staged_files}
     sitemap:
       run: pnpm generate:sitemap && git add public/sitemap.xml
       stage_fixed: true
