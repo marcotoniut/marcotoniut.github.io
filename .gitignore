@@ -46,6 +46,7 @@ next-env.d.ts
 # output
 local/
 tmp/
+.lighthouseci/
 
 # binaries
 .cache/puppeteer

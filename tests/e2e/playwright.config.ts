@@ -11,6 +11,9 @@ const baseURL = process.env["PLAYWRIGHT_BASE_URL"] ?? `http://${host}:${port}`
 const artifactsDir = path.resolve(__dirname, ".playwright")
 const ci = process.env["CI"]
 
+// CI uses higher tolerance to accommodate cross-platform font rendering
+const maxDiffPixelRatio = ci ? 0.03 : 0.01
+
 export default defineConfig({
   timeout: 60_000,
   snapshotPathTemplate: "{testDir}/{testFileName}-snapshots/{arg}{ext}",
@@ -19,7 +22,7 @@ export default defineConfig({
       animations: "disabled",
       caret: "hide",
       scale: "css",
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio,
     },
   },
   outputDir: `${artifactsDir}/test-results`,
