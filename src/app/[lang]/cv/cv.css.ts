@@ -252,6 +252,11 @@ globalStyle(link2Cn, {
   fontWeight: fontWeights.body.medium,
 })
 
+globalStyle(`${docCn} a`, {
+  color: colors.accent,
+  textDecoration: "underline",
+})
+
 globalStyle(`${docCn} a:hover`, {
   color: colors.accent,
 })

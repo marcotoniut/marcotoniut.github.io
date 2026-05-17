@@ -62,6 +62,40 @@ jobs:
 
       - run: pnpm build
 
-  # Visual tests are intentionally excluded from CI.
-  # Snapshots are captured on macOS; ubuntu runners produce pixel-level
-  # differences that cause false failures. Run locally via `pnpm test:visual`.
+  a11y:
+    name: Accessibility
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - uses: pnpm/action-setup@a15d269cd4658e1107c09f1fabf4cbd7bd1f308a # v4.4.0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate i18n types
+        run: pnpm generate
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install chromium --with-deps
+
+      - name: Run a11y tests
+        run: pnpm test:a11y
+
+      - name: Upload a11y report
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: a11y-report
+          path: tests/e2e/.playwright/
+          retention-days: 7
+
+  # Visual snapshot tests are excluded from CI.
+  # Snapshots are captured on macOS; ubuntu renders fonts differently.
+  # Run locally via `pnpm test:visual`.
