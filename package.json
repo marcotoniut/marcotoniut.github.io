@@ -4,6 +4,7 @@
   "scripts": {
     "build": "pnpm generate:sitemap && next build",
     "check": "pnpm lint && pnpm typecheck && pnpm spellcheck && pnpm test && pnpm build",
+    "check:agent": "./scripts/check-agent.sh --json",
     "deploy": "echo \"Deploy by pushing the release branch\"",
     "dev": "pnpm generate && concurrently \"pnpm generate:watch\" \"next dev -p 8525\"",
     "dev:agents": "pnpm generate && cross-env BROWSER=none next dev -p 8530",

@@ -99,6 +99,9 @@ src/
 ├── i18n/         # Translation source files
 └── styles/       # Global styles
 
+docs/
+└── decisions/    # Architecture Decision Records
+
 scripts/          # Utility scripts
 ```
 
