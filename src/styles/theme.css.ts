@@ -217,12 +217,14 @@ const gameboyThemeColors = {
   focusRing: "rgba(66, 16, 50, 0.4)",
 } as const
 
+const buyMeACoffeeYellow = "#ffdd00"
+
 export const lightThemeClass = createTheme(themeContract, {
   color: {
     ...lightThemeColors,
     buyMeACoffeeBackground: lightThemeColors.surfaceElevated,
     buyMeACoffeeText: lightThemeColors.textPrimary,
-    buyMeACoffeeAccent: "#ffdd00",
+    buyMeACoffeeAccent: buyMeACoffeeYellow,
     gb: gbPalette,
   },
   space: sharedSpace,
@@ -236,7 +238,7 @@ export const darkThemeClass = createTheme(themeContract, {
     ...darkThemeColors,
     buyMeACoffeeBackground: darkThemeColors.textPrimary,
     buyMeACoffeeText: darkThemeColors.surface,
-    buyMeACoffeeAccent: "#ffdd00",
+    buyMeACoffeeAccent: buyMeACoffeeYellow,
     gb: gbPalette,
   },
   space: sharedSpace,

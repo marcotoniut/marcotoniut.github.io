@@ -13,15 +13,18 @@ export const H1 = ({ children, className, ...props }: HProps): JSX.Element => (
     {children}
   </h1>
 )
+H1.displayName = "H1"
 
 export const H2 = ({ children, className, ...props }: HProps): JSX.Element => (
   <h2 className={className ? `${h2Cn} ${className}` : h2Cn} {...props}>
     {children}
   </h2>
 )
+H2.displayName = "H2"
 
 export const H3 = ({ children, className, ...props }: HProps): JSX.Element => (
   <h3 className={className ? `${h3Cn} ${className}` : h3Cn} {...props}>
     {children}
   </h3>
 )
+H3.displayName = "H3"

@@ -16,7 +16,7 @@ const scheduleIdle = (onReady: () => void) => {
     return () => window.cancelIdleCallback?.(idleId)
   }
 
-  const timeoutId = window.setTimeout(onReady, 4000)
+  const timeoutId = window.setTimeout(onReady, 1500)
   return () => window.clearTimeout(timeoutId)
 }
 

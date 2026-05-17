@@ -40,15 +40,6 @@ const listAccent = {
   },
 }
 
-const heroSurfaceSelectors = {
-  selectors: {
-    [`.${lightThemeClass} &`]: {
-      background: sonicPalette.light.surface,
-      border: `1px solid ${sonicPalette.light.border}`,
-    },
-  },
-}
-
 const sectionShell = {
   width: "100%",
   maxWidth: "1080px",
@@ -115,7 +106,12 @@ export const hero = style({
   display: "flex",
   flexDirection: "column",
   gap: space.sm,
-  ...heroSurfaceSelectors,
+  selectors: {
+    [`.${lightThemeClass} &`]: {
+      background: sonicPalette.light.surface,
+      border: `1px solid ${sonicPalette.light.border}`,
+    },
+  },
 })
 
 export const heroKicker = style({

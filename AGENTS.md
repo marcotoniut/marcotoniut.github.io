@@ -51,10 +51,10 @@ Skip preflight for simple Q&A, one-off shell asks, or doc/review work.
 Before completion, run required checks:
 
 ```bash
-pnpm lint
-pnpm typecheck
-pnpm build
+pnpm check
 ```
+
+Or individually: `pnpm lint`, `pnpm typecheck`, `pnpm spellcheck`, `pnpm test`, `pnpm build`.
 
 - On failure, fix reported failures; rerun same command until green.
 - Do not jump to broader checks before failing command passes.
@@ -80,5 +80,6 @@ Headless by default. No manual browser windows.
 - Keep docs/comments terse. Repo is self-documenting where possible.
 - Use `git mv` for tracked renames.
 - Do not add `Co-Authored-By` lines to commit messages.
+- Use Conventional Commits with scope (see `DEVELOPMENT.md`).
 - Stop dev servers/watchers before handoff unless user asks otherwise.
 - Do not rename/add/delete `.env` or config variables without explicit approval.

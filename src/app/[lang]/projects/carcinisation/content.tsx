@@ -1,6 +1,5 @@
 import Image from "next/image"
 import type { ReactNode } from "react"
-import type { LocaleKey } from "@/app/[lang]/common"
 import { GithubIcon, ItchIOIcon } from "@/components/icons"
 import { TrackedAnchor } from "@/components/TrackedLink"
 import type { Locales } from "@/i18n/i18n-types"
@@ -56,7 +55,6 @@ type ProjectContentProps = {
 }
 
 export function CarcinisationContent({ locale }: ProjectContentProps) {
-  const localeKey: LocaleKey = locale === "es" ? "es" : "en"
   const t = getCarcinisationCopy(locale)
 
   return (
@@ -82,7 +80,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
             href={t.links.itch}
             target="_blank"
             rel="noreferrer"
-            locale={localeKey}
+            locale={locale}
             trackingType="project_link"
             trackingParams={{
               link_location: TRACKING_LOCATION.page,
@@ -99,7 +97,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
             href={t.links.github}
             target="_blank"
             rel="noreferrer"
-            locale={localeKey}
+            locale={locale}
             trackingType="project_link"
             trackingParams={{
               link_location: TRACKING_LOCATION.page,
@@ -122,7 +120,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 href="https://itch.io/jam/gbjam-11"
                 target="_blank"
                 rel="noreferrer"
-                locale={localeKey}
+                locale={locale}
                 trackingType="project_link"
                 trackingParams={{
                   link_location: TRACKING_LOCATION.meta,
@@ -249,7 +247,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
           >
             {t.labels.screenshots}
           </h2>
-          <ScreenshotGallery locale={localeKey} />
+          <ScreenshotGallery locale={locale} />
         </article>
 
         <article className={styles.card}>
@@ -265,7 +263,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 target="_blank"
                 rel="noreferrer"
                 className={styles.link}
-                locale={localeKey}
+                locale={locale}
                 trackingType="project_link"
                 trackingParams={{
                   link_location: TRACKING_LOCATION.externalLinks,
@@ -283,7 +281,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 target="_blank"
                 rel="noreferrer"
                 className={styles.link}
-                locale={localeKey}
+                locale={locale}
                 trackingType="project_link"
                 trackingParams={{
                   link_location: TRACKING_LOCATION.externalLinks,
@@ -363,7 +361,7 @@ function TechList({ items }: TechListProps) {
 }
 
 type ScreenshotGalleryProps = {
-  locale: LocaleKey
+  locale: Locales
 }
 
 function ScreenshotGallery({ locale }: ScreenshotGalleryProps) {

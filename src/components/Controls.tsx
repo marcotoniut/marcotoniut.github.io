@@ -9,19 +9,8 @@ import type { Locales } from "@/i18n/i18n-types"
 import { locales } from "@/i18n/i18n-util"
 import { LocaleSchema } from "@/i18n/schemas"
 import { setStoredLocale } from "@/utils/language-storage"
+import { createLocalePath } from "@/utils/locale"
 import * as styles from "./Header.css"
-
-function createLocalePath(pathname: string, newLocale: Locales): string {
-  const segments = pathname.split("/").filter(Boolean)
-  const parsedSegment =
-    segments.length > 0 ? LocaleSchema.safeParse(segments[0]) : null
-
-  if (parsedSegment?.success) {
-    segments[0] = newLocale
-    return `/${segments.join("/")}`
-  }
-  return `/${newLocale}`
-}
 
 export function Controls({ currentLocale }: { currentLocale: Locales }) {
   const pathname = usePathname()

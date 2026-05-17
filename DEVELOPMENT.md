@@ -33,15 +33,31 @@ Runs at [http://localhost:8825](http://localhost:8825)
 | `pnpm print-cv`  | Generate CV PDF                           |
 | `pnpm format:py` | Format Python CI helpers with Ruff        |
 | `pnpm format:py:check` | Check Python formatting (CI parity) |
+| `pnpm check`     | Run all quality gates (lint, typecheck, spellcheck, test, build) |
+| `pnpm test`      | Run unit tests (vitest)                   |
 | `pnpm deploy`    | Reminder: deployments run on `release`    |
 
 ## Development Flow
 
 1. **Code** → Make changes
-2. **Lint** → `pnpm lint:fix && pnpm typecheck`
-3. **Build** → `pnpm build` (verify it works)
-4. **Commit** → Short, imperative messages
-5. **Deploy** → merge to `release` (deployment workflow runs automatically)
+2. **Verify** → `pnpm check` (runs all gates)
+3. **Commit** → Conventional Commits with scope (see below)
+4. **Deploy** → merge to `release` (deployment workflow runs automatically)
+
+### Commit Convention
+
+Use [Conventional Commits](https://www.conventionalcommits.org/) with scope:
+
+```
+feat(cv): add PDF download button
+fix(i18n): correct Spanish translation for contact page
+refactor(styles): extract shared font constants
+chore(ci): add dependency audit step
+docs(dev): update development flow
+perf(analytics): reduce GA loader timeout
+```
+
+Scopes: `cv`, `i18n`, `styles`, `ci`, `components`, `analytics`, `a11y`, `seo`, `deps`, `dev`
 
 ## Key Concepts
 

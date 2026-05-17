@@ -61,6 +61,7 @@ export function ContactForm({ translations }: ContactFormProps) {
           onChange={(e) => setTitle(e.target.value)}
           placeholder={translations.titlePlaceholder}
           required
+          aria-required="true"
         />
       </div>
 
@@ -76,6 +77,7 @@ export function ContactForm({ translations }: ContactFormProps) {
           placeholder={translations.messagePlaceholder}
           rows={8}
           required
+          aria-required="true"
         />
       </div>
 

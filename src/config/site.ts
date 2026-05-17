@@ -14,6 +14,7 @@ export const siteConfig = {
     "Bevy",
     "Rust",
   ],
+  jobTitle: "Systems Engineer",
   author: {
     name: "Marco Toniut",
     url: "https://marcotoniut.github.io/",

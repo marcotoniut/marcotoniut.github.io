@@ -73,7 +73,7 @@ export default function RootLayout({
     "@type": "Person",
     name: siteConfig.author.name,
     url: siteConfig.baseUrl,
-    jobTitle: "Systems Engineer",
+    jobTitle: siteConfig.jobTitle,
     description: siteConfig.description,
     image: siteConfig.social.ogImage,
     sameAs: siteConfig.sameAs,
