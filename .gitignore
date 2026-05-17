@@ -10,6 +10,7 @@
 .playwright-mcp/
 /manual-tests
 tests/e2e/.playwright/
+tests/unit/node_modules/
 
 # next.js
 /.next/
@@ -44,6 +45,7 @@ next-env.d.ts
 
 # output
 local/
+tmp/
 
 # binaries
 .cache/puppeteer

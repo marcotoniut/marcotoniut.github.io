@@ -21,7 +21,8 @@
     "print-cv": "pnpm tsx scripts/print-cv.ts",
     "spellcheck": "cspell lint .",
     "start": "next start",
-    "test": "echo \"No automated tests yet\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:visual": "playwright test -c tests/e2e/playwright.config.ts",
     "test:visual:update": "playwright test -c tests/e2e/playwright.config.ts --update-snapshots",
     "typecheck": "tsc --pretty --noEmit",
@@ -60,7 +61,8 @@
     "open-cli": "^9.0.0",
     "puppeteer": "25.0.2",
     "tsx": "4.22.0",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vitest": "^4.1.6"
   },
   "packageManager": "pnpm@11.1.1"
 }
