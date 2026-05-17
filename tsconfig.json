@@ -29,9 +29,9 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "allowJs": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowJs": true
   },
   "include": [
     "next-env.d.ts",

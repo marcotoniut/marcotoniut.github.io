@@ -12,9 +12,9 @@
 
 import { writeFileSync } from "node:fs"
 import { join } from "node:path"
+import { locales } from "../src/i18n/i18n-util"
 
 const BASE_URL = "https://marcotoniut.github.io"
-const LOCALES = ["en", "es"] as const
 
 interface SitemapUrl {
   loc: string
@@ -57,7 +57,7 @@ function generateSitemapUrls(): SitemapUrl[] {
   })
 
   // Localized home pages
-  for (const locale of LOCALES) {
+  for (const locale of locales) {
     urls.push({
       loc: `${BASE_URL}/${locale}/`,
       lastmod,
@@ -75,13 +75,36 @@ function generateSitemapUrls(): SitemapUrl[] {
   })
 
   // Localized CV pages
-  for (const locale of LOCALES) {
+  for (const locale of locales) {
     urls.push({
       loc: `${BASE_URL}/${locale}/cv/`,
       lastmod,
       changefreq: "monthly",
       priority: 0.9,
     })
+  }
+
+  // Localized contact pages
+  for (const locale of locales) {
+    urls.push({
+      loc: `${BASE_URL}/${locale}/contact/`,
+      lastmod,
+      changefreq: "yearly",
+      priority: 0.5,
+    })
+  }
+
+  // Localized project pages
+  const projects = ["carcinisation", "sonicthames"]
+  for (const locale of locales) {
+    for (const project of projects) {
+      urls.push({
+        loc: `${BASE_URL}/${locale}/projects/${project}/`,
+        lastmod,
+        changefreq: "yearly",
+        priority: 0.7,
+      })
+    }
   }
 
   return urls

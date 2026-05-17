@@ -56,7 +56,6 @@ const themeContract = createThemeContract({
       h3: null,
       body: null,
       bodyLg: null,
-      bodySmaller: null,
       bodySm: null,
       ui: null,
     },
@@ -136,7 +135,6 @@ const sharedFont = {
     body: "1rem",
     bodyLg: "1.2rem",
     bodySm: "0.85rem",
-    bodySmaller: "0.75rem",
     ui: "0.9375rem",
   },
   lineHeight: {

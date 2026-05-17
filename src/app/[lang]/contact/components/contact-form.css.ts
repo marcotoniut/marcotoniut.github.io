@@ -1,10 +1,18 @@
 import { style } from "@vanilla-extract/css"
-import { themeVars } from "@/styles/theme"
+import {
+  colors,
+  durations,
+  fontSizes,
+  fontWeights,
+  space,
+  themeVars,
+} from "@/styles/theme"
+import { withAlpha } from "@/utils/color"
 
 export const form = style({
   display: "flex",
   flexDirection: "column",
-  gap: "1.5rem",
+  gap: space.xl,
   maxWidth: "600px",
   width: "100%",
 })
@@ -12,13 +20,13 @@ export const form = style({
 export const field = style({
   display: "flex",
   flexDirection: "column",
-  gap: "0.5rem",
+  gap: space.sm,
 })
 
 export const label = style({
-  fontSize: "0.875rem",
-  fontWeight: 500,
-  color: themeVars.color.textPrimary,
+  fontSize: fontSizes.bodySm,
+  fontWeight: fontWeights.body.medium,
+  color: colors.text,
 })
 
 export const required = style({
@@ -26,21 +34,21 @@ export const required = style({
 })
 
 export const input = style({
-  padding: "0.75rem 1rem",
-  fontSize: "1rem",
-  border: `1px solid ${themeVars.color.border}`,
-  backgroundColor: themeVars.color.background,
-  color: themeVars.color.textPrimary,
-  transition: "border-color 0.2s, box-shadow 0.2s",
+  padding: `${space.md} ${space.lg}`,
+  fontSize: fontSizes.body,
+  border: `1px solid ${colors.border}`,
+  backgroundColor: colors.background,
+  color: colors.text,
+  transition: `border-color ${durations.normal}, box-shadow ${durations.normal}`,
 
   ":focus": {
     outline: "none",
-    borderColor: themeVars.color.accent,
-    boxShadow: `0 0 0 3px ${themeVars.color.accent}33`,
+    borderColor: colors.accent,
+    boxShadow: `0 0 0 3px ${withAlpha(colors.accent, 0.2)}`,
   },
 
   "::placeholder": {
-    color: themeVars.color.textMuted,
+    color: colors.textMuted,
   },
 })
 
@@ -55,14 +63,14 @@ export const textarea = style([
 
 export const button = style({
   alignSelf: "flex-start",
-  backgroundColor: themeVars.color.accent,
+  backgroundColor: colors.accent,
   border: "none",
-  color: themeVars.color.background,
+  color: colors.background,
   cursor: "pointer",
-  fontSize: "1rem",
-  fontWeight: 600,
-  padding: "0.875rem 2rem",
-  transition: "transform 0.2s, opacity 0.2s",
+  fontSize: fontSizes.body,
+  fontWeight: fontWeights.body.bold,
+  padding: `${space.md} ${space.xxl}`,
+  transition: `transform ${durations.normal}, opacity ${durations.normal}`,
 
   ":hover": {
     transform: "translateY(-2px)",

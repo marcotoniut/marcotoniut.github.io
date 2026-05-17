@@ -10,10 +10,6 @@ import {
   cardTitle,
 } from "./card.css"
 
-function mergeClassNames(baseClass: string, className?: string) {
-  return className ? `${baseClass} ${className}` : baseClass
-}
-
 export type CardProps = ComponentPropsWithoutRef<"div">
 
 export const Card = ({
@@ -22,7 +18,11 @@ export const Card = ({
   ...props
 }: CardProps & { ref?: RefObject<ElementRef<"div"> | null> }) => {
   return (
-    <div {...props} className={mergeClassNames(card, className)} ref={ref} />
+    <div
+      {...props}
+      className={className ? `${card} ${className}` : card}
+      ref={ref}
+    />
   )
 }
 Card.displayName = "Card"
@@ -37,7 +37,7 @@ export const CardHeader = ({
   return (
     <div
       {...props}
-      className={mergeClassNames(cardHeader, className)}
+      className={className ? `${cardHeader} ${className}` : cardHeader}
       ref={ref}
     />
   )
@@ -54,7 +54,7 @@ export const CardTitle = ({
   return (
     <h3
       {...props}
-      className={mergeClassNames(cardTitle, className)}
+      className={className ? `${cardTitle} ${className}` : cardTitle}
       ref={ref}
     />
   )
@@ -71,7 +71,7 @@ export const CardSubtitle = ({
   return (
     <p
       {...props}
-      className={mergeClassNames(cardSubtitle, className)}
+      className={className ? `${cardSubtitle} ${className}` : cardSubtitle}
       ref={ref}
     />
   )
@@ -88,7 +88,7 @@ export const CardContent = ({
   return (
     <div
       {...props}
-      className={mergeClassNames(cardContent, className)}
+      className={className ? `${cardContent} ${className}` : cardContent}
       ref={ref}
     />
   )

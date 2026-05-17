@@ -1,6 +1,7 @@
 import { globalStyle, style } from "@vanilla-extract/css"
 import {
   colors,
+  durations,
   fontFamilies,
   fontSizes,
   fontWeights,
@@ -46,7 +47,7 @@ export const iconRow = style({
 export const iconLink = style({
   color: colors.textMuted,
   display: "inline-flex",
-  transition: "color 0.2s",
+  transition: `color ${durations.normal}`,
   ":hover": {
     color: themeVars.color.accent,
   },
@@ -64,7 +65,7 @@ export const aiPolicy = style({
   padding: 0,
   margin: "-1px",
   overflow: "hidden",
-  clip: "rect(0, 0, 0, 0)",
+  clipPath: "inset(100%)",
   whiteSpace: "nowrap",
   border: 0,
 })
@@ -73,7 +74,7 @@ export const link = style({
   color: themeVars.color.accent,
   textDecoration: "underline",
   textUnderlineOffset: "2px",
-  transition: "color 0.2s",
+  transition: `color ${durations.normal}`,
   ":hover": {
     color: themeVars.color.textPrimary,
   },

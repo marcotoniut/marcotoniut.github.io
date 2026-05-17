@@ -7,15 +7,14 @@ import {
   fontSizes,
   fontWeights,
   lineHeights,
+  media,
   radii,
   shadows,
   space,
 } from "@/styles/theme"
 import { withAlpha } from "@/utils/color"
 
-const ICON_SIZE = 45
 const BUTTON_PRESS_TRANSLATE = "translateY(-2px)"
-const MEDIA_QUERY_MAX_WIDTH = "(max-width: 480px)"
 
 /* ---------- Theme vars (trimmed) ---------- */
 const gbThemeVars = {
@@ -228,7 +227,7 @@ export const kicker = style({
   margin: 0,
   textTransform: "uppercase",
   "@media": {
-    [MEDIA_QUERY_MAX_WIDTH]: {
+    [media.sm]: {
       fontSize: fontSizes.bodySm,
       letterSpacing: "0.2em",
     },
@@ -241,7 +240,7 @@ export const title = style({
   lineHeight: 1.1,
   margin: 0,
   "@media": {
-    [MEDIA_QUERY_MAX_WIDTH]: {
+    [media.sm]: {
       fontSize: "1.2rem",
       lineHeight: 1.04,
     },
@@ -255,7 +254,7 @@ export const subtitle = style({
   marginTop: space.xs,
   textTransform: "uppercase",
   "@media": {
-    [MEDIA_QUERY_MAX_WIDTH]: {
+    [media.sm]: {
       fontSize: fontSizes.bodySm,
     },
   },
@@ -298,32 +297,6 @@ export const button = style([
   },
 ])
 
-export const iconButton = style([
-  buttonBase,
-  {
-    background: gbThemeVars.accentSoft,
-    border: `1px solid ${gbThemeVars.accent}`,
-    boxShadow: `0 4px 0 0 ${gbThemeVars.accent}`,
-    color: gbThemeVars.text,
-    height: ICON_SIZE,
-    padding: 0,
-    selectors: {
-      "&:visited": {
-        color: colors.gb.pale,
-      },
-      "&:hover": { transform: BUTTON_PRESS_TRANSLATE },
-      "&:focus-visible": {
-        transform: BUTTON_PRESS_TRANSLATE,
-      },
-      "&:active": {
-        transform: "translateY(1px)",
-        boxShadow: `0 1px 0 0 ${gbThemeVars.border}`,
-      },
-    },
-    width: ICON_SIZE,
-  },
-])
-
 /* ---------- Meta & tables ---------- */
 export const metaRow = style({
   borderTop: `1px dotted ${gbThemeVars.borderMuted}`,
@@ -346,7 +319,7 @@ export const metaLabel = style({
   letterSpacing: "0.18em",
   textTransform: "uppercase",
   "@media": {
-    [MEDIA_QUERY_MAX_WIDTH]: {
+    [media.sm]: {
       fontSize: fontSizes.bodySm,
       letterSpacing: "0.12em",
     },
@@ -358,7 +331,7 @@ export const metaValue = style({
   fontSize: fontSizes.body,
   fontWeight: fontWeights.body.bold,
   "@media": {
-    [MEDIA_QUERY_MAX_WIDTH]: {
+    [media.sm]: {
       fontSize: fontSizes.bodySm,
     },
   },
@@ -397,7 +370,7 @@ export const sectionHeading = style({
   fontSize: fontSizes.body,
   textTransform: "uppercase",
   "@media": {
-    [MEDIA_QUERY_MAX_WIDTH]: {
+    [media.sm]: {
       fontSize: fontSizes.bodySm,
     },
   },

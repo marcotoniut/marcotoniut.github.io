@@ -9,19 +9,19 @@ type HProps = Pick<
 >
 
 export const H1 = ({ children, className, ...props }: HProps): JSX.Element => (
-  <h1 className={[h1Cn, className].filter((x) => x).join(" ")} {...props}>
+  <h1 className={className ? `${h1Cn} ${className}` : h1Cn} {...props}>
     {children}
   </h1>
 )
 
 export const H2 = ({ children, className, ...props }: HProps): JSX.Element => (
-  <h2 className={[h2Cn, className].filter((x) => x).join(" ")} {...props}>
+  <h2 className={className ? `${h2Cn} ${className}` : h2Cn} {...props}>
     {children}
   </h2>
 )
 
 export const H3 = ({ children, className, ...props }: HProps): JSX.Element => (
-  <h3 className={[h3Cn, className].filter((x) => x).join(" ")} {...props}>
+  <h3 className={className ? `${h3Cn} ${className}` : h3Cn} {...props}>
     {children}
   </h3>
 )

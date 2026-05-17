@@ -45,10 +45,7 @@ export const LinkButton = ({
   prefetch,
   replace,
   scroll,
-  shallow,
   locale,
-  passHref,
-  legacyBehavior,
   ref,
   ...anchorProps
 }: LinkButtonProps & { ref?: RefObject<ElementRef<"a"> | null> }) => {
@@ -79,13 +76,10 @@ export const LinkButton = ({
     ...anchorProps,
     href,
     ref,
-    ...(legacyBehavior !== undefined && { legacyBehavior }),
     ...(locale !== undefined && { locale }),
-    ...(passHref !== undefined && { passHref }),
     ...(prefetch !== undefined && { prefetch }),
     ...(replace !== undefined && { replace }),
     ...(scroll !== undefined && { scroll }),
-    ...(shallow !== undefined && { shallow }),
     ...(target !== undefined && { target }),
     ...(rel !== undefined && { rel }),
   }

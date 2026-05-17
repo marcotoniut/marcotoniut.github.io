@@ -2,12 +2,14 @@ import { recipe } from "@vanilla-extract/recipes"
 
 import {
   colors,
+  durations,
   fontFamilies,
   fontSizes,
   fontWeights,
   shadows,
   space,
 } from "@/styles/theme"
+import { withAlpha } from "@/utils/color"
 
 export const buttonRecipe = recipe({
   base: {
@@ -28,11 +30,9 @@ export const buttonRecipe = recipe({
     paddingBlock: space.xs,
     position: "relative",
     textDecoration: "none",
-    transition:
-      "background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease",
+    transition: `background-color ${durations.normal} ease, border-color ${durations.normal} ease, box-shadow ${durations.normal} ease, transform 150ms ease`,
     userSelect: "none",
     whiteSpace: "nowrap",
-    willChange: "transform",
     ":focus-visible": {
       outline: "none",
       boxShadow: `${shadows.glow}, ${shadows.subtle}`,
@@ -78,8 +78,8 @@ export const buttonRecipe = recipe({
         borderColor: "transparent",
         color: colors.accent,
         ":hover": {
-          backgroundColor: "rgba(86, 243, 201, 0.1)",
-          borderColor: "rgba(86, 243, 201, 0.35)",
+          backgroundColor: withAlpha(colors.accent, 0.1),
+          borderColor: withAlpha(colors.accent, 0.35),
         },
       },
     },

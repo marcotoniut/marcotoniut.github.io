@@ -104,3 +104,24 @@ export const fontWeights = {
     medium: themeVars.font.weight.ui.medium,
   },
 } as const
+
+/** Static breakpoint constants — cannot use CSS custom properties in media queries */
+export const breakpoints = {
+  sm: "480px",
+  md: "768px",
+  lg: "1080px",
+} as const
+
+/** Media query helpers for use in Vanilla Extract `@media` keys */
+export const media = {
+  sm: `screen and (max-width: ${breakpoints.sm})`,
+  md: `screen and (max-width: ${breakpoints.md})`,
+  lg: `screen and (max-width: ${breakpoints.lg})`,
+} as const
+
+/** Transition duration tokens */
+export const durations = {
+  fast: "100ms",
+  normal: "200ms",
+  slow: "320ms",
+} as const

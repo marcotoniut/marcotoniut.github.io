@@ -11,6 +11,12 @@ import {
   space,
 } from "@/styles/theme"
 
+const cardBodyFont = {
+  color: colors.textMuted,
+  fontFamily: fontFamilies.body,
+  fontSize: fontSizes.body,
+} as const
+
 export const card = style({
   background: colors.surfaceElevated,
   border: `1px solid ${colors.border}`,
@@ -40,16 +46,12 @@ export const cardTitle = style({
 })
 
 export const cardSubtitle = style({
-  color: colors.textMuted,
-  fontFamily: fontFamilies.body,
-  fontSize: fontSizes.body,
+  ...cardBodyFont,
   letterSpacing: "0.02em",
   margin: 0,
 })
 
 export const cardContent = style({
-  color: colors.textMuted,
-  fontFamily: fontFamilies.body,
-  fontSize: fontSizes.body,
+  ...cardBodyFont,
   lineHeight: lineHeights.body,
 })

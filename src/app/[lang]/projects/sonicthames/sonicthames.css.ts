@@ -49,15 +49,6 @@ const heroSurfaceSelectors = {
   },
 }
 
-const sectionSurfaceSelectors = {
-  selectors: {
-    [`.${lightThemeClass} &`]: {
-      background: sonicPalette.light.surface,
-      border: `1px solid ${sonicPalette.light.border}`,
-    },
-  },
-}
-
 const sectionShell = {
   width: "100%",
   maxWidth: "1080px",
@@ -177,16 +168,6 @@ export const accentLine = style({
   alignSelf: "flex-start",
 })
 
-export const section = style({
-  background: sonicPalette.dark.surface,
-  border: `1px solid ${sonicPalette.dark.border}`,
-  padding: space.lg,
-  display: "flex",
-  flexDirection: "column",
-  gap: space.sm,
-  ...sectionSurfaceSelectors,
-})
-
 export const sectionExposition = style({
   background: "transparent",
   border: "none",
@@ -216,15 +197,6 @@ export const sectionAtmospheric = style({
   gap: space.sm,
   fontStyle: "italic",
   lineHeight: "1.7",
-})
-
-export const sectionHeading = style({
-  margin: 0,
-  fontFamily: interStack,
-  fontSize: fontSizes.bodyLg,
-  letterSpacing: letterSpacing.h3,
-  lineHeight: lineHeights.h3,
-  fontWeight: fontWeights.heading.regular,
 })
 
 export const sectionHeadingExposition = style({
@@ -283,27 +255,6 @@ export const sectionListItem = style({
   },
 })
 
-export const sectionSubtle = style({
-  fontSize: fontSizes.bodySm,
-  marginTop: space.sm,
-  color: sonicPalette.dark.textMuted,
-  selectors: {
-    [`.${lightThemeClass} &`]: {
-      color: sonicPalette.light.textMuted,
-    },
-  },
-})
-
-export const creditsBox = style({
-  border: `1px solid ${sonicPalette.dark.border}`,
-  padding: space.lg,
-  background: sonicPalette.dark.surface,
-  display: "flex",
-  flexDirection: "column",
-  gap: space.xs,
-  ...sectionSurfaceSelectors,
-})
-
 export const creditsHeading = style({
   margin: 0,
   fontFamily: fontFamilies.heading,
@@ -314,49 +265,4 @@ export const creditsHeading = style({
 export const creditsText = style({
   margin: 0,
   lineHeight: lineHeights.body,
-})
-
-export const cvBlock = style({
-  border: `1px solid ${waterBlue}`,
-  padding: space.lg,
-  background: sonicPalette.dark.accentSoft ?? sonicPalette.dark.surface,
-  display: "flex",
-  flexDirection: "column",
-  gap: space.sm,
-  selectors: {
-    [`.${lightThemeClass} &`]: {
-      background: sonicPalette.light.accentSoft,
-    },
-  },
-})
-
-export const cvLine = style({
-  margin: 0,
-  fontFamily: fontFamilies.mono,
-  fontSize: fontSizes.bodySm,
-  color: sonicPalette.dark.text,
-  selectors: {
-    [`.${lightThemeClass} &`]: {
-      color: sonicPalette.light.text,
-    },
-  },
-})
-
-export const cvList = style({
-  margin: `${space.sm} 0 0`,
-  paddingLeft: space.xl,
-  listStyle: "disc",
-})
-
-export const cvListItem = style({
-  margin: `${space.xs} 0`,
-  lineHeight: lineHeights.body,
-  fontSize: fontSizes.body,
-  color: sonicPalette.dark.text,
-  ...listAccent,
-  selectors: {
-    [`.${lightThemeClass} &`]: {
-      color: sonicPalette.light.text,
-    },
-  },
 })

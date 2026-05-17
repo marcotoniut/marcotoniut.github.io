@@ -7,9 +7,11 @@ import { Header } from "@/components/Header"
 import { GithubIcon, ItchIOIcon, LinkedInIcon } from "@/components/icons"
 import { TrackedAnchor } from "@/components/TrackedLink"
 import { H1, H2, H3 } from "@/components/typography"
+import { siteConfig } from "@/config/site"
 import { I18nContext } from "@/i18n/i18n-react"
 import { email, phone } from "@/info"
 import { trackCVView } from "@/utils/analytics"
+import { buildLocalizedHref } from "@/utils/locale"
 import {
   asideCn,
   docCn,
@@ -33,6 +35,11 @@ import { Meta } from "./data"
 import "./pdf.cv.css"
 
 const DATE_FORMAT = "MMM yyyy"
+
+const CV_TRACKING_LOCATION = {
+  profile: "profile",
+  page: "cv_page",
+} as const
 
 interface CVContentProps {
   isPdfPrinting: boolean
@@ -124,7 +131,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                     trackingType="external_link"
                     trackingParams={{
                       link_url: "https://github.com/marcotoniut",
-                      link_location: "profile",
+                      link_location: CV_TRACKING_LOCATION.profile,
                       link_type: "github",
                       link_text: "GitHub Profile",
                     }}
@@ -140,7 +147,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                     trackingParams={{
                       link_url:
                         "https://www.linkedin.com/in/marco-toniut-4b6a143a/",
-                      link_location: "profile",
+                      link_location: CV_TRACKING_LOCATION.profile,
                       link_type: "linkedin",
                       link_text: "LinkedIn Profile",
                     }}
@@ -272,7 +279,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                     trackingParams={{
                       link_url:
                         "https://www.udemy.com/course/analog-electronics-robotics-learn-by-building",
-                      link_location: "cv_page",
+                      link_location: CV_TRACKING_LOCATION.page,
                       link_type: "other",
                       link_text: "Udemy Robotics Module 1",
                     }}
@@ -290,7 +297,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                     trackingParams={{
                       link_url:
                         "https://www.udemy.com/course/digital-electronics-robotics-learn-by-building-module-ii",
-                      link_location: "cv_page",
+                      link_location: CV_TRACKING_LOCATION.page,
                       link_type: "other",
                       link_text: "Udemy Robotics Module 2",
                     }}
@@ -320,7 +327,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                   trackingType="project_link"
                   trackingParams={{
                     link_url: "https://github.com/marcotoniut/carcinisation",
-                    link_location: "cv_page",
+                    link_location: CV_TRACKING_LOCATION.page,
                     project_name: "carcinisation",
                     link_type: "github",
                   }}
@@ -335,7 +342,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                   trackingType="project_link"
                   trackingParams={{
                     link_url: "https://marcotoniut.itch.io/carcinisation",
-                    link_location: "cv_page",
+                    link_location: CV_TRACKING_LOCATION.page,
                     project_name: "carcinisation",
                     link_type: "itch_io",
                   }}
@@ -354,7 +361,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                   trackingType="external_link"
                   trackingParams={{
                     link_url: "https://bevyengine.org/",
-                    link_location: "cv_page",
+                    link_location: CV_TRACKING_LOCATION.page,
                     link_type: "other",
                     link_text: "Bevy Engine",
                   }}
@@ -377,8 +384,10 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
       {isPdfPrinting ? (
         <footer className={footerCn}>
           <span>
-            {/* TODO use route with base url instead */}
-            <a className={linkCn} href="https://marcotoniut.github.io/cv">
+            <a
+              className={linkCn}
+              href={`${siteConfig.baseUrl}${buildLocalizedHref(locale, "cv")}`}
+            >
               {LL.CVPage.footer.p1()}
             </a>
             {LL.CVPage.footer.p2()}

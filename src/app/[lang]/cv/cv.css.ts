@@ -1,11 +1,16 @@
 import { globalStyle, style } from "@vanilla-extract/css"
-import { colors, fontFamilies, fontWeights, space } from "../../../styles/theme"
+import {
+  colors,
+  fontFamilies,
+  fontWeights,
+  media,
+  space,
+} from "../../../styles/theme"
 
 const maxWidth = 1120
 const cvBodyFamily =
   '"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
-const printHeadingFamily =
-  '"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+const printHeadingFamily = cvBodyFamily
 
 const baseFontSize = "1rem"
 const baseColumnGap = "1.75rem"
@@ -44,7 +49,7 @@ export const docCn = style({
   paddingBlock: space.lg,
   paddingInline: space.lg,
   "@media": {
-    "screen and (max-width: 768px)": {
+    [media.md]: {
       flexDirection: "column",
       fontSize: "0.92rem",
       gap: space.lg,
@@ -149,7 +154,7 @@ export const asideCn = style({
   justifyContent: "space-between",
   backgroundColor: "transparent",
   "@media": {
-    "screen and (max-width: 768px)": {
+    [media.md]: {
       maxWidth: "none",
       width: "100%",
       order: 0,

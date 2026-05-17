@@ -1,12 +1,19 @@
 import { keyframes, style } from "@vanilla-extract/css"
 import {
   colors,
+  durations,
   fontFamilies,
   fontSizes,
   fontWeights,
   shadows,
   space,
 } from "@/styles/theme"
+
+const selectFont = {
+  fontFamily: fontFamilies.body,
+  fontSize: fontSizes.ui,
+  fontWeight: fontWeights.ui.medium,
+} as const
 
 export const headerContainer = style({
   margin: "0 auto",
@@ -25,7 +32,7 @@ export const backLink = style({
   color: colors.accent,
   fontSize: "0.875rem",
   textDecoration: "none",
-  transition: "color 0.2s",
+  transition: `color ${durations.normal}`,
 
   ":hover": {
     color: colors.accentSoft,
@@ -49,23 +56,20 @@ export const selectTrigger = style({
   color: colors.text,
   cursor: "pointer",
   display: "inline-flex",
-  fontFamily: fontFamilies.body,
-  fontSize: fontSizes.ui,
-  fontWeight: fontWeights.ui.medium,
+  ...selectFont,
   gap: space.xs,
   height: "36px",
   justifyContent: "space-between",
   minWidth: "96px",
   paddingInline: space.md,
-  transition:
-    "background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
+  transition: `background-color ${durations.normal} ease, border-color ${durations.normal} ease, box-shadow ${durations.normal} ease`,
   ":hover": {
     borderColor: colors.accent,
     boxShadow: `${shadows.subtle}, ${shadows.glow}`,
   },
   ":focus-visible": {
     outline: "none",
-    boxShadow: `${shadows.glow}, ${shadows.subtle}`,
+    boxShadow: `${shadows.subtle}, ${shadows.glow}`,
     borderColor: colors.accent,
   },
   selectors: {
@@ -100,12 +104,10 @@ export const selectItem = style({
   color: colors.text,
   cursor: "pointer",
   display: "flex",
-  fontFamily: fontFamilies.body,
-  fontSize: fontSizes.ui,
-  fontWeight: fontWeights.ui.medium,
+  ...selectFont,
   gap: space.sm,
   lineHeight: 1,
-  paddingBlock: "8px",
+  paddingBlock: space.sm,
   paddingInline: space.md,
   position: "relative",
   selectors: {

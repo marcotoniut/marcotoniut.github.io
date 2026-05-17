@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css"
 import { pageContainer, pageHeader } from "@/styles/layouts.css"
-import { themeVars } from "@/styles/theme"
+import { durations, media, themeVars } from "@/styles/theme"
 
 export { pageContainer as container, pageHeader }
 
@@ -28,7 +28,7 @@ export const title = style({
   color: themeVars.color.textPrimary,
 
   "@media": {
-    "(max-width: 768px)": {
+    [media.md]: {
       fontSize: "2rem",
     },
   },
@@ -46,7 +46,7 @@ export const backLink = style({
   fontSize: "0.875rem",
   color: themeVars.color.accent,
   textDecoration: "none",
-  transition: "color 0.2s",
+  transition: `color ${durations.normal}`,
 
   ":hover": {
     color: themeVars.color.textPrimary,

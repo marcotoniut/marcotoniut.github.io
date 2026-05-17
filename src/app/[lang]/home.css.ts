@@ -1,6 +1,7 @@
 import { style } from "@vanilla-extract/css"
 import {
   colors,
+  durations,
   fontFamilies,
   fontSizes,
   fontWeights,
@@ -8,6 +9,7 @@ import {
   lineHeights,
   space,
 } from "@/styles/theme"
+import { withAlpha } from "@/utils/color"
 
 export const main = style({
   width: "100%",
@@ -53,7 +55,7 @@ export const navLink = style({
   letterSpacing: letterSpacing.h3,
   lineHeight: lineHeights.h3,
   textDecoration: "none",
-  transition: "color 0.2s, transform 0.2s",
+  transition: `color ${durations.normal}, transform ${durations.normal}`,
   ":hover": {
     color: colors.accent,
   },
@@ -80,7 +82,7 @@ const projectCardBase = style({
   gap: space.sm,
   padding: space.xl,
   textDecoration: "none",
-  transition: "border-color 0.2s, filter 0.2s",
+  transition: `border-color ${durations.normal}, filter ${durations.normal}`,
   width: "100%",
   boxSizing: "border-box",
 })
@@ -88,8 +90,8 @@ const projectCardBase = style({
 export const projectCardGb = style([
   projectCardBase,
   {
-    background: "#34102f18",
-    border: "1px solid #74301550",
+    background: withAlpha(colors.gb.dark, 0.09),
+    border: `1px solid ${withAlpha(colors.gb.mid, 0.31)}`,
     position: "relative",
     overflow: "hidden",
     selectors: {
@@ -98,15 +100,15 @@ export const projectCardGb = style([
         position: "absolute",
         inset: 0,
         backgroundImage: `
-          linear-gradient(#74301518 1px, transparent 1px),
-          linear-gradient(90deg, #74301518 1px, transparent 1px)
+          linear-gradient(${withAlpha(colors.gb.mid, 0.09)} 1px, transparent 1px),
+          linear-gradient(90deg, ${withAlpha(colors.gb.mid, 0.09)} 1px, transparent 1px)
         `,
         backgroundSize: "12px 12px",
         pointerEvents: "none",
       },
       "&:hover": {
-        borderColor: "#c69052",
-        background: "#34102f33",
+        borderColor: colors.gb.lite,
+        background: withAlpha(colors.gb.dark, 0.2),
       },
     },
   },
@@ -133,16 +135,6 @@ export const projectTitle = style({
   lineHeight: lineHeights.h3,
   margin: 0,
   position: "relative",
-})
-
-export const projectKicker = style({
-  color: colors.textMuted,
-  fontFamily: fontFamilies.mono,
-  fontSize: "0.7rem",
-  letterSpacing: "0.12em",
-  margin: 0,
-  position: "relative",
-  textTransform: "uppercase",
 })
 
 export const projectHint = style({

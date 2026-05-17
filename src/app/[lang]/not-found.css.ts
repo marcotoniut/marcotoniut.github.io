@@ -1,12 +1,15 @@
 import { style } from "@vanilla-extract/css"
-import { fontFamilies, fontSizes, fontWeights, space } from "@/styles/theme"
+import {
+  colors,
+  durations,
+  fontFamilies,
+  fontSizes,
+  fontWeights,
+  space,
+} from "@/styles/theme"
+import { withAlpha } from "@/utils/color"
 
-const gb = {
-  dark: "#34102f",
-  mid: "#743015",
-  lite: "#c69052",
-  pale: "#fbe1a8",
-} as const
+const gb = colors.gb
 
 export const page = style({
   alignItems: "center",
@@ -27,8 +30,8 @@ export const page = style({
       position: "absolute",
       inset: 0,
       backgroundImage: `
-        linear-gradient(${gb.mid}26 1px, transparent 1px),
-        linear-gradient(90deg, ${gb.mid}26 1px, transparent 1px)
+        linear-gradient(${withAlpha(gb.mid, 0.15)} 1px, transparent 1px),
+        linear-gradient(90deg, ${withAlpha(gb.mid, 0.15)} 1px, transparent 1px)
       `,
       backgroundSize: "12px 12px",
       pointerEvents: "none",
@@ -63,7 +66,7 @@ export const subtitle = style({
 })
 
 export const homeLink = style({
-  background: `${gb.lite}33`,
+  background: withAlpha(gb.lite, 0.2),
   border: `1px solid ${gb.lite}`,
   borderRadius: "999px",
   boxShadow: `0 4px 0 0 ${gb.mid}`,
@@ -77,7 +80,7 @@ export const homeLink = style({
   padding: `${space.sm} ${space.xl}`,
   position: "relative",
   textDecoration: "none",
-  transition: "transform 0.1s, box-shadow 0.1s",
+  transition: `transform ${durations.fast}, box-shadow ${durations.fast}`,
   ":hover": {
     transform: "translateY(2px)",
     boxShadow: `0 2px 0 0 ${gb.mid}`,

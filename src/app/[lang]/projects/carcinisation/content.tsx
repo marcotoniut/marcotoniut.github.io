@@ -8,6 +8,13 @@ import { pressStartFont } from "@/styles/fonts"
 import * as styles from "./carcinisation.css"
 import { getCarcinisationCopy } from "./i18n"
 
+const PROJECT_NAME = "carcinisation" as const
+const TRACKING_LOCATION = {
+  page: "carcinisation_project_page",
+  meta: "carcinisation_project_page_meta",
+  externalLinks: "carcinisation_project_page_external_links",
+} as const
+
 const screenshotGallery = [
   {
     src: "/projects/carcinisation/placeholder-1.svg",
@@ -78,10 +85,10 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
             locale={localeKey}
             trackingType="project_link"
             trackingParams={{
-              link_location: "carcinisation_project_page",
+              link_location: TRACKING_LOCATION.page,
               link_type: "itch_io",
               link_url: t.links.itch,
-              project_name: "carcinisation",
+              project_name: PROJECT_NAME,
             }}
           >
             <ItchIOIcon />
@@ -95,10 +102,10 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
             locale={localeKey}
             trackingType="project_link"
             trackingParams={{
-              link_location: "carcinisation_project_page",
+              link_location: TRACKING_LOCATION.page,
               link_type: "github",
               link_url: t.links.github,
-              project_name: "carcinisation",
+              project_name: PROJECT_NAME,
             }}
           >
             <GithubIcon />
@@ -118,10 +125,10 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 locale={localeKey}
                 trackingType="project_link"
                 trackingParams={{
-                  link_location: "carcinisation_project_page_meta",
+                  link_location: TRACKING_LOCATION.meta,
                   link_type: "jam",
                   link_url: "https://itch.io/jam/gbjam-11",
-                  project_name: "carcinisation",
+                  project_name: PROJECT_NAME,
                 }}
               >
                 GBJam 11
@@ -261,10 +268,10 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 locale={localeKey}
                 trackingType="project_link"
                 trackingParams={{
-                  link_location: "carcinisation_project_page_external_links",
+                  link_location: TRACKING_LOCATION.externalLinks,
                   link_type: "itch_io",
                   link_url: t.links.itch,
-                  project_name: "carcinisation",
+                  project_name: PROJECT_NAME,
                 }}
               >
                 itch.io
@@ -279,10 +286,10 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 locale={localeKey}
                 trackingType="project_link"
                 trackingParams={{
-                  link_location: "carcinisation_project_page_external_links",
+                  link_location: TRACKING_LOCATION.externalLinks,
                   link_type: "github",
                   link_url: t.links.github,
-                  project_name: "carcinisation",
+                  project_name: PROJECT_NAME,
                 }}
               >
                 GitHub

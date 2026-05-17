@@ -1,3 +1,15 @@
+import type { Locales } from "./i18n-types"
+import { baseLocale } from "./i18n-util"
+
+/**
+ * Creates a locale-to-copy resolver with fallback to baseLocale.
+ */
+export function createLocaleCopy<T>(
+  copies: Record<Locales, T>,
+): (locale: Locales) => T {
+  return (locale) => copies[locale] ?? copies[baseLocale]
+}
+
 /**
  * Derives copy types from a literal-rich base locale so localized versions
  * only need to match the structure; every string literal becomes `string`.

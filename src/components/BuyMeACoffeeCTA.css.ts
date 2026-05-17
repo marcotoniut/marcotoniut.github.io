@@ -48,7 +48,7 @@ export const base = style({
       zIndex: 0,
     },
 
-    "&:hover": {
+    "&:hover, &:focus-visible": {
       gridTemplateColumns: `${circleSize} 1fr`,
       columnGap: space.xs,
       paddingInlineStart: space.sm,
@@ -59,11 +59,6 @@ export const base = style({
     "&:focus-visible": {
       outline: `2px solid ${colors.focusRing}`,
       outlineOffset: "4px",
-      gridTemplateColumns: `${circleSize} 1fr`,
-      columnGap: space.xs,
-      paddingInlineStart: "0.5rem",
-      paddingInlineEnd: "1rem",
-      borderRadius: radii.pill,
     },
 
     "&:hover::before, &:focus-visible::before": {
@@ -92,10 +87,7 @@ export const icon = style({
   objectFit: "contain",
   transition: "transform 320ms ease",
   selectors: {
-    [`${base}:hover &`]: {
-      transform: "translateX(-0.1rem)",
-    },
-    [`${base}:focus-visible &`]: {
+    [`${base}:hover &, ${base}:focus-visible &`]: {
       transform: "translateX(-0.1rem)",
     },
   },
@@ -112,11 +104,7 @@ export const label = style({
   transform: "translateX(-0.5rem)",
   transition: "opacity 240ms ease 120ms, transform 320ms ease",
   selectors: {
-    [`${base}:hover &`]: {
-      opacity: 1,
-      transform: "translateX(0)",
-    },
-    [`${base}:focus-visible &`]: {
+    [`${base}:hover &, ${base}:focus-visible &`]: {
       opacity: 1,
       transform: "translateX(0)",
     },
