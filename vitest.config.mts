@@ -16,8 +16,17 @@ export default defineConfig({
         "src/i18n/locale-tags.ts",
         "src/app/**/i18n/**",
         "src/styles/fonts.ts",
+        // Imports `.css.ts`, which needs the vanilla-extract transform to load.
         "src/styles/theme.ts",
       ],
+      // A ratchet just under the current numbers, so coverage cannot silently
+      // regress. Raise these as tests are added; do not lower them.
+      thresholds: {
+        statements: 65,
+        branches: 70,
+        functions: 60,
+        lines: 65,
+      },
     },
   },
   resolve: {

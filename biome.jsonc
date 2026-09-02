@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.11/schema.json",
   "assist": {
     "actions": {
       "source": {
@@ -9,7 +9,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**/*", "!next-env.d.ts", "!.claude"]
+    "includes": ["**/*", "!next-env.d.ts", "!.claude", "!public"]
   },
   "formatter": {
     "enabled": true,
@@ -46,7 +46,7 @@
       "types": "all"
     },
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "correctness": {
         "noUnusedImports": "error",
         "noUnusedVariables": "error",
@@ -93,12 +93,28 @@
         "noSecrets": "off"
       },
       "performance": {
-        "noDelete": "error"
+        "noDelete": "error",
+        // `reactCompiler: true` in next.config.mts memoizes inline handlers, so
+        // hand-written useCallback wrappers would be noise.
+        "noJsxPropsBind": "off"
       }
     }
   },
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
   "overrides": [
+    {
+      // `@playwright/test` only does `export * from "playwright/test"`, which
+      // Biome's resolver does not follow, so every named import reads as
+      // unresolved.
+      "includes": ["tests/e2e/**"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnresolvedImports": "off"
+          }
+        }
+      }
+    },
     {
       "includes": ["src/**/*.{js,jsx,ts,tsx}"],
       "linter": {

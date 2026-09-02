@@ -7,6 +7,8 @@ pre-commit:
     sitemap:
       run: pnpm generate:sitemap && git add public/sitemap.xml
       stage_fixed: true
+    generate:
+      run: pnpm generate
     lint:
       run: pnpm lint
     typecheck:

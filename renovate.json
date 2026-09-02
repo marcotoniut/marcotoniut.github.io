@@ -7,7 +7,7 @@
     ":semanticCommits"
   ],
   "schedule": ["before 9am on Monday"],
-  "timezone": "America/Argentina/Buenos_Aires",
+  "timezone": "Europe/London",
   "prConcurrentLimit": 5,
   "rebaseWhen": "conflicted",
   "lockFileMaintenance": {

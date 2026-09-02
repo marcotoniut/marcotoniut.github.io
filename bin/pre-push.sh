@@ -46,7 +46,8 @@ fi
 
 run_check pnpm lint
 run_check pnpm typecheck
-run_check pnpm test -- --run
+run_check pnpm spellcheck
+run_check pnpm test
 run_check pnpm build
 ensure_sitemap_fresh
 

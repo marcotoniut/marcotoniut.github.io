@@ -21,6 +21,9 @@
     "exactOptionalPropertyTypes": true,
     "verbatimModuleSyntax": true,
     "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "noUncheckedSideEffectImports": true,
+    "libReplacement": false,
     "skipLibCheck": true,
     "noEmit": true,
     "incremental": true,
@@ -36,10 +39,11 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
+    "**/*.mts",
     "**/*.tsx",
     "**/*.d.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "tests"]
+  "exclude": ["node_modules"]
 }
