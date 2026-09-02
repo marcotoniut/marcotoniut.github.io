@@ -13,15 +13,19 @@ export function buildLocalizedHref(locale: string, pathSuffix?: string) {
   return `/${segments.join("/")}/`
 }
 
+/** Narrows an arbitrary value to a supported locale. */
+export function parseLocale(candidate: unknown): Locales | undefined {
+  const parsed = LocaleSchema.safeParse(candidate)
+  return parsed.success ? parsed.data : undefined
+}
+
 /**
  * Replaces the locale segment in a pathname, or returns /{newLocale} if none found.
  */
 export function createLocalePath(pathname: string, newLocale: Locales): string {
   const segments = pathname.split("/").filter(Boolean)
-  const parsedSegment =
-    segments.length > 0 ? LocaleSchema.safeParse(segments[0]) : null
 
-  if (parsedSegment?.success) {
+  if (segments.length > 0 && parseLocale(segments[0])) {
     segments[0] = newLocale
     return `/${segments.join("/")}`
   }

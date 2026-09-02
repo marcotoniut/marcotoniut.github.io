@@ -73,5 +73,6 @@ export function TrackedAnchor({
 
   // biome-ignore lint/a11y/useValidAnchor: Anchor has valid href, onClick is for analytics tracking
   // biome-ignore lint/a11y/noStaticElementInteractions: This is a navigation anchor with tracking
+  // biome-ignore lint/a11y/useKeyWithClickEvents: href makes Enter activate the anchor natively
   return <a {...props} onClick={handleClick} />
 }

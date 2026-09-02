@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import type { Locales } from "@/i18n/i18n-types"
 import { baseLocale, locales } from "@/i18n/i18n-util"
 import { getStoredLocale } from "@/utils/language-storage"
-import { buildLocalizedHref } from "@/utils/locale"
+import { buildLocalizedHref, parseLocale } from "@/utils/locale"
 
 const supportedLocales: readonly Locales[] = locales
 const defaultLocale: Locales = baseLocale
@@ -42,21 +42,15 @@ function getNavigatorLocales(): string[] {
 function pickSupportedLocale(candidateLocales: readonly string[]): Locales {
   for (const candidate of candidateLocales) {
     const normalized = candidate.toLowerCase()
-    const exactMatch = supportedLocales.find(
-      (locale) => locale.toLowerCase() === normalized,
-    )
-
-    if (exactMatch) {
-      return exactMatch
+    const exact = parseLocale(normalized)
+    if (exact) {
+      return exact
     }
 
-    const shortCode = normalized.split("-")[0]
-    const partialMatch = supportedLocales.find(
-      (locale) => locale.split("-")[0]?.toLowerCase() === shortCode,
-    )
-
-    if (partialMatch) {
-      return partialMatch
+    // Match the primary subtag, so `es-AR` picks `es`.
+    const partial = parseLocale(normalized.split("-")[0])
+    if (partial) {
+      return partial
     }
   }
 

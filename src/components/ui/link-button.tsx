@@ -3,7 +3,7 @@
 import Link from "next/link"
 import type {
   ComponentPropsWithoutRef,
-  ElementRef,
+  ComponentRef,
   ReactNode,
   RefObject,
 } from "react"
@@ -48,7 +48,7 @@ export const LinkButton = ({
   locale,
   ref,
   ...anchorProps
-}: LinkButtonProps & { ref?: RefObject<ElementRef<"a"> | null> }) => {
+}: LinkButtonProps & { ref?: RefObject<ComponentRef<"a"> | null> }) => {
   if (external) {
     return (
       <Button

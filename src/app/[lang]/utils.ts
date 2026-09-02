@@ -1,11 +1,7 @@
 import { notFound } from "next/navigation"
 import type { Locales } from "@/i18n/i18n-types"
-import { locales } from "../../i18n/i18n-util"
+import { parseLocale } from "@/utils/locale"
 
-export function resolveLocale(candidate: string | Locales): Locales {
-  if (locales.includes(candidate as Locales)) {
-    return candidate as Locales
-  }
-
-  notFound()
+export function resolveLocale(candidate: string): Locales {
+  return parseLocale(candidate) ?? notFound()
 }

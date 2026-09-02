@@ -1,6 +1,6 @@
 "use client"
 
-import type { ComponentPropsWithoutRef, ElementRef, RefObject } from "react"
+import type { ComponentPropsWithoutRef, ComponentRef, RefObject } from "react"
 
 import {
   card,
@@ -16,7 +16,7 @@ export const Card = ({
   className,
   ref,
   ...props
-}: CardProps & { ref?: RefObject<ElementRef<"div"> | null> }) => {
+}: CardProps & { ref?: RefObject<ComponentRef<"div"> | null> }) => {
   return (
     <div
       {...props}
@@ -33,7 +33,7 @@ export const CardHeader = ({
   className,
   ref,
   ...props
-}: CardHeaderProps & { ref?: RefObject<ElementRef<"div"> | null> }) => {
+}: CardHeaderProps & { ref?: RefObject<ComponentRef<"div"> | null> }) => {
   return (
     <div
       {...props}
@@ -50,7 +50,7 @@ export const CardTitle = ({
   className,
   ref,
   ...props
-}: CardTitleProps & { ref?: RefObject<ElementRef<"h3"> | null> }) => {
+}: CardTitleProps & { ref?: RefObject<ComponentRef<"h3"> | null> }) => {
   return (
     <h3
       {...props}
@@ -67,7 +67,7 @@ export const CardSubtitle = ({
   className,
   ref,
   ...props
-}: CardSubtitleProps & { ref?: RefObject<ElementRef<"p"> | null> }) => {
+}: CardSubtitleProps & { ref?: RefObject<ComponentRef<"p"> | null> }) => {
   return (
     <p
       {...props}
@@ -84,7 +84,7 @@ export const CardContent = ({
   className,
   ref,
   ...props
-}: CardContentProps & { ref?: RefObject<ElementRef<"div"> | null> }) => {
+}: CardContentProps & { ref?: RefObject<ComponentRef<"div"> | null> }) => {
   return (
     <div
       {...props}

@@ -1,5 +1,5 @@
 import type { Locales } from "@/i18n/i18n-types"
-import { locales } from "@/i18n/i18n-util"
+import { parseLocale } from "@/utils/locale"
 
 const STORAGE_KEY = "marcotoniut-locale"
 
@@ -9,19 +9,11 @@ export function getStoredLocale(): Locales | undefined {
   }
 
   try {
-    const stored = window.localStorage.getItem(STORAGE_KEY)
-    if (
-      stored &&
-      typeof stored === "string" &&
-      locales.includes(stored as Locales)
-    ) {
-      return stored as Locales
-    }
+    return parseLocale(window.localStorage.getItem(STORAGE_KEY))
   } catch {
     // Ignore storage errors (e.g., private mode)
+    return undefined
   }
-
-  return undefined
 }
 
 export function setStoredLocale(locale: Locales): void {

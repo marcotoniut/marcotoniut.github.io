@@ -2,7 +2,7 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { RecipeVariants } from "@vanilla-extract/recipes"
-import type { ComponentPropsWithoutRef, ElementRef, RefObject } from "react"
+import type { ComponentPropsWithoutRef, ComponentRef, RefObject } from "react"
 
 import { buttonRecipe } from "./button.css"
 
@@ -23,7 +23,7 @@ export const Button = ({
   type,
   ref,
   ...props
-}: ButtonProps & { ref?: RefObject<ElementRef<"button"> | null> }) => {
+}: ButtonProps & { ref?: RefObject<ComponentRef<"button"> | null> }) => {
   const composedClassName = className
     ? `${buttonRecipe({ variant, size, fullWidth })} ${className}`
     : buttonRecipe({ variant, size, fullWidth })

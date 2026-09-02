@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-const envSchema = z.object({
+export const envSchema = z.object({
   NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().optional(),
   NEXT_PUBLIC_PDF_PRINTING: z
     .enum(["true", "false"])
@@ -9,13 +9,14 @@ const envSchema = z.object({
   NEXT_PUBLIC_PRINT_SCALE: z.string().optional(),
 })
 
-const parseEnv = () => {
+export type Env = z.infer<typeof envSchema>
+
+const parseEnv = (): Env => {
   const parsed = envSchema.safeParse(process.env)
 
   if (!parsed.success) {
     console.error(
-      "Invalid environment configuration",
-      parsed.error.flatten().fieldErrors,
+      `Invalid environment configuration\n${z.prettifyError(parsed.error)}`,
     )
     throw new Error("Invalid environment variables")
   }

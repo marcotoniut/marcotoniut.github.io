@@ -2,12 +2,12 @@
 
 import { sendGAEvent } from "@next/third-parties/google"
 import { usePathname } from "next/navigation"
-import { memo, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { env } from "@/env"
 
 const measurementId = env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
-export const Analytics = memo(function Analytics() {
+export function Analytics() {
   const pathname = usePathname()
   const previousPath = useRef<string | undefined>(undefined)
 
@@ -30,4 +30,4 @@ export const Analytics = memo(function Analytics() {
   }, [pathname])
 
   return null
-})
+}

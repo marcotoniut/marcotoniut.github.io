@@ -1,50 +1,18 @@
 import { sendGAEvent } from "@next/third-parties/google"
-import { z } from "zod"
 import type { Locales } from "@/i18n/i18n-types"
+import type {
+  BuyMeCoffeeParams,
+  ExternalLinkParams,
+  ProjectLinkParams,
+} from "./analytics-schemas"
+import {
+  BuyMeCoffeeParamsSchema,
+  CVViewParamsSchema,
+  ExternalLinkParamsSchema,
+  ProjectLinkParamsSchema,
+} from "./analytics-schemas"
 
-/**
- * Event parameter schemas
- */
-const LinkClickParamsSchema = z.object({
-  link_url: z.string().url(),
-  link_text: z.string().optional(),
-  link_location: z.enum([
-    "header",
-    "home_page",
-    "cv_page",
-    "footer",
-    "profile",
-    "carcinisation_project_page",
-    "carcinisation_project_page_meta",
-    "carcinisation_project_page_external_links",
-  ]),
-  locale: z.string(),
-})
-
-const BuyMeCoffeeParamsSchema = LinkClickParamsSchema.extend({
-  link_location: z.enum(["header", "home_page"]),
-})
-
-const ExternalLinkParamsSchema = LinkClickParamsSchema.extend({
-  link_type: z.enum(["github", "linkedin", "itch_io", "other"]),
-})
-
-const CVViewParamsSchema = z.object({
-  locale: z.string(),
-  referrer: z.string().optional(),
-})
-
-const ProjectLinkParamsSchema = LinkClickParamsSchema.extend({
-  project_name: z.string(),
-  link_type: z.enum(["github", "itch_io", "jam"]),
-})
-
-// Type exports
-export type LinkClickParams = z.infer<typeof LinkClickParamsSchema>
-export type BuyMeCoffeeParams = z.infer<typeof BuyMeCoffeeParamsSchema>
-export type ExternalLinkParams = z.infer<typeof ExternalLinkParamsSchema>
-export type CVViewParams = z.infer<typeof CVViewParamsSchema>
-export type ProjectLinkParams = z.infer<typeof ProjectLinkParamsSchema>
+export type * from "./analytics-schemas"
 
 /**
  * Track Buy Me a Coffee button clicks
