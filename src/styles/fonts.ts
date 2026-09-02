@@ -1,4 +1,3 @@
-// biome-ignore lint/correctness/noUnresolvedImports: Next.js auto-generates font exports
 import { Press_Start_2P } from "next/font/google"
 
 export const pressStartFont = Press_Start_2P({

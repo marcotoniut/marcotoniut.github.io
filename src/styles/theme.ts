@@ -1,18 +1,18 @@
-import {
-  darkThemeClass,
-  gameboyThemeClass,
-  lightThemeClass,
-  themeVars,
-} from "./theme.css"
+import { darkThemeClass, lightThemeClass, themeVars } from "./theme.css"
+import type { ThemeMode } from "./theme-mode"
+import { buildThemeBootstrapScript } from "./theme-mode"
 
-export { darkThemeClass, gameboyThemeClass, lightThemeClass, themeVars }
-
-export type ThemeMode = "dark" | "light"
+export { darkThemeClass, lightThemeClass, themeVars }
 
 export const themeClassByMode: Record<ThemeMode, string> = {
   dark: darkThemeClass,
   light: lightThemeClass,
 }
+
+export const THEME_BOOTSTRAP_SCRIPT = buildThemeBootstrapScript({
+  dark: darkThemeClass,
+  light: lightThemeClass,
+})
 
 export const colors = {
   accent: themeVars.color.accent,
