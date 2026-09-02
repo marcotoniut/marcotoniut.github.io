@@ -6,12 +6,14 @@ import { siteConfig } from "@/config/site"
 import { baseLocale, locales } from "@/i18n/i18n-util"
 import { toLocaleTag } from "@/i18n/locale-tags"
 import { pressStartFont } from "@/styles/fonts"
-import { darkThemeClass, lightThemeClass } from "@/styles/theme"
+import { THEME_BOOTSTRAP_SCRIPT } from "@/styles/theme"
 import { buildLocalizedHref } from "@/utils/locale"
 import {
-  generateAntiAIMetadata,
   generateOpenGraphMetadata,
+  generatePersonStructuredData,
   generateTwitterMetadata,
+  ROBOTS_DIRECTIVES,
+  serializeJsonLd,
 } from "@/utils/metadata"
 
 import "@/styles/global.css.ts"
@@ -37,7 +39,10 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.author.name, url: siteConfig.author.url }],
   creator: siteConfig.author.name,
   publisher: siteConfig.author.name,
-  robots: generateAntiAIMetadata(),
+  // Meta-tag equivalent of the Referrer-Policy header. GitHub Pages cannot serve
+  // custom headers (static export), and `<meta name="referrer">` is honoured by
+  // browsers, so this is the one header-derived control that survives here.
+  referrer: "strict-origin-when-cross-origin",
   openGraph: generateOpenGraphMetadata({
     title: siteConfig.name,
     description: siteConfig.description,
@@ -54,11 +59,8 @@ export const metadata: Metadata = {
     languages: languagesWithDefault,
   },
   other: {
-    // Anti-AI training meta tags
-    // Note: HTTP headers in next.config.js don't work on GitHub Pages (static hosting)
-    // These meta tags provide the actual anti-AI protection
+    robots: ROBOTS_DIRECTIVES,
     "ai-policy": "noai, noimageai, nocontentai",
-    robots: "index, follow, noai, noimageai",
   },
 }
 
@@ -67,32 +69,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // JSON-LD structured data for Schema.org
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: siteConfig.author.name,
-    url: siteConfig.baseUrl,
-    jobTitle: siteConfig.jobTitle,
-    description: siteConfig.description,
-    image: siteConfig.social.ogImage,
-    sameAs: siteConfig.sameAs,
-    address: {
-      "@type": "Place",
-      addressLocality: "London",
-      addressCountry: "UK",
-    },
-    knowsAbout: [
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Rust",
-      "Bevy Engine",
-      "Game Development",
-      "Front-End Development",
-      "Software Architecture",
-    ],
-  }
+  const structuredData = generatePersonStructuredData()
 
   return (
     <html
@@ -103,9 +80,7 @@ export default function RootLayout({
       <head>
         <script
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Blocking theme script prevents flash of wrong theme
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d='${darkThemeClass}',l='${lightThemeClass}',s=localStorage.getItem('marcotoniut-theme'),t=s==='light'?'light':s==='dark'?'dark':window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';document.documentElement.classList.add(t==='light'?l:d);document.documentElement.dataset.theme=t}catch(e){document.documentElement.classList.add('${darkThemeClass}')}})()`,
-          }}
+          dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }}
         />
         {/* Font preloads for performance */}
         <link
@@ -136,20 +111,13 @@ export default function RootLayout({
           rel="preload"
           type="font/woff2"
         />
-        <link
-          as="font"
-          crossOrigin="anonymous"
-          href="/fonts/cookie/cookie-regular.ttf"
-          rel="preload"
-          type="font/ttf"
-        />
 
         {/* JSON-LD structured data for search engines */}
         <script
           type="application/ld+json"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD structured data requires dangerouslySetInnerHTML, content is statically generated and safe
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD structured data requires dangerouslySetInnerHTML; content is static and HTML-escaped via serializeJsonLd
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
+            __html: serializeJsonLd(structuredData),
           }}
         />
       </head>

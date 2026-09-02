@@ -15,6 +15,9 @@ export const siteConfig = {
     "Rust",
   ],
   jobTitle: "Systems Engineer",
+  // Static, not `new Date()`: this is a static export, so a computed year
+  // freezes at build time and silently goes stale between deploys.
+  copyrightYear: 2026,
   author: {
     name: "Marco Toniut",
     url: "https://marcotoniut.github.io/",

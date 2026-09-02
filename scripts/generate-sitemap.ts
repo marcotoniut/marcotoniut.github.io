@@ -3,122 +3,77 @@
 /**
  * Generate sitemap.xml for marcotoniut.github.io
  *
- * This script creates a sitemap with all public routes to help search engines
- * discover and index the site content. It excludes utility pages and includes
- * localized versions of each page.
+ * Output is a pure function of the route list, so regenerating only produces a
+ * diff when routes actually change. That is what lets the pre-push hook and
+ * the release workflow treat any diff here as "you forgot to commit the
+ * sitemap" rather than noise.
  *
- * Run: pnpm tsx scripts/generate-sitemap.ts
+ * Deliberately no `<lastmod>`: it would be stamped with the build date on
+ * every run, which both churns the file daily and tells crawlers every page
+ * changed when nothing did.
+ *
+ * Run: pnpm generate:sitemap
  */
 
 import { writeFileSync } from "node:fs"
 import { join } from "node:path"
+import { siteConfig } from "../src/config/site"
 import { locales } from "../src/i18n/i18n-util"
 
-const BASE_URL = "https://marcotoniut.github.io"
+type ChangeFreq = "daily" | "weekly" | "monthly" | "yearly"
 
 interface SitemapUrl {
   loc: string
-  lastmod: string
-  changefreq:
-    | "always"
-    | "hourly"
-    | "daily"
-    | "weekly"
-    | "monthly"
-    | "yearly"
-    | "never"
+  changefreq: ChangeFreq
   priority: number
 }
 
-/**
- * Get current date in ISO format for lastmod
- */
-function getLastModDate(): string {
-  const date = new Date().toISOString().split("T")[0]
-  if (!date) {
-    throw new Error("Failed to generate date")
-  }
-  return date
+type Route = {
+  path: string
+  changefreq: ChangeFreq
+  priority: number
 }
 
-/**
- * Generate sitemap URLs for all public pages
- */
+/** Routes that exist once, outside the `[lang]` segment. */
+const UNLOCALIZED_ROUTES = [
+  { path: "", changefreq: "monthly", priority: 0.5 },
+  { path: "cv", changefreq: "monthly", priority: 0.6 },
+] as const satisfies readonly Route[]
+
+/** Routes rendered once per locale under `/{locale}/`. */
+const LOCALIZED_ROUTES = [
+  { path: "", changefreq: "monthly", priority: 1.0 },
+  { path: "cv", changefreq: "monthly", priority: 0.9 },
+  { path: "contact", changefreq: "yearly", priority: 0.5 },
+  { path: "projects/carcinisation", changefreq: "yearly", priority: 0.7 },
+  { path: "projects/sonicthames", changefreq: "yearly", priority: 0.7 },
+] as const satisfies readonly Route[]
+
+const toLoc = (...segments: string[]) => {
+  const path = segments.filter(Boolean).join("/")
+  return `${siteConfig.baseUrl}/${path ? `${path}/` : ""}`
+}
+
 function generateSitemapUrls(): SitemapUrl[] {
-  const lastmod = getLastModDate()
-  const urls: SitemapUrl[] = []
-
-  // Root redirect (low priority, as it redirects to /en/)
-  urls.push({
-    loc: `${BASE_URL}/`,
-    lastmod,
-    changefreq: "monthly",
-    priority: 0.5,
-  })
-
-  // Localized home pages
-  for (const locale of locales) {
-    urls.push({
-      loc: `${BASE_URL}/${locale}/`,
-      lastmod,
-      changefreq: "monthly",
-      priority: 1.0,
-    })
-  }
-
-  // CV redirect
-  urls.push({
-    loc: `${BASE_URL}/cv/`,
-    lastmod,
-    changefreq: "monthly",
-    priority: 0.6,
-  })
-
-  // Localized CV pages
-  for (const locale of locales) {
-    urls.push({
-      loc: `${BASE_URL}/${locale}/cv/`,
-      lastmod,
-      changefreq: "monthly",
-      priority: 0.9,
-    })
-  }
-
-  // Localized contact pages
-  for (const locale of locales) {
-    urls.push({
-      loc: `${BASE_URL}/${locale}/contact/`,
-      lastmod,
-      changefreq: "yearly",
-      priority: 0.5,
-    })
-  }
-
-  // Localized project pages
-  const projects = ["carcinisation", "sonicthames"]
-  for (const locale of locales) {
-    for (const project of projects) {
-      urls.push({
-        loc: `${BASE_URL}/${locale}/projects/${project}/`,
-        lastmod,
-        changefreq: "yearly",
-        priority: 0.7,
-      })
-    }
-  }
-
-  return urls
+  return [
+    ...UNLOCALIZED_ROUTES.map(({ path, ...rest }) => ({
+      ...rest,
+      loc: toLoc(path),
+    })),
+    ...locales.flatMap((locale) =>
+      LOCALIZED_ROUTES.map(({ path, ...rest }) => ({
+        ...rest,
+        loc: toLoc(locale, path),
+      })),
+    ),
+  ]
 }
 
-/**
- * Generate XML sitemap content
- */
-function generateSitemapXml(urls: SitemapUrl[]): string {
+function generateSitemapXml(urls: readonly SitemapUrl[]): string {
   const urlEntries = urls
     .map(
       (url) => `  <url>
     <loc>${url.loc}</loc>
-    <lastmod>${url.lastmod}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority.toFixed(1)}</priority>
   </url>`,
@@ -132,21 +87,13 @@ ${urlEntries}
 `
 }
 
-/**
- * Main execution
- */
 function main() {
-  console.log("🗺️  Generating sitemap.xml...")
-
   const urls = generateSitemapUrls()
-  const xml = generateSitemapXml(urls)
-
   const outputPath = join(process.cwd(), "public", "sitemap.xml")
-  writeFileSync(outputPath, xml, "utf-8")
 
-  console.log(`✅ Sitemap generated with ${urls.length} URLs`)
-  console.log(`📍 Location: ${outputPath}`)
-  console.log(`🌐 Available at: ${BASE_URL}/sitemap.xml`)
+  writeFileSync(outputPath, generateSitemapXml(urls), "utf-8")
+
+  console.log(`Sitemap written to ${outputPath} (${urls.length} URLs)`)
 }
 
 main()

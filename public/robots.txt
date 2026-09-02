@@ -1,6 +1,7 @@
 # robots.txt for marcotoniut.github.io
 # Purpose: Allow legitimate search engines while blocking AI training crawlers
-# Content-signal directives are provided via HTTP headers (see next.config.js) because robots.txt rejects that format.
+# GitHub Pages serves no custom HTTP headers, so Content-Signal is unavailable;
+# the anti-AI opt-out is carried by the robots meta tag (see src/app/layout.tsx).
 
 # ============================================================
 # ALLOWED: Legitimate search engine crawlers

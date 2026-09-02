@@ -78,9 +78,12 @@ export function generateOpenGraphMetadata(params: {
   image?: string
   locale?: Locales
   localeTag?: string
-}): Metadata["openGraph"] {
+}) {
   const { title, description, url, image, locale = "en", localeTag } = params
 
+  // `satisfies` rather than an annotation: Metadata["openGraph"] is a wide
+  // union, so annotating would erase `type` and the image shape from the
+  // inferred type and force callers to cast.
   return {
     title,
     description,
@@ -96,7 +99,7 @@ export function generateOpenGraphMetadata(params: {
         alt: `${siteConfig.name} - ${title}`,
       },
     ],
-  }
+  } satisfies NonNullable<Metadata["openGraph"]>
 }
 
 /**
@@ -109,7 +112,7 @@ export function generateTwitterMetadata(params: {
   title: string
   description: string
   image?: string
-}): Metadata["twitter"] {
+}) {
   const { title, description, image } = params
 
   return {
@@ -117,92 +120,40 @@ export function generateTwitterMetadata(params: {
     title,
     description,
     images: [image || siteConfig.social.ogImage],
-  }
+  } satisfies NonNullable<Metadata["twitter"]>
 }
 
 /**
- * Generate anti-AI robot directives
+ * Site-wide `<meta name="robots">` string.
  *
- * These meta tags instruct compliant crawlers not to use the content
- * for AI training, image generation, or other machine learning purposes.
- *
- * @returns Metadata object with robot directives
+ * Set via `other.robots`, not Next's `robots` object: `noai` and `noimageai`
+ * have no field there, and setting both produces conflicting tags that each
+ * omit the other's directives. GitHub Pages serves no HTTP headers, making
+ * the meta tag the only option.
  */
-export function generateAntiAIMetadata(): Metadata["robots"] {
-  return {
-    // Allow search engine indexing
-    index: true,
-    follow: true,
-    // Prevent AI training usage
-    noarchive: false,
-    nosnippet: false,
-    noimageindex: false,
-    // Custom directives for AI prevention
-    // Note: These are also set in HTTP headers via next.config.js
-    "max-video-preview": -1,
-    "max-image-preview": "large",
-    "max-snippet": -1,
-  }
-}
+export const ROBOTS_DIRECTIVES = [
+  "index",
+  "follow",
+  "max-image-preview:large",
+  "max-snippet:-1",
+  "max-video-preview:-1",
+  // Informal opt-out that some AI crawlers honour.
+  "noai",
+  "noimageai",
+].join(", ")
 
 /**
- * Generate complete metadata for a page
+ * Serialize data for safe inlining inside a `<script>` element.
  *
- * Combines all SEO elements: title, description, OpenGraph,
- * Twitter cards, robots directives, and canonical URL.
- *
- * @param params - Page-specific metadata parameters
- * @returns Complete Next.js Metadata object
+ * `JSON.stringify` does not escape `<`, so a value containing `</script>`
+ * (or `<!--`) would break out of the script context — an XSS vector if the
+ * data ever becomes attacker-influenced. Escaping the HTML-significant
+ * characters as unicode escapes keeps the JSON valid while making breakout
+ * impossible.
  */
-export function generatePageMetadata(params: {
-  title: string
-  description: string
-  path: string
-  locale?: Locales
-  image?: string
-}): Metadata {
-  const { title, description, path, locale = "en", image } = params
-  const url = `${siteConfig.baseUrl}${path}`
-
-  return {
-    title,
-    description,
-    keywords: [...siteConfig.keywords],
-    authors: [{ name: siteConfig.author.name, url: siteConfig.author.url }],
-    creator: siteConfig.author.name,
-    publisher: siteConfig.author.name,
-    robots: generateAntiAIMetadata(),
-    openGraph: generateOpenGraphMetadata({
-      title,
-      description,
-      url,
-      ...(image ? { image } : {}),
-      locale,
-    }),
-    twitter: generateTwitterMetadata({
-      title,
-      description,
-      ...(image ? { image } : {}),
-    }),
-    alternates: {
-      canonical: url,
-    },
-  }
-}
-
-/**
- * Generate a script tag with JSON-LD structured data
- *
- * @param structuredData - Schema.org structured data object
- * @returns Script element props for Next.js
- */
-export function generateStructuredDataScript(
-  structuredData: PersonStructuredData | object,
-) {
-  return {
-    type: "application/ld+json" as const,
-    dangerouslySetInnerHTML: {
-      __html: JSON.stringify(structuredData),
-    },
-  }
+export function serializeJsonLd(structuredData: unknown) {
+  return JSON.stringify(structuredData)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026")
 }
