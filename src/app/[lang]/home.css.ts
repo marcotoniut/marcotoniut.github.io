@@ -116,6 +116,7 @@ export const bench = style({
   gap: space.xxl,
   marginTop: `clamp(${space.xxl}, 8vh, 96px)`,
   paddingLeft: `clamp(${space.lg}, 3vw, ${space.xxl})`,
+  position: "relative",
 })
 
 export const benchLabel = style({

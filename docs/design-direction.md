@@ -849,7 +849,43 @@ taming, per-page responsive checks.
   same review checklist as dark; no grid under CV or project prose columns;
   grid invisible at arm's length on a phone (no moiré), present on desktop.
 
-### Tranche 9: motion and final details (P2)
+### Tranche 9: motion and final details (P2) — implemented 3 September 2026
+
+Implemented under the raised bar from review (felt before noticed; one
+segment; transform/opacity only; static under reduced motion; no pulsing,
+scanning, waveform, sparks, glow or HUD semantics; success means screenshots
+barely change), and the closing question answered without introducing a new
+visual idea:
+
+- **The trace:** one 56px phosphor segment on the bench spine whose position
+  follows scroll progress through the section; rAF-throttled, transform-only,
+  `display: none` under `prefers-reduced-motion` so the spine stays a static
+  rule. The visual suite runs reduced motion, so every baseline is untouched
+  by it: the "removing it changes almost nothing" criterion is enforced
+  structurally, not judged.
+- **Interaction grammar unified:** a global `:focus-visible` ring (focusRing,
+  2px, offset) makes focus strictly more explicit than hover everywhere;
+  hover recolours (phosphor on Marco surfaces, channel colour on project
+  surfaces, both already in place), focus adds the ring on top.
+- **404 on parent tokens:** SIGNAL LOST, the pixel numerals and "Return to
+  signal" survive; the GB palette and grid are gone; the failure state's one
+  grammar bend is a hairline spine that descends from the top of the page
+  and terminates in a short phosphor segment above the content. No CRT, no
+  glitch typography.
+- **Favicon as branding:** a phosphor M on the green-black ground in Space
+  Grotesk, rendered by `scripts/generate-icons.ts` into a 16+32 favicon.ico
+  and a 180px apple-touch-icon; legible at 16px with no decoding required.
+  OG card already matched the locked brand; per-project OG cards deliberately
+  not added (no closing flourish).
+- **Test finding fixed en route:** the visual suite could not see the 404's
+  full palette change — Playwright's default 0.2 per-pixel YIQ threshold
+  treats one dark ground as another, so the restyle "passed" against a stale
+  plum baseline. Per-pixel threshold tightened to 0.08; under it exactly one
+  baseline (not-found) needed rebasing and the other seven confirmed true.
+
+Verified: `pnpm check` green, axe 13/13, Lighthouse assertions green, trace
+travel confirmed at two scroll depths, reduced-motion hiding confirmed in
+the DOM.
 
 - **The trace.** What: scroll-linked energised segment on the spine;
   hover/focus energise per panel; static spine under

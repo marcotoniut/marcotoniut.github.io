@@ -20,6 +20,13 @@ const themeTransitionOverlay = keyframes({
   "100%": { opacity: 0, transform: "scale(1.02)" },
 })
 
+// Focus is always more explicit than hover: hover recolours, focus adds a
+// ring on top of whatever the surface's hover state does.
+globalStyle(":focus-visible", {
+  outline: `2px solid ${themeVars.color.focusRing}`,
+  outlineOffset: "3px",
+})
+
 globalStyle(":root.theme-transition", {
   transitionDuration: themeTransitionDuration,
   transitionProperty: themeTransitionProperties,

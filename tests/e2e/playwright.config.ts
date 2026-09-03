@@ -23,6 +23,11 @@ export default defineConfig({
       caret: "hide",
       scale: "css",
       maxDiffPixelRatio,
+      // Playwright's default per-pixel threshold (0.2 YIQ) cannot tell one
+      // dark ground from another: the 404's full palette swap passed against
+      // a stale baseline. 0.08 keeps antialiasing noise inside the ratio
+      // budget while making palette changes register.
+      threshold: 0.08,
     },
   },
   outputDir: `${artifactsDir}/test-results`,

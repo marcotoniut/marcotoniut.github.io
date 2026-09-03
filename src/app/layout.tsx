@@ -43,6 +43,10 @@ export const metadata: Metadata = {
   // custom headers (static export), and `<meta name="referrer">` is honoured by
   // browsers, so this is the one header-derived control that survives here.
   referrer: "strict-origin-when-cross-origin",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: generateOpenGraphMetadata({
     title: siteConfig.name,
     description: siteConfig.description,

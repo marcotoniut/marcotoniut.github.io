@@ -4,6 +4,7 @@ import { buildLocalizedMetadataFromMeta } from "@/app/[lang]/common/metadata"
 import * as styles from "@/app/[lang]/home.css"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
+import { Trace } from "@/components/Trace"
 import { TrackedLink } from "@/components/TrackedLink"
 import { Box, Stack } from "@/components/ui/primitives"
 import type { Locales, Translation } from "@/i18n/i18n-types"
@@ -104,6 +105,7 @@ export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
         </section>
 
         <section className={styles.bench}>
+          <Trace />
           <p className={styles.benchLabel}>{dict.HomePage.workLabel}</p>
 
           <TrackedLink
