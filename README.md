@@ -79,7 +79,7 @@ I'm a London-based software engineer specialising in robust web platforms and de
 
 This is my personal website repository built with:
 
-- **Framework:** Next.js 16
+- **Framework:** Next.js 16 (App Router, static export)
 - **Language:** TypeScript
 - **Styling:** Vanilla Extract
 - **Deployment:** GitHub Pages
@@ -89,5 +89,5 @@ For development setup and contribution guidelines, see [DEVELOPMENT.md](DEVELOPM
 ---
 
 <div align="center">
-  <sub>Built with ❤️ in London | © 2025 Marco Toniut</sub>
+  <sub>Built with ❤️ in London | © 2026 Marco Toniut</sub>
 </div>

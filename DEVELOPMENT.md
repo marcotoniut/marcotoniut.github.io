@@ -7,7 +7,7 @@ Quick reference for developing this Next.js personal website.
 This project uses [`proto`](https://moonrepo.dev/docs/proto) to pin tool versions.
 
 ```bash
-proto install          # installs Node.js, pnpm, Lefthook, Ruff
+proto install          # installs Node.js, pnpm, Lefthook, actionlint
 pnpm install
 lefthook install       # sets up Git hooks (skip in CI)
 ```
@@ -18,23 +18,26 @@ lefthook install       # sets up Git hooks (skip in CI)
 pnpm dev  # Starts dev server + translation watcher
 ```
 
-Runs at [http://localhost:8825](http://localhost:8825)
+Runs at [http://localhost:8525](http://localhost:8525)
 
 ## Key Commands
 
 | Command          | Purpose                                   |
 | ---------------- | ----------------------------------------- |
 | `pnpm dev`       | Start dev server with translation watcher |
+| `pnpm discover`  | Repo metadata as JSON: routes, ports, gates, scopes |
 | `pnpm build`     | Production build                          |
 | `pnpm lint`      | Run Biome linter                          |
 | `pnpm lint:fix`  | Fix auto-fixable issues                   |
 | `pnpm typecheck` | Check TypeScript types                    |
 | `pnpm generate`  | Generate translation files                |
 | `pnpm print-cv`  | Generate CV PDF                           |
-| `pnpm format:py` | Format Python CI helpers with Ruff        |
-| `pnpm format:py:check` | Check Python formatting (CI parity) |
-| `pnpm check`     | Run all quality gates (lint, typecheck, spellcheck, test, build) |
+| `pnpm check`     | Run all quality gates (generate, lint, typecheck, spellcheck, test, build) |
 | `pnpm test`      | Run unit tests (vitest)                   |
+| `pnpm test:coverage` | Unit tests with coverage thresholds   |
+| `pnpm test:e2e`  | Build, then run a11y + visual suites       |
+| `pnpm audit`     | Dependency audit (all deps, high and above) |
+| `pnpm lighthouse` | Lighthouse via `dlx`; needs `pnpm build` first |
 | `pnpm deploy`    | Reminder: deployments run on `release`    |
 
 ## Development Flow
@@ -71,7 +74,7 @@ Scopes: `cv`, `i18n`, `styles`, `ci`, `components`, `analytics`, `a11y`, `seo`, 
 ### CV PDF Generation
 
 - Route: `/cv` (print-optimized page)
-- Script: `scripts/print-cv.js`
+- Script: `scripts/print-cv.ts`
 - Output: `local/Marco Toniut (CV).pdf`
 - Requires Chrome: `npx puppeteer browsers install chrome`
 
@@ -83,7 +86,7 @@ Scopes: `cv`, `i18n`, `styles`, `ci`, `components`, `analytics`, `a11y`, `seo`, 
 
 ### Tech Stack
 
-- **Framework:** Next.js 16 (App Router)
+- **Framework:** Next.js 16 (App Router, Turbopack, React Compiler)
 - **Language:** TypeScript (British English conventions)
 - **Styling:** Vanilla Extract
 - **UI:** Radix UI primitives
@@ -99,9 +102,6 @@ src/
 ├── i18n/         # Translation source files
 └── styles/       # Global styles
 
-docs/
-└── decisions/    # Architecture Decision Records
-
 scripts/          # Utility scripts
 ```
 
@@ -110,11 +110,46 @@ scripts/          # Utility scripts
 Before committing:
 
 ```bash
-pnpm lint:fix && pnpm typecheck && pnpm build
-pnpm format:py
+pnpm check
 ```
 
-Run `pnpm format:py:check` (or rely on CI) whenever Python helper scripts change; Ruff is installed via `proto` for consistent local/CI formatting.
+### End-to-end suites
+
+`test:a11y` and `test:visual` serve `out/` via `tests/e2e/static-server.ts`,
+which mimics GitHub Pages (directory indexes, `404.html` fallback). Since they
+test the shipping artifact, a build is required first:
+
+```bash
+pnpm build && pnpm test:visual
+```
+
+`pnpm test:e2e` handles the build for you. The server exits with an explicit
+error if `out/` is missing rather than silently starting a dev server.
+
+Snapshots are platform-sensitive: macOS and Linux rasterise the same woff2
+differently, so CI allows a looser pixel diff than local runs
+(`maxDiffPixelRatio` in `tests/e2e/playwright.config.ts`). Update snapshots with
+`pnpm test:visual:update` and review the diff before committing.
+
+### Lighthouse
+
+CI runs it through `treosh/lighthouse-ci-action`, which bundles its own lhci, so
+there is no Lighthouse dependency in the lockfile. Locally:
+
+```bash
+pnpm build && pnpm lighthouse
+```
+
+Assertions in `lighthouserc.cjs` are `error`, set just below the observed scores.
+They are a ratchet: raise them as scores improve, do not lower them to make a
+build pass.
+
+### Fonts
+
+Self-hosted, woff2 only, and declared without `local()` so every machine renders
+the same file. Adding a font means adding the woff2 to `public/fonts/`, an
+`@font-face` in `src/app/globals.css`, and a preload in `src/app/layout.tsx` only
+if it is needed above the fold.
 
 ## SEO & Anti-AI Scraping
 
@@ -123,11 +158,11 @@ This site implements comprehensive SEO optimization with anti-AI training protec
 ### Implementation
 
 - **[robots.txt](public/robots.txt)** — Blocks AI crawlers (OpenAI, Anthropic, Google Extended, CCBot, etc.)
-- **[sitemap.xml](public/sitemap.xml)** — Auto-generated on build via `pnpm generate:sitemap`
-- Pre-push hook reruns `pnpm generate:sitemap` **only when pushing the `release` branch** and blocks the push if `public/sitemap.xml` changes. Commit the regenerated file whenever the date or routes change to unblock release pushes. A matching GitHub workflow enforces the same rule on PRs targeting `release`.
-- **Schema.org JSON-LD** — Structured data in [src/app/layout.tsx](src/app/layout.tsx#L70-L94)
+- **[sitemap.xml](public/sitemap.xml)** — Generated by `pnpm generate:sitemap`. Output is a pure function of the route list (no `lastmod`), so it only changes when routes do.
+- Pre-push hook reruns `pnpm generate:sitemap` **only when pushing the `release` branch** and blocks the push if `public/sitemap.xml` changes. A diff there means a route was added or removed without committing the sitemap. A matching GitHub workflow enforces the same rule on PRs targeting `release`.
+- **Schema.org JSON-LD** — `generatePersonStructuredData()` in [src/utils/metadata.ts](src/utils/metadata.ts), rendered by [src/app/layout.tsx](src/app/layout.tsx) and escaped through `serializeJsonLd`
 - **OpenGraph & Twitter Cards** — Social media metadata via [src/utils/metadata.ts](src/utils/metadata.ts)
-- **Anti-AI Meta Tags** — `noai`, `noimageai`, `nocontentai` in page metadata
+- **Anti-AI Meta Tags** — one `<meta name="robots">` built from `ROBOTS_DIRECTIVES`, plus an `ai-policy` tag. Setting Next's `robots` field as well would emit a second, contradictory tag.
 - **Footer Legal Notice** — [src/components/Footer.tsx](src/components/Footer.tsx)
 
 ### Verification
@@ -141,9 +176,9 @@ curl https://marcotoniut.github.io/sitemap.xml
 
 ### Limitations
 
-- **GitHub Pages doesn't support HTTP headers** — Headers configured in [next.config.js](next.config.js) are ignored on static hosting
-- Meta tags provide equivalent protection for compliant crawlers
-- Cannot block non-compliant bots that ignore `robots.txt`
+- **GitHub Pages doesn't support HTTP headers** — so [next.config.mts](next.config.mts) declares no `headers()`; with `output: "export"` Next would silently drop them anyway
+- Controls with a meta equivalent (robots directives, `Referrer-Policy`) are set in [src/app/layout.tsx](src/app/layout.tsx); header-only ones (`X-Content-Type-Options`, `Permissions-Policy`, `Content-Signal`) are unavailable on this host
+- Cannot block non-compliant bots that ignore `robots.txt`; anything rendered into the HTML, including CV contact details, is readable by any scraper
 
 ### Blocked Crawlers
 

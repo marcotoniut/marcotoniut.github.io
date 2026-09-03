@@ -1,85 +1,41 @@
 # Agent Guidelines
 
-Keep this file thin. Code and docs are source of truth.
+Code defines reality; this document sets policy.
 
-## Preflight
+## Discovery
 
-Read only what task needs:
-
-- `DEVELOPMENT.md` before build, lint, or dev workflow questions.
-- `README.md` for project context.
-
-Skip preflight for simple Q&A, one-off shell asks, or doc/review work.
+- `pnpm discover` outputs routes, ports, gates, scopes, and repo facts as JSON, derived from source on every run.
+- Check `DEVELOPMENT.md` for workflow, commands, and conventions. Skip both for simple Q&A.
 
 ## Communication
 
-- Default to `caveman`.
-- Use normal style when brevity risks misunderstanding.
-- Progress updates: 1-2 sentences.
-- Do not repeat plans after execution starts.
-- Final summary: files changed, checks run + status, residual risks / next actions.
-
-## Collaboration
-
-- Two agents: **Codex** (execution-focused) and **Claude** (concept-driven). Either can lead; the other reviews.
-- **Maintainers** make final calls. Flag uncertainties early.
-- Single-driver: one agent edits at a time.
-- Escalate if change spans architecture or conflicts with `DEVELOPMENT.md`.
-
-```md
-## Handoff
-
-- Scope touched:
-- Files changed:
-- Validation run:
-- Validation not run (reason):
-- Risks / edge cases:
-- Next owner:
-```
-
-```md
-## Review
-
-- Must fix:
-- Should fix:
-- Nice to have:
-- Approval: Approved | Not approved
-```
+- Default to `caveman`; switch to normal style if brevity risks misunderstanding.
+- Progress updates: 1-2 sentences. Final summary: files changed, checks run with status, residual risks.
 
 ## Validation
 
-Before completion, run required checks:
-
-```bash
-pnpm check
-```
-
-Or individually: `pnpm lint`, `pnpm typecheck`, `pnpm spellcheck`, `pnpm test`, `pnpm build`.
-
-- On failure, fix reported failures; rerun same command until green.
-- Do not jump to broader checks before failing command passes.
+- Run `pnpm check` before completion. On failure, fix only the reported failures and rerun the same command until green.
+- E2E suites need `pnpm build` first. Headless only; no manual browser windows.
 - If skipping a required check, say why and what remains.
-- Python scripts: format via `pnpm format:py` when modified.
 
-## Web Testing
+## Collaboration
 
-**Ports**: Dev (human) 8825 | Agents 8830
-
-**Workflow**:
-1. `Bash({ command: "pnpm dev:agents", run_in_background: true })`
-2. Wait ~10s for readiness.
-3. Test with `mcp__playwright__*` tools (headless).
-4. Kill shell after testing.
-
-Headless by default. No manual browser windows.
+- Single driver: one agent edits at a time. Maintainers make final calls; flag uncertainty early.
 
 ## Constraints
 
 - Prefer explicit failure over silent fallback.
-- Ask questions only when ambiguity changes behavior, architecture, or scope.
-- Keep docs/comments terse. Repo is self-documenting where possible.
-- Use `git mv` for tracked renames.
-- Do not add `Co-Authored-By` lines to commit messages.
-- Use Conventional Commits with scope (see `DEVELOPMENT.md`).
-- Stop dev servers/watchers before handoff unless user asks otherwise.
-- Do not rename/add/delete `.env` or config variables without explicit approval.
+- Ask questions only when ambiguity changes behaviour, architecture, or scope.
+- Use `git mv` for tracked renames. Conventional Commits with scope (see `DEVELOPMENT.md`). No `Co-Authored-By` lines.
+- Do not rename, add, or delete `.env` or config variables without explicit approval.
+- Stop dev servers and watchers before handoff unless asked otherwise.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
