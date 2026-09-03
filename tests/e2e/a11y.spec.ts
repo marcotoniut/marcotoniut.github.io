@@ -46,7 +46,7 @@ const ROUTES = [
   },
 ] as const
 
-// Run sequentially — dev server can't handle 8 parallel axe audits
+// Run sequentially: axe audits are CPU-bound, so parallel runs add noise
 test.describe.configure({ mode: "serial" })
 
 test.describe("@a11y", () => {

@@ -1,7 +1,8 @@
 import type { Page } from "@playwright/test"
 
 export const waitForVisualStability = async (page: Page): Promise<void> => {
-  // Wait for React hydration — data-theme attribute only set after client hydration
+  // data-theme is only set once the blocking theme script has run and React
+  // has hydrated, so it doubles as a hydration signal.
   await page
     .waitForFunction(
       () => document.documentElement.dataset["theme"] !== undefined,
@@ -31,28 +32,4 @@ export const waitForVisualStability = async (page: Page): Promise<void> => {
       }),
     )
   })
-
-  await page.addStyleTag({
-    content: `
-      nextjs-portal,
-      [data-nextjs-dev-overlay="true"] {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-      }
-    `,
-  })
-  await page.waitForTimeout(200)
-  await page.evaluate(() => {
-    for (const selector of [
-      "nextjs-portal",
-      '[data-nextjs-dev-overlay="true"]',
-    ]) {
-      for (const element of document.querySelectorAll(selector)) {
-        element.remove()
-      }
-    }
-  })
-  await page.waitForTimeout(50)
 }

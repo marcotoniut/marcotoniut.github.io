@@ -58,11 +58,14 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `cross-env BROWSER=none next dev -p ${port}`,
+    // Serves the `out/` export rather than `next dev`, so a11y and visual
+    // results describe the artifact that ships. Requires `pnpm build` first.
+    command: "pnpm tsx tests/e2e/static-server.ts",
     cwd: projectRoot,
+    env: { PLAYWRIGHT_PORT: String(port), PLAYWRIGHT_HOST: host },
     url: `${baseURL}/en/`,
     reuseExistingServer: !ci,
-    timeout: 120_000,
+    timeout: 60_000,
     stdout: "pipe",
     stderr: "pipe",
   },

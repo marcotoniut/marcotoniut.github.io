@@ -1,41 +1,11 @@
 import { describe, expect, it } from "vitest"
-import { z } from "zod"
-
-// Re-define schemas inline to test validation logic without importing
-// sendGAEvent (which requires Next.js runtime).
-const LinkClickParamsSchema = z.object({
-  link_url: z.string().url(),
-  link_text: z.string().optional(),
-  link_location: z.enum([
-    "header",
-    "home_page",
-    "cv_page",
-    "footer",
-    "profile",
-    "carcinisation_project_page",
-    "carcinisation_project_page_meta",
-    "carcinisation_project_page_external_links",
-  ]),
-  locale: z.string(),
-})
-
-const BuyMeCoffeeParamsSchema = LinkClickParamsSchema.extend({
-  link_location: z.enum(["header", "home_page"]),
-})
-
-const ExternalLinkParamsSchema = LinkClickParamsSchema.extend({
-  link_type: z.enum(["github", "linkedin", "itch_io", "other"]),
-})
-
-const CVViewParamsSchema = z.object({
-  locale: z.string(),
-  referrer: z.string().optional(),
-})
-
-const ProjectLinkParamsSchema = LinkClickParamsSchema.extend({
-  project_name: z.string(),
-  link_type: z.enum(["github", "itch_io", "jam"]),
-})
+import {
+  BuyMeCoffeeParamsSchema,
+  CVViewParamsSchema,
+  ExternalLinkParamsSchema,
+  LinkClickParamsSchema,
+  ProjectLinkParamsSchema,
+} from "@/utils/analytics-schemas"
 
 describe("LinkClickParamsSchema", () => {
   it("accepts valid params", () => {
@@ -153,6 +123,17 @@ describe("ProjectLinkParamsSchema", () => {
       link_location: "carcinisation_project_page",
       locale: "en",
       link_type: "github",
+    })
+    expect(result.success).toBe(false)
+  })
+})
+
+describe("locale field", () => {
+  it("rejects a locale the site does not serve", () => {
+    const result = LinkClickParamsSchema.safeParse({
+      link_url: "https://example.com",
+      link_location: "header",
+      locale: "fr",
     })
     expect(result.success).toBe(false)
   })

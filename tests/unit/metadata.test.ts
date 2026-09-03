@@ -4,6 +4,8 @@ import {
   generateOpenGraphMetadata,
   generatePersonStructuredData,
   generateTwitterMetadata,
+  ROBOTS_DIRECTIVES,
+  serializeJsonLd,
 } from "@/utils/metadata"
 
 describe("generatePersonStructuredData", () => {
@@ -22,7 +24,7 @@ describe("generatePersonStructuredData", () => {
   })
 
   it("includes sameAs links", () => {
-    expect(data.sameAs).toEqual(expect.arrayContaining(siteConfig.sameAs))
+    expect(data.sameAs).toEqual(expect.arrayContaining([...siteConfig.sameAs]))
   })
 
   it("includes knowsAbout array", () => {
@@ -38,11 +40,11 @@ describe("generateOpenGraphMetadata", () => {
       url: "https://example.com/test",
     })
 
-    expect(og?.title).toBe("Test Page")
-    expect(og?.description).toBe("A test")
-    expect(og?.url).toBe("https://example.com/test")
-    expect(og?.siteName).toBe(siteConfig.name)
-    expect(og?.type).toBe("website")
+    expect(og.title).toBe("Test Page")
+    expect(og.description).toBe("A test")
+    expect(og.url).toBe("https://example.com/test")
+    expect(og.siteName).toBe(siteConfig.name)
+    expect(og.type).toBe("website")
   })
 
   it("falls back to siteConfig ogImage when none provided", () => {
@@ -52,8 +54,7 @@ describe("generateOpenGraphMetadata", () => {
       url: "https://example.com",
     })
 
-    const images = og?.images as Array<{ url: string }>
-    expect(images?.[0]?.url).toBe(siteConfig.social.ogImage)
+    expect(og.images[0]?.url).toBe(siteConfig.social.ogImage)
   })
 
   it("uses custom image when provided", () => {
@@ -64,8 +65,7 @@ describe("generateOpenGraphMetadata", () => {
       image: "https://example.com/custom.png",
     })
 
-    const images = og?.images as Array<{ url: string }>
-    expect(images?.[0]?.url).toBe("https://example.com/custom.png")
+    expect(og.images[0]?.url).toBe("https://example.com/custom.png")
   })
 
   it("uses localeTag over locale when provided", () => {
@@ -77,7 +77,7 @@ describe("generateOpenGraphMetadata", () => {
       localeTag: "en-GB",
     })
 
-    expect(og?.locale).toBe("en-GB")
+    expect(og.locale).toBe("en-GB")
   })
 })
 
@@ -88,8 +88,37 @@ describe("generateTwitterMetadata", () => {
       description: "A test",
     })
 
-    expect(twitter?.card).toBe("summary_large_image")
-    expect(twitter?.title).toBe("Test Page")
-    expect(twitter?.description).toBe("A test")
+    expect(twitter.card).toBe("summary_large_image")
+    expect(twitter.title).toBe("Test Page")
+    expect(twitter.description).toBe("A test")
+  })
+})
+
+describe("ROBOTS_DIRECTIVES", () => {
+  it("allows indexing while opting out of AI training", () => {
+    const directives = ROBOTS_DIRECTIVES.split(", ")
+    expect(directives).toContain("index")
+    expect(directives).toContain("follow")
+    expect(directives).toContain("noai")
+    expect(directives).toContain("noimageai")
+  })
+
+  it("has no contradictory directive", () => {
+    const directives = ROBOTS_DIRECTIVES.split(", ")
+    expect(directives).not.toContain("noindex")
+    expect(directives).not.toContain("nofollow")
+  })
+})
+
+describe("serializeJsonLd", () => {
+  it("escapes characters that could break out of a script element", () => {
+    const serialized = serializeJsonLd({ bio: "</script><script>x()" })
+    expect(serialized).not.toContain("</script>")
+    expect(serialized).toContain("\\u003c")
+  })
+
+  it("stays parseable after escaping", () => {
+    const value = { name: "a<b>c&d" }
+    expect(JSON.parse(serializeJsonLd(value))).toEqual(value)
   })
 })

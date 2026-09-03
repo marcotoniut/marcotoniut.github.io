@@ -1,16 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { z } from "zod"
-
-// Mirror the schema from src/env.ts to test validation logic
-// without triggering the module-level parseEnv() side effect.
-const envSchema = z.object({
-  NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().optional(),
-  NEXT_PUBLIC_PDF_PRINTING: z
-    .enum(["true", "false"])
-    .optional()
-    .transform((v) => v === "true"),
-  NEXT_PUBLIC_PRINT_SCALE: z.string().optional(),
-})
+import { envSchema } from "@/env"
 
 describe("env schema", () => {
   it("accepts empty env (all optional)", () => {
