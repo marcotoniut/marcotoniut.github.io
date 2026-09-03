@@ -21,7 +21,7 @@ const font = readFileSync(
   path.resolve(repoRoot, "public/fonts/space-grotesk/space-grotesk-700.woff2"),
 ).toString("base64")
 
-const markHtml = (size: number, radius: number) => `<!doctype html>
+const markHtml = (size: number) => `<!doctype html>
 <html><head><style>
   @font-face {
     font-family: "Space Grotesk";
@@ -29,11 +29,10 @@ const markHtml = (size: number, radius: number) => `<!doctype html>
     src: url(data:font/woff2;base64,${font}) format("woff2");
   }
   * { margin: 0; }
-  body { width: ${size}px; height: ${size}px; background: transparent; }
+  body { width: ${size}px; height: ${size}px; background: #0c120e; }
   .mark {
     align-items: center;
     background: #0c120e;
-    border-radius: ${radius}px;
     color: #6fe0a0;
     display: flex;
     font-family: "Space Grotesk", sans-serif;
@@ -81,12 +80,10 @@ const main = async () => {
       viewport: { width: size, height: size },
       deviceScaleFactor: 1,
     })
-    // Small sizes get square corners; the apple icon keeps a slight radius.
-    const radius = size >= 180 ? Math.round(size * 0.17) : 0
-    await page.setContent(markHtml(size, radius), { waitUntil: "networkidle" })
-    shots[size] = Buffer.from(
-      await page.screenshot({ type: "png", omitBackground: true }),
-    )
+    // Opaque, full-bleed, square: iOS composites transparency onto black and
+    // applies its own corner mask, so pre-rounding produces black wedges.
+    await page.setContent(markHtml(size), { waitUntil: "networkidle" })
+    shots[size] = Buffer.from(await page.screenshot({ type: "png" }))
     await page.close()
   }
   await browser.close()

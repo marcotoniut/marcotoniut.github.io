@@ -106,3 +106,20 @@ export function trackContactNavigation(params: {
     from_page: params.from_page,
   })
 }
+
+/**
+ * Track internal navigation to a project page
+ */
+export function trackProjectNavigation(params: {
+  locale: Locales
+  from_page: string
+  project_name: string
+}) {
+  sendGAEvent("event", "project_navigation", {
+    event_category: "navigation",
+    event_label: `internal_${params.project_name}_link`,
+    locale: params.locale,
+    from_page: params.from_page,
+    project_name: params.project_name,
+  })
+}

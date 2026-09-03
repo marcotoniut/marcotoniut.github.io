@@ -296,7 +296,7 @@ const esAr = {
     },
     title: "Ponete en Contacto",
     description:
-      "¿Tienes algo de lo que quieras hablar? Escríbeme y te responderé pronto.",
+      "¿Tenés algo de lo que quieras hablar? Escribime y te responderé pronto.",
     emailLabel: "Email",
   },
 } satisfies Translation

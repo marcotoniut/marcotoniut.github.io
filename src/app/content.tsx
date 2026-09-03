@@ -112,7 +112,8 @@ export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
             className={`${styles.panel} ${styles.panelCarcinisation}`}
             href={`/${locale}/projects/carcinisation`}
             locale={locale}
-            trackingType="contact_navigation"
+            trackingType="project_navigation"
+            projectName="carcinisation"
             fromPage="home_page"
           >
             <Stack as="span" gap="sm">
@@ -144,7 +145,8 @@ export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
             className={`${styles.panel} ${styles.panelSonicthames}`}
             href={`/${locale}/projects/sonicthames`}
             locale={locale}
-            trackingType="contact_navigation"
+            trackingType="project_navigation"
+            projectName="sonicthames"
             fromPage="home_page"
           >
             <Stack as="span" gap="sm">

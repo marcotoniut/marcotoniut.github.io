@@ -9,11 +9,14 @@ import {
   trackCVNavigation,
   trackExternalLinkClick,
   trackProjectLinkClick,
+  trackProjectNavigation,
 } from "@/utils/analytics"
 
 type TrackedLinkProps = ComponentPropsWithoutRef<typeof Link> & {
   locale: Locales
-  trackingType: "cv_navigation" | "contact_navigation"
+  trackingType: "cv_navigation" | "contact_navigation" | "project_navigation"
+  /** Required when trackingType is "project_navigation". */
+  projectName?: string
   fromPage: string
 }
 
@@ -36,6 +39,7 @@ type TrackedAnchorProps = ComponentPropsWithoutRef<"a"> & {
 export function TrackedLink({
   locale,
   trackingType,
+  projectName,
   fromPage,
   onClick,
   ...props
@@ -45,6 +49,12 @@ export function TrackedLink({
       trackCVNavigation({ locale, from_page: fromPage })
     } else if (trackingType === "contact_navigation") {
       trackContactNavigation({ locale, from_page: fromPage })
+    } else if (projectName !== undefined) {
+      trackProjectNavigation({
+        locale,
+        from_page: fromPage,
+        project_name: projectName,
+      })
     }
     onClick?.(e)
   }
