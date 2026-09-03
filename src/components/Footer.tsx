@@ -1,4 +1,5 @@
 import { BuyMeACoffeeCTA } from "@/components/BuyMeACoffeeCTA"
+import { Box } from "@/components/ui/primitives"
 import { siteConfig } from "@/config/site"
 import { email } from "@/info"
 import * as styles from "./Footer.css"
@@ -28,7 +29,14 @@ export function Footer({ className, labels }: FooterProps) {
         </div>
         <div className={styles.cell}>
           <span className={styles.cellLabel}>{labels.elsewhere}</span>
-          <nav aria-label="Social links" className={styles.linkRow}>
+          <Box
+            as="nav"
+            aria-label="Social links"
+            display="flex"
+            flexWrap="wrap"
+            rowGap="xs"
+            columnGap="lg"
+          >
             <a
               className={styles.cellLink}
               href={siteConfig.social.github}
@@ -53,7 +61,7 @@ export function Footer({ className, labels }: FooterProps) {
             >
               itch.io
             </a>
-          </nav>
+          </Box>
         </div>
         <div className={styles.cell}>
           <span className={styles.cellLabel}>{labels.colophon}</span>

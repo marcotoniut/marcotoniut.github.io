@@ -5,6 +5,7 @@ import * as styles from "@/app/[lang]/home.css"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import { TrackedLink } from "@/components/TrackedLink"
+import { Box, Stack } from "@/components/ui/primitives"
 import type { Locales, Translation } from "@/i18n/i18n-types"
 import { loadedLocales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
@@ -67,7 +68,14 @@ export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
           <h1 className={styles.title}>Marco Toniut</h1>
           <p className={styles.range}>{dict.HomePage.range}</p>
 
-          <nav className={styles.ctas}>
+          <Box
+            as="nav"
+            display="flex"
+            flexWrap="wrap"
+            rowGap="md"
+            columnGap="xxl"
+            marginTop="xxl"
+          >
             <TrackedLink
               className={styles.ctaLink}
               href={`/${locale}/contact`}
@@ -86,7 +94,7 @@ export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
             >
               {dict.HomePage.cv.hint}
             </TrackedLink>
-          </nav>
+          </Box>
 
           {contentRev !== undefined ? (
             <span className={`${styles.corner} ${styles.cornerBr}`}>
@@ -105,7 +113,7 @@ export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
             trackingType="contact_navigation"
             fromPage="home_page"
           >
-            <span className={styles.panelBody}>
+            <Stack as="span" gap="sm">
               <Designation
                 index="01"
                 category={dict.HomePage.carcinisation.category}
@@ -118,7 +126,7 @@ export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
               <p className={styles.pitch}>
                 {dict.HomePage.carcinisation.pitch}
               </p>
-            </span>
+            </Stack>
             <span className={styles.mediaMount}>
               <Image
                 alt={dict.HomePage.carcinisation.mediaAlt}
@@ -137,7 +145,7 @@ export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
             trackingType="contact_navigation"
             fromPage="home_page"
           >
-            <span className={styles.panelBody}>
+            <Stack as="span" gap="sm">
               <Designation
                 index="02"
                 category={dict.HomePage.sonicThames.category}
@@ -147,7 +155,7 @@ export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
                 {dict.HomePage.sonicThames.label}
               </h2>
               <p className={styles.pitch}>{dict.HomePage.sonicThames.pitch}</p>
-            </span>
+            </Stack>
           </TrackedLink>
         </section>
       </main>

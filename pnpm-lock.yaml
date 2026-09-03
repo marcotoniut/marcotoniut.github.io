@@ -78,6 +78,9 @@ importers:
       '@vanilla-extract/next-plugin':
         specifier: 2.5.2
         version: 2.5.2(@swc/helpers@0.5.23)(@types/node@24.13.3)(esbuild@0.28.2)(next@16.3.4(@babel/core@7.29.7)(@playwright/test@1.62.1)(@types/node@24.13.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(terser@5.51.2)(tsx@4.23.13)(webpack@5.110.3(esbuild@0.28.2))(yaml@2.9.0)
+      '@vanilla-extract/sprinkles':
+        specifier: 1.7.1
+        version: 1.7.1(@vanilla-extract/css@1.21.2)
       '@vitest/coverage-v8':
         specifier: 4.1.11
         version: 4.1.11(vitest@4.1.11)
@@ -1462,6 +1465,11 @@ packages:
 
   '@vanilla-extract/recipes@0.5.7':
     resolution: {integrity: sha512-Fvr+htdyb6LVUu+PhH61UFPhwkjgDEk8L4Zq9oIdte42sntpKrgFy90MyTRtGwjVALmrJ0pwRUVr8UoByYeW8A==}
+    peerDependencies:
+      '@vanilla-extract/css': ^1.0.0
+
+  '@vanilla-extract/sprinkles@1.7.1':
+    resolution: {integrity: sha512-2s44Y0pC6rm7VBCrJqj77ImqjxOkmLL5mtv16adMjuedHVHjAeJxFL8K8jg8kGM31IxX484ej1myQjv4qz5JLg==}
     peerDependencies:
       '@vanilla-extract/css': ^1.0.0
 
@@ -4043,6 +4051,10 @@ snapshots:
   '@vanilla-extract/private@1.0.9': {}
 
   '@vanilla-extract/recipes@0.5.7(@vanilla-extract/css@1.21.2)':
+    dependencies:
+      '@vanilla-extract/css': 1.21.2
+
+  '@vanilla-extract/sprinkles@1.7.1(@vanilla-extract/css@1.21.2)':
     dependencies:
       '@vanilla-extract/css': 1.21.2
 

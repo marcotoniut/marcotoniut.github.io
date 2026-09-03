@@ -38,13 +38,6 @@ const listAccent = {
   },
 }
 
-const sectionShell = {
-  width: "100%",
-  maxWidth: "1080px",
-  margin: "0 auto",
-  boxSizing: "border-box" as const,
-}
-
 export const page = style({
   background: sonicPalette.dark.background,
   backgroundImage:
@@ -58,21 +51,6 @@ export const page = style({
       color: sonicPalette.light.text,
     },
   },
-})
-
-export const headerWrapper = style({
-  ...sectionShell,
-  paddingBlock: space.sm,
-})
-
-export const bodyWrapper = style({
-  ...sectionShell,
-  paddingBlock: space.lg,
-})
-
-export const footerWrapper = style({
-  ...sectionShell,
-  paddingBlock: space.sm,
 })
 
 export const footerOverride = style({

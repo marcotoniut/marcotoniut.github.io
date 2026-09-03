@@ -73,12 +73,6 @@ export const emailLink = style({
   },
 })
 
-export const linkRow = style({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: `${space.xs} ${space.lg}`,
-})
-
 export const cellLink = style({
   color: colors.textMuted,
   fontFamily: fontFamilies.mono,

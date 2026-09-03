@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
+import { Box } from "@/components/ui/primitives"
 import { siteConfig } from "@/config/site"
 import { email } from "@/info"
 import { i18nDictionary } from "../common"
@@ -38,10 +39,10 @@ export default async function ContactPage({ params }: PageProps) {
       <Header currentLocale={locale} nav={dict.Common.nav} />
 
       <main className={styles.main}>
-        <div className={styles.contentHeader}>
+        <Box textAlign="center" width="full">
           <h1 className={styles.title}>{dict.ContactPage.title}</h1>
           <p className={styles.description}>{dict.ContactPage.description}</p>
-        </div>
+        </Box>
 
         <div className={styles.emailPanel}>
           <span className={styles.panelLabel}>

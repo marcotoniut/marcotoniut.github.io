@@ -95,13 +95,6 @@ export const range = style({
   maxWidth: "58ch",
 })
 
-export const ctas = style({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: `${space.md} ${space.xxl}`,
-  marginTop: space.xxl,
-})
-
 export const ctaLink = style({
   color: colors.accent,
   fontFamily: fontFamilies.mono,
@@ -179,12 +172,6 @@ export const panelCarcinisation = style({
 
 export const panelSonicthames = style({
   vars: { [channelColor]: colors.channel.sonicthames },
-})
-
-export const panelBody = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: space.sm,
 })
 
 /**

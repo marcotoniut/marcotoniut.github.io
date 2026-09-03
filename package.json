@@ -58,6 +58,7 @@
     "@types/node": "24.13.3",
     "@types/react": "19.2.18",
     "@vanilla-extract/next-plugin": "2.5.2",
+    "@vanilla-extract/sprinkles": "1.7.1",
     "@vitest/coverage-v8": "4.1.11",
     "babel-plugin-react-compiler": "1.0.0",
     "chokidar-cli": "3.0.0",

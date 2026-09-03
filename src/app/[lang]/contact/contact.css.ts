@@ -23,11 +23,6 @@ export const main = style({
   gap: "2rem",
 })
 
-export const contentHeader = style({
-  textAlign: "center",
-  width: "100%",
-})
-
 export const title = style({
   fontSize: "2.5rem",
   fontWeight: 700,
