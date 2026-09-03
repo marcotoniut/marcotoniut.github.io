@@ -13,6 +13,14 @@ const themeContract = createThemeContract({
     accentSoft: null,
     accentContrast: null,
     focusRing: null,
+    hairline: null,
+    // Graph-paper grid line; transparent in dark so the same components render
+    // both themes without conditionals.
+    grid: null,
+    channel: {
+      carcinisation: null,
+      sonicthames: null,
+    },
     buyMeACoffeeBackground: null,
     buyMeACoffeeText: null,
     buyMeACoffeeAccent: null,
@@ -112,7 +120,7 @@ const sharedRadius = {
 const sharedShadow = {
   subtle: "0 1px 2px rgba(0, 0, 0, 0.14)",
   soft: "0 12px 30px rgba(15, 23, 42, 0.12)",
-  glow: "0 0 0 1px rgba(86, 243, 201, 0.45)",
+  glow: "0 0 0 1px rgba(11, 122, 92, 0.45)",
 } as const
 
 const headingStack =
@@ -168,32 +176,57 @@ const sharedFont = {
   },
 } as const
 
+// Warm paper, not inverted dark: the ground is paper (#fbfaf7 reads white at
+// arm's length, warm only against a cold reference), the ink is neutral-black
+// with an imperceptible green bias so it cannot drift brown on the warm
+// ground, and the neutrals are derived on that cast. Light is the notebook to
+// the dark theme's powered bench: same person, two environments.
 const lightThemeColors = {
-  background: "#f6f8fb",
+  background: "#fbfaf7",
   surface: "#ffffff",
-  surfaceElevated: "#f1f4fa",
-  border: "#d4d9e4",
-  borderMuted: "#e3e7f1",
-  textPrimary: "#1f2330",
-  textMuted: "#5a6072",
-  accent: "#0d6efd",
-  accentSoft: "#5ea8ff",
+  surfaceElevated: "#f2f1ea",
+  border: "#d9d7cd",
+  borderMuted: "#e8e6dd",
+  textPrimary: "#1a1b1a",
+  textMuted: "#5d635d",
+  // Deep mint, not the dark theme's phosphor: #6fe0a0 is 3.2:1 on paper and
+  // fails AA as text; #0b7a5c reads as printing-ink green and holds 5:1.
+  accent: "#0b7a5c",
+  accentSoft: "#0f9d77",
   accentContrast: "#ffffff",
-  focusRing: "rgba(13, 110, 253, 0.35)",
+  focusRing: "rgba(11, 122, 92, 0.4)",
+  hairline: "rgba(26, 27, 26, 0.22)",
+  grid: "rgba(26, 27, 26, 0.025)",
+  channel: {
+    carcinisation: "#8a5a1e",
+    sonicthames: "#0b6e8f",
+  },
 } as const
 
+// Green-black ramp, not blue-black: the ground carries a temperature the
+// accent depends on. #6fe0a0 on this ground reads as powered phosphor; the
+// same value on a blue ground reads as a generic success-green. Neutrals are
+// derived on the green cast because pure or blue-cast greys drift lavender
+// against it (simultaneous contrast). Locked test: with the accent removed,
+// the page must still read near-black, never "a green website".
 const darkThemeColors = {
-  background: "#0b0d12",
-  surface: "#12141c",
-  surfaceElevated: "#161922",
-  border: "#232737",
-  borderMuted: "#1b1f2d",
-  textPrimary: "#f5f6fa",
-  textMuted: "#a7adc6",
-  accent: "#56f3c9",
-  accentSoft: "#2ab69a",
-  accentContrast: "#050607",
-  focusRing: "rgba(86, 243, 201, 0.45)",
+  background: "#0c120e",
+  surface: "#131a15",
+  surfaceElevated: "#171f1a",
+  border: "#24302a",
+  borderMuted: "#1a211c",
+  textPrimary: "#eff3ee",
+  textMuted: "#9aa39c",
+  accent: "#6fe0a0",
+  accentSoft: "#3faf78",
+  accentContrast: "#06100a",
+  focusRing: "rgba(111, 224, 160, 0.45)",
+  hairline: "rgba(154, 163, 156, 0.28)",
+  grid: "transparent",
+  channel: {
+    carcinisation: "#e8c8a0",
+    sonicthames: "#4cc3e8",
+  },
 } as const
 
 const gbPalette = {
@@ -231,8 +264,8 @@ export const darkThemeClass = createTheme(themeContract, {
   radius: sharedRadius,
   shadow: {
     subtle: "0 1px 2px rgba(0, 0, 0, 0.45)",
-    soft: "0 6px 18px rgba(5, 8, 15, 0.45)",
-    glow: "0 0 0 1px rgba(86, 243, 201, 0.35)",
+    soft: "0 6px 18px rgba(5, 10, 7, 0.45)",
+    glow: "0 0 0 1px rgba(111, 224, 160, 0.35)",
   },
   font: sharedFont,
 })

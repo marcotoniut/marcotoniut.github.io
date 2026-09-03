@@ -1,61 +1,99 @@
-import { globalStyle, style } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css"
 import {
   colors,
   durations,
   fontFamilies,
-  fontSizes,
-  fontWeights,
+  gridSurface,
+  media,
   space,
-  themeVars,
 } from "@/styles/theme"
 
 export const footer = style({
-  alignItems: "center",
   alignSelf: "stretch",
-  borderTop: `1px solid ${colors.borderMuted}`,
   color: colors.textMuted,
-  display: "flex",
-  fontFamily: fontFamilies.body,
-  fontSize: fontSizes.bodySm,
-  fontWeight: fontWeights.body.medium,
-  justifyContent: "center",
-  paddingBlock: space.sm,
+  margin: "0 auto",
+  maxWidth: "1080px",
   width: "100%",
 })
 
-export const content = style({
-  margin: "0 auto",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: space.sm,
-  lineHeight: "1.5",
-  textAlign: "center",
-})
-
-export const copyright = style({
-  margin: 0,
-  fontSize: fontSizes.bodySm,
-})
-
-export const iconRow = style({
-  display: "flex",
-  alignItems: "center",
-  gap: space.md,
-})
-
-export const iconLink = style({
-  color: colors.textMuted,
-  display: "inline-flex",
-  transition: `color ${durations.normal}`,
-  ":hover": {
-    color: themeVars.color.accent,
+export const cells = style({
+  ...gridSurface,
+  border: `1px solid ${colors.hairline}`,
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr 1fr",
+  width: "100%",
+  "@media": {
+    [media.md]: {
+      gridTemplateColumns: "1fr",
+    },
   },
 })
 
-globalStyle(`${iconLink} > svg`, {
-  width: "16px",
-  height: "16px",
+export const cell = style({
+  borderRight: `1px solid ${colors.hairline}`,
+  display: "flex",
+  flexDirection: "column",
+  gap: space.xs,
+  padding: `${space.md} ${space.lg}`,
+  selectors: {
+    "&:last-child": {
+      borderRight: "none",
+    },
+  },
+  "@media": {
+    [media.md]: {
+      borderRight: "none",
+      selectors: {
+        "&:not(:last-child)": {
+          borderBottom: `1px solid ${colors.hairline}`,
+        },
+      },
+    },
+  },
+})
+
+export const cellLabel = style({
+  color: colors.textMuted,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.6875rem",
+  letterSpacing: "0.2em",
+  textTransform: "uppercase",
+})
+
+export const emailLink = style({
+  color: colors.accent,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.875rem",
+  textDecoration: "none",
+  transition: `color ${durations.normal}`,
+  width: "fit-content",
+  ":hover": {
+    textDecoration: "underline",
+    textUnderlineOffset: "4px",
+  },
+})
+
+export const linkRow = style({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: `${space.xs} ${space.lg}`,
+})
+
+export const cellLink = style({
+  color: colors.textMuted,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.8125rem",
+  textDecoration: "none",
+  transition: `color ${durations.normal}`,
+  ":hover": {
+    color: colors.accent,
+  },
+})
+
+export const colophonLine = style({
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.8125rem",
+  margin: 0,
 })
 
 export const aiPolicy = style({
@@ -71,11 +109,7 @@ export const aiPolicy = style({
 })
 
 export const link = style({
-  color: themeVars.color.accent,
+  color: colors.accent,
   textDecoration: "underline",
   textUnderlineOffset: "2px",
-  transition: `color ${durations.normal}`,
-  ":hover": {
-    color: themeVars.color.textPrimary,
-  },
 })

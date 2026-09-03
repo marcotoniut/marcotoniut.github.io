@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { siteConfig } from "@/config/site"
 import type { Locales } from "@/i18n/i18n-types"
 import { baseLocale, locales } from "@/i18n/i18n-util"
 import { toLocaleTag } from "@/i18n/locale-tags"
@@ -50,7 +51,9 @@ export function buildLocalizedPageMetadata({
   }
 
   return {
-    title,
+    // The root layout template is `%s | ${siteConfig.name}`; a page titled
+    // with the site name itself would render "Marco Toniut | Marco Toniut".
+    title: title === siteConfig.name ? { absolute: title } : title,
     description,
     alternates: {
       canonical: canonicalPath,

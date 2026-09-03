@@ -5,9 +5,9 @@ const esAr = {
     meta: {
       description:
         "Este es mi Currículum Vitae profesional en formato web interactivo - Marco Toniut",
-      title: "Marco Toniut | Currículum Vitae",
+      title: "Currículum Vitae",
     },
-    profession: "Ingeniero de Sistemas",
+    profession: "Ingeniero de Software · Líder Técnico",
     title: "Curriculum Vitae",
     profile: {
       picture: "Imagen de perfil",
@@ -229,9 +229,14 @@ const esAr = {
   },
   HomePage: {
     meta: {
-      description: "Página personal para experimentos y publicaciones",
+      description:
+        "Marco Toniut, ingeniero de software y líder técnico en Londres. Plataformas de producción para salud, finanzas y energía; un juego de Game Boy en Rust; un mapa sonoro de Londres.",
       title: "Marco Toniut",
     },
+    range:
+      "Dieciocho años construyendo: plataformas de producción para salud, finanzas y energía; un juego de Game Boy escrito en Rust; un mapa sonoro de Londres; circuitos en progreso.",
+    location: "Londres",
+    workLabel: "En el banco de trabajo",
     cv: {
       label: "Curriculum Vitae",
       hint: "Ver el currículum →",
@@ -242,10 +247,19 @@ const esAr = {
     },
     carcinisation: {
       label: "Carcinisation",
+      category: "Juego",
+      stack: "Rust + Bevy",
+      mediaAlt:
+        "Escena de título de Carcinisation en resolución nativa de Game Boy: un satélite flotando sobre un planeta",
+      pitch:
+        "Un shooter de Game Boy construido en diez días con un equipo de seis para la GBJam 11. Jugable en el navegador.",
     },
     sonicThames: {
       label: "SonicThames",
-      hint: "Percibe Londres por sonido →",
+      category: "Estudio",
+      stack: "RxJS + Mapbox + Pixi",
+      pitch:
+        "Cartografía acústica del Támesis: revelaciones de niebla de guerra, grabaciones de campo, la ciudad como instrumento.",
     },
   },
   Common: {
@@ -253,6 +267,17 @@ const esAr = {
     buyMeACoffeeIconAlt: "Comprame un café logo",
     goBack: "Volver",
     supportTagline: "Apoyá mi trabajo",
+    nav: {
+      label: "Principal",
+      work: "Trabajos",
+      cv: "CV",
+      contact: "Contacto",
+    },
+    footer: {
+      contact: "Contacto",
+      elsewhere: "Enlaces",
+      colophon: "Colofón",
+    },
   },
   NotFoundPage: {
     meta: {
@@ -271,16 +296,8 @@ const esAr = {
     },
     title: "Ponete en Contacto",
     description:
-      "¿Tienes algo de lo que quieras hablar? Déjame un mensaje y te responderé pronto.",
-    form: {
-      title: "Asunto",
-      titlePlaceholder: "¿De qué se trata?",
-      message: "Mensaje",
-      messagePlaceholder: "Escribe tu mensaje aquí…",
-      phone: "Número de teléfono (opcional)",
-      phonePlaceholder: "+54 11 1234 5678",
-      submit: "Enviar mensaje",
-    },
+      "¿Tienes algo de lo que quieras hablar? Escríbeme y te responderé pronto.",
+    emailLabel: "Email",
   },
 } satisfies Translation
 

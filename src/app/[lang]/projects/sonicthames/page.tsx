@@ -3,7 +3,6 @@ import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import type { Locales } from "@/i18n/i18n-types"
 import * as commonStyles from "@/styles/layouts.css"
-import { buildLocalizedHref } from "@/utils/locale"
 import { i18nDictionary } from "../../common"
 import { buildLocalizedMetadataFromMeta } from "../../common/metadata"
 import { resolveLocale } from "../../utils"
@@ -39,13 +38,7 @@ export default async function SonicThamesPage({ params }: PageParams) {
 
   return (
     <div className={`${commonStyles.pageContainer} ${styles.page}`}>
-      <Header
-        currentLocale={locale}
-        backLink={{
-          href: buildLocalizedHref(locale),
-          label: dict.Common.goBack,
-        }}
-      />
+      <Header currentLocale={locale} nav={dict.Common.nav} />
 
       <div className={styles.bodyWrapper}>
         <main className={styles.main}>
@@ -54,7 +47,7 @@ export default async function SonicThamesPage({ params }: PageParams) {
       </div>
 
       <div className={styles.footerWrapper}>
-        <Footer className={styles.footerOverride} />
+        <Footer className={styles.footerOverride} labels={dict.Common.footer} />
       </div>
     </div>
   )

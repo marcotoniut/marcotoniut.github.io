@@ -115,14 +115,16 @@ const buttonBase = style({
   transition: "transform 120ms ease, box-shadow 120ms ease, filter 120ms ease",
 })
 
+// Kept well below the old 0.35/0.2/0.16: the audit found the texture louder
+// than the content, worst in light mode. The world keeps its grid; it stops
+// competing with reading.
 export const gbBackdrop = style({
   backgroundColor: gbThemeVars.background,
   backgroundImage: `
-    linear-gradient(0deg, ${withAlpha(gbThemeVars.borderMuted, 0.35)} 1px, transparent 1px),
-    linear-gradient(90deg, ${withAlpha(gbThemeVars.border, 0.2)} 1px, transparent 1px),
-    linear-gradient(0deg, ${withAlpha(gbThemeVars.textMuted, 0.16)} 1px, transparent 3px)
+    linear-gradient(0deg, ${withAlpha(gbThemeVars.borderMuted, 0.16)} 1px, transparent 1px),
+    linear-gradient(90deg, ${withAlpha(gbThemeVars.border, 0.1)} 1px, transparent 1px)
   `,
-  backgroundSize: "12px 12px, 12px 12px, 12px 12px",
+  backgroundSize: "12px 12px, 12px 12px",
 })
 
 /* ---------- Layout ---------- */
@@ -156,13 +158,19 @@ export const pageHeader = style({
 globalStyle(`:where(${pageHeader}) ${headerStyles.header}`, {
   color: gbThemeVars.heading,
 })
-globalStyle(`:where(${pageHeader}) ${headerStyles.backLink}`, {
-  color: gbThemeVars.heading,
-  fontWeight: fontWeights.body.bold,
-})
-globalStyle(`:where(${pageHeader}) ${headerStyles.backLink}:hover`, {
-  color: gbThemeVars.accent,
-})
+globalStyle(
+  `:where(${pageHeader}) ${headerStyles.wordmark}, :where(${pageHeader}) ${headerStyles.navLink}`,
+  {
+    color: gbThemeVars.heading,
+    fontWeight: fontWeights.body.bold,
+  },
+)
+globalStyle(
+  `:where(${pageHeader}) ${headerStyles.wordmark}:hover, :where(${pageHeader}) ${headerStyles.navLink}:hover`,
+  {
+    color: gbThemeVars.accent,
+  },
+)
 globalStyle(`:where(${pageHeader}) ${headerStyles.controlBar}`, {
   gap: space.sm,
 })

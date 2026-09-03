@@ -67,8 +67,7 @@ globalStyle(
 
 globalStyle(":root.theme-transition::before", {
   animation: `${themeTransitionOverlay} ${themeTransitionDuration} ${themeTransitionTiming}`,
-  background:
-    "radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.22), transparent 65%), radial-gradient(circle at 75% 75%, rgba(13, 110, 253, 0.18), transparent 70%)",
+  background: `radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.22), transparent 65%), radial-gradient(circle at 75% 75%, color-mix(in srgb, ${themeVars.color.accent} 18%, transparent), transparent 70%)`,
   content: "",
   inset: 0,
   mixBlendMode: "screen",

@@ -7,9 +7,10 @@ import {
   lightThemeClass,
   lineHeights,
   space,
+  themeVars,
 } from "@/styles/theme"
 
-const waterBlue = "#28f0ff"
+const channel = themeVars.color.channel.sonicthames
 const sonicPalette = {
   dark: {
     background: "#030307",
@@ -17,7 +18,7 @@ const sonicPalette = {
     text: "#f3f7ff",
     textMuted: "#92c7e6",
     border: "#1d1f27",
-    accentSoft: "rgba(40, 240, 255, 0.1)",
+    accentSoft: "rgba(76, 195, 232, 0.1)",
   },
   light: {
     background: "#ffffff",
@@ -25,17 +26,14 @@ const sonicPalette = {
     text: "#050609",
     textMuted: "#4a4d59",
     border: "#dfe2ef",
-    accentSoft: "rgba(40, 240, 255, 0.12)",
+    accentSoft: "rgba(11, 110, 143, 0.1)",
   },
 }
-
-const interStack =
-  "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
 
 const listAccent = {
   selectors: {
     "&::marker": {
-      color: waterBlue,
+      color: channel,
     },
   },
 }
@@ -50,13 +48,13 @@ const sectionShell = {
 export const page = style({
   background: sonicPalette.dark.background,
   backgroundImage:
-    "radial-gradient(ellipse at 50% 0%, rgba(40, 240, 255, 0.06) 0%, transparent 60%)",
+    "radial-gradient(ellipse at 50% 0%, rgba(76, 195, 232, 0.05) 0%, transparent 60%)",
   color: sonicPalette.dark.text,
   selectors: {
     [`.${lightThemeClass} &`]: {
       background: sonicPalette.light.background,
       backgroundImage:
-        "radial-gradient(ellipse at 50% 0%, rgba(40, 240, 255, 0.04) 0%, transparent 60%)",
+        "radial-gradient(ellipse at 50% 0%, rgba(11, 110, 143, 0.04) 0%, transparent 60%)",
       color: sonicPalette.light.text,
     },
   },
@@ -100,7 +98,7 @@ export const content = style({
 })
 
 export const hero = style({
-  background: `radial-gradient(ellipse at 30% 50%, rgba(40, 240, 255, 0.04), transparent 70%), ${sonicPalette.dark.surface}`,
+  background: `radial-gradient(ellipse at 30% 50%, rgba(11, 110, 143, 0.04), transparent 70%), ${sonicPalette.dark.surface}`,
   border: `1px solid ${sonicPalette.dark.border}`,
   padding: space.xxl,
   display: "flex",
@@ -119,12 +117,12 @@ export const heroKicker = style({
   letterSpacing: letterSpacing.bodySm,
   fontSize: fontSizes.bodySm,
   textTransform: "uppercase",
-  color: waterBlue,
+  color: channel,
   margin: 0,
 })
 
 export const heroTitle = style({
-  fontFamily: interStack,
+  fontFamily: fontFamilies.heading,
   fontSize: "clamp(2.8rem, 5vw, 4rem)",
   margin: 0,
   letterSpacing: letterSpacing.h1,
@@ -160,7 +158,7 @@ export const heroSummary = style({
 export const accentLine = style({
   height: "2px",
   width: "88px",
-  background: waterBlue,
+  background: channel,
   alignSelf: "flex-start",
 })
 
@@ -171,38 +169,44 @@ export const sectionExposition = style({
   display: "flex",
   flexDirection: "column",
   gap: space.sm,
-  maxWidth: "75ch",
+  maxWidth: "70ch",
 })
 
 export const sectionTechnical = style({
   background: "transparent",
   border: "none",
-  borderLeft: `3px solid ${waterBlue}`,
+  borderLeft: `3px solid ${channel}`,
   padding: space.lg,
   display: "flex",
   flexDirection: "column",
   gap: space.sm,
 })
 
+// Pull-quote, not a full-width italic block: the audit found the poetic
+// section reading as a styling accident at 120ch.
 export const sectionAtmospheric = style({
   background: "transparent",
   border: "none",
-  padding: `${space.xxl} 0 ${space.lg}`,
+  borderLeft: `2px solid ${channel}`,
+  padding: `${space.md} 0 ${space.md} ${space.xl}`,
+  margin: `${space.xl} 0 0`,
   display: "flex",
   flexDirection: "column",
   gap: space.sm,
   fontStyle: "italic",
+  fontSize: "1.125rem",
   lineHeight: "1.7",
+  maxWidth: "58ch",
 })
 
 export const sectionHeadingExposition = style({
   margin: 0,
-  fontFamily: interStack,
+  fontFamily: fontFamilies.heading,
   fontSize: fontSizes.bodyLg,
   letterSpacing: letterSpacing.h3,
   lineHeight: lineHeights.h3,
   fontWeight: fontWeights.heading.regular,
-  color: waterBlue,
+  color: channel,
 })
 
 export const sectionHeadingTechnical = style({
@@ -213,12 +217,12 @@ export const sectionHeadingTechnical = style({
   lineHeight: lineHeights.ui,
   fontWeight: fontWeights.body.medium,
   textTransform: "uppercase",
-  color: waterBlue,
+  color: channel,
 })
 
 export const sectionHeadingAtmospheric = style({
   margin: 0,
-  fontFamily: interStack,
+  fontFamily: fontFamilies.heading,
   fontSize: "1.75rem",
   letterSpacing: letterSpacing.h3,
   lineHeight: lineHeights.h3,
@@ -230,6 +234,33 @@ export const sectionParagraph = style({
   margin: 0,
   lineHeight: lineHeights.body,
   fontSize: fontSizes.body,
+  maxWidth: "70ch",
+})
+
+export const metaRow = style({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: `${space.sm} ${space.xxl}`,
+  marginTop: space.sm,
+})
+
+export const metaItem = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: space.xxs,
+})
+
+export const metaLabel = style({
+  color: channel,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.6875rem",
+  fontWeight: "500",
+  letterSpacing: "0.2em",
+  textTransform: "uppercase",
+})
+
+export const metaValue = style({
+  fontSize: fontSizes.bodySm,
 })
 
 export const sectionList = style({

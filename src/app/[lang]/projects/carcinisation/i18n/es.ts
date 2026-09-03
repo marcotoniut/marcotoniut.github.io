@@ -68,7 +68,6 @@ export const esAr = {
   ],
   links: {
     itch: "https://marcotoniut.itch.io/carcinisation",
-    github: "https://github.com/marcotoniut/carcinisation",
   },
   labels: {
     jamNotes: "Notas del jam",
@@ -84,7 +83,6 @@ export const esAr = {
     statusMeta: "Estado",
     engineMeta: "Motor",
     playableCta: "Jugar en itch.io",
-    sourceCta: "Ver código",
     controlsHeadingLeft: "Game Boy",
     controlsHeadingRight: "Teclado",
   },

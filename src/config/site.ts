@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Marco Toniut",
   baseUrl: "https://marcotoniut.github.io",
   description:
-    "Marco Toniut is a London-based software engineer specialising in robust web platforms, developer tooling, and Game Boy-inspired experiments.",
+    "Marco Toniut, software engineer and technical lead in London. Production platforms for healthcare, fintech and energy; a Game Boy game in Rust; a sound map of London.",
   keywords: [
     "Marco Toniut",
     "software engineer",
@@ -14,7 +14,7 @@ export const siteConfig = {
     "Bevy",
     "Rust",
   ],
-  jobTitle: "Systems Engineer",
+  jobTitle: "Software Engineer · Technical Lead",
   // Static, not `new Date()`: this is a static export, so a computed year
   // freezes at build time and silently goes stale between deploys.
   copyrightYear: 2026,
@@ -26,7 +26,8 @@ export const siteConfig = {
     github: "https://github.com/marcotoniut",
     itch: "https://marcotoniut.itch.io",
     linkedin: "https://www.linkedin.com/in/marco-toniut-4b6a143a/",
-    ogImage: "https://marcotoniut.github.io/PLACEHOLDER.png",
+    // Rendered by scripts/generate-og.ts; rerun it when the brand changes.
+    ogImage: "https://marcotoniut.github.io/og.png",
   },
   sameAs: [
     "https://github.com/marcotoniut",

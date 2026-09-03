@@ -22,7 +22,7 @@ export const LinkClickParamsSchema = z.object({
 })
 
 export const BuyMeCoffeeParamsSchema = LinkClickParamsSchema.extend({
-  link_location: z.enum(["header", "home_page"]),
+  link_location: z.enum(["header", "home_page", "footer"]),
 })
 
 export const ExternalLinkParamsSchema = LinkClickParamsSchema.extend({

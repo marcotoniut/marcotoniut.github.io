@@ -24,7 +24,10 @@ export const colors = {
   buyMeACoffeeAccent: themeVars.color.buyMeACoffeeAccent,
   buyMeACoffeeBackground: themeVars.color.buyMeACoffeeBackground,
   buyMeACoffeeText: themeVars.color.buyMeACoffeeText,
+  channel: themeVars.color.channel,
   focusRing: themeVars.color.focusRing,
+  grid: themeVars.color.grid,
+  hairline: themeVars.color.hairline,
   surface: themeVars.color.surface,
   surfaceElevated: themeVars.color.surfaceElevated,
   text: themeVars.color.textPrimary,
@@ -117,6 +120,16 @@ export const media = {
   sm: `screen and (max-width: ${breakpoints.sm})`,
   md: `screen and (max-width: ${breakpoints.md})`,
   lg: `screen and (max-width: ${breakpoints.lg})`,
+} as const
+
+/**
+ * Graph-paper ruling for structural bands (title block, footer cells) only;
+ * never under prose. `grid` is transparent in dark, so the same declaration
+ * renders both environments.
+ */
+export const gridSurface = {
+  backgroundImage: `linear-gradient(${themeVars.color.grid} 1px, transparent 1px), linear-gradient(90deg, ${themeVars.color.grid} 1px, transparent 1px)`,
+  backgroundSize: "24px 24px",
 } as const
 
 /** Transition duration tokens */

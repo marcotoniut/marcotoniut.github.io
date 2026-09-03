@@ -40,6 +40,12 @@ const sonicThamesEnBase = {
       ],
     },
   },
+  metaGrid: {
+    statusLabel: "Status",
+    statusValue: "Study",
+    stackLabel: "Stack",
+    stackValue: "RxJS + Mapbox + Pixi",
+  },
   credits: {
     heading: "Credits",
     text: "Antonio Telmo — for the original sonic map concept and the recorded sound design that seeded this experiment.",

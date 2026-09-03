@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import type { Locales } from "@/i18n/i18n-types"
-import { buildLocalizedHref } from "@/utils/locale"
 import { i18nDictionary } from "../../common"
 import { buildLocalizedMetadataFromMeta } from "../../common/metadata"
 import { resolveLocale } from "../../utils"
@@ -40,18 +39,12 @@ export default async function CarcinisationPage({ params }: PageParams) {
     <div className={`${projectStyles.pageShell} ${projectStyles.gbBackdrop}`}>
       <div className={projectStyles.pageShellContent}>
         <div className={projectStyles.pageHeader}>
-          <Header
-            currentLocale={locale}
-            backLink={{
-              href: buildLocalizedHref(locale),
-              label: dict.Common.goBack,
-            }}
-          />
+          <Header currentLocale={locale} nav={dict.Common.nav} />
         </div>
         <main>
           <CarcinisationContent locale={locale} />
         </main>
-        <Footer className={projectStyles.footer} />
+        <Footer className={projectStyles.footer} labels={dict.Common.footer} />
       </div>
     </div>
   )

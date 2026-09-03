@@ -1,15 +1,13 @@
-import { style } from "@vanilla-extract/css"
+import { createVar, style } from "@vanilla-extract/css"
 import {
   colors,
   durations,
   fontFamilies,
-  fontSizes,
   fontWeights,
-  letterSpacing,
-  lineHeights,
+  gridSurface,
+  media,
   space,
 } from "@/styles/theme"
-import { withAlpha } from "@/utils/color"
 
 export const main = style({
   width: "100%",
@@ -18,128 +16,229 @@ export const main = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  gap: space.xl,
   minHeight: "auto",
   marginBlock: "auto",
 })
 
-export const title = style({
-  margin: 0,
-  lineHeight: 1.15,
-  fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
-  textShadow: "0 20px 60px rgba(10, 12, 18, 0.45)",
+export const titleBlock = style({
+  ...gridSurface,
+  border: `1px solid ${colors.hairline}`,
+  padding: `clamp(${space.xl}, 4vw, 56px)`,
+  position: "relative",
 })
 
-export const kicker = style({
+export const corner = style({
+  background: colors.background,
   color: colors.textMuted,
   fontFamily: fontFamilies.mono,
-  fontSize: fontSizes.bodySm,
-  letterSpacing: "0.08em",
-  lineHeight: lineHeights.bodySm,
+  fontSize: "0.75rem",
+  letterSpacing: "0.2em",
+  lineHeight: 1,
+  padding: `0 ${space.sm}`,
+  position: "absolute",
+  textTransform: "uppercase",
+  whiteSpace: "nowrap",
+  "@media": {
+    [media.sm]: {
+      background: "transparent",
+      display: "block",
+      padding: 0,
+      position: "static",
+      whiteSpace: "normal",
+    },
+  },
+})
+
+export const cornerTl = style({
+  top: "-0.4em",
+  left: space.xl,
+  "@media": {
+    [media.sm]: {
+      marginBottom: space.sm,
+    },
+  },
+})
+
+export const cornerTr = style({
+  top: "-0.4em",
+  right: space.xl,
+  "@media": {
+    [media.sm]: {
+      marginBottom: space.lg,
+    },
+  },
+})
+
+export const cornerBr = style({
+  bottom: "-0.4em",
+  right: space.xl,
+  color: colors.accent,
+  "@media": {
+    [media.sm]: {
+      marginTop: space.lg,
+    },
+  },
+})
+
+export const title = style({
+  margin: 0,
+  lineHeight: 1.04,
+  letterSpacing: "-0.02em",
+  fontSize: "clamp(3rem, 7vw, 5.75rem)",
+})
+
+export const range = style({
+  color: colors.textMuted,
+  fontSize: "1.125rem",
+  lineHeight: 1.6,
+  margin: `${space.xl} 0 0`,
+  maxWidth: "58ch",
+})
+
+export const ctas = style({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: `${space.md} ${space.xxl}`,
+  marginTop: space.xxl,
+})
+
+export const ctaLink = style({
+  color: colors.accent,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.875rem",
+  letterSpacing: "0.06em",
+  textDecoration: "none",
+  textTransform: "uppercase",
+  transition: `color ${durations.normal}`,
+  ":hover": {
+    textDecoration: "underline",
+    textUnderlineOffset: "4px",
+  },
+})
+
+export const bench = style({
+  borderLeft: `1px solid ${colors.hairline}`,
+  display: "flex",
+  flexDirection: "column",
+  gap: space.xxl,
+  marginTop: `clamp(${space.xxl}, 8vh, 96px)`,
+  paddingLeft: `clamp(${space.lg}, 3vw, ${space.xxl})`,
+})
+
+export const benchLabel = style({
+  color: colors.textMuted,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.75rem",
+  letterSpacing: "0.28em",
   margin: 0,
   textTransform: "uppercase",
 })
 
-export const primaryNav = style({
-  alignItems: "baseline",
-  display: "flex",
-  flexWrap: "wrap",
-  gap: space.lg,
-})
+const channelColor = createVar()
 
-export const navLink = style({
-  color: colors.text,
-  fontFamily: fontFamilies.heading,
-  fontSize: fontSizes.h3,
-  fontWeight: fontWeights.heading.regular,
-  letterSpacing: letterSpacing.h3,
-  lineHeight: lineHeights.h3,
+export const panel = style({
+  alignItems: "start",
+  border: `1px solid ${colors.hairline}`,
+  color: "inherit",
+  display: "grid",
+  gap: space.xl,
+  gridTemplateColumns: "1fr auto",
+  padding: `${space.xl} clamp(${space.xl}, 3vw, ${space.xxl})`,
+  position: "relative",
   textDecoration: "none",
-  transition: `color ${durations.normal}, transform ${durations.normal}`,
-  ":hover": {
-    color: colors.accent,
+  transition: `border-color ${durations.normal}`,
+  "@media": {
+    [media.md]: {
+      gridTemplateColumns: "1fr",
+    },
+  },
+  selectors: {
+    // Connector tapping the panel into the bench spine.
+    "&::before": {
+      content: "",
+      position: "absolute",
+      top: space.xxl,
+      left: `calc(-1 * clamp(${space.lg}, 3vw, ${space.xxl}) - 1px)`,
+      width: `clamp(${space.lg}, 3vw, ${space.xxl})`,
+      height: "1px",
+      background: colors.hairline,
+      transition: `background ${durations.normal}`,
+    },
+    "&:hover, &:focus-visible": {
+      borderColor: channelColor,
+    },
+    "&:hover::before, &:focus-visible::before": {
+      background: channelColor,
+    },
   },
 })
 
-export const navSeparator = style({
-  color: colors.textMuted,
-  fontFamily: fontFamilies.body,
-  fontSize: fontSizes.h3,
-  userSelect: "none",
+export const panelCarcinisation = style({
+  vars: { [channelColor]: colors.channel.carcinisation },
 })
 
-export const projects = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: space.lg,
-  width: "100%",
+export const panelSonicthames = style({
+  vars: { [channelColor]: colors.channel.sonicthames },
 })
 
-const projectCardBase = style({
-  color: "inherit",
+export const panelBody = style({
   display: "flex",
   flexDirection: "column",
   gap: space.sm,
-  padding: space.xl,
-  textDecoration: "none",
-  transition: `border-color ${durations.normal}, filter ${durations.normal}`,
-  width: "100%",
-  boxSizing: "border-box",
 })
 
-export const projectCardGb = style([
-  projectCardBase,
-  {
-    background: withAlpha(colors.gb.dark, 0.09),
-    border: `1px solid ${withAlpha(colors.gb.mid, 0.31)}`,
-    position: "relative",
-    overflow: "hidden",
-    selectors: {
-      "&::before": {
-        content: "",
-        position: "absolute",
-        inset: 0,
-        backgroundImage: `
-          linear-gradient(${withAlpha(colors.gb.mid, 0.09)} 1px, transparent 1px),
-          linear-gradient(90deg, ${withAlpha(colors.gb.mid, 0.09)} 1px, transparent 1px)
-        `,
-        backgroundSize: "12px 12px",
-        pointerEvents: "none",
-      },
-      "&:hover": {
-        borderColor: colors.gb.lite,
-        background: withAlpha(colors.gb.dark, 0.2),
-      },
+/**
+ * Evidence mount, not artwork: hairline frame, slightly de-energised at rest
+ * so the bench frame outranks the media; the panel's hover/focus restores it
+ * along with the channel border.
+ */
+export const mediaMount = style({
+  border: `1px solid ${colors.hairline}`,
+  display: "block",
+  lineHeight: 0,
+  width: "fit-content",
+  transition: `filter ${durations.normal}, border-color ${durations.normal}`,
+  filter: "saturate(0.8) brightness(0.92)",
+  selectors: {
+    [`${panel}:hover &, ${panel}:focus-visible &`]: {
+      borderColor: channelColor,
+      filter: "none",
     },
   },
-])
+})
 
-export const projectCardSonic = style([
-  projectCardBase,
-  {
-    border: "1px solid #28f0ff40",
-    selectors: {
-      "&:hover": {
-        borderColor: "#28f0ff",
-        background: "rgba(40, 240, 255, 0.04)",
-      },
-    },
-  },
-])
+export const mediaImage = style({
+  display: "block",
+  height: "auto",
+  // Native Game Boy framebuffer scaled by an integer; anything else smears
+  // the pixels.
+  imageRendering: "pixelated",
+  maxWidth: "100%",
+  width: "320px",
+})
 
-export const projectTitle = style({
+export const designation = style({
+  color: channelColor,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.75rem",
+  fontWeight: "500",
+  letterSpacing: "0.16em",
+  textTransform: "uppercase",
+})
+
+export const panelTitle = style({
   fontFamily: fontFamilies.heading,
-  fontSize: fontSizes.bodyLg,
-  fontWeight: fontWeights.heading.regular,
-  letterSpacing: letterSpacing.h3,
-  lineHeight: lineHeights.h3,
+  fontSize: "1.75rem",
+  fontWeight: fontWeights.heading.bold,
+  letterSpacing: "-0.01em",
+  lineHeight: 1.15,
   margin: 0,
-  position: "relative",
 })
 
-export const projectHint = style({
+export const pitch = style({
   color: colors.textMuted,
-  fontSize: fontSizes.bodySm,
+  fontSize: "0.9375rem",
+  lineHeight: 1.6,
   margin: 0,
-  position: "relative",
+  maxWidth: "56ch",
 })

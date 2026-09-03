@@ -1,6 +1,13 @@
 import { style } from "@vanilla-extract/css"
 import { pageContainer, pageHeader } from "@/styles/layouts.css"
-import { durations, media, themeVars } from "@/styles/theme"
+import {
+  durations,
+  fontFamilies,
+  gridSurface,
+  media,
+  space,
+  themeVars,
+} from "@/styles/theme"
 
 export { pageContainer as container, pageHeader }
 
@@ -42,13 +49,56 @@ export const description = style({
   lineHeight: 1.6,
 })
 
-export const backLink = style({
-  fontSize: "0.875rem",
+export const emailPanel = style({
+  ...gridSurface,
+  border: `1px solid ${themeVars.color.hairline}`,
+  display: "flex",
+  flexDirection: "column",
+  gap: space.sm,
+  padding: `clamp(${space.xl}, 4vw, 48px)`,
+  width: "100%",
+})
+
+export const panelLabel = style({
+  color: themeVars.color.textMuted,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.6875rem",
+  letterSpacing: "0.2em",
+  textTransform: "uppercase",
+  selectors: {
+    "&:not(:first-child)": {
+      marginTop: space.xl,
+    },
+  },
+})
+
+export const emailLink = style({
   color: themeVars.color.accent,
+  fontFamily: fontFamilies.mono,
+  fontSize: "clamp(1.125rem, 3vw, 1.75rem)",
+  overflowWrap: "anywhere",
   textDecoration: "none",
   transition: `color ${durations.normal}`,
-
+  width: "fit-content",
   ":hover": {
-    color: themeVars.color.textPrimary,
+    textDecoration: "underline",
+    textUnderlineOffset: "6px",
+  },
+})
+
+export const elsewhereRow = style({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: `${space.sm} ${space.xxl}`,
+})
+
+export const elsewhereLink = style({
+  color: themeVars.color.textMuted,
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.875rem",
+  textDecoration: "none",
+  transition: `color ${durations.normal}`,
+  ":hover": {
+    color: themeVars.color.accent,
   },
 })

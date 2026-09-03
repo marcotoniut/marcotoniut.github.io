@@ -47,19 +47,21 @@ describe("LinkClickParamsSchema", () => {
 })
 
 describe("BuyMeCoffeeParamsSchema", () => {
-  it("only allows header and home_page locations", () => {
-    expect(
-      BuyMeCoffeeParamsSchema.safeParse({
-        link_url: "https://buymeacoffee.com/marcotoniut",
-        link_location: "header",
-        locale: "en",
-      }).success,
-    ).toBe(true)
+  it("only allows locations where the CTA renders", () => {
+    for (const location of ["header", "home_page", "footer"]) {
+      expect(
+        BuyMeCoffeeParamsSchema.safeParse({
+          link_url: "https://buymeacoffee.com/marcotoniut",
+          link_location: location,
+          locale: "en",
+        }).success,
+      ).toBe(true)
+    }
 
     expect(
       BuyMeCoffeeParamsSchema.safeParse({
         link_url: "https://buymeacoffee.com/marcotoniut",
-        link_location: "footer",
+        link_location: "cv_page",
         locale: "en",
       }).success,
     ).toBe(false)

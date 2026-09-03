@@ -40,6 +40,12 @@ export const esAr = {
       ],
     },
   },
+  metaGrid: {
+    statusLabel: "Estado",
+    statusValue: "Estudio",
+    stackLabel: "Stack",
+    stackValue: "RxJS + Mapbox + Pixi",
+  },
   credits: {
     heading: "Créditos",
     text: "Antonio Telmo — por la idea original del mapa sónico y por el diseño de sonido que inspiró este experimento.",

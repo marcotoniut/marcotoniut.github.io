@@ -1,6 +1,6 @@
 import Image from "next/image"
 import type { ReactNode } from "react"
-import { GithubIcon, ItchIOIcon } from "@/components/icons"
+import { ItchIOIcon } from "@/components/icons"
 import { TrackedAnchor } from "@/components/TrackedLink"
 import type { Locales } from "@/i18n/i18n-types"
 import { pressStartFont } from "@/styles/fonts"
@@ -14,38 +14,39 @@ const TRACKING_LOCATION = {
   externalLinks: "carcinisation_project_page_external_links",
 } as const
 
+// Captured from the itch.io web build, cropped to the game viewport.
 const screenshotGallery = [
   {
-    src: "/projects/carcinisation/placeholder-1.svg",
+    src: "/projects/carcinisation/shot-intro.png",
     alt: {
-      en: "Carcinisation — cockpit mock screenshot",
-      es: "Carcinisation — captura ficticia de la cabina",
+      en: "Captain Acrab seated in his ship's cabin, drawn in the game's four-colour palette",
+      es: "El capitán Acrab sentado en la cabina de su nave, dibujado en la paleta de cuatro colores del juego",
     },
     caption: {
-      en: "Incoming wave indicator UI mock",
-      es: "Mock de interfaz con oleadas entrantes",
+      en: "Intro sequence, captured from the web build",
+      es: "Secuencia de introducción, capturada de la versión web",
     },
   },
   {
-    src: "/projects/carcinisation/placeholder-2.svg",
+    src: "/projects/carcinisation/shot-mutation.png",
     alt: {
-      en: "Carcinisation — crash site battle placeholder",
-      es: "Carcinisation — placeholder de combate en el accidente",
+      en: "A clawed fist clenched against radiating light during the mutation cutscene",
+      es: "Un puño con pinza cerrado contra una luz radiante durante la cinemática de la mutación",
     },
     caption: {
-      en: "Prototype top-down encounter",
-      es: "Encuentro top-down del prototipo",
+      en: "The mutation, mid-cutscene",
+      es: "La mutación, en plena cinemática",
     },
   },
   {
-    src: "/projects/carcinisation/placeholder-3.svg",
+    src: "/projects/carcinisation/shot-stage.png",
     alt: {
-      en: "Carcinisation — space stage concept placeholder",
-      es: "Carcinisation — placeholder de la fase espacial",
+      en: "Top-down park stage with palm trees and benches, the score counter reading 100",
+      es: "Fase de parque en vista cenital con palmeras y bancos, el contador de puntos marcando 100",
     },
     caption: {
-      en: "Space stage concept to restore post-jam",
-      es: "Concepto de fase espacial para el post-jam",
+      en: "Stage one in play, score counter live",
+      es: "Primera fase en juego, contador de puntos activo",
     },
   },
 ] as const
@@ -91,23 +92,6 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
           >
             <ItchIOIcon />
             {t.labels.playableCta}
-          </TrackedAnchor>
-          <TrackedAnchor
-            className={styles.button}
-            href={t.links.github}
-            target="_blank"
-            rel="noreferrer"
-            locale={locale}
-            trackingType="project_link"
-            trackingParams={{
-              link_location: TRACKING_LOCATION.page,
-              link_type: "github",
-              link_url: t.links.github,
-              project_name: PROJECT_NAME,
-            }}
-          >
-            <GithubIcon />
-            {t.labels.sourceCta}
           </TrackedAnchor>
         </div>
 
@@ -275,24 +259,6 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 itch.io
               </TrackedAnchor>
             </li>
-            <li>
-              <TrackedAnchor
-                href={t.links.github}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.link}
-                locale={locale}
-                trackingType="project_link"
-                trackingParams={{
-                  link_location: TRACKING_LOCATION.externalLinks,
-                  link_type: "github",
-                  link_url: t.links.github,
-                  project_name: PROJECT_NAME,
-                }}
-              >
-                GitHub
-              </TrackedAnchor>
-            </li>
           </ul>
         </article>
       </div>
@@ -372,8 +338,8 @@ function ScreenshotGallery({ locale }: ScreenshotGalleryProps) {
           <Image
             src={shot.src}
             alt={shot.alt[locale]}
-            width={160}
-            height={144}
+            width={775}
+            height={667}
             sizes="(min-width: 1024px) 320px, (min-width: 768px) 45vw, 90vw"
             className={styles.screenshotImage}
           />

@@ -5,9 +5,9 @@ const enUk: BaseTranslation = {
     meta: {
       description:
         "This is my professional Resume in interactive web format - Marco Toniut",
-      title: "Marco Toniut | Resume",
+      title: "Resume",
     },
-    profession: "Systems Engineer",
+    profession: "Software Engineer · Technical Lead",
     title: "Resume",
     profile: {
       picture: "Profile picture",
@@ -228,9 +228,14 @@ const enUk: BaseTranslation = {
   },
   HomePage: {
     meta: {
-      description: "Personal page for experiments and publications",
+      description:
+        "Marco Toniut, software engineer and technical lead in London. Production platforms for healthcare, fintech and energy; a Game Boy game in Rust; a sound map of London.",
       title: "Marco Toniut",
     },
+    range:
+      "Eighteen years of building: production platforms for healthcare, fintech and energy; a Game Boy game written in Rust; a sound map of London; circuits in progress.",
+    location: "London",
+    workLabel: "On the bench",
     cv: {
       label: "Resume",
       hint: "View the resume →",
@@ -241,10 +246,19 @@ const enUk: BaseTranslation = {
     },
     carcinisation: {
       label: "Carcinisation",
+      category: "Game",
+      stack: "Rust + Bevy",
+      mediaAlt:
+        "Carcinisation title scene at native Game Boy resolution: a satellite drifting over a planet",
+      pitch:
+        "A Game Boy shooter built in ten days with a team of six for GBJam 11. Playable in the browser.",
     },
     sonicThames: {
       label: "SonicThames",
-      hint: "Trace London by sound →",
+      category: "Study",
+      stack: "RxJS + Mapbox + Pixi",
+      pitch:
+        "Acoustic cartography of the Thames: fog-of-war reveals, field recordings, the city as an instrument.",
     },
   },
   Common: {
@@ -252,6 +266,17 @@ const enUk: BaseTranslation = {
     buyMeACoffeeIconAlt: "Buy me a coffee logo",
     goBack: "Go back",
     supportTagline: "Support my work",
+    nav: {
+      label: "Primary",
+      work: "Work",
+      cv: "CV",
+      contact: "Contact",
+    },
+    footer: {
+      contact: "Contact",
+      elsewhere: "Elsewhere",
+      colophon: "Colophon",
+    },
   },
   NotFoundPage: {
     meta: {
@@ -270,16 +295,8 @@ const enUk: BaseTranslation = {
     },
     title: "Get in Touch",
     description:
-      "Have something you’d like to talk about? Leave a message below and I’ll get back to you soon.",
-    form: {
-      title: "Subject",
-      titlePlaceholder: "What is it about?",
-      message: "Message",
-      messagePlaceholder: "Write your message here…",
-      phone: "Phone number (optional)",
-      phonePlaceholder: "+44 123 456 7890",
-      submit: "Send message",
-    },
+      "Have something you’d like to talk about? Write to me and I’ll get back to you soon.",
+    emailLabel: "Email",
   },
 }
 

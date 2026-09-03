@@ -17,6 +17,20 @@ export function SonicThamesContent({ locale }: ProjectContentProps) {
         <div className={styles.accentLine} />
         <p className={styles.heroSubtitle}>{copy.hero.subtitle}</p>
         <p className={styles.heroSummary}>{copy.hero.summary}</p>
+        <div className={styles.metaRow}>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>
+              {copy.metaGrid.statusLabel}
+            </span>
+            <span className={styles.metaValue}>
+              {copy.metaGrid.statusValue}
+            </span>
+          </div>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>{copy.metaGrid.stackLabel}</span>
+            <span className={styles.metaValue}>{copy.metaGrid.stackValue}</span>
+          </div>
+        </div>
       </header>
 
       <article className={styles.sectionExposition}>

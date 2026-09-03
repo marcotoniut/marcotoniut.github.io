@@ -7,15 +7,25 @@ import { colors, space } from "./theme"
  */
 export const pageContainer = style({
   alignItems: "center",
-  background: `radial-gradient(circle at top left, rgba(86, 243, 201, 0.08), transparent 55%), ${colors.background}`,
+  background: `radial-gradient(circle at top left, color-mix(in srgb, ${colors.accent} 8%, transparent), transparent 55%), ${colors.background}`,
   boxSizing: "border-box",
   color: colors.text,
   display: "flex",
   flexDirection: "column",
   gap: space.xl,
   minHeight: "100svh",
-  padding: `${space.lg} ${space.lg}`,
+  // 24/48/64 rhythm: the audit found tablet collapsing to a 16px gutter while
+  // desktop had ten times that; the steps give every width real margins.
+  padding: `${space.lg} ${space.xl}`,
   width: "100%",
+  "@media": {
+    "screen and (min-width: 768px)": {
+      paddingInline: "48px",
+    },
+    "screen and (min-width: 1200px)": {
+      paddingInline: "64px",
+    },
+  },
 })
 /**
  * Centred full-height flex container

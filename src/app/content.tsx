@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { buildLocalizedMetadataFromMeta } from "@/app/[lang]/common/metadata"
 import * as styles from "@/app/[lang]/home.css"
 import { Footer } from "@/components/Footer"
@@ -7,8 +8,8 @@ import { TrackedLink } from "@/components/TrackedLink"
 import type { Locales, Translation } from "@/i18n/i18n-types"
 import { loadedLocales } from "@/i18n/i18n-util"
 import { loadLocale } from "@/i18n/i18n-util.sync"
-import { pressStartFont } from "@/styles/fonts"
 import * as commonStyles from "@/styles/layouts.css"
+import { contentRev } from "@/utils/content-rev"
 
 export const loadHomePageDictionary = (locale: Locales) => {
   loadLocale(locale)
@@ -29,77 +30,129 @@ type HomePageContentProps = {
   locale: Locales
 }
 
+type DesignationProps = {
+  index: string
+  category: string
+  year?: number
+  stack: string
+}
+
+/**
+ * Structural designation fields joined for display; `year` is explicitly
+ * optional so a missing fact renders as a shorter designation, never as an
+ * invented value.
+ */
+const Designation = ({ index, category, year, stack }: DesignationProps) => (
+  <span className={styles.designation}>
+    {[index, category, year?.toString(), stack]
+      .filter((field) => field !== undefined)
+      .join(" · ")}
+  </span>
+)
+
 export const HomePageContent = ({ dict, locale }: HomePageContentProps) => {
   return (
     <div className={commonStyles.pageContainer}>
-      <Header currentLocale={locale} />
+      <Header currentLocale={locale} nav={dict.Common.nav} />
 
       <main className={styles.main}>
-        <div>
-          <h1 className={styles.title}>Marco Toniut</h1>
-          <p className={styles.kicker}>{dict.CVPage.profession}</p>
-        </div>
-
-        <nav className={styles.primaryNav}>
-          <TrackedLink
-            className={styles.navLink}
-            href={`/${locale}/cv`}
-            locale={locale}
-            trackingType="cv_navigation"
-            fromPage="home_page"
-          >
-            {dict.HomePage.cv.label}
-          </TrackedLink>
-          <span className={styles.navSeparator} aria-hidden>
-            ·
+        <section className={styles.titleBlock}>
+          <span className={`${styles.corner} ${styles.cornerTl}`}>
+            {dict.CVPage.profession}
           </span>
-          <TrackedLink
-            className={styles.navLink}
-            href={`/${locale}/contact`}
-            locale={locale}
-            trackingType="contact_navigation"
-            fromPage="home_page"
-          >
-            {dict.HomePage.contact.label}
-          </TrackedLink>
-        </nav>
+          <span className={`${styles.corner} ${styles.cornerTr}`}>
+            {dict.HomePage.location}
+          </span>
 
-        <div className={styles.projects}>
+          <h1 className={styles.title}>Marco Toniut</h1>
+          <p className={styles.range}>{dict.HomePage.range}</p>
+
+          <nav className={styles.ctas}>
+            <TrackedLink
+              className={styles.ctaLink}
+              href={`/${locale}/contact`}
+              locale={locale}
+              trackingType="contact_navigation"
+              fromPage="home_page"
+            >
+              {dict.HomePage.contact.hint}
+            </TrackedLink>
+            <TrackedLink
+              className={styles.ctaLink}
+              href={`/${locale}/cv`}
+              locale={locale}
+              trackingType="cv_navigation"
+              fromPage="home_page"
+            >
+              {dict.HomePage.cv.hint}
+            </TrackedLink>
+          </nav>
+
+          {contentRev !== undefined ? (
+            <span className={`${styles.corner} ${styles.cornerBr}`}>
+              {`REV ${contentRev}`}
+            </span>
+          ) : null}
+        </section>
+
+        <section className={styles.bench}>
+          <p className={styles.benchLabel}>{dict.HomePage.workLabel}</p>
+
           <TrackedLink
-            className={styles.projectCardGb}
+            className={`${styles.panel} ${styles.panelCarcinisation}`}
             href={`/${locale}/projects/carcinisation`}
             locale={locale}
             trackingType="contact_navigation"
             fromPage="home_page"
           >
-            <span
-              className={`${pressStartFont.className} ${styles.projectTitle}`}
-            >
-              {dict.HomePage.carcinisation.label}
+            <span className={styles.panelBody}>
+              <Designation
+                index="01"
+                category={dict.HomePage.carcinisation.category}
+                year={2023}
+                stack={dict.HomePage.carcinisation.stack}
+              />
+              <h2 className={styles.panelTitle}>
+                {dict.HomePage.carcinisation.label}
+              </h2>
+              <p className={styles.pitch}>
+                {dict.HomePage.carcinisation.pitch}
+              </p>
             </span>
-            <p className={styles.projectHint}>
-              GBJam 11 — Rust · Bevy ECS · Game Boy prototype
-            </p>
+            <span className={styles.mediaMount}>
+              <Image
+                alt={dict.HomePage.carcinisation.mediaAlt}
+                className={styles.mediaImage}
+                height={144}
+                src="/projects/carcinisation/cover.png"
+                width={160}
+              />
+            </span>
           </TrackedLink>
 
           <TrackedLink
-            className={styles.projectCardSonic}
+            className={`${styles.panel} ${styles.panelSonicthames}`}
             href={`/${locale}/projects/sonicthames`}
             locale={locale}
             trackingType="contact_navigation"
             fromPage="home_page"
           >
-            <span className={styles.projectTitle}>
-              {dict.HomePage.sonicThames.label}
+            <span className={styles.panelBody}>
+              <Designation
+                index="02"
+                category={dict.HomePage.sonicThames.category}
+                stack={dict.HomePage.sonicThames.stack}
+              />
+              <h2 className={styles.panelTitle}>
+                {dict.HomePage.sonicThames.label}
+              </h2>
+              <p className={styles.pitch}>{dict.HomePage.sonicThames.pitch}</p>
             </span>
-            <p className={styles.projectHint}>
-              {dict.HomePage.sonicThames.hint}
-            </p>
           </TrackedLink>
-        </div>
+        </section>
       </main>
 
-      <Footer />
+      <Footer labels={dict.Common.footer} />
     </div>
   )
 }

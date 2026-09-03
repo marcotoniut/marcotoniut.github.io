@@ -96,7 +96,10 @@ export function generateOpenGraphMetadata(params: {
         url: image || siteConfig.social.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} - ${title}`,
+        alt:
+          title === siteConfig.name
+            ? siteConfig.name
+            : `${siteConfig.name} - ${title}`,
       },
     ],
   } satisfies NonNullable<Metadata["openGraph"]>

@@ -68,7 +68,6 @@ const carcinisationEnBase = {
   ],
   links: {
     itch: "https://marcotoniut.itch.io/carcinisation",
-    github: "https://github.com/marcotoniut/carcinisation",
   },
   labels: {
     jamNotes: "Jam Notes",
@@ -84,7 +83,6 @@ const carcinisationEnBase = {
     statusMeta: "Status",
     engineMeta: "Engine",
     playableCta: "Play on itch.io",
-    sourceCta: "View source",
     controlsHeadingLeft: "Game Boy",
     controlsHeadingRight: "Keyboard",
   },

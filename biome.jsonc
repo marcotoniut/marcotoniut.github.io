@@ -106,7 +106,7 @@
       // `@playwright/test` only does `export * from "playwright/test"`, which
       // Biome's resolver does not follow, so every named import reads as
       // unresolved.
-      "includes": ["tests/e2e/**"],
+      "includes": ["tests/e2e/**", "scripts/generate-og.ts"],
       "linter": {
         "rules": {
           "correctness": {

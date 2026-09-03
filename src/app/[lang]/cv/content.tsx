@@ -66,9 +66,11 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
         <div className={headerWrapperCn}>
           <Header
             currentLocale={locale}
-            backLink={{
-              href: `/${locale}/`,
-              label: LL.Common.goBack(),
+            nav={{
+              label: LL.Common.nav.label(),
+              work: LL.Common.nav.work(),
+              cv: LL.Common.nav.cv(),
+              contact: LL.Common.nav.contact(),
             }}
           />
         </div>
@@ -318,21 +320,6 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                 <span>
                   {LL.CVPage.personalProjects.projects.carcinisation.name()}
                 </span>
-                <TrackedAnchor
-                  href="https://github.com/marcotoniut/carcinisation"
-                  rel="noreferrer"
-                  about={LL.CVPage.personalProjects.projects.carcinisation.about.github()}
-                  locale={locale}
-                  trackingType="project_link"
-                  trackingParams={{
-                    link_url: "https://github.com/marcotoniut/carcinisation",
-                    link_location: CV_TRACKING_LOCATION.page,
-                    project_name: "carcinisation",
-                    link_type: "github",
-                  }}
-                >
-                  <GithubIcon />
-                </TrackedAnchor>
                 <TrackedAnchor
                   href="https://marcotoniut.itch.io/carcinisation"
                   rel="noreferrer"

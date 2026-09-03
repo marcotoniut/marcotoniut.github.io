@@ -11,13 +11,16 @@ export type BuyMeACoffeeCTAProps = Omit<
   ComponentPropsWithoutRef<"a">,
   "href" | "children"
 > & {
-  location?: "header" | "home_page"
+  location?: "header" | "home_page" | "footer"
+  /** "badge" is the animated cup; "text" is a plain styled-by-caller link. */
+  variant?: "badge" | "text"
 }
 
 export const BuyMeACoffeeCTA = ({
   className,
   location = "header",
   onClick,
+  variant = "badge",
   ...linkProps
 }: BuyMeACoffeeCTAProps) => {
   const { LL, locale } = useContext(I18nContext)
@@ -31,6 +34,21 @@ export const BuyMeACoffeeCTA = ({
       locale,
     })
     onClick?.(e)
+  }
+
+  if (variant === "text") {
+    return (
+      <a
+        {...linkProps}
+        className={className}
+        href="https://buymeacoffee.com/marcotoniut"
+        rel="noreferrer"
+        target="_blank"
+        onClick={handleClick}
+      >
+        {LL.Common.supportTagline()}
+      </a>
+    )
   }
 
   return (
