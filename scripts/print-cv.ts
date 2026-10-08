@@ -167,6 +167,7 @@ const main = async (): Promise<void> => {
     } else {
       console.error(String(error))
     }
+    process.exitCode = 1
   } finally {
     console.log("Killing dev process...")
     devPdfProcess.kill()

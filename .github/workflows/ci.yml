@@ -25,7 +25,7 @@ jobs:
 
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 24
+          node-version: 26.11.1
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
@@ -37,6 +37,10 @@ jobs:
       # tooling carries. Unfixable ones are listed in pnpm-workspace.yaml.
       - name: Dependency audit
         run: pnpm audit
+
+      - name: Annotate Biome diagnostics
+        continue-on-error: true
+        run: pnpm lint --reporter=github
 
       - run: pnpm lint
       - run: pnpm typecheck
@@ -55,7 +59,7 @@ jobs:
 
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 24
+          node-version: 26.11.1
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
@@ -86,7 +90,7 @@ jobs:
 
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 24
+          node-version: 26.11.1
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
@@ -102,6 +106,9 @@ jobs:
 
       - name: Run a11y tests
         run: pnpm test:a11y
+
+      - name: Run preference persistence tests
+        run: pnpm test:preferences
 
       - name: Upload a11y report
         if: failure()
@@ -123,7 +130,7 @@ jobs:
 
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 24
+          node-version: 26.11.1
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile

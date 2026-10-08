@@ -1,10 +1,12 @@
 // @vitest-environment happy-dom
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { getStoredLocale, setStoredLocale } from "@/utils/language-storage"
 
 const STORAGE_KEY = "marcotoniut-locale"
 
 afterEach(() => {
+  vi.restoreAllMocks()
+  vi.unstubAllGlobals()
   localStorage.clear()
 })
 
@@ -39,5 +41,28 @@ describe("getStoredLocale", () => {
   it("returns undefined for empty string", () => {
     localStorage.setItem(STORAGE_KEY, "")
     expect(getStoredLocale()).toBeUndefined()
+  })
+})
+
+describe("unavailable browser storage", () => {
+  it("returns no locale when storage access throws", () => {
+    vi.spyOn(window, "localStorage", "get").mockImplementation(() => {
+      throw new DOMException("Storage access denied", "SecurityError")
+    })
+    expect(getStoredLocale()).toBeUndefined()
+  })
+
+  it("allows language changes when storage writes throw", () => {
+    vi.spyOn(window, "localStorage", "get").mockImplementation(() => {
+      throw new DOMException("Storage access denied", "SecurityError")
+    })
+    expect(() => setStoredLocale("es")).not.toThrow()
+  })
+
+  it("does not access storage outside the browser", () => {
+    vi.stubGlobal("window", undefined)
+    expect(getStoredLocale()).toBeUndefined()
+    expect(() => setStoredLocale("es")).not.toThrow()
+    expect(localStorage.getItem(STORAGE_KEY)).toBeNull()
   })
 })

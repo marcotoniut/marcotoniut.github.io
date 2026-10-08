@@ -4,7 +4,8 @@ Quick reference for developing this Next.js personal website.
 
 ## Installation
 
-This project uses [`proto`](https://moonrepo.dev/docs/proto) to pin tool versions.
+This project uses [`proto`](https://moonrepo.dev/docs/proto) to pin tool versions: Node.js 26.11.1, pnpm 12.10.1, Lefthook 2.2.1, and actionlint 1.7.12.
+Review `.prototools` and trust it with `proto trust .prototools` before installation so proto can load the CLI plugins.
 
 ```bash
 proto install          # installs Node.js, pnpm, Lefthook, actionlint
@@ -33,9 +34,12 @@ Runs at [http://localhost:8525](http://localhost:8525)
 | `pnpm generate`  | Generate translation files                |
 | `pnpm print-cv`  | Generate CV PDF                           |
 | `pnpm check`     | Run all quality gates (generate, lint, typecheck, spellcheck, test, build) |
+| `pnpm check:agent` | Run the same gates with timings and saved logs |
+| `pnpm check:agent list --json` | Inspect gates without running them |
 | `pnpm test`      | Run unit tests (vitest)                   |
 | `pnpm test:coverage` | Unit tests with coverage thresholds   |
-| `pnpm test:e2e`  | Build, then run a11y + visual suites       |
+| `pnpm test:e2e`  | Build, then run accessibility, visual and preference suites |
+| `pnpm test:preferences` | Test theme and language persistence; build first |
 | `pnpm audit`     | Dependency audit (all deps, high and above) |
 | `pnpm lighthouse` | Lighthouse via `dlx`; needs `pnpm build` first |
 | `pnpm deploy`    | Reminder: deployments run on `release`    |
@@ -113,15 +117,42 @@ Before committing:
 pnpm check
 ```
 
+### Script tooling
+
+Repository scripts run directly with Node.js type stripping. Use explicit `.ts`
+extensions for their relative imports; application imports remain resolved by
+Next.js. The package uses ECMAScript modules.
+
+`pnpm check:agent --json` emits a machine-readable summary. Each run writes
+logs and `summary.json` to `tmp/check-agent/`, stops at the first failure, and
+marks subsequent gates as skipped. The gate list comes from `pnpm check`;
+`list` and `recommend` inspect it without running checks. The shell entry point
+remains available for existing callers and works with macOS’s default Bash.
+
+CI annotates pull requests with Biome diagnostics and still uses `pnpm lint`
+as its required gate. The actionlint hook fails if the tool is missing or
+reports invalid workflows.
+
+### Unit test environments
+
+Vitest 5 uses Node.js by default. Browser-dependent unit tests opt into
+`happy-dom` per file with `@vitest-environment happy-dom`. Its browser storage
+works with Node.js 26 without a worker flag disabling native Web Storage.
+
 ### End-to-end suites
 
-`test:a11y` and `test:visual` serve `out/` via `tests/e2e/static-server.ts`,
+`test:a11y`, `test:visual` and `test:preferences` serve `out/` via `tests/e2e/static-server.ts`,
 which mimics GitHub Pages (directory indexes, `404.html` fallback). Since they
 test the shipping artifact, a build is required first:
 
 ```bash
 pnpm build && pnpm test:visual
 ```
+
+The preference suite checks real theme and language changes, persistence after
+reload, locale redirects, and stored-theme precedence before hydration. The
+accessibility suite checks Tab order and keyboard activation of navigation,
+theme and language controls. CI runs both suites against the static export.
 
 `pnpm test:e2e` handles the build for you. The server exits with an explicit
 error if `out/` is missing rather than silently starting a dev server.

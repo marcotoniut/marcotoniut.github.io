@@ -1,21 +1,17 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 /**
  * Renders the favicon set from the brand mark: a phosphor M on the
  * green-black ground, set in the shipped Space Grotesk. Writes
  * public/favicon.ico (16+32 PNG entries) and public/apple-touch-icon.png.
- * Rerun after brand changes: `pnpm tsx scripts/generate-icons.ts`.
+ * Rerun after brand changes: `node scripts/generate-icons.ts`.
  */
 
 import { readFileSync, writeFileSync } from "node:fs"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
 import { chromium } from "@playwright/test"
 
-const repoRoot = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-)
+const repoRoot = path.resolve(import.meta.dirname, "..")
 
 const font = readFileSync(
   path.resolve(repoRoot, "public/fonts/space-grotesk/space-grotesk-700.woff2"),

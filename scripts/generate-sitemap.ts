@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 /**
  * Generate sitemap.xml for marcotoniut.github.io
@@ -17,10 +17,10 @@
 
 import { writeFileSync } from "node:fs"
 import { join } from "node:path"
-import type { ChangeFreq } from "../src/config/routes"
-import { LOCALIZED_ROUTES, UNLOCALIZED_ROUTES } from "../src/config/routes"
-import { siteConfig } from "../src/config/site"
-import { locales } from "../src/i18n/i18n-util"
+import type { ChangeFreq } from "../src/config/routes.ts"
+import { LOCALIZED_ROUTES, UNLOCALIZED_ROUTES } from "../src/config/routes.ts"
+import { siteConfig } from "../src/config/site.ts"
+import { locales } from "../src/i18n/i18n-util.ts"
 
 interface SitemapUrl {
   loc: string

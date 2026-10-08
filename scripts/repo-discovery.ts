@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 /**
  * Prints repository discovery metadata for agents as minified JSON on stdout.
@@ -11,15 +11,11 @@
 
 import { readFileSync } from "node:fs"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
-import { LOCALIZED_ROUTES, UNLOCALIZED_ROUTES } from "../src/config/routes"
-import { siteConfig } from "../src/config/site"
-import { baseLocale, locales } from "../src/i18n/i18n-util"
+import { LOCALIZED_ROUTES, UNLOCALIZED_ROUTES } from "../src/config/routes.ts"
+import { siteConfig } from "../src/config/site.ts"
+import { baseLocale, locales } from "../src/i18n/i18n-util.ts"
 
-const repoRoot = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-)
+const repoRoot = path.resolve(import.meta.dirname, "..")
 
 type PackageJson = {
   name?: string
@@ -127,6 +123,6 @@ const main = () => {
   process.stdout.write(`${JSON.stringify(buildDiscovery())}\n`)
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (import.meta.main) {
   main()
 }

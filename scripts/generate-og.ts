@@ -1,20 +1,16 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 /**
  * Renders public/og.png (1200x630) from the self-hosted fonts, so the Open
  * Graph card always matches shipped typography and the title-block brand.
- * Rerun after brand changes: `pnpm tsx scripts/generate-og.ts`.
+ * Rerun after brand changes: `node scripts/generate-og.ts`.
  */
 
 import { readFileSync, writeFileSync } from "node:fs"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
 import { chromium } from "@playwright/test"
 
-const repoRoot = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-)
+const repoRoot = path.resolve(import.meta.dirname, "..")
 
 const fontData = (relPath: string) =>
   readFileSync(path.resolve(repoRoot, "public/fonts", relPath)).toString(

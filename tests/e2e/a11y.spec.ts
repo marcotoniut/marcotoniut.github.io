@@ -131,12 +131,41 @@ test.describe("@a11y", () => {
     await expect(page.getByRole("main")).toBeVisible({ timeout: 15_000 })
     await waitForVisualStability(page)
 
-    // Tab through interactive elements — verify focus is reachable
+    const header = page.getByRole("banner")
+    const navigation = header.getByRole("navigation")
+    const themeToggle = header.getByRole("button", { name: "Dark mode" })
+    const language = header.getByRole("combobox", { name: "Change language" })
+    await expect(themeToggle).toBeVisible()
+
+    const tabOrder = [
+      header.getByRole("link", { name: "MT·TONIUT" }),
+      navigation.getByRole("link", { name: "Work", exact: true }),
+      navigation.getByRole("link", { name: "CV", exact: true }),
+      navigation.getByRole("link", { name: "Contact", exact: true }),
+      themeToggle,
+    ]
+    for (const control of tabOrder) {
+      await page.keyboard.press("Tab")
+      await expect(control).toBeFocused()
+    }
+
+    await page.keyboard.press("Space")
+    await expect(
+      header.getByRole("button", { name: "Light mode" }),
+    ).toHaveAttribute("aria-pressed", "false")
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light")
+
     await page.keyboard.press("Tab")
-    const firstFocused = await page.evaluate(
-      () => document.activeElement?.tagName,
-    )
-    expect(firstFocused).toBeTruthy()
+    await expect(language).toBeFocused()
+    await page.keyboard.press("ArrowDown")
+    await expect(page.getByRole("listbox")).toBeVisible()
+    await page.keyboard.press("End")
+    await expect(
+      page.getByRole("option", { name: "ES", exact: true }),
+    ).toBeFocused()
+    await page.keyboard.press("Enter")
+    await expect(page).toHaveURL(/\/es\/$/)
+    await expect(language).toHaveText("ES")
 
     // All links should have accessible names
     const links = page.getByRole("link")
@@ -151,5 +180,22 @@ test.describe("@a11y", () => {
         `Link ${i} should have accessible name`,
       ).toBeTruthy()
     }
+  })
+  test("navigation links activate with Enter", async ({ page }) => {
+    await page.goto("/en/")
+    await expect(page.getByRole("button", { name: "Dark mode" })).toBeVisible()
+    const contact = page.getByRole("navigation").getByRole("link", {
+      name: "Contact",
+      exact: true,
+    })
+    for (let index = 0; index < 4; index++) {
+      await page.keyboard.press("Tab")
+    }
+    await expect(contact).toBeFocused()
+    await page.keyboard.press("Enter")
+    await expect(page).toHaveURL(/\/en\/contact\/$/)
+    await expect(
+      page.getByRole("heading", { name: /get in touch/i }),
+    ).toBeVisible()
   })
 })

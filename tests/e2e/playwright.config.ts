@@ -1,14 +1,12 @@
 import path from "node:path"
 import { defineConfig, devices } from "@playwright/test"
 
-// biome-ignore lint/correctness/noGlobalDirnameFilename: Playwright config runs in CJS context
-const projectRoot = path.resolve(__dirname, "../..")
+const projectRoot = path.resolve(import.meta.dirname, "../..")
 
 const port = Number.parseInt(process.env["PLAYWRIGHT_PORT"] ?? "8540", 10)
 const host = process.env["PLAYWRIGHT_HOST"] ?? "127.0.0.1"
 const baseURL = process.env["PLAYWRIGHT_BASE_URL"] ?? `http://${host}:${port}`
-// biome-ignore lint/correctness/noGlobalDirnameFilename: Playwright config runs in CJS context
-const artifactsDir = path.resolve(__dirname, ".playwright")
+const artifactsDir = path.resolve(import.meta.dirname, ".playwright")
 const ci = process.env["CI"]
 
 // CI uses higher tolerance to accommodate cross-platform font rendering
@@ -33,8 +31,7 @@ export default defineConfig({
     },
   },
   outputDir: `${artifactsDir}/test-results`,
-  // biome-ignore lint/correctness/noGlobalDirnameFilename: Playwright config runs in CJS context
-  testDir: __dirname,
+  testDir: import.meta.dirname,
   fullyParallel: true,
   forbidOnly: Boolean(ci),
   retries: ci ? 2 : 0,
@@ -67,7 +64,7 @@ export default defineConfig({
   webServer: {
     // Serves the `out/` export rather than `next dev`, so a11y and visual
     // results describe the artifact that ships. Requires `pnpm build` first.
-    command: "pnpm tsx tests/e2e/static-server.ts",
+    command: "node tests/e2e/static-server.ts",
     cwd: projectRoot,
     env: { PLAYWRIGHT_PORT: String(port), PLAYWRIGHT_HOST: host },
     url: `${baseURL}/en/`,

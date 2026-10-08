@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 /**
  * Serves the `out/` static export the same way GitHub Pages does. This lets e2e tests

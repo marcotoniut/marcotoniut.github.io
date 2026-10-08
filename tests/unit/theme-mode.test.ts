@@ -38,6 +38,11 @@ describe("isThemeMode", () => {
 })
 
 describe("resolveThemeMode", () => {
+  it("uses the default outside the browser", () => {
+    vi.stubGlobal("window", undefined)
+    expect(resolveThemeMode()).toBe("dark")
+  })
+
   it("prefers the stored choice over the OS preference", () => {
     localStorage.setItem(THEME_STORAGE_KEY, "light")
     stubPrefersLight(false)

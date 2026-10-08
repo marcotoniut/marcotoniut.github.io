@@ -34,7 +34,10 @@
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "allowJs": true
+    "allowJs": true,
+    "moduleDetection": "force",
+    "stableTypeOrdering": true,
+    "noUnusedParameters": true
   },
   "include": [
     "next-env.d.ts",
