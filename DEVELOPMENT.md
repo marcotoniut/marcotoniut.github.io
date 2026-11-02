@@ -4,7 +4,7 @@ Quick reference for developing this Next.js personal website.
 
 ## Installation
 
-This project uses [`proto`](https://moonrepo.dev/docs/proto) to pin tool versions: Node.js 26.11.1, pnpm 12.10.1, Lefthook 2.2.1, and actionlint 1.7.12.
+This project uses [`proto`](https://moonrepo.dev/docs/proto) to pin tool versions: Node.js 26.13.0, pnpm 12.17.0, Lefthook 2.2.2, and actionlint 1.7.12.
 Review `.prototools` and trust it with `proto trust .prototools` before installation so proto can load the CLI plugins.
 
 ```bash
