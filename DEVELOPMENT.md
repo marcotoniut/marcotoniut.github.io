@@ -267,8 +267,8 @@ This site implements comprehensive SEO optimization with anti-AI training protec
 Test robots.txt and sitemap are accessible:
 
 ```bash
-curl https://marcotoniut.github.io/robots.txt
-curl https://marcotoniut.github.io/sitemap.xml
+curl https://marcotoniut.com/robots.txt
+curl https://marcotoniut.com/sitemap.xml
 ```
 
 ### Limitations
@@ -292,4 +292,4 @@ git push origin release
 
 The GitHub Actions workflow (`Deploy site to Pages`) runs automatically on the `release` branch, prerendering the site and publishing `dist/client/` to Pages with the environment-provided analytics credentials.
 
-The site is available at [https://marcotoniut.github.io](https://marcotoniut.github.io)
+The site is available at [https://marcotoniut.com](https://marcotoniut.com)

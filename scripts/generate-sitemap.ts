@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Generate sitemap.xml for marcotoniut.github.io
+ * Generate sitemap.xml for marcotoniut.com
  *
  * Output is a pure function of the route list, so regenerating only produces a
  * diff when routes actually change. That is what lets the pre-push hook and

@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Marco Toniut",
-  baseUrl: "https://marcotoniut.github.io",
+  baseUrl: "https://marcotoniut.com",
   description:
     "Marco Toniut, software engineer and technical lead in London. Production platforms for healthcare, fintech and energy; a Game Boy game in Rust; a sound map of London.",
   keywords: [
@@ -20,14 +20,14 @@ export const siteConfig = {
   copyrightYear: 2026,
   author: {
     name: "Marco Toniut",
-    url: "https://marcotoniut.github.io/",
+    url: "https://marcotoniut.com/",
   },
   social: {
     github: "https://github.com/marcotoniut",
     itch: "https://marcotoniut.itch.io",
     linkedin: "https://www.linkedin.com/in/marco-toniut-4b6a143a/",
     // Rendered by scripts/generate-og.ts; rerun it when the brand changes.
-    ogImage: "https://marcotoniut.github.io/og.png",
+    ogImage: "https://marcotoniut.com/og.png",
   },
   sameAs: [
     "https://github.com/marcotoniut",

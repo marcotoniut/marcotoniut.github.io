@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://marcotoniut.github.io/</loc>
+    <loc>https://marcotoniut.com/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/cv/</loc>
+    <loc>https://marcotoniut.com/cv/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/en/</loc>
+    <loc>https://marcotoniut.com/en/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/en/cv/</loc>
+    <loc>https://marcotoniut.com/en/cv/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/en/contact/</loc>
+    <loc>https://marcotoniut.com/en/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/en/projects/carcinisation/</loc>
+    <loc>https://marcotoniut.com/en/projects/carcinisation/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/en/projects/sonicthames/</loc>
+    <loc>https://marcotoniut.com/en/projects/sonicthames/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/es/</loc>
+    <loc>https://marcotoniut.com/es/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/es/cv/</loc>
+    <loc>https://marcotoniut.com/es/cv/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/es/contact/</loc>
+    <loc>https://marcotoniut.com/es/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/es/projects/carcinisation/</loc>
+    <loc>https://marcotoniut.com/es/projects/carcinisation/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://marcotoniut.github.io/es/projects/sonicthames/</loc>
+    <loc>https://marcotoniut.com/es/projects/sonicthames/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

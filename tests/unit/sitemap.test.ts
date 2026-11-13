@@ -18,38 +18,30 @@ describe("sitemap.xml", () => {
   const urls = extractUrls(sitemapXml)
 
   it("includes root redirect", () => {
-    expect(urls).toContain("https://marcotoniut.github.io/")
+    expect(urls).toContain("https://marcotoniut.com/")
   })
 
   it("includes all localized home pages", () => {
-    expect(urls).toContain("https://marcotoniut.github.io/en/")
-    expect(urls).toContain("https://marcotoniut.github.io/es/")
+    expect(urls).toContain("https://marcotoniut.com/en/")
+    expect(urls).toContain("https://marcotoniut.com/es/")
   })
 
   it("includes CV redirect and localized CV pages", () => {
-    expect(urls).toContain("https://marcotoniut.github.io/cv/")
-    expect(urls).toContain("https://marcotoniut.github.io/en/cv/")
-    expect(urls).toContain("https://marcotoniut.github.io/es/cv/")
+    expect(urls).toContain("https://marcotoniut.com/cv/")
+    expect(urls).toContain("https://marcotoniut.com/en/cv/")
+    expect(urls).toContain("https://marcotoniut.com/es/cv/")
   })
 
   it("includes localized contact pages", () => {
-    expect(urls).toContain("https://marcotoniut.github.io/en/contact/")
-    expect(urls).toContain("https://marcotoniut.github.io/es/contact/")
+    expect(urls).toContain("https://marcotoniut.com/en/contact/")
+    expect(urls).toContain("https://marcotoniut.com/es/contact/")
   })
 
   it("includes localized project pages", () => {
-    expect(urls).toContain(
-      "https://marcotoniut.github.io/en/projects/carcinisation/",
-    )
-    expect(urls).toContain(
-      "https://marcotoniut.github.io/es/projects/carcinisation/",
-    )
-    expect(urls).toContain(
-      "https://marcotoniut.github.io/en/projects/sonicthames/",
-    )
-    expect(urls).toContain(
-      "https://marcotoniut.github.io/es/projects/sonicthames/",
-    )
+    expect(urls).toContain("https://marcotoniut.com/en/projects/carcinisation/")
+    expect(urls).toContain("https://marcotoniut.com/es/projects/carcinisation/")
+    expect(urls).toContain("https://marcotoniut.com/en/projects/sonicthames/")
+    expect(urls).toContain("https://marcotoniut.com/es/projects/sonicthames/")
   })
 
   it("has trailing slashes on all URLs", () => {

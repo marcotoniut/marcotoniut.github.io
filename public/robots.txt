@@ -1,4 +1,4 @@
-# robots.txt for marcotoniut.github.io
+# robots.txt for marcotoniut.com
 # Purpose: Allow legitimate search engines while blocking AI training crawlers
 # GitHub Pages serves no custom HTTP headers, so Content-Signal is unavailable;
 # the anti-AI opt-out is carried by the robots meta tag (see src/app/layout.tsx).
@@ -94,4 +94,4 @@ Allow: /
 # SITEMAP
 # ============================================================
 
-Sitemap: https://marcotoniut.github.io/sitemap.xml
+Sitemap: https://marcotoniut.com/sitemap.xml

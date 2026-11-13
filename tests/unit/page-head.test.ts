@@ -44,23 +44,23 @@ describe("PageHead for an indexable page", () => {
 
   it("points the canonical and og:url at the page's own locale", () => {
     expect(html).toContain(
-      '<link rel="canonical" href="https://marcotoniut.github.io/es/cv/"/>',
+      '<link rel="canonical" href="https://marcotoniut.com/es/cv/"/>',
     )
     expect(html).toContain(
-      '<meta property="og:url" content="https://marcotoniut.github.io/es/cv/"/>',
+      '<meta property="og:url" content="https://marcotoniut.com/es/cv/"/>',
     )
     expect(html).toContain('<meta property="og:locale" content="es-AR"/>')
   })
 
   it("lists every locale and the base locale as x-default", () => {
     expect(html).toContain(
-      '<link rel="alternate" hrefLang="en" href="https://marcotoniut.github.io/en/cv/"/>',
+      '<link rel="alternate" hrefLang="en" href="https://marcotoniut.com/en/cv/"/>',
     )
     expect(html).toContain(
-      '<link rel="alternate" hrefLang="es" href="https://marcotoniut.github.io/es/cv/"/>',
+      '<link rel="alternate" hrefLang="es" href="https://marcotoniut.com/es/cv/"/>',
     )
     expect(html).toContain(
-      '<link rel="alternate" hrefLang="x-default" href="https://marcotoniut.github.io/en/cv/"/>',
+      '<link rel="alternate" hrefLang="x-default" href="https://marcotoniut.com/en/cv/"/>',
     )
   })
 

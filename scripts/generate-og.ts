@@ -74,7 +74,7 @@ const html = `<!doctype html>
     <span class="corner tl">SOFTWARE ENGINEER · TECHNICAL LEAD</span>
     <span class="corner tr">LONDON</span>
     <h1>Marco Toniut</h1>
-    <div class="url">marcotoniut.github.io</div>
+    <div class="url">marcotoniut.com</div>
   </div>
 </body>
 </html>`
