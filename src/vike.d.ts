@@ -6,6 +6,10 @@ type SeoSetting = (locale: Locales) => Seo
 
 declare global {
   namespace Vike {
+    interface PageContext {
+      /** The route path without its locale prefix, e.g. `cv`; see `+onBeforeRender`. */
+      routePath: string
+    }
     interface Config {
       Page?: () => ReactNode
       /** The page's title, description and indexability; see `Head`. */

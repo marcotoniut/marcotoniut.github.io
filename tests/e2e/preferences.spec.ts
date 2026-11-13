@@ -51,23 +51,27 @@ test.describe("@preferences", () => {
   }) => {
     await page.goto("/en/contact/")
     await expect(page.getByRole("button", { name: "Dark mode" })).toBeVisible()
-    const language = page.getByRole("combobox", { name: "Change language" })
-    await language.click()
-    await page.getByRole("option", { name: "ES", exact: true }).click()
+    await page
+      .getByRole("navigation", { name: "Language" })
+      .getByRole("link", { name: "ES", exact: true })
+      .click()
     await expect(page).toHaveURL(/\/es\/contact\/$/)
-    await expect(language).toHaveText("ES")
+    const esLink = page
+      .getByRole("navigation", { name: "Idioma" })
+      .getByRole("link", { name: "ES", exact: true })
+    await expect(esLink).toHaveAttribute("aria-current", "page")
     await expect
       .poll(() => page.evaluate((key) => localStorage.getItem(key), LOCALE_KEY))
       .toBe("es")
 
     await page.reload()
-    await expect(language).toHaveText("ES")
+    await expect(esLink).toHaveAttribute("aria-current", "page")
     await expect
       .poll(() => page.evaluate((key) => localStorage.getItem(key), LOCALE_KEY))
       .toBe("es")
 
     await page.goto("/cv/")
     await expect(page).toHaveURL(/\/es\/cv\/$/)
-    await expect(language).toHaveText("ES")
+    await expect(esLink).toHaveAttribute("aria-current", "page")
   })
 })

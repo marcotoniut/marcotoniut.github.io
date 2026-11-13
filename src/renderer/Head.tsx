@@ -1,7 +1,7 @@
 import type { PageContextServer } from "vike/types"
 import { PageHead } from "@/components/head/PageHead"
 import { SiteHead } from "@/components/head/SiteHead"
-import { localeOf, localizedPath } from "@/i18n/page-locale"
+import { localeOf } from "@/i18n/page-locale"
 
 export function Head({ pageContext }: { pageContext: PageContextServer }) {
   const { seo } = pageContext.config
@@ -16,7 +16,7 @@ export function Head({ pageContext }: { pageContext: PageContextServer }) {
       <PageHead
         seo={seo(locale)}
         locale={locale}
-        path={localizedPath(pageContext)}
+        path={pageContext.routePath}
       />
     </>
   )

@@ -130,9 +130,9 @@ test.describe("@a11y", () => {
     await waitForVisualStability(page)
 
     const header = page.getByRole("banner")
-    const navigation = header.getByRole("navigation")
+    const navigation = header.getByRole("navigation", { name: "Primary" })
     const themeToggle = header.getByRole("button", { name: "Dark mode" })
-    const language = header.getByRole("combobox", { name: "Change language" })
+    const language = header.getByRole("navigation", { name: "Language" })
     await expect(themeToggle).toBeVisible()
 
     const tabOrder = [
@@ -153,17 +153,21 @@ test.describe("@a11y", () => {
     ).toHaveAttribute("aria-pressed", "false")
     await expect(page.locator("html")).toHaveAttribute("data-theme", "light")
 
+    const enLink = language.getByRole("link", { name: "EN", exact: true })
     await page.keyboard.press("Tab")
-    await expect(language).toBeFocused()
-    await page.keyboard.press("ArrowDown")
-    await expect(page.getByRole("listbox")).toBeVisible()
-    await page.keyboard.press("End")
+    await expect(enLink).toBeFocused()
+    await expect(enLink).toHaveAttribute("aria-current", "page")
+    await page.keyboard.press("Tab")
     await expect(
-      page.getByRole("option", { name: "ES", exact: true }),
+      language.getByRole("link", { name: "ES", exact: true }),
     ).toBeFocused()
     await page.keyboard.press("Enter")
     await expect(page).toHaveURL(/\/es\/$/)
-    await expect(language).toHaveText("ES")
+    await expect(
+      header
+        .getByRole("navigation", { name: "Idioma" })
+        .getByRole("link", { name: "ES", exact: true }),
+    ).toHaveAttribute("aria-current", "page")
 
     // All links should have accessible names
     const links = page.getByRole("link")
@@ -182,10 +186,12 @@ test.describe("@a11y", () => {
   test("navigation links activate with Enter", async ({ page }) => {
     await page.goto("/en/")
     await expect(page.getByRole("button", { name: "Dark mode" })).toBeVisible()
-    const contact = page.getByRole("navigation").getByRole("link", {
-      name: "Contact",
-      exact: true,
-    })
+    const contact = page
+      .getByRole("navigation", { name: "Primary" })
+      .getByRole("link", {
+        name: "Contact",
+        exact: true,
+      })
     for (let index = 0; index < 4; index++) {
       await page.keyboard.press("Tab")
     }

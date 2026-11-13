@@ -267,6 +267,7 @@ const esAr = {
     buyMeACoffee: "Comprame un café",
     buyMeACoffeeIconAlt: "Comprame un café logo",
     goBack: "Volver",
+    language: "Idioma",
     supportTagline: "Apoyá mi trabajo",
     nav: {
       label: "Principal",

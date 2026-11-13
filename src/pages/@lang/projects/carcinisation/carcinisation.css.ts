@@ -174,33 +174,17 @@ globalStyle(
 globalStyle(`:where(${pageHeader}) ${headerStyles.controlBar}`, {
   gap: space.sm,
 })
-globalStyle(`:where(${pageHeader}) ${headerStyles.selectTrigger}`, {
-  background: gbThemeVars.surface,
-  borderColor: gbThemeVars.border,
-  boxShadow: `0 2px 0 0 ${withAlpha(gbThemeVars.border, 0.4)}`,
-  color: gbThemeVars.heading,
-})
-globalStyle(`:where(${pageHeader}) ${headerStyles.selectIcon}`, {
+globalStyle(`:where(${pageHeader}) ${headerStyles.languageLink}`, {
   color: gbThemeVars.textMuted,
 })
-globalStyle(`:where(${pageHeader}) ${headerStyles.selectContent}`, {
-  background: gbThemeVars.surface,
-  borderColor: gbThemeVars.border,
-  boxShadow: `0 8px 18px ${withAlpha(gbThemeVars.border, 0.35)}`,
-})
-globalStyle(`:where(${pageHeader}) ${headerStyles.selectItem}`, {
-  color: gbThemeVars.text,
+globalStyle(`:where(${pageHeader}) ${headerStyles.languageLink}:hover`, {
+  color: gbThemeVars.accent,
 })
 globalStyle(
-  `:where(${pageHeader}) ${headerStyles.selectItem}[data-highlighted]`,
-  { backgroundColor: gbThemeVars.surfaceRaised, color: gbThemeVars.accent },
-)
-globalStyle(
-  `:where(${pageHeader}) ${headerStyles.selectItem}[data-state="checked"]`,
+  `:where(${pageHeader}) ${headerStyles.languageLink}[aria-current="page"]`,
   {
-    backgroundColor: gbThemeVars.surfaceRaised,
-    color: gbThemeVars.accent,
-    boxShadow: `inset 0 0 0 1px ${withAlpha(gbThemeVars.accent, 0.5)}`,
+    borderBottomColor: gbThemeVars.accent,
+    color: gbThemeVars.heading,
   },
 )
 

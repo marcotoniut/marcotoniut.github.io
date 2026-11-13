@@ -266,6 +266,7 @@ const enUk: BaseTranslation = {
     buyMeACoffee: "Buy me a coffee",
     buyMeACoffeeIconAlt: "Buy me a coffee logo",
     goBack: "Go back",
+    language: "Language",
     supportTagline: "Support my work",
     nav: {
       label: "Primary",

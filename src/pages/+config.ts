@@ -6,6 +6,7 @@ export default {
   // one built for that page and no client router ships.
   clientRouting: false,
   trailingSlash: true,
+  passToClient: ["routePath"],
   meta: {
     seo: { env: { server: true } },
   },
