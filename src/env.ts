@@ -1,24 +1,24 @@
-import { z } from "zod"
+import { z } from "zod/mini"
 
 // `.env.template` lists every variable with an empty value.
-const unsetWhenBlank = <T extends z.ZodType>(schema: T) =>
-  z.preprocess((value) => (value === "" ? undefined : value), schema)
+const unsetWhenBlank = <T extends z.ZodMiniType>(schema: T) =>
+  z.pipe(
+    z.transform((value: unknown) => (value === "" ? undefined : value)),
+    schema,
+  )
 
 export const envSchema = z.object({
   // Inlined into a <script> in <head>, so only the documented id shape passes.
   PUBLIC_ENV__GA_MEASUREMENT_ID: unsetWhenBlank(
-    z
-      .string()
-      .regex(/^G-[A-Z0-9]+$/)
-      .optional(),
+    z.optional(z.string().check(z.regex(/^G-[A-Z0-9]+$/))),
   ),
   PUBLIC_ENV__PDF_PRINTING: unsetWhenBlank(
-    z
-      .enum(["true", "false"])
-      .optional()
-      .transform((v) => v === "true"),
+    z.pipe(
+      z.optional(z.enum(["true", "false"])),
+      z.transform((v) => v === "true"),
+    ),
   ),
-  PUBLIC_ENV__PRINT_SCALE: unsetWhenBlank(z.string().optional()),
+  PUBLIC_ENV__PRINT_SCALE: unsetWhenBlank(z.optional(z.string())),
 })
 
 export type Env = z.infer<typeof envSchema>

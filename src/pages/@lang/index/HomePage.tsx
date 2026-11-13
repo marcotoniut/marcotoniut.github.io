@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod/mini"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import { Trace } from "@/components/Trace"
@@ -12,7 +12,7 @@ import { buildLocalizedHref } from "@/utils/locale"
 import * as styles from "./home.css"
 
 // Serialised from the prerender's +data; JSON drops an undefined revision.
-const HomeDataSchema = z.object({ contentRev: z.string().optional() })
+const HomeDataSchema = z.object({ contentRev: z.optional(z.string()) })
 
 type DesignationProps = {
   index: string

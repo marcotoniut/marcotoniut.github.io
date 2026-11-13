@@ -8,6 +8,7 @@ export default {
   trailingSlash: true,
   passToClient: ["routePath"],
   meta: {
+    preloadFonts: { env: { server: true } },
     seo: { env: { server: true } },
   },
 } satisfies Config

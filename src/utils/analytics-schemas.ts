@@ -1,9 +1,9 @@
-import { z } from "zod"
+import { z } from "zod/mini"
 import { LocaleSchema } from "@/i18n/schemas"
 
 export const LinkClickParamsSchema = z.object({
   link_url: z.url(),
-  link_text: z.string().optional(),
+  link_text: z.optional(z.string()),
   link_location: z.enum([
     "header",
     "home_page",
@@ -17,20 +17,20 @@ export const LinkClickParamsSchema = z.object({
   locale: LocaleSchema,
 })
 
-export const BuyMeCoffeeParamsSchema = LinkClickParamsSchema.extend({
+export const BuyMeCoffeeParamsSchema = z.extend(LinkClickParamsSchema, {
   link_location: z.enum(["header", "home_page", "footer"]),
 })
 
-export const ExternalLinkParamsSchema = LinkClickParamsSchema.extend({
+export const ExternalLinkParamsSchema = z.extend(LinkClickParamsSchema, {
   link_type: z.enum(["github", "linkedin", "itch_io", "other"]),
 })
 
 export const CVViewParamsSchema = z.object({
   locale: LocaleSchema,
-  referrer: z.string().optional(),
+  referrer: z.optional(z.string()),
 })
 
-export const ProjectLinkParamsSchema = LinkClickParamsSchema.extend({
+export const ProjectLinkParamsSchema = z.extend(LinkClickParamsSchema, {
   project_name: z.string(),
   link_type: z.enum(["github", "itch_io", "jam"]),
 })

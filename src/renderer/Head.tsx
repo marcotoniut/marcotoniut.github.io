@@ -4,7 +4,7 @@ import { SiteHead } from "@/components/head/SiteHead"
 import { localeOf } from "@/i18n/page-locale"
 
 export function Head({ pageContext }: { pageContext: PageContextServer }) {
-  const { seo } = pageContext.config
+  const { preloadFonts = [], seo } = pageContext.config
   if (seo === undefined) {
     throw new Error(`${pageContext.urlPathname} has no +seo setting`)
   }
@@ -12,7 +12,7 @@ export function Head({ pageContext }: { pageContext: PageContextServer }) {
 
   return (
     <>
-      <SiteHead />
+      <SiteHead pageFonts={preloadFonts} />
       <PageHead
         seo={seo(locale)}
         locale={locale}

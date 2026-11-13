@@ -1,21 +1,14 @@
 import { siteConfig } from "@/config/site"
 import { env } from "@/env"
+import { SITE_FONT_FILES } from "@/styles/font-files"
 import { THEME_BOOTSTRAP_SCRIPT } from "@/styles/theme"
 import { buildGtagBootstrapScript } from "@/utils/gtag"
 import { generatePersonStructuredData, serializeJsonLd } from "@/utils/metadata"
 
-const FONT_PRELOADS = [
-  "/fonts/ibm-plex-sans/ibm-plex-sans-400.woff2",
-  "/fonts/ibm-plex-sans/ibm-plex-sans-500.woff2",
-  "/fonts/space-grotesk/space-grotesk-600.woff2",
-  "/fonts/space-grotesk/space-grotesk-700.woff2",
-  "/fonts/press-start-2p/press-start-2p-400.woff2",
-]
-
 const measurementId = env.PUBLIC_ENV__GA_MEASUREMENT_ID
 
 /** Tags every page carries, whatever its content. */
-export function SiteHead() {
+export function SiteHead({ pageFonts }: { pageFonts: readonly string[] }) {
   return (
     <>
       <script
@@ -30,7 +23,7 @@ export function SiteHead() {
           }}
         />
       )}
-      {FONT_PRELOADS.map((href) => (
+      {[...SITE_FONT_FILES, ...pageFonts].map((href) => (
         <link
           key={href}
           as="font"

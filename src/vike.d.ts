@@ -12,10 +12,13 @@ declare global {
     }
     interface Config {
       Page?: () => ReactNode
+      /** Font files this page alone uses, preloaded after the site-wide ones. */
+      preloadFonts?: readonly string[]
       /** The page's title, description and indexability; see `Head`. */
       seo?: SeoSetting
     }
     interface ConfigResolved {
+      preloadFonts?: readonly string[]
       seo?: SeoSetting
     }
   }

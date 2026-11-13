@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod/mini"
 import type { Locales } from "./i18n-types"
 import { locales } from "./i18n-util"
 
