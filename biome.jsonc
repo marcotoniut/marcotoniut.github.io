@@ -69,10 +69,6 @@
         "noVar": "error",
         "useErrorMessage": "error"
       },
-      "nursery": {
-        "noFloatingPromises": "error",
-        "noMisusedPromises": "error"
-      },
       "complexity": {
         "noUselessCatch": "error",
         "useLiteralKeys": "off",
