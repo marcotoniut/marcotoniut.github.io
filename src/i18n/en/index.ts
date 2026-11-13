@@ -14,6 +14,7 @@ const enUk: BaseTranslation = {
     },
     experience: {
       title: "Experience",
+      present: "Present",
       history: [
         {
           role: "Lead Software Engineer",

@@ -14,6 +14,7 @@ const esAr = {
     },
     experience: {
       title: "Experiencia",
+      present: "Actualidad",
       history: [
         {
           role: "Lead Software Engineer",

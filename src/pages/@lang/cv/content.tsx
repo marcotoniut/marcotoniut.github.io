@@ -1,10 +1,10 @@
-import { format } from "date-fns"
 import { useContext, useEffect, useId } from "react"
 import { Header } from "@/components/Header"
 import { GithubIcon, ItchIOIcon, LinkedInIcon } from "@/components/icons"
 import { TrackedAnchor } from "@/components/TrackedLink"
 import { H1, H2, H3 } from "@/components/typography"
 import { siteConfig } from "@/config/site"
+import { formatMonthYear } from "@/i18n/dates"
 import { I18nContext } from "@/i18n/i18n-react"
 import { email, phone } from "@/info"
 import { trackCVView } from "@/utils/analytics"
@@ -30,8 +30,6 @@ import {
 } from "./cv.css"
 import { Meta } from "./data"
 import "./pdf.cv.css"
-
-const DATE_FORMAT = "MMM yyyy"
 
 const CV_TRACKING_LOCATION = {
   profile: "profile",
@@ -230,7 +228,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                       <div className={institutionCn}>{institution}</div>
                     ) : null}
                     <div>
-                      <em>{`${format(meta.dates.start, DATE_FORMAT)} - ${"end" in meta.dates ? format(meta.dates.end, DATE_FORMAT) : "Present"}`}</em>
+                      <em>{`${formatMonthYear(meta.dates.start, locale)} - ${"end" in meta.dates ? formatMonthYear(meta.dates.end, locale) : LL.CVPage.experience.present()}`}</em>
                     </div>
                     {descriptions.map(([i, t]) => (
                       <p key={i}>{t()}</p>
@@ -334,7 +332,7 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
                 </TrackedAnchor>
               </div>
               <div>
-                <em>{format(new Date(2023, 9), DATE_FORMAT)}</em>
+                <em>{formatMonthYear(new Date(2023, 9), locale)}</em>
               </div>
               <p>
                 {LL.CVPage.personalProjects.projects.carcinisation.description.p1()}
