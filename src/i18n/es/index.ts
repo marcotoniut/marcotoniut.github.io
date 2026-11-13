@@ -268,6 +268,14 @@ const esAr = {
     buyMeACoffeeIconAlt: "Comprame un café logo",
     goBack: "Volver",
     language: "Idioma",
+    analytics: {
+      label: "Cookies de analítica",
+      message:
+        "¿Puedo contar tu visita con Google Analytics? Usa cookies, así que solo se carga si lo permitís.",
+      allow: "Permitir",
+      decline: "No, gracias",
+      preferences: "Preferencias de cookies",
+    },
     supportTagline: "Apoyá mi trabajo",
     nav: {
       label: "Principal",

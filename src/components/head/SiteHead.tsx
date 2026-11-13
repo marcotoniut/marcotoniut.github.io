@@ -2,6 +2,7 @@ import { siteConfig } from "@/config/site"
 import { env } from "@/env"
 import { SITE_FONT_FILES } from "@/styles/font-files"
 import { THEME_BOOTSTRAP_SCRIPT } from "@/styles/theme"
+import { ANALYTICS_CONSENT_KEY } from "@/utils/analytics-consent"
 import { buildGtagBootstrapScript } from "@/utils/gtag"
 import { generatePersonStructuredData, serializeJsonLd } from "@/utils/metadata"
 
@@ -19,7 +20,10 @@ export function SiteHead({ pageFonts }: { pageFonts: readonly string[] }) {
         <script
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Google's tag snippet; the measurement id is validated by the env schema
           dangerouslySetInnerHTML={{
-            __html: buildGtagBootstrapScript(measurementId),
+            __html: buildGtagBootstrapScript(
+              measurementId,
+              ANALYTICS_CONSENT_KEY,
+            ),
           }}
         />
       )}

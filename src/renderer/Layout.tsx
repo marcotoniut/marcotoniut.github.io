@@ -16,8 +16,8 @@ export function Layout({ children }: { children: ReactNode }) {
     <ThemeProvider>
       <TypesafeI18n locale={locale}>
         <ErrorBoundary fallback={<ServerError />}>{children}</ErrorBoundary>
+        <GoogleAnalytics />
       </TypesafeI18n>
-      <GoogleAnalytics />
     </ThemeProvider>
   )
 }

@@ -16,7 +16,7 @@ Code defines reality; this document sets policy.
 ## Validation
 
 - Run `pnpm check` before completion. On failure, fix only the reported failures and rerun the same command until green.
-- E2E suites need `pnpm build` first. Headless only; no manual browser windows.
+- E2E suites need `pnpm build:e2e` first. Headless only; no manual browser windows.
 - If skipping a required check, say why and what remains.
 
 ## Collaboration

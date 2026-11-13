@@ -21,8 +21,8 @@ export default defineConfig({
       // regress. Raise these as tests are added; do not lower them.
       thresholds: {
         statements: 93,
-        branches: 97,
-        functions: 94,
+        branches: 98,
+        functions: 95,
         lines: 93,
       },
     },

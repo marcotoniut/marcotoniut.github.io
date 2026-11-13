@@ -34,6 +34,7 @@ Runs at [http://localhost:8525](http://localhost:8525)
 | `pnpm dev`       | Start dev server with translation watcher |
 | `pnpm discover`  | Repo metadata as JSON: routes, ports, gates, scopes |
 | `pnpm build`     | Production build                          |
+| `pnpm build:e2e` | Build with a placeholder GA id, for the browser suites |
 | `pnpm lint`      | Biome, React Compiler rules, type-aware oxlint, knip |
 | `pnpm lint:biome` | Biome only                               |
 | `pnpm lint:fix`  | Fix auto-fixable issues                   |
@@ -112,10 +113,7 @@ GitHub Pages serves as it is.
   its own chunk before hydrating.
 - Env variables the browser reads start with `PUBLIC_ENV__` (`envPrefix` in
   `vite.config.ts`); `src/env.ts` reads each by name so it is inlined.
-- When `PUBLIC_ENV__GA_MEASUREMENT_ID` is set (the `GA_MEASUREMENT_ID` variable
-  of the `github-pages` environment on deploy), `SiteHead` inlines Google's tag
-  snippet so events queue from the first render, and `GoogleAnalytics` loads
-  gtag.js once the page is idle.
+- When `PUBLIC_ENV__GA_MEASUREMENT_ID` is set (the `GA_MEASUREMENT_ID` variable of the `github-pages` environment on deploy), `SiteHead` inlines Google's tag snippet so events queue from the first render. `GoogleAnalytics` asks for consent before loading gtag.js. Until the visitor allows it, consent stays denied and the page view waits.
 
 ### CV PDF Generation
 
@@ -203,7 +201,7 @@ which mimics GitHub Pages (directory indexes, `404.html` fallback). Since they
 test the shipping artifact, a build is required first:
 
 ```bash
-pnpm build && pnpm test:visual
+pnpm build:e2e && pnpm test:visual
 ```
 
 The preference suite checks real theme and language changes, persistence after

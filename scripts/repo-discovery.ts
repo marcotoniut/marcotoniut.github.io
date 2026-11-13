@@ -96,7 +96,7 @@ export const buildDiscovery = () => {
       scripts: "scripts/",
     },
     facts: [
-      "e2e suites serve out/, so run `pnpm build` before test:a11y or test:visual",
+      "e2e suites serve dist/client/, so run `pnpm build:e2e` before test:a11y, test:preferences or test:visual",
       "test:visual runs Chromium in Docker (bin/visual-docker.sh); it needs a running Docker daemon",
       "`pnpm install` runs `pnpm generate`, which writes the gitignored src/i18n/i18n-*; rerun it if they go missing",
       "pages are prerendered to dist/client with server routing: every navigation loads a full document",

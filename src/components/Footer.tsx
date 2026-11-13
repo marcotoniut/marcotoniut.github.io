@@ -1,3 +1,4 @@
+import { AnalyticsPreferencesButton } from "@/components/AnalyticsConsentBanner"
 import { BuyMeACoffeeCTA } from "@/components/BuyMeACoffeeCTA"
 import { Box } from "@/components/ui/primitives"
 import { siteConfig } from "@/config/site"
@@ -74,6 +75,7 @@ export function Footer({ className, labels }: FooterProps) {
               variant="text"
             />
           </p>
+          <AnalyticsPreferencesButton className={styles.cellButton} />
         </div>
       </div>
       <p className={styles.aiPolicy}>

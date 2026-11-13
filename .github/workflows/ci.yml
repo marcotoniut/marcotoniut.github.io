@@ -47,7 +47,8 @@ jobs:
 
       - uses: ./.github/actions/setup
 
-      - run: pnpm build
+      # A placeholder GA id, so the browser suites see the consent banner.
+      - run: pnpm build:e2e
 
       # The a11y, visual and Lighthouse jobs all test this exact artifact
       # rather than rebuilding or running a dev server.

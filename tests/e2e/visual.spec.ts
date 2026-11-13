@@ -1,6 +1,8 @@
 import { expect, test } from "./utils/runtime-errors"
 import { waitForVisualStability } from "./utils/visual-stability"
 
+const CONSENT_KEY = "marcotoniut-analytics-consent"
+
 const ROUTE_SNAPSHOTS: Array<{
   path: string
   heading: RegExp | string
@@ -64,6 +66,14 @@ test.describe("@visual", () => {
         "Baselines render in the Playwright Docker image; run `pnpm test:visual`.",
       )
     }
+  })
+
+  // Answered, so baselines show the page, not the consent banner.
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(
+      (key) => localStorage.setItem(key, "denied"),
+      CONSENT_KEY,
+    )
   })
 
   test("pages remain visually stable", async ({ page }) => {

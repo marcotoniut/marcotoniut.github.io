@@ -84,6 +84,19 @@ export const cellLink = style({
   },
 })
 
+export const cellButton = style([
+  cellLink,
+  {
+    alignSelf: "flex-start",
+    background: "none",
+    border: 0,
+    cursor: "pointer",
+    // The global button rule applies a medium weight that links lack.
+    fontWeight: "inherit",
+    padding: 0,
+  },
+])
+
 export const colophonLine = style({
   fontFamily: fontFamilies.mono,
   fontSize: "0.8125rem",

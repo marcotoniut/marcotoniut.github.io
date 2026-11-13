@@ -267,6 +267,14 @@ const enUk: BaseTranslation = {
     buyMeACoffeeIconAlt: "Buy me a coffee logo",
     goBack: "Go back",
     language: "Language",
+    analytics: {
+      label: "Analytics cookies",
+      message:
+        "Can I count your visit with Google Analytics? It uses cookies, so it only loads if you allow it.",
+      allow: "Allow",
+      decline: "No thanks",
+      preferences: "Cookie preferences",
+    },
     supportTagline: "Support my work",
     nav: {
       label: "Primary",
