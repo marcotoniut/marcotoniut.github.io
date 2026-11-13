@@ -48,7 +48,7 @@ describe("repo discovery", () => {
       "lint",
       "typecheck",
       "spellcheck",
-      "test",
+      "test:coverage",
       "build",
     ])
   })

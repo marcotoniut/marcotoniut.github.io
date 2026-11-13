@@ -20,10 +20,10 @@ export default defineConfig({
       // A ratchet just under the current numbers, so coverage cannot silently
       // regress. Raise these as tests are added; do not lower them.
       thresholds: {
-        statements: 65,
-        branches: 70,
-        functions: 60,
-        lines: 65,
+        statements: 93,
+        branches: 97,
+        functions: 94,
+        lines: 93,
       },
     },
   },

@@ -1,25 +1,36 @@
-import { readFileSync } from "node:fs"
-import { resolve } from "node:path"
 import { describe, expect, it } from "vitest"
 import { LOCALIZED_ROUTES } from "@/config/routes"
+import { locales } from "@/i18n/i18n-util"
+import { buildLocalizedHref } from "@/utils/locale"
 
-const pagesDir = resolve(import.meta.dirname, "../../src/pages/@lang")
+// The sitemap and repo discovery read the registry; Vike prerenders what
+// each page's +onBeforePrerenderStart returns. These must not drift.
+const prerenderHooks = import.meta.glob<{ default: () => string[] }>(
+  "/src/pages/@lang/**/+onBeforePrerenderStart.ts",
+  { eager: true },
+)
+
+function routeOf(file: string): string {
+  const dir = file
+    .replace("/src/pages/@lang/", "")
+    .replace("/+onBeforePrerenderStart.ts", "")
+  return dir === "index" ? "" : dir
+}
 
 describe("localized route registry", () => {
-  // The sitemap and repo discovery read the registry; Vike prerenders what
-  // each page's +onBeforePrerenderStart returns. These must not drift.
-  it.each(LOCALIZED_ROUTES.map((route) => route.path))(
-    "%j has a page that prerenders exactly that route",
-    (path) => {
-      const hook = readFileSync(
-        resolve(
-          pagesDir,
-          path === "" ? "index" : path,
-          "+onBeforePrerenderStart.ts",
-        ),
-        "utf-8",
+  it("has exactly one prerendering page per route", () => {
+    const byPath = (a: string, b: string) => a.localeCompare(b)
+    expect(Object.keys(prerenderHooks).map(routeOf).toSorted(byPath)).toEqual(
+      LOCALIZED_ROUTES.map((route) => route.path).toSorted(byPath),
+    )
+  })
+
+  it.each(Object.entries(prerenderHooks))(
+    "%s prerenders its route in every locale",
+    (file, hook) => {
+      expect(hook.default()).toEqual(
+        locales.map((locale) => buildLocalizedHref(locale, routeOf(file))),
       )
-      expect(hook).toContain(`localizedUrls(${JSON.stringify(path)})`)
     },
   )
 })

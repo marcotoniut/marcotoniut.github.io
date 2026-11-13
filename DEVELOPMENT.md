@@ -41,7 +41,7 @@ Runs at [http://localhost:8525](http://localhost:8525)
 | `pnpm typecheck` | Check TypeScript types                    |
 | `pnpm generate`  | Regenerate translation types (`pnpm install` runs it too) |
 | `pnpm print-cv`  | Generate CV PDF                           |
-| `pnpm check`     | Run all quality gates (generate, lint, typecheck, spellcheck, test, build) |
+| `pnpm check`     | Run all quality gates (generate, lint, typecheck, spellcheck, test:coverage, build) |
 | `pnpm check:agent` | Run the same gates with timings and saved logs |
 | `pnpm check:agent list --json` | Inspect gates without running them |
 | `pnpm test`      | Run unit tests (vitest)                   |

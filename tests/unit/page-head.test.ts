@@ -4,10 +4,20 @@ import { describe, expect, it } from "vitest"
 import { PageHead } from "@/components/head/PageHead"
 import { siteConfig } from "@/config/site"
 import { ROBOTS_DIRECTIVES } from "@/utils/metadata"
-import { documentTitle } from "@/utils/seo"
+import { documentTitle, previewImageAlt } from "@/utils/seo"
 
 const render = (props: Parameters<typeof PageHead>[0]) =>
   renderToStaticMarkup(createElement(PageHead, props))
+
+describe("previewImageAlt", () => {
+  it("names the site and the page", () => {
+    expect(previewImageAlt("Resume")).toBe(`${siteConfig.name} - Resume`)
+  })
+
+  it("does not repeat the site name on the home page", () => {
+    expect(previewImageAlt(siteConfig.name)).toBe(siteConfig.name)
+  })
+})
 
 describe("documentTitle", () => {
   it("appends the site name to a page title", () => {

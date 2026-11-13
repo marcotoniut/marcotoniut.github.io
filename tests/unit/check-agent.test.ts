@@ -24,7 +24,7 @@ describe("agent checks", () => {
       "lint",
       "typecheck",
       "spellcheck",
-      "test",
+      "test:coverage",
       "build",
     ])
   })
