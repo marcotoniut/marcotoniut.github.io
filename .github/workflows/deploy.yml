@@ -1,4 +1,4 @@
-name: Deploy Next.js site to Pages
+name: Deploy site to Pages
 
 on:
   push:
@@ -31,13 +31,13 @@ jobs:
 
       - name: Build static export
         env:
-          NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+          PUBLIC_ENV__GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
         run: pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
-          path: ./out
+          path: ./dist/client
 
   deploy:
     runs-on: ubuntu-24.04

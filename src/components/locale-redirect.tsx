@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect } from "react"
 import type { Locales } from "@/i18n/i18n-types"
 import { baseLocale, locales } from "@/i18n/i18n-util"

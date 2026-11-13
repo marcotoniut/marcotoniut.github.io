@@ -224,7 +224,7 @@ const esAr = {
     },
     footer: {
       p1: "Versión web",
-      p2: " de este CV. Generado con Next.js y TypeScript.",
+      p2: " de este CV. Generado con Vike, React y TypeScript.",
     },
   },
   HomePage: {

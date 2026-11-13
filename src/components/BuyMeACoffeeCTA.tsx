@@ -1,6 +1,3 @@
-"use client"
-
-import Image from "next/image"
 import type { ComponentPropsWithoutRef } from "react"
 import { useContext } from "react"
 import { I18nContext } from "@/i18n/i18n-react"
@@ -60,10 +57,12 @@ export const BuyMeACoffeeCTA = ({
       target="_blank"
       onClick={handleClick}
     >
-      <Image
+      <img
         alt={LL.Common.buyMeACoffeeIconAlt()}
         className={icon}
+        decoding="async"
         height={36}
+        loading="lazy"
         src="/icons/buy-me-a-coffee.svg"
         style={{ height: "auto" }}
         width={48}

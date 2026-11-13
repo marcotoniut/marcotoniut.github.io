@@ -1,0 +1,89 @@
+/*
+ * Self-hosted, woff2 only, no `local()` except the Press Start 2P fallback.
+ *
+ * `local()` risks visual-snapshot drift: a machine with the font installed
+ * renders a different file than CI.
+ * woff2-only matches the existing Space Grotesk declaration; ttf fallbacks
+ * were unreachable by any browser capable of running this site.
+ */
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("/fonts/ibm-plex-sans/ibm-plex-sans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("/fonts/ibm-plex-sans/ibm-plex-sans-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibm-plex-mono/ibm-plex-mono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibm-plex-mono/ibm-plex-mono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk/space-grotesk-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk/space-grotesk-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk/space-grotesk-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("/fonts/press-start-2p/press-start-2p-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/*
+ * Metric-matched stand-in, with the overrides next/font computed: it holds the
+ * layout while the pixel font loads and draws the glyphs that font lacks, such
+ * as →, at its size.
+ */
+@font-face {
+  font-family: "Press Start 2P Fallback";
+  src: local("Arial");
+  ascent-override: 44.58%;
+  descent-override: 0%;
+  line-gap-override: 0%;
+  size-adjust: 224.32%;
+}
+
+html,
+body {
+  print-color-adjust: exact;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}

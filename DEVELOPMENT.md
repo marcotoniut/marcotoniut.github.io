@@ -1,6 +1,6 @@
 # Development Guide
 
-Quick reference for developing this Next.js personal website.
+Quick reference for developing this personal website, a prerendered Vike (React) site.
 
 ## Installation
 
@@ -87,9 +87,39 @@ Merge, revert and `fixup!` subjects that Git writes pass.
   current skips it, so run this after deleting the generated files.
 - Uses `typesafe-i18n` for type safety
 
+### Pages and rendering
+
+Vike prerenders every page into `dist/client/`, one HTML file per URL, which
+GitHub Pages serves as it is.
+
+- `src/pages/` mirrors the URLs: `index` is `/`, `cv` is the language-detecting
+  `/cv/` redirect, `@lang/*` are the localized pages, and `_error` renders the
+  404 and 500 views, including `404.html`. `@lang/+guard.ts` turns an unknown
+  locale into a 404.
+- Each localized page lists its URLs in `+onBeforePrerenderStart.ts` through
+  `localizedUrls()`, which is typed against the route registry in
+  `src/config/routes.ts` that the sitemap reads. A unit test keeps them in step.
+- Routing is server-side (`clientRouting: false`): every navigation loads a
+  full document, so the head always belongs to the page shown and no client
+  router ships.
+- The React renderer is ours: `src/pages/+onRenderHtml.tsx` writes the document
+  (with `<html lang>` and the head from `src/renderer/Head.tsx`), and
+  `+onRenderClient.tsx` hydrates it. Both render `src/renderer/PageShell.tsx`.
+  vike-react is not used because it assumes client routing.
+- The head comes from each page's `+seo` setting (title, description,
+  indexability) and its locale.
+- The prerender loads every dictionary. The browser loads the page's locale as
+  its own chunk before hydrating.
+- Env variables the browser reads start with `PUBLIC_ENV__` (`envPrefix` in
+  `vite.config.ts`); `src/env.ts` reads each by name so it is inlined.
+- When `PUBLIC_ENV__GA_MEASUREMENT_ID` is set (the `GA_MEASUREMENT_ID` variable
+  of the `github-pages` environment on deploy), `SiteHead` inlines Google's tag
+  snippet so events queue from the first render, and `GoogleAnalytics` loads
+  gtag.js once the page is idle.
+
 ### CV PDF Generation
 
-- Route: `/cv` (print-optimized page)
+- Route: `/{locale}/cv/` with `PUBLIC_ENV__PDF_PRINTING=true` (`pnpm dev:pdf`)
 - Script: `scripts/print-cv.ts`
 - Output: `local/Marco_Toniut_CV_<YYYY-MM>.pdf`
 - Chrome: `pnpm install` downloads it into `.cache/puppeteer`. Upgrades leave
@@ -104,7 +134,7 @@ Merge, revert and `fixup!` subjects that Git writes pass.
 
 ### Tech Stack
 
-- **Framework:** Next.js 16 (App Router, Turbopack, React Compiler)
+- **Framework:** Vike on Vite 8 with its own React renderer, React Compiler (Oxc)
 - **Language:** TypeScript (British English conventions)
 - **Styling:** Vanilla Extract
 - **UI:** Radix UI primitives
@@ -115,7 +145,8 @@ Merge, revert and `fixup!` subjects that Git writes pass.
 
 ```
 src/
-├── app/          # Next.js routes & layouts
+├── pages/        # Vike pages and render hooks
+├── renderer/     # Page shell, layout, head, page context
 ├── components/   # UI components + styles
 ├── i18n/         # Translation source files
 └── styles/       # Global styles
@@ -135,7 +166,7 @@ pnpm check
 
 Repository scripts run directly with Node.js type stripping. Use explicit `.ts`
 extensions for their relative imports; application imports remain resolved by
-Next.js. The package uses ECMAScript modules.
+Vite. The package uses ECMAScript modules.
 
 `pnpm check:agent --json` emits a machine-readable summary. Each run writes
 logs and `summary.json` to `tmp/check-agent/`, stops at the first failure, and
@@ -152,7 +183,7 @@ handling, exhaustive switches, deprecated APIs and unsafe `any`
 and dependencies; its waivers in `knip.jsonc` each give a reason.
 
 The build fails when the React Compiler cannot compile a component
-(`panicThreshold` in `next.config.mts`) rather than shipping it uncompiled.
+(`panicThreshold` in `vite.config.ts`) rather than shipping it uncompiled.
 Pre-commit scans staged changes for secrets with gitleaks.
 
 CI annotates pull requests with Biome diagnostics and still uses `pnpm lint`
@@ -167,7 +198,7 @@ works with Node.js 26 without a worker flag disabling native Web Storage.
 
 ### End-to-end suites
 
-`test:a11y`, `test:visual` and `test:preferences` serve `out/` via `tests/e2e/static-server.ts`,
+`test:a11y`, `test:visual` and `test:preferences` serve `dist/client/` via `tests/e2e/static-server.ts`,
 which mimics GitHub Pages (directory indexes, `404.html` fallback). Since they
 test the shipping artifact, a build is required first:
 
@@ -178,7 +209,7 @@ pnpm build && pnpm test:visual
 The preference suite checks real theme and language changes, persistence after
 reload, locale redirects, and stored-theme precedence before hydration. The
 accessibility suite checks Tab order and keyboard activation of navigation,
-theme and language controls. CI runs both suites against the static export.
+theme and language controls. CI runs both suites against the prerendered build.
 
 Specs import `test` and `expect` from `tests/e2e/utils/runtime-errors.ts`. It
 fails a test on uncaught page errors and on `console.error` messages that are
@@ -186,7 +217,7 @@ React runtime errors or come from the site's own scripts. A test that triggers
 one on purpose calls `allowRuntimeError(/pattern/)`.
 
 `pnpm test:e2e` handles the build for you. The server exits with an explicit
-error if `out/` is missing rather than silently starting a dev server.
+error if `dist/client/` is missing rather than silently starting a dev server.
 
 The visual suite needs Docker. `bin/visual-docker.sh` starts a Playwright server
 in the `mcr.microsoft.com/playwright` image matching the catalog version, pinned
@@ -216,7 +247,7 @@ Self-hosted, woff2 only, and declared without `local()` so every machine renders
 the same file. The exception is Press Start 2P's metric-matched `local("Arial")`
 fallback, which keeps its layout stable and draws the glyphs it lacks.
 Adding a font means adding the woff2 to `public/fonts/`, an
-`@font-face` in `src/app/globals.css`, and a preload in `src/app/layout.tsx` only
+`@font-face` in `src/styles/globals.css`, and a preload in `src/components/head/SiteHead.tsx` only
 if it is needed above the fold.
 
 ## SEO & Anti-AI Scraping
@@ -228,9 +259,9 @@ This site implements comprehensive SEO optimization with anti-AI training protec
 - **[robots.txt](public/robots.txt)** — Blocks AI crawlers (OpenAI, Anthropic, Google Extended, CCBot, etc.)
 - **[sitemap.xml](public/sitemap.xml)** — Generated by `pnpm generate:sitemap`. Output is a pure function of the route list (no `lastmod`), so it only changes when routes do.
 - Pre-push hook reruns `pnpm generate:sitemap` **only when pushing the `release` branch** and blocks the push if `public/sitemap.xml` changes. A diff there means a route was added or removed without committing the sitemap. A matching GitHub workflow enforces the same rule on PRs targeting `release`.
-- **Schema.org JSON-LD** — `generatePersonStructuredData()` in [src/utils/metadata.ts](src/utils/metadata.ts), rendered by [src/app/layout.tsx](src/app/layout.tsx) and escaped through `serializeJsonLd`
-- **OpenGraph & Twitter Cards** — Social media metadata via [src/utils/metadata.ts](src/utils/metadata.ts)
-- **Anti-AI Meta Tags** — one `<meta name="robots">` built from `ROBOTS_DIRECTIVES`, plus an `ai-policy` tag. Setting Next's `robots` field as well would emit a second, contradictory tag.
+- **Schema.org JSON-LD** — `generatePersonStructuredData()` in [src/utils/metadata.ts](src/utils/metadata.ts), rendered by [src/components/head/SiteHead.tsx](src/components/head/SiteHead.tsx) and escaped through `serializeJsonLd`
+- **OpenGraph & Twitter Cards** — rendered per page by [src/components/head/PageHead.tsx](src/components/head/PageHead.tsx) from its `+seo` setting
+- **Anti-AI Meta Tags** — one `<meta name="robots">` per page: `ROBOTS_DIRECTIVES` on indexable pages, `noindex, nofollow` on the redirect and error pages, plus an `ai-policy` tag.
 - **Footer Legal Notice** — [src/components/Footer.tsx](src/components/Footer.tsx)
 
 ### Verification
@@ -244,8 +275,8 @@ curl https://marcotoniut.github.io/sitemap.xml
 
 ### Limitations
 
-- **GitHub Pages doesn't support HTTP headers** — so [next.config.mts](next.config.mts) declares no `headers()`; with `output: "export"` Next would silently drop them anyway
-- Controls with a meta equivalent (robots directives, `Referrer-Policy`) are set in [src/app/layout.tsx](src/app/layout.tsx); header-only ones (`X-Content-Type-Options`, `Permissions-Policy`, `Content-Signal`) are unavailable on this host
+- **GitHub Pages doesn't support HTTP headers**, so nothing in the build tries to set them
+- Controls with a meta equivalent (robots directives, `Referrer-Policy`) are set in [SiteHead](src/components/head/SiteHead.tsx) and [PageHead](src/components/head/PageHead.tsx); header-only ones (`X-Content-Type-Options`, `Permissions-Policy`, `Content-Signal`) are unavailable on this host
 - Cannot block non-compliant bots that ignore `robots.txt`; anything rendered into the HTML, including CV contact details, is readable by any scraper
 
 ### Blocked Crawlers
@@ -261,6 +292,6 @@ Deploy to GitHub Pages:
 git push origin release
 ```
 
-The GitHub Actions workflow (`Deploy Next.js site to Pages`) runs automatically on the `release` branch, building the static export and publishing it to Pages with the environment-provided analytics credentials.
+The GitHub Actions workflow (`Deploy site to Pages`) runs automatically on the `release` branch, prerendering the site and publishing `dist/client/` to Pages with the environment-provided analytics credentials.
 
 The site is available at [https://marcotoniut.github.io](https://marcotoniut.github.io)

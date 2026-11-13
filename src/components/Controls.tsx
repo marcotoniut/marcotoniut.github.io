@@ -1,8 +1,5 @@
-"use client"
-
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons"
 import * as Select from "@radix-ui/react-select"
-import { usePathname, useRouter } from "next/navigation"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import type { Locales } from "@/i18n/i18n-types"
 import { locales } from "@/i18n/i18n-util"
@@ -12,16 +9,14 @@ import { createLocalePath } from "@/utils/locale"
 import * as styles from "./Header.css"
 
 export function Controls({ currentLocale }: { currentLocale: Locales }) {
-  const pathname = usePathname()
-  const router = useRouter()
-
   const onValueChange = (locale: string) => {
     const typedLocale = LocaleSchema.parse(locale)
     if (typedLocale === currentLocale) return
 
     setStoredLocale(typedLocale)
-    const target = createLocalePath(pathname, typedLocale)
-    router.push(target)
+    window.location.assign(
+      createLocalePath(window.location.pathname, typedLocale),
+    )
   }
 
   return (

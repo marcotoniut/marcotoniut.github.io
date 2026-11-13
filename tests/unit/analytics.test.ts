@@ -1,8 +1,8 @@
-import { sendGAEvent } from "@next/third-parties/google"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { trackExternalLinkClick } from "@/utils/analytics"
+import { sendGtagEvent } from "@/utils/gtag"
 
-vi.mock("@next/third-parties/google", () => ({ sendGAEvent: vi.fn() }))
+vi.mock("@/utils/gtag", () => ({ sendGtagEvent: vi.fn() }))
 
 beforeEach(() => {
   vi.clearAllMocks()
@@ -16,8 +16,7 @@ describe("external link tracking", () => {
       link_url: "https://github.com/marcotoniut",
       locale: "en",
     })
-    expect(sendGAEvent).toHaveBeenCalledExactlyOnceWith(
-      "event",
+    expect(sendGtagEvent).toHaveBeenCalledExactlyOnceWith(
       "external_link_click",
       {
         event_category: "engagement",
@@ -39,6 +38,6 @@ describe("external link tracking", () => {
         locale: "en",
       }),
     ).toThrow()
-    expect(sendGAEvent).not.toHaveBeenCalled()
+    expect(sendGtagEvent).not.toHaveBeenCalled()
   })
 })

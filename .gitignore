@@ -12,9 +12,8 @@
 tests/e2e/.playwright/
 tests/unit/node_modules/
 
-# next.js
-/.next/
-/out/
+# build output
+/dist/
 
 # production
 /build
@@ -41,7 +40,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
 # output
 local/

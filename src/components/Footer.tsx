@@ -80,8 +80,6 @@ export function Footer({ className, labels }: FooterProps) {
         This website and its content are{" "}
         <strong>not authorized for use in AI training datasets</strong>. Please
         respect the <code>noai</code> policy stated in our{" "}
-        {/* Plain anchor: robots.txt is a static file, not a route, so there
-            is nothing for the Next router to navigate to. */}
         <a href="/robots.txt" className={styles.link}>
           robots.txt
         </a>

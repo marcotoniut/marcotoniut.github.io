@@ -1,4 +1,3 @@
-import { sendGAEvent } from "@next/third-parties/google"
 import type { Locales } from "@/i18n/i18n-types"
 import type {
   BuyMeCoffeeParams,
@@ -11,6 +10,7 @@ import {
   ExternalLinkParamsSchema,
   ProjectLinkParamsSchema,
 } from "./analytics-schemas"
+import { sendGtagEvent } from "./gtag"
 
 export type * from "./analytics-schemas"
 
@@ -25,7 +25,7 @@ export function trackBuyMeCoffeeClick(
     link_url: "https://buymeacoffee.com/marcotoniut",
   })
 
-  sendGAEvent("event", "buy_me_coffee_click", {
+  sendGtagEvent("buy_me_coffee_click", {
     event_category: "engagement",
     event_label: "buy_me_coffee",
     ...validated,
@@ -38,7 +38,7 @@ export function trackBuyMeCoffeeClick(
 export function trackExternalLinkClick(params: ExternalLinkParams) {
   const validated = ExternalLinkParamsSchema.parse(params)
 
-  sendGAEvent("event", "external_link_click", {
+  sendGtagEvent("external_link_click", {
     event_category: "engagement",
     event_label: validated.link_type,
     ...validated,
@@ -57,7 +57,7 @@ export function trackCVView(locale: Locales) {
         : undefined,
   })
 
-  sendGAEvent("event", "cv_view", {
+  sendGtagEvent("cv_view", {
     event_category: "engagement",
     event_label: "cv_page_view",
     ...validated,
@@ -70,7 +70,7 @@ export function trackCVView(locale: Locales) {
 export function trackProjectLinkClick(params: ProjectLinkParams) {
   const validated = ProjectLinkParamsSchema.parse(params)
 
-  sendGAEvent("event", "project_link_click", {
+  sendGtagEvent("project_link_click", {
     event_category: "engagement",
     event_label: `${validated.project_name}_${validated.link_type}`,
     ...validated,
@@ -84,7 +84,7 @@ export function trackCVNavigation(params: {
   locale: Locales
   from_page: string
 }) {
-  sendGAEvent("event", "cv_navigation", {
+  sendGtagEvent("cv_navigation", {
     event_category: "navigation",
     event_label: "internal_cv_link",
     locale: params.locale,
@@ -99,7 +99,7 @@ export function trackContactNavigation(params: {
   locale: Locales
   from_page: string
 }) {
-  sendGAEvent("event", "contact_navigation", {
+  sendGtagEvent("contact_navigation", {
     event_category: "navigation",
     event_label: "internal_contact_link",
     locale: params.locale,
@@ -115,7 +115,7 @@ export function trackProjectNavigation(params: {
   from_page: string
   project_name: string
 }) {
-  sendGAEvent("event", "project_navigation", {
+  sendGtagEvent("project_navigation", {
     event_category: "navigation",
     event_label: `internal_${params.project_name}_link`,
     locale: params.locale,

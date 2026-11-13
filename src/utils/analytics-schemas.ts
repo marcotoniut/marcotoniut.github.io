@@ -1,10 +1,6 @@
 import { z } from "zod"
 import { LocaleSchema } from "@/i18n/schemas"
 
-/**
- * Kept apart from `analytics.ts` so tests can exercise the schemas without
- * pulling in `@next/third-parties`, which needs a Next.js runtime.
- */
 export const LinkClickParamsSchema = z.object({
   link_url: z.url(),
   link_text: z.string().optional(),

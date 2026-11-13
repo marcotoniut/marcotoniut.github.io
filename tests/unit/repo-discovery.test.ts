@@ -34,7 +34,7 @@ describe("repo discovery", () => {
       )
 
     for (const [name, command] of Object.entries(pkg.scripts)) {
-      const match = command.match(/-p (\d+)/)
+      const match = command.match(/--port (\d+)/)
       if (match?.[1]) {
         expect(discovery.ports[name], name).toBe(Number.parseInt(match[1], 10))
       }

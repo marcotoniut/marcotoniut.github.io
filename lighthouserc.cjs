@@ -7,7 +7,7 @@
 module.exports = {
   ci: {
     collect: {
-      staticDistDir: "out",
+      staticDistDir: "dist/client",
       url: ["/en/", "/en/cv/", "/en/contact/", "/en/projects/carcinisation/"],
       // Performance is the only timing-sensitive category, and a single run on
       // a shared CI runner swings a few points. Median of 3 is stable enough

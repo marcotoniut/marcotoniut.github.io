@@ -79,7 +79,7 @@ I'm a London-based software engineer specialising in robust web platforms and de
 
 This is my personal website repository built with:
 
-- **Framework:** Next.js 16 (App Router, static export)
+- **Framework:** Vike with React, prerendered to static HTML
 - **Language:** TypeScript
 - **Styling:** Vanilla Extract
 - **Deployment:** GitHub Pages

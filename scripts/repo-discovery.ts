@@ -31,7 +31,7 @@ const toRoutePath = (...segments: string[]) => {
 const collectPorts = (scripts: Partial<Record<string, string>>) => {
   const ports: Record<string, number> = {}
   for (const [name, command] of Object.entries(scripts)) {
-    const match = command?.match(/-p (\d+)/)
+    const match = command?.match(/--port (\d+)/)
     if (match?.[1]) {
       ports[name] = Number.parseInt(match[1], 10)
     }
@@ -83,7 +83,8 @@ export const buildDiscovery = () => {
       e2e: ["test:a11y", "test:visual"].filter((name) => scripts[name]),
     },
     scopes: {
-      "app routes": "src/app/",
+      "pages (Vike filesystem routes)": "src/pages/",
+      renderer: "src/renderer/ (layout, head, page shell)",
       components: "src/components/",
       i18n: "src/i18n/ (sources; i18n-* files are generated)",
       styles: "src/styles/",
@@ -98,7 +99,7 @@ export const buildDiscovery = () => {
       "e2e suites serve out/, so run `pnpm build` before test:a11y or test:visual",
       "test:visual runs Chromium in Docker (bin/visual-docker.sh); it needs a running Docker daemon",
       "`pnpm install` runs `pnpm generate`, which writes the gitignored src/i18n/i18n-*; rerun it if they go missing",
-      "`next dev` re-adds a managed block to AGENTS.md when an agent is detected",
+      "pages are prerendered to dist/client with server routing: every navigation loads a full document",
       "the sitemap regenerates on build and must be committed when routes change",
     ],
   }

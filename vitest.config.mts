@@ -1,4 +1,3 @@
-import path from "node:path"
 import { defineConfig } from "vitest/config"
 
 export default defineConfig({
@@ -14,7 +13,7 @@ export default defineConfig({
         "src/i18n/es/**",
         "src/i18n/formatters.ts",
         "src/i18n/locale-tags.ts",
-        "src/app/**/i18n/**",
+        "src/pages/**/i18n/**",
         // Imports `.css.ts`, which needs the vanilla-extract transform to load.
         "src/styles/theme.ts",
       ],
@@ -28,9 +27,5 @@ export default defineConfig({
       },
     },
   },
-  resolve: {
-    alias: {
-      "@": path.resolve(import.meta.dirname, "src"),
-    },
-  },
+  resolve: { tsconfigPaths: true },
 })

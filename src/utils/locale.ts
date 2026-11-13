@@ -1,4 +1,6 @@
+import type { LOCALIZED_ROUTES } from "@/config/routes"
 import type { Locales } from "@/i18n/i18n-types"
+import { locales } from "@/i18n/i18n-util"
 import { LocaleSchema } from "@/i18n/schemas"
 
 /**
@@ -20,14 +22,20 @@ export function parseLocale(candidate: unknown): Locales | undefined {
 }
 
 /**
- * Replaces the locale segment in a pathname, or returns /{newLocale} if none found.
+ * Replaces the locale segment in a pathname, or returns /{newLocale}/ if none
+ * found.
  */
 export function createLocalePath(pathname: string, newLocale: Locales): string {
-  const segments = pathname.split("/").filter(Boolean)
+  const [first, ...rest] = pathname.split("/").filter(Boolean)
 
-  if (segments.length > 0 && parseLocale(segments[0])) {
-    segments[0] = newLocale
-    return `/${segments.join("/")}`
-  }
-  return `/${newLocale}`
+  return parseLocale(first) === undefined
+    ? buildLocalizedHref(newLocale)
+    : buildLocalizedHref(newLocale, rest.join("/"))
+}
+
+/** Every locale's URL for a registered route, for prerendering. */
+export function localizedUrls(
+  path: (typeof LOCALIZED_ROUTES)[number]["path"],
+): string[] {
+  return locales.map((locale) => buildLocalizedHref(locale, path))
 }

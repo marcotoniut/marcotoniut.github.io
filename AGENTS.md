@@ -6,6 +6,7 @@ Code defines reality; this document sets policy.
 
 - `pnpm discover` outputs routes, ports, gates, scopes, and repo facts as JSON, derived from source on every run.
 - Check `DEVELOPMENT.md` for workflow, commands, and conventions. Skip both for simple Q&A.
+- Vike's settings and hooks are typed in `node_modules/vike/dist/types/Config.d.ts` and `node_modules/vike-react/dist/types/Config.d.ts`; trust those over memory.
 
 ## Communication
 
@@ -29,13 +30,3 @@ Code defines reality; this document sets policy.
 - Use `git mv` for tracked renames. Conventional Commits with scope (see `DEVELOPMENT.md`). No `Co-Authored-By` lines.
 - Do not rename, add, or delete `.env` or config variables without explicit approval.
 - Stop dev servers and watchers before handoff unless asked otherwise.
-
-<!-- BEGIN:nextjs-agent-rules -->
-
-## This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->

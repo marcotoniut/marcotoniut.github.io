@@ -3,13 +3,10 @@
  *
  * This module provides helpers for generating:
  * - JSON-LD structured data for search engines
- * - OpenGraph and Twitter card metadata
  * - Anti-AI meta tags to prevent content scraping for training
  */
 
-import type { Metadata } from "next"
 import { siteConfig } from "@/config/site"
-import type { Locales } from "@/i18n/i18n-types"
 
 /**
  * Schema.org Person type for JSON-LD structured data
@@ -66,73 +63,8 @@ export function generatePersonStructuredData(): PersonStructuredData {
 }
 
 /**
- * Generate OpenGraph metadata for social media sharing
- *
- * @param params - Page-specific metadata
- * @returns Metadata object with OpenGraph tags
- */
-export function generateOpenGraphMetadata(params: {
-  title: string
-  description: string
-  url: string
-  image?: string
-  locale?: Locales
-  localeTag?: string
-}) {
-  const { title, description, url, image, locale = "en", localeTag } = params
-
-  // `satisfies` rather than an annotation: Metadata["openGraph"] is a wide
-  // union, so annotating would erase `type` and the image shape from the
-  // inferred type and force callers to cast.
-  return {
-    title,
-    description,
-    url,
-    siteName: siteConfig.name,
-    locale: localeTag ?? locale,
-    type: "website",
-    images: [
-      {
-        url: image || siteConfig.social.ogImage,
-        width: 1200,
-        height: 630,
-        alt:
-          title === siteConfig.name
-            ? siteConfig.name
-            : `${siteConfig.name} - ${title}`,
-      },
-    ],
-  } satisfies NonNullable<Metadata["openGraph"]>
-}
-
-/**
- * Generate Twitter Card metadata for Twitter sharing
- *
- * @param params - Page-specific metadata
- * @returns Metadata object with Twitter card tags
- */
-export function generateTwitterMetadata(params: {
-  title: string
-  description: string
-  image?: string
-}) {
-  const { title, description, image } = params
-
-  return {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [image || siteConfig.social.ogImage],
-  } satisfies NonNullable<Metadata["twitter"]>
-}
-
-/**
- * Site-wide `<meta name="robots">` string.
- *
- * Set via `other.robots`, not Next's `robots` object: `noai` and `noimageai`
- * have no field there, and setting both produces conflicting tags that each
- * omit the other's directives. GitHub Pages serves no HTTP headers, making
- * the meta tag the only option.
+ * `<meta name="robots">` for indexable pages. GitHub Pages serves no HTTP
+ * headers, so the meta tag is the only way to send `noai` and `noimageai`.
  */
 export const ROBOTS_DIRECTIVES = [
   "index",

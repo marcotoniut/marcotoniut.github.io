@@ -223,7 +223,7 @@ const enUk: BaseTranslation = {
     },
     footer: {
       p1: "Web version",
-      p2: " of this CV. Built with Next.js and TypeScript.",
+      p2: " of this CV. Built with Vike, React and TypeScript.",
     },
   },
   HomePage: {

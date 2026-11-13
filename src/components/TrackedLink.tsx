@@ -1,6 +1,3 @@
-"use client"
-
-import Link from "next/link"
 import type { ComponentPropsWithoutRef } from "react"
 import type { Locales } from "@/i18n/i18n-types"
 import type { ExternalLinkParams, ProjectLinkParams } from "@/utils/analytics"
@@ -12,7 +9,7 @@ import {
   trackProjectNavigation,
 } from "@/utils/analytics"
 
-type TrackedLinkProps = ComponentPropsWithoutRef<typeof Link> & {
+type TrackedLinkProps = ComponentPropsWithoutRef<"a"> & {
   locale: Locales
   trackingType: "cv_navigation" | "contact_navigation" | "project_navigation"
   /** Required when trackingType is "project_navigation". */
@@ -34,7 +31,7 @@ type TrackedAnchorProps = ComponentPropsWithoutRef<"a"> & {
   )
 
 /**
- * Tracked internal Link (Next.js Link component)
+ * Tracked internal link
  */
 export function TrackedLink({
   locale,
@@ -59,7 +56,10 @@ export function TrackedLink({
     onClick?.(e)
   }
 
-  return <Link {...props} onClick={handleClick} />
+  // biome-ignore lint/a11y/useValidAnchor: Anchor has valid href, onClick is for analytics tracking
+  // biome-ignore lint/a11y/noStaticElementInteractions: This is a navigation anchor with tracking
+  // biome-ignore lint/a11y/useKeyWithClickEvents: href makes Enter activate the anchor natively
+  return <a {...props} onClick={handleClick} />
 }
 
 /**

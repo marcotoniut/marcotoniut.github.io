@@ -1,6 +1,6 @@
-import Link from "next/link"
 import { Controls } from "@/components/Controls"
 import type { Locales } from "@/i18n/i18n-types"
+import { buildLocalizedHref } from "@/utils/locale"
 import * as styles from "./Header.css"
 
 export interface HeaderNavLabels {
@@ -19,19 +19,28 @@ export function Header({ currentLocale, nav }: HeaderProps) {
   return (
     <div className={styles.headerContainer}>
       <header className={styles.header}>
-        <Link href={`/${currentLocale}`} className={styles.wordmark}>
+        <a href={buildLocalizedHref(currentLocale)} className={styles.wordmark}>
           MT·TONIUT
-        </Link>
+        </a>
         <nav aria-label={nav.label} className={styles.nav}>
-          <Link className={styles.navLink} href={`/${currentLocale}`}>
+          <a
+            className={styles.navLink}
+            href={buildLocalizedHref(currentLocale)}
+          >
             {nav.work}
-          </Link>
-          <Link className={styles.navLink} href={`/${currentLocale}/cv`}>
+          </a>
+          <a
+            className={styles.navLink}
+            href={buildLocalizedHref(currentLocale, "cv")}
+          >
             {nav.cv}
-          </Link>
-          <Link className={styles.navLink} href={`/${currentLocale}/contact`}>
+          </a>
+          <a
+            className={styles.navLink}
+            href={buildLocalizedHref(currentLocale, "contact")}
+          >
             {nav.contact}
-          </Link>
+          </a>
         </nav>
         <Controls currentLocale={currentLocale} />
       </header>

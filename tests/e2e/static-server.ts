@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Serves the `out/` static export the same way GitHub Pages does. This lets e2e tests
- * verify the shipped artifact, not a `next dev` render.
+ * Serves the prerendered `dist/client/` the same way GitHub Pages does. This
+ * lets e2e tests verify the shipped artifact, not a `vike dev` render.
  *
  * Key GitHub Pages behaviours to replicate: directory URLs resolve to
  * `index.html`, and unknown paths return `404.html` with a 404 status.
@@ -11,7 +11,7 @@ import { createReadStream, existsSync, statSync } from "node:fs"
 import { createServer } from "node:http"
 import { extname, join, normalize, resolve } from "node:path"
 
-const DIST_DIR = resolve(import.meta.dirname, "../../out")
+const DIST_DIR = resolve(import.meta.dirname, "../../dist/client")
 const port = Number.parseInt(process.env["PLAYWRIGHT_PORT"] ?? "8540", 10)
 const host = process.env["PLAYWRIGHT_HOST"] ?? "127.0.0.1"
 

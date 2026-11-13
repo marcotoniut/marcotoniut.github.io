@@ -68,7 +68,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    // Serves the `out/` export rather than `next dev`, so a11y and visual
+    // Serves the prerendered `dist/client/` rather than `vike dev`, so a11y and visual
     // results describe the artifact that ships. Requires `pnpm build` first.
     command: "node tests/e2e/static-server.ts",
     cwd: projectRoot,
