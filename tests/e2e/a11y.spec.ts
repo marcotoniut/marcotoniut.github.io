@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright"
-import { expect, test } from "@playwright/test"
+import { expect, test } from "./utils/runtime-errors"
 import { waitForVisualStability } from "./utils/visual-stability"
 
 const ROUTES = [
@@ -70,9 +70,7 @@ test.describe("@a11y", () => {
         "wcag21aa",
       ])
       if ("disableRules" in route && route.disableRules) {
-        builder = builder.disableRules(
-          route.disableRules as unknown as string[],
-        )
+        builder = builder.disableRules([...route.disableRules])
       }
       const results = await builder.analyze()
 

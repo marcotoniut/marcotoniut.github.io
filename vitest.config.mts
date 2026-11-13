@@ -15,7 +15,6 @@ export default defineConfig({
         "src/i18n/formatters.ts",
         "src/i18n/locale-tags.ts",
         "src/app/**/i18n/**",
-        "src/styles/fonts.ts",
         // Imports `.css.ts`, which needs the vanilla-extract transform to load.
         "src/styles/theme.ts",
       ],

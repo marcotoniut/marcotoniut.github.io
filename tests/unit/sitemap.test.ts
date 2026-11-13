@@ -6,7 +6,7 @@ const sitemapPath = resolve(import.meta.dirname, "../../public/sitemap.xml")
 const sitemapXml = readFileSync(sitemapPath, "utf-8")
 
 function extractUrls(xml: string): string[] {
-  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1] as string)
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, loc = ""]) => loc)
 }
 
 describe("sitemap.xml", () => {
@@ -61,7 +61,7 @@ describe("sitemap.xml", () => {
   it("has valid priorities (0.0-1.0)", () => {
     const priorities = [
       ...sitemapXml.matchAll(/<priority>([^<]+)<\/priority>/g),
-    ].map((m) => Number.parseFloat(m[1] as string))
+    ].map(([, priority = ""]) => Number.parseFloat(priority))
 
     for (const p of priorities) {
       expect(p).toBeGreaterThanOrEqual(0)

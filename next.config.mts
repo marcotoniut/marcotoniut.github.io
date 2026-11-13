@@ -9,7 +9,9 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
   output: "export",
   reactStrictMode: true,
-  reactCompiler: true,
+  // The default, "none", ships a component the compiler cannot handle
+  // uncompiled, with no warning.
+  reactCompiler: { panicThreshold: "all_errors" },
   images: {
     // GitHub Pages does not support Next.js image optimization pipelines
     unoptimized: true,

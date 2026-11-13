@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test"
+import { expect, test } from "./utils/runtime-errors"
 import { waitForVisualStability } from "./utils/visual-stability"
 
 const ROUTE_SNAPSHOTS: Array<{
@@ -56,6 +56,14 @@ const MOBILE_ROUTE_SNAPSHOTS: Array<{
 test.describe("@visual", () => {
   test.use({
     viewport: { width: 1280, height: 800 },
+  })
+
+  test.beforeAll(() => {
+    if (process.env["PLAYWRIGHT_DOCKER_WS"] === undefined) {
+      throw new Error(
+        "Baselines render in the Playwright Docker image; run `pnpm test:visual`.",
+      )
+    }
   })
 
   test("pages remain visually stable", async ({ page }) => {

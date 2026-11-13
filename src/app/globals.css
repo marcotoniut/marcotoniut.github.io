@@ -1,5 +1,5 @@
 /*
- * Self-hosted, woff2 only, no `local()`.
+ * Self-hosted, woff2 only, no `local()` except the Press Start 2P fallback.
  *
  * `local()` risks visual-snapshot drift: a machine with the font installed
  * renders a different file than CI.
@@ -53,6 +53,26 @@
   src: url("/fonts/space-grotesk/space-grotesk-700.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
+}
+
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("/fonts/press-start-2p/press-start-2p-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/*
+ * next/font's metric-matched stand-in: it holds the layout while the pixel
+ * font loads and draws the glyphs that font lacks, such as →, at its size.
+ */
+@font-face {
+  font-family: "Press Start 2P Fallback";
+  src: local("Arial");
+  ascent-override: 44.58%;
+  descent-override: 0%;
+  line-gap-override: 0%;
+  size-adjust: 224.32%;
 }
 
 html,

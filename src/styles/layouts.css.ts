@@ -37,13 +37,3 @@ export const centredContainer = style({
   justifyContent: "center",
   minHeight: "100vh",
 })
-
-/**
- * Page header for navigation elements
- * Used across contact and other pages
- */
-export const pageHeader = style({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-})

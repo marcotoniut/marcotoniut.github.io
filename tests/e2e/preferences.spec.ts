@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test"
+import { expect, test } from "./utils/runtime-errors"
 
 const THEME_KEY = "marcotoniut-theme"
 const LOCALE_KEY = "marcotoniut-locale"

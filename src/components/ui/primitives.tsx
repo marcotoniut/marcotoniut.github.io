@@ -15,6 +15,8 @@ type BoxOwnProps<E extends ElementType> = Sprinkles & {
   className?: string
 }
 
+const sprinkleKeys: ReadonlySet<string> = sprinkles.properties
+
 export type BoxProps<E extends ElementType = "div"> = BoxOwnProps<E> &
   Omit<ComponentPropsWithoutRef<E>, keyof BoxOwnProps<E>>
 
@@ -26,9 +28,7 @@ export function Box<E extends ElementType = "div">({
   const sprinkleProps: Record<string, unknown> = {}
   const rest: Record<string, unknown> = {}
   for (const [key, value] of Object.entries(props)) {
-    const bucket = sprinkles.properties.has(key as keyof Sprinkles)
-      ? sprinkleProps
-      : rest
+    const bucket = sprinkleKeys.has(key) ? sprinkleProps : rest
     bucket[key] = value
   }
   const classes = [sprinkles(sprinkleProps as Sprinkles), className]

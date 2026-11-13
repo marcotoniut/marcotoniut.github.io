@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { siteConfig } from "@/config/site"
 import { baseLocale, locales } from "@/i18n/i18n-util"
 import { toLocaleTag } from "@/i18n/locale-tags"
-import { pressStartFont } from "@/styles/fonts"
 import { THEME_BOOTSTRAP_SCRIPT } from "@/styles/theme"
 import { buildLocalizedHref } from "@/utils/locale"
 import {
@@ -76,11 +75,7 @@ export default function RootLayout({
   const structuredData = generatePersonStructuredData()
 
   return (
-    <html
-      className={pressStartFont.variable}
-      lang={toLocaleTag(baseLocale)}
-      suppressHydrationWarning
-    >
+    <html lang={toLocaleTag(baseLocale)} suppressHydrationWarning>
       <head>
         <script
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Blocking theme script prevents flash of wrong theme
@@ -112,6 +107,13 @@ export default function RootLayout({
           as="font"
           crossOrigin="anonymous"
           href="/fonts/space-grotesk/space-grotesk-700.woff2"
+          rel="preload"
+          type="font/woff2"
+        />
+        <link
+          as="font"
+          crossOrigin="anonymous"
+          href="/fonts/press-start-2p/press-start-2p-400.woff2"
           rel="preload"
           type="font/woff2"
         />

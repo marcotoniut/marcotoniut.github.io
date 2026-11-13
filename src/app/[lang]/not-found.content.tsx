@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useContext } from "react"
 import { I18nContext } from "@/i18n/i18n-react"
-import { pressStartFont } from "@/styles/fonts"
+import { pressStartFont } from "@/styles/fonts.css"
 import * as styles from "./not-found.css"
 
 export function NotFoundContent() {
@@ -12,7 +12,7 @@ export function NotFoundContent() {
   return (
     <div className={styles.page}>
       <p className={styles.kicker}>{LL.NotFoundPage.kicker()}</p>
-      <h1 className={`${pressStartFont.className} ${styles.code}`}>404</h1>
+      <h1 className={`${pressStartFont} ${styles.code}`}>404</h1>
       <p className={styles.subtitle}>{LL.NotFoundPage.title()}</p>
       <Link href={`/${locale}/`} className={styles.homeLink}>
         ← {LL.NotFoundPage.returnHome()}

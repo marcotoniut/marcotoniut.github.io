@@ -8,6 +8,7 @@ import {
   useLayoutEffect,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react"
 import {
   darkThemeClass,
@@ -16,6 +17,7 @@ import {
 } from "@/styles/theme"
 import type { ThemeMode } from "@/styles/theme-mode"
 import {
+  DEFAULT_THEME_MODE,
   REDUCED_MOTION_QUERY,
   resolveThemeMode,
   THEME_STORAGE_KEY,
@@ -35,17 +37,24 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined)
 const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<ThemeMode>("dark")
-  const [mounted, setMounted] = useState(false)
-  const transitionTimeoutRef = useRef<number | undefined>(undefined)
+const subscribeToNothing = () => () => {}
 
-  // The blocking head script already applied the class, so the first client
-  // pass only syncs React's state to what is on <html>.
-  useEffect(() => {
-    setTheme(resolveThemeMode())
-    setMounted(true)
-  }, [])
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  // Hydration renders the server snapshots; the client pass that follows
+  // resolves the mode the blocking head script already applied to <html>.
+  const resolvedTheme = useSyncExternalStore(
+    subscribeToNothing,
+    resolveThemeMode,
+    () => DEFAULT_THEME_MODE,
+  )
+  const mounted = useSyncExternalStore<boolean>(
+    subscribeToNothing,
+    () => true,
+    () => false,
+  )
+  const [chosenTheme, setTheme] = useState<ThemeMode | null>(null)
+  const theme = chosenTheme ?? resolvedTheme
+  const transitionTimeoutRef = useRef<number | undefined>(undefined)
 
   useIsomorphicLayoutEffect(() => {
     if (!mounted) {
@@ -82,7 +91,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme, mounted])
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"))
+    setTheme(theme === "dark" ? "light" : "dark")
   }
 
   return (

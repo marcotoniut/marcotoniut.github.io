@@ -29,7 +29,7 @@ export const Button = ({
     : buttonRecipe({ variant, size, fullWidth })
 
   if (asChild) {
-    return <Slot {...props} className={composedClassName} ref={ref as never} />
+    return <Slot {...props} className={composedClassName} ref={ref} />
   }
 
   return (

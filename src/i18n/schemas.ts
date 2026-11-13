@@ -12,6 +12,6 @@ function assertNonEmptyLocales(
 
 assertNonEmptyLocales(locales)
 
-export const LOCALES = locales
+const LOCALES = locales
 
 export const LocaleSchema = z.enum(LOCALES)

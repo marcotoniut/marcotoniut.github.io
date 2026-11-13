@@ -8,7 +8,7 @@ export type ThemeMode = "dark" | "light"
 
 export const THEME_STORAGE_KEY = "marcotoniut-theme"
 
-export const LIGHT_SCHEME_QUERY = "(prefers-color-scheme: light)"
+const LIGHT_SCHEME_QUERY = "(prefers-color-scheme: light)"
 
 export const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)"
 

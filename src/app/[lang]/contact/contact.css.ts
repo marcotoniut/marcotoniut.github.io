@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css"
-import { pageContainer, pageHeader } from "@/styles/layouts.css"
+import { pageContainer } from "@/styles/layouts.css"
 import {
   durations,
   fontFamilies,
@@ -9,7 +9,7 @@ import {
   themeVars,
 } from "@/styles/theme"
 
-export { pageContainer as container, pageHeader }
+export { pageContainer as container }
 
 export const main = style({
   flex: 1,

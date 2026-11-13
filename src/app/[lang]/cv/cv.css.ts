@@ -29,13 +29,6 @@ export const headerWrapperCn = style({
   padding: space.lg,
 })
 
-export const cvCn = style({
-  fontFamily: fontFamilies.heading,
-  fontSize: labelFontSize,
-  fontWeight: fontWeights.heading.bold,
-  textTransform: "none",
-})
-
 export const docCn = style({
   color: colors.text,
   display: "flex",
@@ -181,11 +174,6 @@ export const footerCn = style({
   margin: "0 auto",
   maxWidth,
   paddingBlock: "1.5rem",
-})
-
-export const pdfIsPrintingCn = style({
-  fontFamily: cvBodyFamily,
-  fontSize: baseFontSize,
 })
 
 globalStyle(`${docCn} h2`, {

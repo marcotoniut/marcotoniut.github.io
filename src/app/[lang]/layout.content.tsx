@@ -14,9 +14,15 @@ interface Props {
   translation: Translation
 }
 
-export function LayoutContent({ children, locale, translation }: Props) {
+// Runs during render: TypesafeI18n reads loadedLocales in this same pass, and
+// the write is idempotent per locale.
+function registerTranslation(locale: Locales, translation: Translation) {
   loadedLocales[locale] = translation
   loadFormatters(locale)
+}
+
+export function LayoutContent({ children, locale, translation }: Props) {
+  registerTranslation(locale, translation)
 
   useEffect(() => {
     document.documentElement.lang = toLocaleTag(locale)

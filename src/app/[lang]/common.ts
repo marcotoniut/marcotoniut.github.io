@@ -1,9 +1,6 @@
 import type { Locales } from "@/i18n/i18n-types"
-import { loadedLocales, locales } from "@/i18n/i18n-util"
+import { loadedLocales } from "@/i18n/i18n-util"
 import { loadLocaleAsync } from "@/i18n/i18n-util.async"
-
-export type LocaleKey = Locales
-export const localeKeys: readonly LocaleKey[] = locales
 
 /**
  * Loads the translations for `locale` (cached on `loadedLocales`) and returns

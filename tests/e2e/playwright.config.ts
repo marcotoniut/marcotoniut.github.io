@@ -8,9 +8,8 @@ const host = process.env["PLAYWRIGHT_HOST"] ?? "127.0.0.1"
 const baseURL = process.env["PLAYWRIGHT_BASE_URL"] ?? `http://${host}:${port}`
 const artifactsDir = path.resolve(import.meta.dirname, ".playwright")
 const ci = process.env["CI"]
-
-// CI uses higher tolerance to accommodate cross-platform font rendering
-const maxDiffPixelRatio = ci ? 0.03 : 0.01
+// Set by bin/visual-docker.sh, which runs Chromium in the Playwright image.
+const dockerWsEndpoint = process.env["PLAYWRIGHT_DOCKER_WS"]
 
 export default defineConfig({
   timeout: 60_000,
@@ -20,14 +19,11 @@ export default defineConfig({
       animations: "disabled",
       caret: "hide",
       scale: "css",
-      maxDiffPixelRatio,
+      maxDiffPixelRatio: 0.01,
       // Playwright's default per-pixel threshold (0.2 YIQ) cannot tell one
       // dark ground from another: the 404's full palette swap passed against
-      // a stale baseline. 0.08 makes palette changes register locally, where
-      // baselines are generated; CI keeps 0.2 because it compares
-      // macOS-generated baselines on Linux, where text antialiasing alone
-      // would blow the pixel-ratio budget at 0.08.
-      threshold: ci ? 0.2 : 0.08,
+      // a stale baseline.
+      threshold: 0.08,
     },
   },
   outputDir: `${artifactsDir}/test-results`,
@@ -45,6 +41,16 @@ export default defineConfig({
   ],
   use: {
     baseURL,
+    ...(dockerWsEndpoint === undefined
+      ? {}
+      : {
+          // The containerised browser reaches the host's static server
+          // through the Playwright connection.
+          connectOptions: {
+            wsEndpoint: dockerWsEndpoint,
+            exposeNetwork: "<loopback>",
+          },
+        }),
     locale: "en-GB",
     timezoneId: "UTC",
     colorScheme: "dark",

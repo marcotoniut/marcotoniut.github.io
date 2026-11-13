@@ -1,6 +1,6 @@
 import type { Locales } from "./i18n-types"
 
-export const LOCALE_TAGS: Record<Locales, string> = {
+const LOCALE_TAGS: Record<Locales, string> = {
   en: "en-GB",
   es: "es-AR",
 }

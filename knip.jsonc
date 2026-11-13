@@ -1,0 +1,24 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "lighthouserc.cjs",
+    "puppeteer.config.cjs",
+    "scripts/generate-icons.ts",
+    "scripts/generate-og.ts"
+  ],
+  // Agent worktrees check out the whole repository under .claude/worktrees.
+  "project": ["**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}", "!.claude/**"],
+  "ignoreExportsUsedInFile": {
+    "type": true,
+    "interface": true
+  },
+  "ignoreIssues": {
+    // Imported by typesafe-i18n's generated loaders, which are gitignored and
+    // so invisible to knip.
+    "src/i18n/formatters.ts": ["exports"],
+    "src/i18n/*/index.ts": ["exports"],
+    // Box, Stack, Inline and Grid are the fixed vocabulary from
+    // docs/design-direction.md (Tranche 7.5), used or not.
+    "src/components/ui/primitives.tsx": ["exports"]
+  }
+}

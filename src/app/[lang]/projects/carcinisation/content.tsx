@@ -3,7 +3,7 @@ import type { ReactNode } from "react"
 import { ItchIOIcon } from "@/components/icons"
 import { TrackedAnchor } from "@/components/TrackedLink"
 import type { Locales } from "@/i18n/i18n-types"
-import { pressStartFont } from "@/styles/fonts"
+import { pressStartFont } from "@/styles/fonts.css"
 import * as styles from "./carcinisation.css"
 import { getCarcinisationCopy } from "./i18n"
 
@@ -62,13 +62,9 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
     <section className={styles.page}>
       <div className={styles.hero}>
         <div>
-          <p className={`${pressStartFont.className} ${styles.kicker}`}>
-            CARTRIDGE
-          </p>
-          <h1 className={`${pressStartFont.className} ${styles.title}`}>
-            Carcinisation
-          </h1>
-          <p className={`${pressStartFont.className} ${styles.subtitle}`}>
+          <p className={`${pressStartFont} ${styles.kicker}`}>CARTRIDGE</p>
+          <h1 className={`${pressStartFont} ${styles.title}`}>Carcinisation</h1>
+          <p className={`${pressStartFont} ${styles.subtitle}`}>
             {t.meta.subtitle}
           </p>
         </div>
@@ -116,31 +112,29 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 GBJam 11
               </TrackedAnchor>
             }
-            headingClassName={pressStartFont.className}
+            headingClassName={pressStartFont}
           />
           <MetaItem
             label={t.labels.platformMeta}
             value={t.meta.platform}
-            headingClassName={pressStartFont.className}
+            headingClassName={pressStartFont}
           />
           <MetaItem
             label={t.labels.statusMeta}
             value={t.meta.status}
-            headingClassName={pressStartFont.className}
+            headingClassName={pressStartFont}
           />
           <MetaItem
             label={t.labels.engineMeta}
             value={t.meta.engine}
-            headingClassName={pressStartFont.className}
+            headingClassName={pressStartFont}
           />
         </div>
       </div>
 
       <div className={styles.sectionGrid}>
         <article className={styles.card}>
-          <h2
-            className={`${pressStartFont.className} ${styles.sectionHeading}`}
-          >
+          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
             {t.labels.story}
           </h2>
           {t.story.map((paragraph) => (
@@ -149,9 +143,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
         </article>
 
         <article className={styles.card}>
-          <h2
-            className={`${pressStartFont.className} ${styles.sectionHeading}`}
-          >
+          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
             {t.labels.jamNotes}
           </h2>
           <p className={styles.jamSummary}>{t.jamSummary}</p>
@@ -163,9 +155,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
         </article>
 
         <article className={styles.card}>
-          <h2
-            className={`${pressStartFont.className} ${styles.sectionHeading}`}
-          >
+          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
             {t.labels.knownIssues}
           </h2>
           <ul>
@@ -176,9 +166,7 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
         </article>
 
         <article className={styles.card}>
-          <h2
-            className={`${pressStartFont.className} ${styles.sectionHeading}`}
-          >
+          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
             {t.labels.controls}
           </h2>
           <ControlsTable
@@ -189,18 +177,14 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
         </article>
 
         <article className={styles.card}>
-          <h2
-            className={`${pressStartFont.className} ${styles.sectionHeading}`}
-          >
+          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
             {t.labels.tech}
           </h2>
           <TechList items={t.tech} />
         </article>
 
         <article className={styles.card}>
-          <h2
-            className={`${pressStartFont.className} ${styles.sectionHeading}`}
-          >
+          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
             {t.labels.jamTeam}
           </h2>
           <p className={styles.continuationNote}>{t.continuationNote}</p>
@@ -226,18 +210,14 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
         </article>
 
         <article className={styles.card}>
-          <h2
-            className={`${pressStartFont.className} ${styles.sectionHeading}`}
-          >
+          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
             {t.labels.screenshots}
           </h2>
           <ScreenshotGallery locale={locale} />
         </article>
 
         <article className={styles.card}>
-          <h2
-            className={`${pressStartFont.className} ${styles.sectionHeading}`}
-          >
+          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
             {t.labels.externalLinks}
           </h2>
           <ul className={styles.linkList}>

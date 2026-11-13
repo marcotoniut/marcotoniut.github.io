@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs"
 import { resolve } from "node:path"
 import { describe, expect, it } from "vitest"
+import { z } from "zod"
 import { buildDiscovery } from "../../scripts/repo-discovery"
 
 const discovery = buildDiscovery()
@@ -12,7 +13,7 @@ describe("repo discovery", () => {
       "utf-8",
     )
     const sitemapPaths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
-      .map((m) => (m[1] as string).replace(discovery.repo.baseUrl, ""))
+      .map(([, loc = ""]) => loc.replace(discovery.repo.baseUrl, ""))
       .sort((a, b) => a.localeCompare(b))
 
     expect([...discovery.routes].sort((a, b) => a.localeCompare(b))).toEqual(
@@ -21,9 +22,16 @@ describe("repo discovery", () => {
   })
 
   it("derives every dev port from package.json scripts", () => {
-    const pkg = JSON.parse(
-      readFileSync(resolve(import.meta.dirname, "../../package.json"), "utf-8"),
-    ) as { scripts: Record<string, string> }
+    const pkg = z
+      .object({ scripts: z.record(z.string(), z.string()) })
+      .parse(
+        JSON.parse(
+          readFileSync(
+            resolve(import.meta.dirname, "../../package.json"),
+            "utf-8",
+          ),
+        ),
+      )
 
     for (const [name, command] of Object.entries(pkg.scripts)) {
       const match = command.match(/-p (\d+)/)

@@ -30,7 +30,7 @@ type MetadataFromDictParams = {
  * It wires canonical/alternate URLs plus OpenGraph/Twitter while emitting the
  * regional locale tag (e.g. `en-GB`/`es-AR`) everywhere.
  */
-export function buildLocalizedPageMetadata({
+function buildLocalizedPageMetadata({
   locale,
   title,
   description,

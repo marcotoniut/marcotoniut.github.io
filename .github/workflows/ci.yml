@@ -16,31 +16,21 @@ concurrency:
 jobs:
   quality:
     name: Lint & typecheck
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
-      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
-
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version: 26.13.0
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
-
-      - name: Generate i18n types
-        run: pnpm generate
+      - uses: ./.github/actions/setup
 
       # Audits dev dependencies too; `--prod` hid every advisory the build
-      # tooling carries. Unfixable ones are listed in pnpm-workspace.yaml.
+      # tooling carries. Record an unfixable one with `pnpm audit --ignore`.
       - name: Dependency audit
         run: pnpm audit
 
       - name: Annotate Biome diagnostics
         continue-on-error: true
-        run: pnpm lint --reporter=github
+        run: pnpm lint:biome --reporter=github
 
       - run: pnpm lint
       - run: pnpm typecheck
@@ -50,22 +40,12 @@ jobs:
   build:
     name: Build
     needs: quality
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
-      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
-
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version: 26.13.0
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
-
-      - name: Generate i18n types
-        run: pnpm generate
+      - uses: ./.github/actions/setup
 
       - run: pnpm build
 
@@ -81,19 +61,12 @@ jobs:
   a11y:
     name: Accessibility
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
-      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
-
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version: 26.13.0
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/setup
 
       - name: Download static export
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
@@ -121,19 +94,13 @@ jobs:
   visual:
     name: Visual regression
     needs: build
-    runs-on: ubuntu-latest
+    # Baselines are rendered on arm64; see bin/visual-docker.sh.
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
-      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
-
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version: 26.13.0
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/setup
 
       - name: Download static export
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
@@ -141,9 +108,7 @@ jobs:
           name: static-export
           path: out
 
-      - name: Install Playwright browsers
-        run: pnpm exec playwright install chromium --with-deps
-
+      # Chromium runs in the Playwright Docker image, not on the runner.
       - name: Run visual tests
         run: pnpm test:visual
 
@@ -158,7 +123,7 @@ jobs:
   lighthouse:
     name: Lighthouse
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1

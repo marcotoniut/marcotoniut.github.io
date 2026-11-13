@@ -11,8 +11,8 @@ describe("createLocaleCopy", () => {
   })
 
   it("falls back to base locale for unknown locale", () => {
-    // Force an unknown locale through the type system
-    const result = getCopy("fr" as "en")
+    // @ts-expect-error: forces an unknown locale through the type system
+    const result = getCopy("fr")
     expect(result).toEqual({ greeting: "Hello" })
   })
 

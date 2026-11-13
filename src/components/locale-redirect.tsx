@@ -26,17 +26,7 @@ function getNavigatorLocales(): string[] {
     return []
   }
 
-  const localesFromNavigator: string[] = []
-
-  if (Array.isArray(navigator.languages)) {
-    localesFromNavigator.push(...navigator.languages)
-  }
-
-  if (typeof navigator.language === "string") {
-    localesFromNavigator.push(navigator.language)
-  }
-
-  return localesFromNavigator
+  return [...navigator.languages, navigator.language]
 }
 
 function pickSupportedLocale(candidateLocales: readonly string[]): Locales {
@@ -57,27 +47,31 @@ function pickSupportedLocale(candidateLocales: readonly string[]): Locales {
   return defaultLocale
 }
 
+function redirectToPreferredLocale(pathSuffix: string | undefined) {
+  try {
+    const currentPath = window.location.pathname
+    if (localePattern.test(currentPath)) {
+      return
+    }
+
+    const storedLocale = getStoredLocale()
+    const navigatorLocales = getNavigatorLocales()
+    const candidateLocales = [
+      ...(storedLocale ? [storedLocale] : []),
+      ...navigatorLocales,
+    ]
+    const targetLocale = pickSupportedLocale(candidateLocales)
+    const targetHref = buildLocalizedHref(targetLocale, pathSuffix)
+
+    window.location.replace(targetHref)
+  } catch {
+    window.location.replace(buildLocalizedHref(defaultLocale, pathSuffix))
+  }
+}
+
 export function LocaleRedirect({ pathSuffix }: LocaleRedirectProps) {
   useEffect(() => {
-    try {
-      const currentPath = window.location.pathname
-      if (localePattern.test(currentPath)) {
-        return
-      }
-
-      const storedLocale = getStoredLocale()
-      const navigatorLocales = getNavigatorLocales()
-      const candidateLocales = [
-        ...(storedLocale ? [storedLocale] : []),
-        ...navigatorLocales,
-      ]
-      const targetLocale = pickSupportedLocale(candidateLocales)
-      const targetHref = buildLocalizedHref(targetLocale, pathSuffix)
-
-      window.location.replace(targetHref)
-    } catch {
-      window.location.replace(buildLocalizedHref(defaultLocale, pathSuffix))
-    }
+    redirectToPreferredLocale(pathSuffix)
   }, [pathSuffix])
 
   return null

@@ -3,13 +3,14 @@
 import { spawnSync } from "node:child_process"
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { resolve } from "node:path"
+import { z } from "zod"
 
 const repoRoot = resolve(import.meta.dirname, "..")
 
 export function gateChain(): string[] {
-  const pkg = JSON.parse(
-    readFileSync(resolve(repoRoot, "package.json"), "utf8"),
-  ) as { scripts: Record<string, string> }
+  const pkg = z
+    .object({ scripts: z.record(z.string(), z.string()) })
+    .parse(JSON.parse(readFileSync(resolve(repoRoot, "package.json"), "utf8")))
   const check = pkg.scripts["check"]
   if (!check) throw new Error("package.json must define the check script")
   return check.split(" && ").map((step) => {

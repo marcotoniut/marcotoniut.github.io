@@ -10,6 +10,7 @@
   "timezone": "Europe/London",
   "prConcurrentLimit": 5,
   "rebaseWhen": "conflicted",
+  "minimumReleaseAge": "3 days",
   "lockFileMaintenance": {
     "enabled": true
   },
@@ -22,6 +23,15 @@
     {
       "groupName": "GitHub Actions",
       "matchManagers": ["github-actions"]
+    },
+    {
+      "groupName": "mise tools",
+      "matchManagers": ["mise"],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "groupName": "pnpm",
+      "matchPackageNames": ["pnpm"]
     }
   ]
 }

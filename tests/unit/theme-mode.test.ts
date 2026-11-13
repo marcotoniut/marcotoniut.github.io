@@ -70,7 +70,7 @@ describe("buildThemeBootstrapScript", () => {
   const run = () => {
     // Executes the real emitted script, so any drift from resolveThemeMode's
     // precedence fails here rather than shipping as a theme flash.
-    new Function(buildThemeBootstrapScript(CLASSES))()
+    new Function(buildThemeBootstrapScript(CLASSES)).call(undefined)
     return {
       mode: document.documentElement.dataset["theme"],
       classes: document.documentElement.className,

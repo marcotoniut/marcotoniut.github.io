@@ -35,5 +35,3 @@ export const siteConfig = {
     "https://www.linkedin.com/in/marco-toniut-4b6a143a/",
   ],
 } as const
-
-export type SiteConfig = typeof siteConfig

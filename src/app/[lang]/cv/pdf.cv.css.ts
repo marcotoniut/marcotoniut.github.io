@@ -87,5 +87,3 @@ if (env.NEXT_PUBLIC_PDF_PRINTING) {
     padding: "1.8rem",
   })
 }
-
-export const pdfStylesApplied = true

@@ -39,8 +39,6 @@ export const ProjectLinkParamsSchema = LinkClickParamsSchema.extend({
   link_type: z.enum(["github", "itch_io", "jam"]),
 })
 
-export type LinkClickParams = z.infer<typeof LinkClickParamsSchema>
 export type BuyMeCoffeeParams = z.infer<typeof BuyMeCoffeeParamsSchema>
 export type ExternalLinkParams = z.infer<typeof ExternalLinkParamsSchema>
-export type CVViewParams = z.infer<typeof CVViewParamsSchema>
 export type ProjectLinkParams = z.infer<typeof ProjectLinkParamsSchema>

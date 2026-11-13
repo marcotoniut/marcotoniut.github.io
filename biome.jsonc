@@ -21,8 +21,7 @@
     "attributePosition": "auto",
     "bracketSameLine": false,
     "bracketSpacing": true,
-    "expand": "auto",
-    "useEditorconfig": true
+    "expand": "auto"
   },
   "javascript": {
     "formatter": {
@@ -50,11 +49,17 @@
       "correctness": {
         "noUnusedImports": "error",
         "noUnusedVariables": "error",
+        "noUnusedFunctionParameters": "error",
+        "noUnusedPrivateClassMembers": "error",
         "noGlobalDirnameFilename": "error",
         "useImportExtensions": "off"
       },
       "suspicious": {
         "noExplicitAny": "error",
+        "noDoubleEquals": {
+          "level": "error",
+          "options": { "ignoreNull": false }
+        },
         "noConstantBinaryExpressions": "error",
         "noUnusedExpressions": "error",
         "noVar": "error",
@@ -94,7 +99,7 @@
       },
       "performance": {
         "noDelete": "error",
-        // `reactCompiler: true` in next.config.mts memoizes inline handlers, so
+        // `reactCompiler` in next.config.mts memoizes inline handlers, so
         // hand-written useCallback wrappers would be noise.
         "noJsxPropsBind": "off"
       }

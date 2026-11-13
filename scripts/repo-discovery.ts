@@ -11,16 +11,17 @@
 
 import { readFileSync } from "node:fs"
 import path from "node:path"
+import { z } from "zod"
 import { LOCALIZED_ROUTES, UNLOCALIZED_ROUTES } from "../src/config/routes.ts"
 import { siteConfig } from "../src/config/site.ts"
 import { baseLocale, locales } from "../src/i18n/i18n-util.ts"
 
 const repoRoot = path.resolve(import.meta.dirname, "..")
 
-type PackageJson = {
-  name?: string
-  scripts?: Partial<Record<string, string>>
-}
+const PackageJsonSchema = z.object({
+  name: z.string().optional(),
+  scripts: z.record(z.string(), z.string()).optional(),
+})
 
 const toRoutePath = (...segments: string[]) => {
   const joined = segments.filter(Boolean).join("/")
@@ -51,9 +52,9 @@ const collectPorts = (scripts: Partial<Record<string, string>>) => {
 }
 
 export const buildDiscovery = () => {
-  const pkg = JSON.parse(
-    readFileSync(path.resolve(repoRoot, "package.json"), "utf8"),
-  ) as PackageJson
+  const pkg = PackageJsonSchema.parse(
+    JSON.parse(readFileSync(path.resolve(repoRoot, "package.json"), "utf8")),
+  )
   const scripts = pkg.scripts ?? {}
 
   return {
@@ -95,7 +96,8 @@ export const buildDiscovery = () => {
     },
     facts: [
       "e2e suites serve out/, so run `pnpm build` before test:a11y or test:visual",
-      "`pnpm generate` produces src/i18n/i18n-*; a fresh clone fails checks without it",
+      "test:visual runs Chromium in Docker (bin/visual-docker.sh); it needs a running Docker daemon",
+      "`pnpm install` runs `pnpm generate`, which writes the gitignored src/i18n/i18n-*; rerun it if they go missing",
       "`next dev` re-adds a managed block to AGENTS.md when an agent is detected",
       "the sitemap regenerates on build and must be committed when routes change",
     ],
