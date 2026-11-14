@@ -265,7 +265,6 @@ const esAr = {
   },
   Common: {
     buyMeACoffee: "Comprame un café",
-    buyMeACoffeeIconAlt: "Comprame un café logo",
     goBack: "Volver",
     language: "Idioma",
     analytics: {
@@ -276,7 +275,6 @@ const esAr = {
       decline: "No, gracias",
       preferences: "Preferencias de cookies",
     },
-    supportTagline: "Apoyá mi trabajo",
     nav: {
       label: "Principal",
       work: "Trabajos",

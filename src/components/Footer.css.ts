@@ -97,6 +97,8 @@ export const cellButton = style([
   },
 ])
 
+export const coffee = style({ alignSelf: "flex-start", marginBlock: space.xs })
+
 export const colophonLine = style({
   fontFamily: fontFamilies.mono,
   fontSize: "0.8125rem",

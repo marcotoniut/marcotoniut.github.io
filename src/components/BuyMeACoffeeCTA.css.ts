@@ -1,112 +1,169 @@
-import { globalStyle, style } from "@vanilla-extract/css"
-import { colors, radii, shadows, space } from "@/styles/theme"
+import {
+  createVar,
+  fallbackVar,
+  globalStyle,
+  keyframes,
+  style,
+} from "@vanilla-extract/css"
+import { colors, fontFamilies, radii } from "@/styles/theme"
 
-const circleSize = "2.25rem"
+export const coffeeVars = {
+  liquid: createVar(),
+  crema: createVar(),
+  onLiquid: createVar(),
+}
 
-export const base = style({
-  position: "relative",
-  display: "inline-grid",
-  gridAutoFlow: "column",
-  gridTemplateColumns: `${circleSize} 0fr`,
+const liquid = fallbackVar(coffeeVars.liquid, "#6f4e37")
+const crema = fallbackVar(coffeeVars.crema, "#c8a27a")
+const onLiquid = fallbackVar(coffeeVars.onLiquid, "#fdf6ec")
+
+const waveMask = `url("data:image/svg+xml,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="6"><path d="M0 3Q6 0 12 3T24 3V6H0Z"/></svg>',
+)}")`
+
+const EMPTY = "calc(100% + 10px)"
+const FULL = "18%"
+const fill = "transform 1000ms cubic-bezier(0.34, 1.3, 0.64, 1)"
+const drain = "transform 450ms cubic-bezier(0.55, 0, 0.45, 1)"
+const motion = "(prefers-reduced-motion: no-preference)"
+
+const flow = keyframes({
+  to: { maskPosition: "24px 0", WebkitMaskPosition: "24px 0" },
+})
+const ebb = keyframes({
+  to: { maskPosition: "-32px 0", WebkitMaskPosition: "-32px 0" },
+})
+const fizz = keyframes({ to: { backgroundPosition: "0 -24px" } })
+
+const faceLayout = {
   alignItems: "center",
-  columnGap: 0,
-  padding: 0,
-  height: circleSize,
-  borderRadius: "50%",
-  overflow: "hidden",
-  textDecoration: "none",
-  fontFamily: "'Cookie', cursive",
-  fontWeight: 600,
-  lineHeight: 1.1,
-  letterSpacing: "0.01em",
-  transition:
-    "grid-template-columns 320ms ease, border-radius 320ms ease, padding 320ms ease",
-
-  color: colors.buyMeACoffeeText,
-  WebkitTextFillColor: colors.buyMeACoffeeText,
-
-  boxShadow: `${shadows.soft}, ${shadows.subtle}`,
-  backgroundColor: colors.buyMeACoffeeBackground,
-
-  selectors: {
-    "&::before": {
-      content: "",
-      position: "absolute",
-      inset: 0,
-      background: colors.buyMeACoffeeAccent,
-
-      WebkitMaskImage:
-        "conic-gradient(from 180deg at 50% 50%, rgba(0,0,0,0) 0 0.5turn, rgba(0,0,0,1) 0.5turn 1turn)",
-      maskImage:
-        "conic-gradient(from 180deg at 50% 50%, rgba(0,0,0,0) 0 0.5turn, rgba(0,0,0,1) 0.5turn 1turn)",
-      WebkitMaskSize: "200% 200%",
-      maskSize: "200% 200%",
-      WebkitMaskPosition: "0% 50%",
-      maskPosition: "0% 50%",
-      transition:
-        "mask-image 780ms ease-out, -webkit-mask-image 780ms ease-out, mask-position 1s ease, -webkit-mask-position 1s ease",
-      zIndex: 0,
-    },
-
-    "&:hover, &:focus-visible": {
-      gridTemplateColumns: `${circleSize} 1fr`,
-      columnGap: space.xs,
-      paddingInlineStart: space.sm,
-      paddingInlineEnd: space.lg,
-      borderRadius: radii.pill,
-    },
-
-    "&:focus-visible": {
-      outline: `2px solid ${colors.focusRing}`,
-      outlineOffset: "4px",
-    },
-
-    "&:hover::before, &:focus-visible::before": {
-      WebkitMaskImage:
-        "conic-gradient(from 210deg at 50% 50%, rgba(0,0,0,0) 0 0.5turn, rgba(0,0,0,1) 0.5turn 1turn)",
-      maskImage:
-        "conic-gradient(from 210deg at 50% 50%, rgba(0,0,0,0) 0 0.5turn, rgba(0,0,0,1) 0.5turn 1turn)",
-      WebkitMaskPosition: "75% 50%",
-      maskPosition: "75% 50%",
-    },
-  },
-})
-
-// 🔹 Ensure no underline in any link state
-globalStyle(`${base}:link, ${base}:visited, ${base}:hover, ${base}:active`, {
-  color: colors.buyMeACoffeeText,
-  WebkitTextFillColor: colors.buyMeACoffeeText,
-  textDecoration: "none",
-})
-
-export const icon = style({
-  zIndex: 1,
-  width: "100%",
-  height: "100%",
-  display: "block",
-  objectFit: "contain",
-  transition: "transform 320ms ease",
-  selectors: {
-    [`${base}:hover &, ${base}:focus-visible &`]: {
-      transform: "translateX(-0.1rem)",
-    },
-  },
-})
-
-export const label = style({
-  position: "relative",
-  zIndex: 1,
-  fontSize: "1.1em", // 🔹 slightly larger relative font size
-  fontWeight: 600,
+  display: "flex",
+  gap: "8px",
+  padding: "6px 14px 6px 10px",
   whiteSpace: "nowrap",
+} as const
+
+export const button = style({
+  border: "1px solid currentColor",
+  borderRadius: radii.pill,
+  color: colors.text,
+  display: "inline-flex",
+  fontFamily: fontFamilies.mono,
+  fontSize: "0.8125rem",
+  isolation: "isolate",
   overflow: "hidden",
-  opacity: 0,
-  transform: "translateX(-0.5rem)",
-  transition: "opacity 240ms ease 120ms, transform 320ms ease",
+  position: "relative",
+  textDecoration: "none",
   selectors: {
-    [`${base}:hover &, ${base}:focus-visible &`]: {
-      opacity: 1,
-      transform: "translateX(0)",
-    },
+    "&:visited, &:hover": { color: colors.text, textDecoration: "none" },
   },
+})
+
+export const face = style(faceLayout)
+
+const engagedSelf = `${button}:hover &, ${button}:focus-visible &`
+
+const pourMotion = {
+  [motion]: {
+    transition: drain,
+    selectors: { [engagedSelf]: { transition: fill } },
+  },
+}
+
+const wave = {
+  content: "",
+  left: 0,
+  maskImage: waveMask,
+  maskRepeat: "repeat-x",
+  position: "absolute",
+  right: 0,
+  transformOrigin: "bottom",
+  transition: "transform 160ms ease-out",
+  WebkitMaskImage: waveMask,
+  WebkitMaskRepeat: "repeat-x",
+} as const
+
+export const pour = style({
+  inset: 0,
+  pointerEvents: "none",
+  position: "absolute",
+  transform: `translateY(${EMPTY})`,
+  "::before": {
+    ...wave,
+    background: crema,
+    bottom: "calc(100% - 2px)",
+    height: "8px",
+    maskSize: "32px 8px",
+    WebkitMaskSize: "32px 8px",
+  },
+  "::after": {
+    ...wave,
+    background: liquid,
+    bottom: "calc(100% - 1px)",
+    height: "6px",
+    maskSize: "24px 6px",
+    WebkitMaskSize: "24px 6px",
+  },
+  selectors: {
+    [engagedSelf]: { transform: `translateY(${FULL})` },
+  },
+  "@media": pourMotion,
+})
+
+export const body = style({
+  background: liquid,
+  inset: 0,
+  overflow: "hidden",
+  position: "absolute",
+  "::before": {
+    backgroundImage: [
+      `radial-gradient(circle at 25% 70%, ${crema} 0 1.2px, transparent 1.7px)`,
+      `radial-gradient(circle at 70% 30%, ${crema} 0 1px, transparent 1.5px)`,
+      `radial-gradient(circle at 90% 85%, ${crema} 0 0.8px, transparent 1.3px)`,
+    ].join(", "),
+    backgroundSize: "36px 24px",
+    content: "",
+    inset: 0,
+    opacity: 0.6,
+    position: "absolute",
+  },
+})
+
+// Moves against the pour to keep the copy still while the liquid
+// uncovers it.
+export const liquidFace = style({
+  ...faceLayout,
+  color: onLiquid,
+  inset: 0,
+  position: "absolute",
+  transform: `translateY(calc(-1 * ${EMPTY}))`,
+  selectors: {
+    [engagedSelf]: { transform: `translateY(-${FULL})` },
+  },
+  "@media": pourMotion,
+})
+
+const engaged = (target: string) =>
+  `${button}:hover ${target}, ${button}:focus-visible ${target}`
+
+globalStyle(engaged(`${pour}::before`), {
+  "@media": { [motion]: { animation: `${ebb} 2.6s linear infinite` } },
+})
+globalStyle(engaged(`${pour}::after`), {
+  "@media": { [motion]: { animation: `${flow} 1.7s linear infinite` } },
+})
+globalStyle(engaged(`${body}::before`), {
+  "@media": { [motion]: { animation: `${fizz} 2.4s linear infinite` } },
+})
+globalStyle(
+  `${button}:active ${pour}::before, ${button}:active ${pour}::after`,
+  {
+    "@media": { [motion]: { transform: "scaleY(2.2)" } },
+  },
+)
+
+export const cup = style({
+  flexShrink: 0,
+  height: "1.1em",
+  width: "1.1em",
 })

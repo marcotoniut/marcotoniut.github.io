@@ -1,4 +1,5 @@
 import { globalStyle, keyframes, style } from "@vanilla-extract/css"
+import * as coffeeStyles from "@/components/BuyMeACoffeeCTA.css"
 import * as footerStyles from "@/components/Footer.css"
 import * as headerStyles from "@/components/Header.css"
 import { pressStartFont } from "@/styles/fonts.css"
@@ -6,6 +7,7 @@ import { gbPalette } from "@/styles/gb-palette"
 import { fontSizes, media, themeVars } from "@/styles/theme"
 
 const { dark, mid, lite, pale } = gbPalette
+const { coffeeVars } = coffeeStyles
 
 const tiles = (count: number) => `${count * 8}px`
 
@@ -65,9 +67,9 @@ export const pageShell = style({
     [themeVars.color.focusRing]: dark,
     [themeVars.color.hairline]: dark,
     [themeVars.color.grid]: "transparent",
-    [themeVars.color.buyMeACoffeeBackground]: pale,
-    [themeVars.color.buyMeACoffeeText]: dark,
-    [themeVars.color.buyMeACoffeeAccent]: dark,
+    [coffeeVars.liquid]: mid,
+    [coffeeVars.crema]: lite,
+    [coffeeVars.onLiquid]: pale,
   },
   backgroundColor: pale,
   color: dark,
@@ -82,6 +84,11 @@ globalStyle(
   `${pageShell} ${footerStyles.cells}, ${pageShell} ${footerStyles.cells} ${footerStyles.cell}`,
   { borderWidth: "2px" },
 )
+
+globalStyle(`${pageShell} ${coffeeStyles.button}`, {
+  borderRadius: 0,
+  borderWidth: "2px",
+})
 
 export const pageShellContent = style({
   display: "flex",

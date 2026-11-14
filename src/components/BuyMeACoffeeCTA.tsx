@@ -1,73 +1,52 @@
 import type { ComponentPropsWithoutRef } from "react"
 import { useContext } from "react"
+import { CoffeeCupIcon } from "@/components/icons"
 import { I18nContext } from "@/i18n/i18n-react"
 import { trackBuyMeCoffeeClick } from "@/utils/analytics"
-import { base, icon, label } from "./BuyMeACoffeeCTA.css"
+import * as styles from "./BuyMeACoffeeCTA.css"
 
 export type BuyMeACoffeeCTAProps = Omit<
   ComponentPropsWithoutRef<"a">,
   "href" | "children"
 > & {
   location?: "header" | "home_page" | "footer"
-  /** "badge" is the animated cup; "text" is a plain styled-by-caller link. */
-  variant?: "badge" | "text"
 }
 
 export const BuyMeACoffeeCTA = ({
   className,
   location = "header",
   onClick,
-  variant = "badge",
   ...linkProps
 }: BuyMeACoffeeCTAProps) => {
   const { LL, locale } = useContext(I18nContext)
-
-  const classes = className ? `${base} ${className}` : base
+  const label = LL.Common.buyMeACoffee()
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    trackBuyMeCoffeeClick({
-      link_text: LL.Common.buyMeACoffee(),
-      link_location: location,
-      locale,
-    })
+    trackBuyMeCoffeeClick({ link_text: label, link_location: location, locale })
     onClick?.(e)
-  }
-
-  if (variant === "text") {
-    return (
-      <a
-        {...linkProps}
-        className={className}
-        href="https://buymeacoffee.com/marcotoniut"
-        rel="noreferrer"
-        target="_blank"
-        onClick={handleClick}
-      >
-        {LL.Common.supportTagline()}
-      </a>
-    )
   }
 
   return (
     <a
       {...linkProps}
-      className={classes}
+      className={className ? `${styles.button} ${className}` : styles.button}
       href="https://buymeacoffee.com/marcotoniut"
       rel="noreferrer"
       target="_blank"
       onClick={handleClick}
     >
-      <img
-        alt={LL.Common.buyMeACoffeeIconAlt()}
-        className={icon}
-        decoding="async"
-        height={36}
-        loading="lazy"
-        src="/icons/buy-me-a-coffee.svg"
-        style={{ height: "auto" }}
-        width={48}
-      />
-      <span className={label}>{LL.Common.buyMeACoffee()}</span>
+      <span className={styles.face}>
+        <CoffeeCupIcon className={styles.cup} />
+        {label}
+      </span>
+      <span aria-hidden="true" className={styles.pour}>
+        <span className={styles.body}>
+          <span className={styles.liquidFace}>
+            <CoffeeCupIcon className={styles.cup} />
+            {label}
+          </span>
+        </span>
+      </span>
     </a>
   )
 }

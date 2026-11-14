@@ -38,3 +38,21 @@ export const ItchIOIcon = () => (
     />
   </svg>
 )
+
+export const CoffeeCupIcon = ({ className }: { className?: string }) => (
+  <svg
+    aria-hidden="true"
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth={1.5}
+    viewBox="0 0 16 16"
+    xmlns={xmlns}
+  >
+    <path d="M3 6h8v4a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z" />
+    <path d="M11 7h1.5a1.5 1.5 0 0 1 0 3H11" />
+    <path d="M5.5 1.5c-.6.8.6 1.4 0 2.2M8.5 1.5c-.6.8.6 1.4 0 2.2" />
+  </svg>
+)

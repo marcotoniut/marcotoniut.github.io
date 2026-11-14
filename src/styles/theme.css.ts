@@ -21,9 +21,6 @@ const themeContract = createThemeContract({
       carcinisation: null,
       sonicthames: null,
     },
-    buyMeACoffeeBackground: null,
-    buyMeACoffeeText: null,
-    buyMeACoffeeAccent: null,
   },
   space: {
     none: null,
@@ -223,14 +220,9 @@ const darkThemeColors = {
   },
 } as const
 
-const buyMeACoffeeYellow = "#ffdd00"
-
 export const lightThemeClass = createTheme(themeContract, {
   color: {
     ...lightThemeColors,
-    buyMeACoffeeBackground: lightThemeColors.surfaceElevated,
-    buyMeACoffeeText: lightThemeColors.textPrimary,
-    buyMeACoffeeAccent: buyMeACoffeeYellow,
   },
   space: sharedSpace,
   radius: sharedRadius,
@@ -241,9 +233,6 @@ export const lightThemeClass = createTheme(themeContract, {
 export const darkThemeClass = createTheme(themeContract, {
   color: {
     ...darkThemeColors,
-    buyMeACoffeeBackground: darkThemeColors.textPrimary,
-    buyMeACoffeeText: darkThemeColors.surface,
-    buyMeACoffeeAccent: buyMeACoffeeYellow,
   },
   space: sharedSpace,
   radius: sharedRadius,

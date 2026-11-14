@@ -264,7 +264,6 @@ const enUk: BaseTranslation = {
   },
   Common: {
     buyMeACoffee: "Buy me a coffee",
-    buyMeACoffeeIconAlt: "Buy me a coffee logo",
     goBack: "Go back",
     language: "Language",
     analytics: {
@@ -275,7 +274,6 @@ const enUk: BaseTranslation = {
       decline: "No thanks",
       preferences: "Cookie preferences",
     },
-    supportTagline: "Support my work",
     nav: {
       label: "Primary",
       work: "Work",

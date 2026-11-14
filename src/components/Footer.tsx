@@ -68,13 +68,8 @@ export function Footer({ className, labels }: FooterProps) {
           <span className={styles.cellLabel}>{labels.colophon}</span>
           <p className={styles.colophonLine}>
             Marco Toniut, {siteConfig.copyrightYear}
-            <span aria-hidden> · </span>
-            <BuyMeACoffeeCTA
-              className={styles.cellLink}
-              location="footer"
-              variant="text"
-            />
           </p>
+          <BuyMeACoffeeCTA className={styles.coffee} location="footer" />
           <AnalyticsPreferencesButton className={styles.cellButton} />
         </div>
       </div>
