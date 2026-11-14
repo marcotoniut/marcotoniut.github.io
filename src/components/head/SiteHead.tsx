@@ -5,6 +5,7 @@ import { THEME_BOOTSTRAP_SCRIPT } from "@/styles/theme"
 import { ANALYTICS_CONSENT_KEY } from "@/utils/analytics-consent"
 import { buildGtagBootstrapScript } from "@/utils/gtag"
 import { generatePersonStructuredData, serializeJsonLd } from "@/utils/metadata"
+import { PAGE_TRANSITION_SCRIPT } from "@/utils/page-transition"
 
 const measurementId = env.PUBLIC_ENV__GA_MEASUREMENT_ID
 
@@ -15,6 +16,10 @@ export function SiteHead({ pageFonts }: { pageFonts: readonly string[] }) {
       <script
         // biome-ignore lint/security/noDangerouslySetInnerHtml: Blocking theme script prevents flash of wrong theme
         dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }}
+      />
+      <script
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: pagereveal fires before first render, requiring an inline listener; the script is a static constant
+        dangerouslySetInnerHTML={{ __html: PAGE_TRANSITION_SCRIPT }}
       />
       {measurementId === undefined ? null : (
         <script

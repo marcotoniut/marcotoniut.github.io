@@ -1,0 +1,41 @@
+/*
+ * Hard-step Game Boy palette fade for entering and leaving the Carcinisation
+ * page. src/utils/page-transition.ts adds the gb-fade type to these
+ * navigations and skips all others.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+html:active-view-transition-type(gb-fade)::view-transition {
+  /* gbPalette.dark from src/styles/gb-palette.ts */
+  background: #271936;
+}
+
+html:active-view-transition-type(gb-fade)::view-transition-group(root) {
+  animation: none;
+}
+
+html:active-view-transition-type(gb-fade)::view-transition-old(root) {
+  animation: gb-fade-out 150ms steps(3, jump-start) both;
+  mix-blend-mode: normal;
+}
+
+html:active-view-transition-type(gb-fade)::view-transition-new(root) {
+  animation: gb-fade-in 150ms 150ms steps(3, jump-start) both;
+  mix-blend-mode: normal;
+}
+
+@keyframes gb-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes gb-fade-in {
+  from {
+    opacity: 0;
+  }
+}

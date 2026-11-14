@@ -8,6 +8,7 @@ import { ServerError } from "@/pages/_error/ServerError"
 
 import "@/styles/global.css.ts"
 import "@/styles/globals.css"
+import "@/styles/page-transition.css"
 
 export function Layout({ children }: { children: ReactNode }) {
   const locale = useLocale()
