@@ -9,7 +9,7 @@ I'm a London-based software engineer specialising in robust web platforms and de
 ## 🚀 What I Do
 
 - 💼 Building robust web applications and developer tools for clients worldwide
-- 🎮 Crafting retro games with [Bevy Engine](https://bevyengine.org/) and Rust
+- 🎮 Crafting retro games with [Bevy Engine](https://bevy.org/) and Rust
 - 🛠️ Designing type-safe developer experiences with TypeScript & Next.js
 - 🌐 Exploring functional programming patterns in Haskell
 

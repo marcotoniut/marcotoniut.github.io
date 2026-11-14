@@ -337,11 +337,11 @@ export function CVContent({ isPdfPrinting }: CVContentProps) {
               <p>
                 {LL.CVPage.personalProjects.projects.carcinisation.description.p1()}
                 <TrackedAnchor
-                  href="https://bevyengine.org/"
+                  href="https://bevy.org/"
                   locale={locale}
                   trackingType="external_link"
                   trackingParams={{
-                    link_url: "https://bevyengine.org/",
+                    link_url: "https://bevy.org/",
                     link_location: CV_TRACKING_LOCATION.page,
                     link_type: "other",
                     link_text: "Bevy Engine",
