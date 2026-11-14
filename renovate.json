@@ -32,6 +32,10 @@
     {
       "groupName": "pnpm",
       "matchPackageNames": ["pnpm"]
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
     }
   ]
 }
