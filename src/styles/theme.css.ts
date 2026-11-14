@@ -24,12 +24,6 @@ const themeContract = createThemeContract({
     buyMeACoffeeBackground: null,
     buyMeACoffeeText: null,
     buyMeACoffeeAccent: null,
-    gb: {
-      dark: null,
-      mid: null,
-      lite: null,
-      pale: null,
-    },
   },
   space: {
     none: null,
@@ -229,13 +223,6 @@ const darkThemeColors = {
   },
 } as const
 
-const gbPalette = {
-  dark: "#34102f",
-  mid: "#743015",
-  lite: "#c69052",
-  pale: "#fbe1a8",
-} as const
-
 const buyMeACoffeeYellow = "#ffdd00"
 
 export const lightThemeClass = createTheme(themeContract, {
@@ -244,7 +231,6 @@ export const lightThemeClass = createTheme(themeContract, {
     buyMeACoffeeBackground: lightThemeColors.surfaceElevated,
     buyMeACoffeeText: lightThemeColors.textPrimary,
     buyMeACoffeeAccent: buyMeACoffeeYellow,
-    gb: gbPalette,
   },
   space: sharedSpace,
   radius: sharedRadius,
@@ -258,7 +244,6 @@ export const darkThemeClass = createTheme(themeContract, {
     buyMeACoffeeBackground: darkThemeColors.textPrimary,
     buyMeACoffeeText: darkThemeColors.surface,
     buyMeACoffeeAccent: buyMeACoffeeYellow,
-    gb: gbPalette,
   },
   space: sharedSpace,
   radius: sharedRadius,

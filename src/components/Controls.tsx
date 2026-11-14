@@ -8,13 +8,19 @@ import { setStoredLocale } from "@/utils/language-storage"
 import { buildLocalizedHref } from "@/utils/locale"
 import * as styles from "./Header.css"
 
-export function Controls({ currentLocale }: { currentLocale: Locales }) {
+export function Controls({
+  currentLocale,
+  showThemeToggle,
+}: {
+  currentLocale: Locales
+  showThemeToggle: boolean
+}) {
   const { LL } = useI18nContext()
   const { routePath } = usePageContext()
 
   return (
     <div className={styles.controlBar}>
-      <ThemeToggle />
+      {showThemeToggle ? <ThemeToggle /> : null}
       <nav aria-label={LL.Common.language()} className={styles.languageSwitch}>
         {locales.map((locale) => (
           <a

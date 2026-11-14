@@ -32,7 +32,6 @@ export const colors = {
   surfaceElevated: themeVars.color.surfaceElevated,
   text: themeVars.color.textPrimary,
   textMuted: themeVars.color.textMuted,
-  gb: themeVars.color.gb,
 } as const
 
 export const space = {

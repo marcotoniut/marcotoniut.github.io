@@ -1,468 +1,361 @@
-import { createVar, globalStyle, style } from "@vanilla-extract/css"
+import { globalStyle, keyframes, style } from "@vanilla-extract/css"
+import * as footerStyles from "@/components/Footer.css"
 import * as headerStyles from "@/components/Header.css"
-import {
-  colors,
-  darkThemeClass,
-  fontFamilies,
-  fontSizes,
-  fontWeights,
-  lineHeights,
-  media,
-  radii,
-  shadows,
-  space,
-} from "@/styles/theme"
-import { withAlpha } from "@/utils/color"
+import { pressStartFont } from "@/styles/fonts.css"
+import { gbPalette } from "@/styles/gb-palette"
+import { fontSizes, media, themeVars } from "@/styles/theme"
 
-const BUTTON_PRESS_TRANSLATE = "translateY(-2px)"
+const { dark, mid, lite, pale } = gbPalette
 
-/* ---------- Theme vars (trimmed) ---------- */
-const gbThemeVars = {
-  background: createVar(),
-  surface: createVar(),
-  surfaceRaised: createVar(),
-  text: createVar(),
-  textMuted: createVar(),
-  heading: createVar(),
-  border: createVar(),
-  borderMuted: createVar(),
-  accent: createVar(),
-  accentSoft: createVar(),
-  accentContrast: createVar(),
-  screenshotBg: createVar(),
-  tagBg: createVar(),
-} as const
+const tiles = (count: number) => `${count * 8}px`
 
-type GbPalette = Record<keyof typeof gbThemeVars, string>
-const mapPalette = (p: GbPalette) => ({
-  [gbThemeVars.background]: p.background,
-  [gbThemeVars.surface]: p.surface,
-  [gbThemeVars.surfaceRaised]: p.surfaceRaised,
-  [gbThemeVars.text]: p.text,
-  [gbThemeVars.textMuted]: p.textMuted,
-  [gbThemeVars.heading]: p.heading,
-  [gbThemeVars.border]: p.border,
-  [gbThemeVars.borderMuted]: p.borderMuted,
-  [gbThemeVars.accent]: p.accent,
-  [gbThemeVars.accentSoft]: p.accentSoft,
-  [gbThemeVars.accentContrast]: p.accentContrast,
-  [gbThemeVars.screenshotBg]: p.screenshotBg,
-  [gbThemeVars.tagBg]: p.tagBg,
-})
+const SHOT_WIDTH = 320
+const SHOT_BEZEL = 4
 
-/* ---------- Palettes (unchanged logic, safe features only) ---------- */
-const lightPalette: GbPalette = {
-  background: `color-mix(in srgb, ${colors.gb.pale} 94%, ${colors.surface})`,
-  surface: `color-mix(in srgb, ${colors.gb.pale} 90%, ${colors.surfaceElevated})`,
-  surfaceRaised: `color-mix(in srgb, ${colors.gb.pale} 88%, ${colors.surface})`,
-  text: colors.gb.dark,
-  textMuted: `color-mix(in srgb, ${colors.gb.mid} 72%, ${colors.textMuted})`,
-  heading: `color-mix(in srgb, ${colors.gb.dark} 92%, ${colors.text})`,
-  border: `color-mix(in srgb, ${colors.gb.mid} 85%, ${colors.border})`,
-  borderMuted: `color-mix(in srgb, ${colors.gb.mid} 55%, ${colors.borderMuted})`,
-  accent: colors.gb.mid,
-  accentSoft: `color-mix(in srgb, ${colors.gb.lite} 80%, ${colors.accent})`,
-  accentContrast: colors.gb.pale,
-  screenshotBg: `color-mix(in srgb, ${colors.gb.pale} 78%, ${colors.surfaceElevated})`,
-  tagBg: withAlpha(colors.gb.lite, 0.4),
-}
+// Stepped triangle keeps the menu cursor on the pixel grid.
+const cursorClipPath =
+  "polygon(0 0, 25% 0, 25% 12.5%, 50% 12.5%, 50% 25%, 75% 25%, 75% 37.5%, 100% 37.5%, 100% 62.5%, 75% 62.5%, 75% 75%, 50% 75%, 50% 87.5%, 25% 87.5%, 25% 100%, 0 100%)"
 
-const darkPalette: GbPalette = {
-  background: `color-mix(in srgb, ${colors.gb.dark} 88%, ${colors.background})`,
-  surface: `color-mix(in srgb, ${colors.gb.dark} 78%, ${colors.gb.mid})`,
-  surfaceRaised: `color-mix(in srgb, ${colors.gb.dark} 70%, ${colors.gb.mid})`,
-  text: `color-mix(in srgb, ${colors.gb.pale} 88%, ${colors.text})`,
-  textMuted: `color-mix(in srgb, ${colors.gb.lite} 65%, ${colors.textMuted})`,
-  heading: `color-mix(in srgb, ${colors.gb.pale} 92%, ${colors.text})`,
-  border: `color-mix(in srgb, ${colors.gb.mid} 90%, ${colors.border})`,
-  borderMuted: `color-mix(in srgb, ${colors.gb.dark} 70%, ${colors.borderMuted})`,
-  accent: `color-mix(in srgb, ${colors.gb.lite} 78%, ${colors.gb.mid})`,
-  accentSoft: `color-mix(in srgb, ${colors.gb.lite} 68%, ${colors.accent})`,
-  accentContrast: `color-mix(in srgb, ${colors.gb.pale} 85%, ${colors.text})`,
-  screenshotBg: `color-mix(in srgb, ${colors.gb.dark} 58%, ${colors.gb.mid})`,
-  tagBg: withAlpha(
-    `color-mix(in srgb, ${colors.gb.lite} 60%, ${colors.gb.dark})`,
-    0.45,
-  ),
-}
+const DITHER_ROWS = [
+  "1000",
+  "0010",
+  "1010",
+  "0101",
+  "1110",
+  "1011",
+  "1010",
+  "0101",
+  "1000",
+  "0010",
+] as const
+const DITHER_PIXEL = 2
 
-const lightVars = mapPalette(lightPalette)
-const darkVars = mapPalette(darkPalette)
+const ditherSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${DITHER_ROWS[0].length * DITHER_PIXEL}" height="${DITHER_ROWS.length * DITHER_PIXEL}" fill="${lite}" shape-rendering="crispEdges">${DITHER_ROWS.flatMap(
+  (row, y) =>
+    [...row].map((bit, x) =>
+      bit === "1"
+        ? `<rect x="${x * DITHER_PIXEL}" y="${y * DITHER_PIXEL}" width="${DITHER_PIXEL}" height="${DITHER_PIXEL}"/>`
+        : "",
+    ),
+).join("")}</svg>`
 
-/* ---------- Small bases ---------- */
-const panelSurfaceBase = style({
-  background: gbThemeVars.surface,
-  border: `1px solid ${gbThemeVars.border}`,
-  borderRadius: radii.md,
-  boxShadow: shadows.subtle,
-  color: gbThemeVars.text,
-  padding: space.lg,
-})
+const pixel = style([
+  pressStartFont,
+  { fontSize: "16px", letterSpacing: 0, lineHeight: 1.5 },
+])
 
-const buttonBase = style({
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: space.xs,
-  paddingBlock: space.xs,
-  paddingInline: space.lg,
-  borderRadius: radii.pill,
-  fontFamily: fontFamilies.body,
-  fontSize: fontSizes.body,
-  fontWeight: fontWeights.body.bold,
-  textDecoration: "none",
-  cursor: "pointer",
-  transition: "transform 120ms ease, box-shadow 120ms ease, filter 120ms ease",
-})
+const inverted = { background: dark, color: pale } as const
 
-// Kept well below the old 0.35/0.2/0.16: the audit found the texture louder
-// than the content, worst in light mode. The world keeps its grid; it stops
-// competing with reading.
-export const gbBackdrop = style({
-  backgroundColor: gbThemeVars.background,
-  backgroundImage: `
-    linear-gradient(0deg, ${withAlpha(gbThemeVars.borderMuted, 0.16)} 1px, transparent 1px),
-    linear-gradient(90deg, ${withAlpha(gbThemeVars.border, 0.1)} 1px, transparent 1px)
-  `,
-  backgroundSize: "12px 12px, 12px 12px",
-})
+const blink = keyframes({ "50%": { opacity: 0 } })
 
-/* ---------- Layout ---------- */
+// Same four colours in both themes. Remapping the site's tokens here
+// also recolours the shared header and footer.
 export const pageShell = style({
-  vars: lightVars,
-  color: gbThemeVars.text,
-  minHeight: "100svh",
-  width: "100%",
-  selectors: {
-    [`.${darkThemeClass} &`]: { vars: darkVars },
+  vars: {
+    [themeVars.color.background]: pale,
+    [themeVars.color.surface]: pale,
+    [themeVars.color.surfaceElevated]: pale,
+    [themeVars.color.border]: dark,
+    [themeVars.color.borderMuted]: dark,
+    [themeVars.color.textPrimary]: dark,
+    [themeVars.color.textMuted]: dark,
+    [themeVars.color.accent]: dark,
+    [themeVars.color.accentSoft]: mid,
+    [themeVars.color.accentContrast]: pale,
+    [themeVars.color.focusRing]: dark,
+    [themeVars.color.hairline]: dark,
+    [themeVars.color.grid]: "transparent",
+    [themeVars.color.buyMeACoffeeBackground]: pale,
+    [themeVars.color.buyMeACoffeeText]: dark,
+    [themeVars.color.buyMeACoffeeAccent]: dark,
   },
+  backgroundColor: pale,
+  color: dark,
+  colorScheme: "light",
+  minHeight: "100svh",
 })
+
+globalStyle(`${pageShell} ${headerStyles.headerContainer}`, {
+  borderBottomWidth: "2px",
+})
+globalStyle(
+  `${pageShell} ${footerStyles.cells}, ${pageShell} ${footerStyles.cells} ${footerStyles.cell}`,
+  { borderWidth: "2px" },
+)
 
 export const pageShellContent = style({
   display: "flex",
   flexDirection: "column",
-  gap: space.xxxl,
+  gap: tiles(6),
   margin: "0 auto",
-  maxWidth: "1080px",
-  padding: space.lg,
-  width: "100%",
-})
-
-export const pageHeader = style({
-  background: gbThemeVars.surfaceRaised,
-  border: `1px solid ${gbThemeVars.border}`,
-  borderRadius: radii.md,
-  padding: `${space.sm} ${space.lg}`,
-})
-
-globalStyle(`:where(${pageHeader}) ${headerStyles.header}`, {
-  color: gbThemeVars.heading,
-})
-globalStyle(
-  `:where(${pageHeader}) ${headerStyles.wordmark}, :where(${pageHeader}) ${headerStyles.navLink}`,
-  {
-    color: gbThemeVars.heading,
-    fontWeight: fontWeights.body.bold,
+  maxWidth: "1128px",
+  padding: tiles(3),
+  "@media": {
+    [media.sm]: { padding: tiles(2) },
   },
-)
-globalStyle(
-  `:where(${pageHeader}) ${headerStyles.wordmark}:hover, :where(${pageHeader}) ${headerStyles.navLink}:hover`,
-  {
-    color: gbThemeVars.accent,
-  },
-)
-globalStyle(`:where(${pageHeader}) ${headerStyles.controlBar}`, {
-  gap: space.sm,
 })
-globalStyle(`:where(${pageHeader}) ${headerStyles.languageLink}`, {
-  color: gbThemeVars.textMuted,
-})
-globalStyle(`:where(${pageHeader}) ${headerStyles.languageLink}:hover`, {
-  color: gbThemeVars.accent,
-})
-globalStyle(
-  `:where(${pageHeader}) ${headerStyles.languageLink}[aria-current="page"]`,
-  {
-    borderBottomColor: gbThemeVars.accent,
-    color: gbThemeVars.heading,
-  },
-)
 
 export const page = style({
   display: "flex",
   flexDirection: "column",
-  gap: space.xxxl,
-  margin: "0 auto",
-  maxWidth: "900px",
-  width: "100%",
+  gap: tiles(6),
 })
 
-/* ---------- Hero / content ---------- */
-export const hero = style([
-  panelSurfaceBase,
-  {
-    background: gbThemeVars.surfaceRaised,
-    gap: space.lg,
-    padding: space.xxxl,
-    "@media": {
-      "(max-width: 600px)": {
-        padding: space.lg,
-      },
-    },
-  },
-])
-
-export const kicker = style({
-  color: gbThemeVars.heading,
-  fontSize: fontSizes.body,
-  letterSpacing: "0.35em",
-  margin: 0,
-  textTransform: "uppercase",
-  "@media": {
-    [media.sm]: {
-      fontSize: fontSizes.bodySm,
-      letterSpacing: "0.2em",
-    },
-  },
-})
-
-export const title = style({
-  color: gbThemeVars.heading,
-  fontSize: "clamp(1.5rem, 5vw, 3rem)",
-  lineHeight: 1.1,
-  margin: 0,
-  "@media": {
-    [media.sm]: {
-      fontSize: "1.2rem",
-      lineHeight: 1.04,
-    },
-  },
-})
-
-export const subtitle = style({
-  color: gbThemeVars.heading,
-  fontSize: fontSizes.body,
-  letterSpacing: "0.15em",
-  marginTop: space.xs,
-  textTransform: "uppercase",
-  "@media": {
-    [media.sm]: {
-      fontSize: fontSizes.bodySm,
-    },
-  },
-})
-
-export const description = style({
-  color: gbThemeVars.text,
-  fontSize: fontSizes.body,
-})
-
-export const ctaRow = style({
+export const hero = style({
   alignItems: "center",
-  display: "flex",
-  flexWrap: "wrap",
-  gap: space.sm,
-})
-
-export const button = style([
-  buttonBase,
-  {
-    display: "flex",
-    gap: space.sm,
-    background: gbThemeVars.accentSoft,
-    border: `1px solid ${gbThemeVars.accent}`,
-    boxShadow: `0 4px 0 0 ${gbThemeVars.accent}`,
-    color: gbThemeVars.accentContrast,
-    selectors: {
-      "&:visited": {
-        color: colors.gb.pale,
-      },
-      "&:hover": { transform: BUTTON_PRESS_TRANSLATE },
-      "&:focus-visible": {
-        transform: BUTTON_PRESS_TRANSLATE,
-      },
-      "&:active": {
-        transform: "translateY(2px)",
-        boxShadow: `0 2px 0 0 ${gbThemeVars.accent}`,
-      },
-    },
-  },
-])
-
-/* ---------- Meta & tables ---------- */
-export const metaRow = style({
-  borderTop: `1px dotted ${gbThemeVars.borderMuted}`,
   display: "grid",
-  gap: space.sm,
-  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-  marginTop: space.md,
-  paddingTop: space.sm,
-})
-
-export const metaItem = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: space.xxs,
-})
-
-export const metaLabel = style({
-  color: gbThemeVars.heading,
-  fontSize: fontSizes.body,
-  letterSpacing: "0.18em",
-  textTransform: "uppercase",
+  gap: tiles(4),
+  gridTemplateColumns: "max-content 1fr",
   "@media": {
-    [media.sm]: {
-      fontSize: fontSizes.bodySm,
-      letterSpacing: "0.12em",
-    },
+    [media.md]: { gridTemplateColumns: "1fr" },
   },
 })
 
-export const metaValue = style({
-  color: gbThemeVars.text,
-  fontSize: fontSizes.body,
-  fontWeight: fontWeights.body.bold,
-  "@media": {
-    [media.sm]: {
-      fontSize: fontSizes.bodySm,
-    },
-  },
-})
-
-export const controlsTable = style({
-  borderCollapse: "collapse",
-  marginTop: space.md,
-  width: "100%",
-})
-globalStyle(`:where(${controlsTable}) th`, {
-  borderBottom: `1px solid ${gbThemeVars.border}`,
-  fontSize: fontSizes.body,
-  padding: `${space.xxs} ${space.xs}`,
-  textAlign: "left",
-})
-globalStyle(`:where(${controlsTable}) td`, {
-  borderBottom: `1px dotted ${gbThemeVars.borderMuted}`,
-  fontSize: fontSizes.body,
-  padding: `${space.xxs} ${space.xs}`,
-})
-
-/* ---------- Cards / lists / gallery ---------- */
-export const card = style([
-  panelSurfaceBase,
-  { display: "flex", gap: space.sm, flexDirection: "column" },
-])
-
-export const sectionGrid = style({
-  display: "grid",
-  gap: space.lg,
-})
-
-export const sectionHeading = style({
-  color: gbThemeVars.heading,
-  fontSize: fontSizes.body,
-  textTransform: "uppercase",
-  "@media": {
-    [media.sm]: {
-      fontSize: fontSizes.bodySm,
-    },
-  },
-})
-
-export const jamSummary = style({
-  color: gbThemeVars.text,
-  fontSize: fontSizes.body,
-  lineHeight: lineHeights.body,
-  marginBottom: space.md,
-})
-
-globalStyle(`:where(${card}) h2`, { margin: 0, marginBottom: space.sm })
-globalStyle(`:where(${card}) p`, { marginTop: 0 })
-globalStyle(`:where(${card}) ul`, {
-  listStyle: "square",
+export const screen = style({
+  background: dark,
   margin: 0,
-  paddingLeft: space.lg,
+  maxWidth: "100%",
+  padding: `${SHOT_BEZEL}px`,
+  width: "fit-content",
 })
 
-export const techList = style({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: space.sm,
-  listStyle: "none",
-  margin: 0,
-  padding: 0,
-})
-globalStyle(`:where(${techList}) li`, {
-  background: gbThemeVars.tagBg,
-  border: `1px dashed ${gbThemeVars.border}`,
-  borderRadius: radii.md,
-  padding: `${space.xxs} ${space.sm}`,
-})
-
-export const teamList = style({
-  display: "grid",
-  gap: space.xxs,
-  listStyle: "none",
-  margin: 0,
-  padding: 0,
-})
-
-export const continuationNote = style({
-  color: gbThemeVars.textMuted,
-  fontSize: fontSizes.body,
-  lineHeight: lineHeights.body,
-  marginBottom: space.sm,
-})
-
-export const linkList = style({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: space.sm,
-  listStyle: "none",
-  margin: 0,
-  padding: 0,
-})
-
-export const link = style({
-  borderBottom: `1px dotted ${gbThemeVars.accent}`,
-  color: gbThemeVars.accent,
-  fontWeight: fontWeights.body.bold,
-  textDecoration: "none",
-  selectors: {
-    "&:visited": {
-      color: colors.gb.mid,
-      borderBottomColor: colors.gb.mid,
-    },
-  },
-})
-
-export const gallery = style({
-  display: "grid",
-  gap: space.lg,
-  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-})
-
-export const screenshotCard = style([
-  panelSurfaceBase,
-  { background: gbThemeVars.screenshotBg, padding: space.sm },
-])
-
-export const screenshotImage = style({
-  aspectRatio: "10 / 9",
-  border: `1px solid ${gbThemeVars.border}`,
-  borderRadius: radii.sm,
+// Integer multiples of the 160px frame keep game pixels uniform.
+export const screenImage = style({
+  display: "block",
   height: "auto",
   imageRendering: "pixelated",
-  width: "100%",
+  maxWidth: "100%",
+  width: `${SHOT_WIDTH}px`,
 })
 
-export const figcaption = style({
-  color: gbThemeVars.textMuted,
-  fontSize: fontSizes.body,
-  marginTop: space.xs,
+export const heroScreen = style({ padding: tiles(2) })
+
+export const heroScreenImage = style({
+  width: "480px",
+  "@media": {
+    [media.lg]: { width: "320px" },
+  },
+})
+
+export const heroInfo = style({
+  alignItems: "flex-start",
+  display: "flex",
+  flexDirection: "column",
+  gap: tiles(3),
+})
+
+export const title = style([
+  pixel,
+  {
+    fontSize: "32px",
+    margin: 0,
+    textShadow: `0.125em 0.125em 0 ${lite}`,
+    "@media": {
+      [media.lg]: { fontSize: "24px" },
+    },
+  },
+])
+
+export const description = style({ margin: 0, maxWidth: "60ch" })
+
+export const play = style([
+  pixel,
+  {
+    alignItems: "center",
+    border: `2px solid ${dark}`,
+    color: dark,
+    display: "inline-flex",
+    gap: tiles(2),
+    padding: `${tiles(1.5)} ${tiles(2)}`,
+    textDecoration: "none",
+    textTransform: "uppercase",
+    "::before": {
+      background: "currentColor",
+      clipPath: cursorClipPath,
+      content: "",
+      height: tiles(1),
+      width: tiles(1),
+    },
+    selectors: {
+      "&:visited": { color: dark },
+      "&:hover, &:focus-visible": { ...inverted, textDecoration: "none" },
+    },
+  },
+])
+
+globalStyle(`${play}:hover::before, ${play}:focus-visible::before`, {
+  animation: "none",
+})
+
+export const meta = style({
+  alignItems: "baseline",
+  display: "grid",
+  gap: `${tiles(1)} ${tiles(3)}`,
+  gridTemplateColumns: "max-content 1fr",
+  margin: 0,
+})
+
+export const metaLabel = style([
+  pixel,
+  { color: mid, textTransform: "uppercase" },
+])
+
+export const metaValue = style({ margin: 0 })
+
+export const link = style({
+  color: dark,
+  textDecorationLine: "underline",
+  textDecorationThickness: "2px",
+  textUnderlineOffset: "3px",
+  selectors: {
+    "&:visited": { color: dark },
+    "&:hover, &:focus-visible": inverted,
+  },
+})
+
+export const dither = style({
+  backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(ditherSvg)}")`,
+  backgroundRepeat: "repeat-x",
+  height: `${DITHER_ROWS.length * DITHER_PIXEL}px`,
+})
+
+export const windows = style({
+  display: "grid",
+  gap: `${tiles(6)} ${tiles(3)}`,
+  gridTemplateColumns: "minmax(0, 3fr) minmax(0, 2fr)",
+  "@media": {
+    [media.md]: { gridTemplateColumns: "minmax(0, 1fr)" },
+  },
+})
+
+export const wide = style({ gridColumn: "1 / -1" })
+
+export const window = style({
+  border: `2px solid ${dark}`,
+  boxShadow: `inset 0 0 0 2px ${pale}, inset 0 0 0 4px ${dark}`,
+  display: "flex",
+  flexDirection: "column",
+  gap: tiles(2),
+  padding: `${tiles(4)} ${tiles(3)} ${tiles(3)}`,
+  position: "relative",
+  "@media": {
+    [media.sm]: { padding: `${tiles(4)} ${tiles(1.5)} ${tiles(2)}` },
+  },
+})
+globalStyle(`${window} p`, { margin: 0 })
+
+export const dialogue = style({
+  paddingBottom: tiles(4),
+  "::after": {
+    background: dark,
+    bottom: tiles(1.5),
+    clipPath: cursorClipPath,
+    content: "",
+    height: tiles(1),
+    position: "absolute",
+    right: tiles(2),
+    transform: "rotate(90deg)",
+    width: tiles(1),
+  },
+})
+
+globalStyle(`${play}::before, ${dialogue}::after`, {
+  "@media": {
+    "(prefers-reduced-motion: no-preference)": {
+      animation: `${blink} 1s steps(1, end) infinite`,
+    },
+  },
+})
+
+export const windowTitle = style([
+  pixel,
+  {
+    background: pale,
+    left: tiles(2),
+    margin: 0,
+    padding: `0 ${tiles(1)}`,
+    position: "absolute",
+    textTransform: "uppercase",
+    top: 0,
+    transform: "translateY(-50%)",
+  },
+])
+
+export const controls = style({ borderCollapse: "collapse" })
+
+export const controlsHead = style({
+  fontSize: fontSizes.bodySm,
+  fontWeight: 400,
+  paddingBottom: tiles(1),
+  textAlign: "left",
+})
+
+export const controlsCell = style({
+  padding: `${tiles(1)} ${tiles(4)} ${tiles(1)} 0`,
+  verticalAlign: "middle",
+})
+
+export const keycap = style([
+  pixel,
+  {
+    border: `2px solid ${dark}`,
+    boxShadow: `0 ${tiles(0.5)} 0 ${dark}`,
+    display: "inline-block",
+    lineHeight: 1,
+    minWidth: tiles(5),
+    padding: tiles(1),
+    textAlign: "center",
+    textTransform: "uppercase",
+  },
+])
+
+export const gallery = style({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: tiles(2),
+  justifyContent: "center",
+  listStyle: "none",
+  margin: 0,
+  padding: 0,
+})
+
+export const shot = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: tiles(1),
+  margin: 0,
+  maxWidth: "100%",
+  width: `${SHOT_WIDTH + 2 * SHOT_BEZEL}px`,
+})
+
+export const shotItem = style({ maxWidth: "100%" })
+
+export const shotScreen = style({ width: "100%" })
+
+export const shotImage = style({ width: "100%" })
+
+export const caption = style({
+  fontSize: fontSizes.bodySm,
   textAlign: "center",
 })
 
-export const footer = style({
-  borderTop: `1px solid ${gbThemeVars.border}`,
-  color: gbThemeVars.textMuted,
+export const credits = style({
+  display: "grid",
+  gap: tiles(3),
+  gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 272px), 1fr))",
+  listStyle: "none",
+  margin: 0,
+  padding: 0,
 })
+
+export const credit = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: tiles(0.5),
+})
+
+export const creditName = pixel
+
+export const creditRole = style({ fontSize: fontSizes.bodySm })
+
+export const note = style({ fontSize: fontSizes.bodySm })

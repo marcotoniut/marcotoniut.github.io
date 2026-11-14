@@ -1,19 +1,18 @@
 import type { ReactNode } from "react"
-import { ItchIOIcon } from "@/components/icons"
 import { TrackedAnchor } from "@/components/TrackedLink"
 import type { Locales } from "@/i18n/i18n-types"
-import { pressStartFont } from "@/styles/fonts.css"
 import * as styles from "./carcinisation.css"
 import { getCarcinisationCopy } from "./i18n"
 
 const PROJECT_NAME = "carcinisation" as const
+const JAM_URL = "https://itch.io/jam/gbjam-11"
 const TRACKING_LOCATION = {
   page: "carcinisation_project_page",
   meta: "carcinisation_project_page_meta",
-  externalLinks: "carcinisation_project_page_external_links",
 } as const
 
-// Captured from the itch.io web build, cropped to the game viewport.
+// Native-resolution frames from the itch.io web build, with the bottom 7
+// rows of the 144-row screen cropped out.
 const screenshotGallery = [
   {
     src: "/projects/carcinisation/shot-intro.png",
@@ -51,28 +50,35 @@ const screenshotGallery = [
 ] as const
 
 type ProjectContentProps = {
+  coverAlt: string
   locale: Locales
 }
 
-export function CarcinisationContent({ locale }: ProjectContentProps) {
+export function CarcinisationContent({
+  coverAlt,
+  locale,
+}: ProjectContentProps) {
   const t = getCarcinisationCopy(locale)
 
   return (
-    <section className={styles.page}>
-      <div className={styles.hero}>
-        <div>
-          <p className={`${pressStartFont} ${styles.kicker}`}>CARTRIDGE</p>
-          <h1 className={`${pressStartFont} ${styles.title}`}>Carcinisation</h1>
-          <p className={`${pressStartFont} ${styles.subtitle}`}>
-            {t.meta.subtitle}
-          </p>
+    <div className={styles.page}>
+      <section className={styles.hero}>
+        <div className={`${styles.screen} ${styles.heroScreen}`}>
+          <img
+            alt={coverAlt}
+            className={`${styles.screenImage} ${styles.heroScreenImage}`}
+            height={144}
+            src="/projects/carcinisation/cover.png"
+            width={160}
+          />
         </div>
 
-        <p className={styles.description}>{t.short}</p>
+        <div className={styles.heroInfo}>
+          <h1 className={styles.title}>Carcinisation</h1>
+          <p className={styles.description}>{t.short}</p>
 
-        <div className={styles.ctaRow}>
           <TrackedAnchor
-            className={styles.button}
+            className={styles.play}
             href={t.links.itch}
             target="_blank"
             rel="noreferrer"
@@ -85,18 +91,15 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
               project_name: PROJECT_NAME,
             }}
           >
-            <ItchIOIcon />
             {t.labels.playableCta}
           </TrackedAnchor>
-        </div>
 
-        <div className={styles.metaRow}>
-          <MetaItem
-            label={t.labels.jamMeta}
-            value={
+          <dl className={styles.meta}>
+            <dt className={styles.metaLabel}>{t.labels.jamMeta}</dt>
+            <dd className={styles.metaValue}>
               <TrackedAnchor
                 className={styles.link}
-                href="https://itch.io/jam/gbjam-11"
+                href={JAM_URL}
                 target="_blank"
                 rel="noreferrer"
                 locale={locale}
@@ -104,230 +107,126 @@ export function CarcinisationContent({ locale }: ProjectContentProps) {
                 trackingParams={{
                   link_location: TRACKING_LOCATION.meta,
                   link_type: "jam",
-                  link_url: "https://itch.io/jam/gbjam-11",
+                  link_url: JAM_URL,
                   project_name: PROJECT_NAME,
                 }}
               >
                 GBJam 11
               </TrackedAnchor>
-            }
-            headingClassName={pressStartFont}
-          />
-          <MetaItem
-            label={t.labels.platformMeta}
-            value={t.meta.platform}
-            headingClassName={pressStartFont}
-          />
-          <MetaItem
-            label={t.labels.statusMeta}
-            value={t.meta.status}
-            headingClassName={pressStartFont}
-          />
-          <MetaItem
-            label={t.labels.engineMeta}
-            value={t.meta.engine}
-            headingClassName={pressStartFont}
-          />
+            </dd>
+            <dt className={styles.metaLabel}>{t.labels.engineMeta}</dt>
+            <dd className={styles.metaValue}>{t.meta.engine}</dd>
+            <dt className={styles.metaLabel}>{t.labels.platformMeta}</dt>
+            <dd className={styles.metaValue}>{t.meta.platform}</dd>
+            <dt className={styles.metaLabel}>{t.labels.statusMeta}</dt>
+            <dd className={styles.metaValue}>{t.meta.status}</dd>
+          </dl>
         </div>
-      </div>
+      </section>
 
-      <div className={styles.sectionGrid}>
-        <article className={styles.card}>
-          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
-            {t.labels.story}
-          </h2>
+      <div aria-hidden="true" className={styles.dither} />
+
+      <div className={styles.windows}>
+        <Window className={styles.dialogue} heading={t.labels.story}>
           {t.story.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
-        </article>
+        </Window>
 
-        <article className={styles.card}>
-          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
-            {t.labels.jamNotes}
-          </h2>
-          <p className={styles.jamSummary}>{t.jamSummary}</p>
-          <ul>
-            {t.jam.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
-          </ul>
-        </article>
+        <Window heading={t.labels.controls}>
+          <table className={styles.controls}>
+            <thead>
+              <tr>
+                <th className={styles.controlsHead} scope="col">
+                  {t.labels.controlsHeadingLeft}
+                </th>
+                <th className={styles.controlsHead} scope="col">
+                  {t.labels.controlsHeadingRight}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {t.controls.map(([button, key]) => (
+                <tr key={button}>
+                  <td className={styles.controlsCell}>
+                    <span className={styles.keycap}>{button}</span>
+                  </td>
+                  <td className={styles.controlsCell}>{key}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Window>
 
-        <article className={styles.card}>
-          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
-            {t.labels.knownIssues}
-          </h2>
-          <ul>
-            {t.knownIssues.map((issue) => (
-              <li key={issue}>{issue}</li>
-            ))}
-          </ul>
-        </article>
-
-        <article className={styles.card}>
-          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
-            {t.labels.controls}
-          </h2>
-          <ControlsTable
-            rows={t.controls}
-            leftHeading={t.labels.controlsHeadingLeft}
-            rightHeading={t.labels.controlsHeadingRight}
-          />
-        </article>
-
-        <article className={styles.card}>
-          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
-            {t.labels.tech}
-          </h2>
-          <TechList items={t.tech} />
-        </article>
-
-        <article className={styles.card}>
-          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
-            {t.labels.jamTeam}
-          </h2>
-          <p className={styles.continuationNote}>{t.continuationNote}</p>
-          <ul className={styles.teamList}>
-            {t.jamTeam.map((member) => (
-              <li key={member.name}>
-                {"url" in member && member.url ? (
-                  <a
-                    href={member.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.link}
-                  >
-                    {member.name}
-                  </a>
-                ) : (
-                  member.name
-                )}
-                {"role" in member && member.role ? <> — {member.role}</> : null}
+        <Window className={styles.wide} heading={t.labels.screenshots}>
+          <ul className={styles.gallery}>
+            {screenshotGallery.map((shot) => (
+              <li className={styles.shotItem} key={shot.src}>
+                <figure className={styles.shot}>
+                  <div className={`${styles.screen} ${styles.shotScreen}`}>
+                    <img
+                      alt={shot.alt[locale]}
+                      className={`${styles.screenImage} ${styles.shotImage}`}
+                      decoding="async"
+                      height={137}
+                      loading="lazy"
+                      src={shot.src}
+                      width={160}
+                    />
+                  </div>
+                  <figcaption className={styles.caption}>
+                    {shot.caption[locale]}
+                  </figcaption>
+                </figure>
               </li>
             ))}
           </ul>
-        </article>
+        </Window>
 
-        <article className={styles.card}>
-          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
-            {t.labels.screenshots}
-          </h2>
-          <ScreenshotGallery locale={locale} />
-        </article>
-
-        <article className={styles.card}>
-          <h2 className={`${pressStartFont} ${styles.sectionHeading}`}>
-            {t.labels.externalLinks}
-          </h2>
-          <ul className={styles.linkList}>
-            <li>
-              <TrackedAnchor
-                href={t.links.itch}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.link}
-                locale={locale}
-                trackingType="project_link"
-                trackingParams={{
-                  link_location: TRACKING_LOCATION.externalLinks,
-                  link_type: "itch_io",
-                  link_url: t.links.itch,
-                  project_name: PROJECT_NAME,
-                }}
-              >
-                itch.io
-              </TrackedAnchor>
-            </li>
+        <Window className={styles.wide} heading={t.labels.jamTeam}>
+          <ul className={styles.credits}>
+            {t.jamTeam.map((member) => (
+              <li className={styles.credit} key={member.name}>
+                <span className={styles.creditName}>
+                  {"url" in member && member.url ? (
+                    <a
+                      className={styles.link}
+                      href={member.url}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      {member.name}
+                    </a>
+                  ) : (
+                    member.name
+                  )}
+                </span>
+                <span className={styles.creditRole}>{member.role}</span>
+              </li>
+            ))}
           </ul>
-        </article>
+          <p className={styles.note}>{t.continuationNote}</p>
+        </Window>
       </div>
+    </div>
+  )
+}
+
+function Window({
+  children,
+  className,
+  heading,
+}: {
+  children: ReactNode
+  className?: string
+  heading: string
+}) {
+  return (
+    <section
+      className={className ? `${styles.window} ${className}` : styles.window}
+    >
+      <h2 className={styles.windowTitle}>{heading}</h2>
+      {children}
     </section>
-  )
-}
-
-type MetaItemProps = {
-  label: string
-  value: ReactNode
-  headingClassName: string
-}
-
-function MetaItem({ label, value, headingClassName }: MetaItemProps) {
-  return (
-    <div className={styles.metaItem}>
-      <span className={`${headingClassName} ${styles.metaLabel}`}>{label}</span>
-      <span className={styles.metaValue}>{value}</span>
-    </div>
-  )
-}
-
-type ControlsTableProps = {
-  rows: ReadonlyArray<readonly [string, string]>
-  leftHeading: string
-  rightHeading: string
-}
-
-function ControlsTable({
-  rows,
-  leftHeading,
-  rightHeading,
-}: ControlsTableProps) {
-  return (
-    <table className={styles.controlsTable}>
-      <thead>
-        <tr>
-          <th scope="col">{leftHeading}</th>
-          <th scope="col">{rightHeading}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map(([label, value]) => (
-          <tr key={`${label}-${value}`}>
-            <td>{label}</td>
-            <td>{value}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )
-}
-
-type TechListProps = {
-  items: ReadonlyArray<string>
-}
-
-function TechList({ items }: TechListProps) {
-  return (
-    <ul className={styles.techList}>
-      {items.map((item) => (
-        <li key={item}>{item}</li>
-      ))}
-    </ul>
-  )
-}
-
-type ScreenshotGalleryProps = {
-  locale: Locales
-}
-
-function ScreenshotGallery({ locale }: ScreenshotGalleryProps) {
-  return (
-    <div className={styles.gallery}>
-      {screenshotGallery.map((shot) => (
-        <figure key={shot.src} className={styles.screenshotCard}>
-          <img
-            src={shot.src}
-            alt={shot.alt[locale]}
-            className={styles.screenshotImage}
-            decoding="async"
-            height={667}
-            loading="lazy"
-            width={775}
-          />
-          <figcaption className={styles.figcaption}>
-            {shot.caption[locale]}
-          </figcaption>
-        </figure>
-      ))}
-    </div>
   )
 }

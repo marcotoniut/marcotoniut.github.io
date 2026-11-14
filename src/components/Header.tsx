@@ -13,9 +13,14 @@ export interface HeaderNavLabels {
 interface HeaderProps {
   currentLocale: Locales
   nav: HeaderNavLabels
+  showThemeToggle?: boolean
 }
 
-export function Header({ currentLocale, nav }: HeaderProps) {
+export function Header({
+  currentLocale,
+  nav,
+  showThemeToggle = true,
+}: HeaderProps) {
   return (
     <div className={styles.headerContainer}>
       <header className={styles.header}>
@@ -42,7 +47,10 @@ export function Header({ currentLocale, nav }: HeaderProps) {
             {nav.contact}
           </a>
         </nav>
-        <Controls currentLocale={currentLocale} />
+        <Controls
+          currentLocale={currentLocale}
+          showThemeToggle={showThemeToggle}
+        />
       </header>
     </div>
   )
