@@ -182,7 +182,7 @@ and dependencies; its waivers in `knip.jsonc` each give a reason.
 
 The build fails when the React Compiler cannot compile a component
 (`panicThreshold` in `vite.config.ts`) rather than shipping it uncompiled.
-Pre-commit scans staged changes for secrets with gitleaks.
+CI scans the full history for secrets with gitleaks; pre-commit scans staged changes.
 
 CI annotates pull requests with Biome diagnostics and still uses `pnpm lint`
 as its required gate. The actionlint and gitleaks hooks fail when their tool is
